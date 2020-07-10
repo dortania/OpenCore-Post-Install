@@ -1,0 +1,579 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Fixing CFG Lock · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-medium-zoom/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="nvram.html" />
+    
+    
+    <link rel="prev" href="rtc.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"dortania","repo":"OpenCore-Desktop-Guide","type":"star","size":"large"}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    OpenCore Post-Install
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Universal</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../universal/security.html">
+            
+                <a href="../universal/security.html">
+            
+                    
+                    Security and FileVault
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../universal/audio.html">
+            
+                <a href="../universal/audio.html">
+            
+                    
+                    Fixing Audio
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../universal/oc2hdd.html">
+            
+                <a href="../universal/oc2hdd.html">
+            
+                    
+                    Booting without USB
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../universal/update.html">
+            
+                <a href="../universal/update.html">
+            
+                    
+                    Updating OpenCore, kexts and macOS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../universal/drm.html">
+            
+                <a href="../universal/drm.html">
+            
+                    
+                    Fixing DRM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../universal/iservices.html">
+            
+                <a href="../universal/iservices.html">
+            
+                    
+                    Fixing iServices
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../universal/pm.html">
+            
+                <a href="../universal/pm.html">
+            
+                    
+                    Fixing Power Management
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" >
+            
+                <a target="_blank" href="https://dortania.github.io/USB-Map-Guide/">
+            
+                    
+                    Fixing USB
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Laptop Specifics</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../laptop-specific/battery.html">
+            
+                <a href="../laptop-specific/battery.html">
+            
+                    
+                    Fixing Battery Read-outs
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Cosmetics</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../cosmetic/gui.html">
+            
+                <a href="../cosmetic/gui.html">
+            
+                    
+                    Add GUI and Boot-chime
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../cosmetic/verbose.html">
+            
+                <a href="../cosmetic/verbose.html">
+            
+                    
+                    Fixing Resolution and Verbose
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Multiboot</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../multiboot/bootstrap.html">
+            
+                <a href="../multiboot/bootstrap.html">
+            
+                    
+                    Setting up Bootstrap.efi
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../multiboot/bootcamp.html">
+            
+                <a href="../multiboot/bootcamp.html">
+            
+                    
+                    Installing BootCamp
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Miscellaneous</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="rtc.html">
+            
+                <a href="rtc.html">
+            
+                    
+                    Fixing RTC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.2" data-path="msr-lock.html">
+            
+                <a href="msr-lock.html">
+            
+                    
+                    Fixing CFG Lock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="nvram.html">
+            
+                <a href="nvram.html">
+            
+                    
+                    Emulated NVRAM
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Fixing CFG Lock</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#fixing-cfg-lock"><b> </b>Fixing CFG Lock</a></li><ul><li><span class="title-icon "></span><a href="#what-is-cfg-lock"><b>1. </b>What is CFG-Lock</a></li><li><span class="title-icon "></span><a href="#disabling-cfg-lock"><b>2. </b>Disabling CFG Lock</a></li><li><span class="title-icon "></span><a href="#checking-if-cfg-lock-can-be-turned-off"><b>3. </b>Checking if CFG-Lock can be turned off</a></li><li><span class="title-icon "></span><a href="#turning-off-cfg-lock-manually"><b>4. </b>Turning off CFG-Lock manually</a></li></ul></ul></div><a href="#fixing-cfg-lock" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><blockquote>
+<p><em>Last modified: Fri Jul 10 2020 21:28:40 GMT+0000 (Coordinated Universal Time)</em></p>
+</blockquote>
+<h1 id="fixing-cfg-lock"><a name="fixing-cfg-lock" class="anchor-navigation-ex-anchor" href="#fixing-cfg-lock"><i class="fa fa-link" aria-hidden="true"></i></a> Fixing CFG Lock</h1>
+<ul>
+<li>Supported version: 0.5.9</li>
+</ul>
+<div id="anchor-navigation-ex-pagetop-navbar"><ul><li><span class="title-icon "></span><a href="#fixing-cfg-lock"><b> </b>Fixing CFG Lock</a></li><ul><li><span class="title-icon "></span><a href="#what-is-cfg-lock"><b>1. </b>What is CFG-Lock</a></li><li><span class="title-icon "></span><a href="#disabling-cfg-lock"><b>2. </b>Disabling CFG Lock</a></li><li><span class="title-icon "></span><a href="#checking-if-cfg-lock-can-be-turned-off"><b>3. </b>Checking if CFG-Lock can be turned off</a></li><li><span class="title-icon "></span><a href="#turning-off-cfg-lock-manually"><b>4. </b>Turning off CFG-Lock manually</a></li></ul></ul></div>
+
+<p>Do note that this is only recommended for users who have already installed macOS, for users who are installing for the first time enable <code>AppleCpuPmCfgLock</code> and <code>AppleXcpmCfgLock</code> under <code>Kernel -&gt; Quirks</code></p>
+<h2 id="what-is-cfg-lock"><a name="what-is-cfg-lock" class="anchor-navigation-ex-anchor" href="#what-is-cfg-lock"><i class="fa fa-link" aria-hidden="true"></i></a>1. What is CFG-Lock</h2>
+<p>CFG-Lock is a setting in your BIOS that allows for a specific register(in this case the MSR 0xE2) to be written to. By default, most motherboards lock this variable with many even hiding the option outright in the GUI. And why we care about it is that macOS actually wants to write to this variable, and not just one part of macOS. Instead both the Kernel(XNU) and AppleIntelPowerManagement want this register.</p>
+<p>So to fix it we have 2 options:</p>
+<ol>
+<li><p>Patch macOS to work with our hardware</p>
+</li>
+<li><p>This creates instability and unnecessary patching for many</p>
+</li>
+<li><p>The 2 patches we use for this:</p>
+<ul>
+<li><code>AppleCpuPmCfgLock</code> for AppleIntelPowerManagement.kext</li>
+<li><code>AppleXcpmCfgLock</code> for the Kernel(XNU)</li>
+</ul>
+</li>
+<li><p>Patch our firmware to support MSR E2 write</p>
+</li>
+<li><p>Very much preferred, as avoids patching allowing for greater flexibility regarding stability and OS upgrades</p>
+</li>
+</ol>
+<p>Note: Penyrn based machines actually don&apos;t need to worry about unlocking this register</p>
+<h2 id="disabling-cfg-lock"><a name="disabling-cfg-lock" class="anchor-navigation-ex-anchor" href="#disabling-cfg-lock"><i class="fa fa-link" aria-hidden="true"></i></a>2. Disabling CFG Lock</h2>
+<p>So you&apos;ve installed macOS but you&apos;re using those pesky <code>CFG-Lock</code> patches that we want to get rid of, well to do this is fairly simple. You&apos;ll need the following:</p>
+<p>Inside your EFI/OC/Tools folder and config.plist:</p>
+<ul>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/releases" target="_blank">VerifyMsrE2</a></li>
+<li><a href="https://github.com/datasone/grub-mod-setup_var/releases" target="_blank">Modified GRUB Shell</a></li>
+</ul>
+<p>And some apps to help us out:</p>
+<ul>
+<li><a href="https://github.com/LongSoft/UEFITool/releases" target="_blank">UEFITool</a> (Make sure it&apos;s UEFITool and not UEFIExtrac)</li>
+<li><a href="https://github.com/LongSoft/Universal-IFR-Extractor/releases" target="_blank">Universal-IFR-Extractor</a></li>
+</ul>
+<p>And don&apos;t forget to disable the following from your config.plist under <code>Kernel -&gt; Quirks</code>:</p>
+<ul>
+<li><code>AppleCpuPmCfgLock</code></li>
+<li><code>AppleXcpmCfgLock</code></li>
+</ul>
+<p>And the final part, grabbing your BIOS from the vendors&apos; website.</p>
+<p>Now the fun part!</p>
+<h2 id="checking-if-cfg-lock-can-be-turned-off"><a name="checking-if-cfg-lock-can-be-turned-off" class="anchor-navigation-ex-anchor" href="#checking-if-cfg-lock-can-be-turned-off"><i class="fa fa-link" aria-hidden="true"></i></a>3. Checking if CFG-Lock can be turned off</h2>
+<p>Boot OpenCore and select the <code>VerifyMsrE2</code> option in the picker. This tool will tell you whether your BIOS supports CFG-Lock and if it can be unlocked.</p>
+<h2 id="turning-off-cfg-lock-manually"><a name="turning-off-cfg-lock-manually" class="anchor-navigation-ex-anchor" href="#turning-off-cfg-lock-manually"><i class="fa fa-link" aria-hidden="true"></i></a>4. Turning off CFG-Lock manually</h2>
+<ol>
+<li>Open your firmware with UEFITool and then find <code>CFG Lock</code> as a Unicode string. If nothing pops up then your firmware doesn&apos;t support <code>CFG Lock</code>, otherwise continue on.</li>
+</ol>
+<p><img src="../images/extras/msr-lock-md/uefi-tool.png" alt=""></p>
+<ol>
+<li>You&apos;ll find that this string is found within a Setup folder, right-click and export as <code>Setup.bin</code></li>
+<li><p>Open your setup file with <code>ifrextract</code> and export as a .txt file with terminal:</p>
+<pre><code class="lang-text">path/to/ifrextract path/to/Setup.bin path/to/Setup.txt
+</code></pre>
+</li>
+<li><p>Open the text file and search for <code>CFG Lock, VarStoreInfo (VarOffset/VarName):</code> and note the offset right after it(ie: <code>0x5A4</code>)</p>
+</li>
+</ol>
+<p><img src="../images/extras/msr-lock-md/cfg-find.png" alt=""></p>
+<ol>
+<li><p>Run the Modified GRUB Shell and paste the following where <code>0x5A4</code> is replaced with your value:</p>
+<pre><code class="lang-text">setup_var 0x5A4 0x00
+</code></pre>
+<p>Do note that variable offsets are unique not just to each motherboard but even to its firmware version. <strong>Never try to use an offset without checking.</strong></p>
+</li>
+</ol>
+<p>And you&apos;re done! Now you&apos;ll have correct CPU power management</p>
+<p><strong>Note</strong>: Every time you reset your BIOS you will need to flip this bit again, make sure to write it down with the BIOS version so you know which.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="rtc.html" class="navigation navigation-prev " aria-label="Previous page: Fixing RTC">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="nvram.html" class="navigation navigation-next " aria-label="Next page: Emulated NVRAM">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Fixing CFG Lock","level":"6.2","depth":1,"next":{"title":"Emulated NVRAM","level":"6.3","depth":1,"path":"misc/nvram.md","ref":"misc/nvram.md","articles":[]},"previous":{"title":"Fixing RTC","level":"6.1","depth":1,"path":"misc/rtc.md","ref":"misc/rtc.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","favicon-plus","anchor-navigation-ex","github-buttons","last-modified","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"output":"_book","intopic-toc":{"label":"Navigation"},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"fontsettings":{"theme":"night","family":"sans","size":2},"favicon-plus":{"appleTouchIconPrecomposed152":"","favicon":"","output":"_book"},"highlight":{},"github-edit":{"repo":"dortania/Opencore-Desktop-Guide","branch":"master"},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"favicon":"/icons/favicon.ico","appleTouchIconPrecomposed152":"/icons/appleTouchIconPrecomposed152.png","github-buttons":{"buttons":[{"user":"dortania","repo":"OpenCore-Desktop-Guide","type":"star","size":"large"}]},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"search-plus":{}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"misc/msr-lock.md","mtime":"2020-07-10T21:28:40.840Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-10T21:29:29.642Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-medium-zoom/medium-zoom.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-medium-zoom/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    
+
+    </body>
+</html>
+
