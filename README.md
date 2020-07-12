@@ -43,6 +43,8 @@ This guide is split into 4 parts:
   * Help to fix misc iServices issues like iMessage.
 * [Fixing Power Management](/universal/pm.md)
   * Fixes and helps improve both hardware idle and boosting states.
+* [Fixing Sleep](/universal/sleep.md)
+  * Numerous places to check for when fixing sleep.
 * [Fixing USB](https://dortania.github.io/USB-Map-Guide/)
   * Fixes for USB issues like missing ports and helping with sleep.
 
