@@ -225,7 +225,20 @@
             
         </li>
     
-        <li class="chapter " data-level="2.8" >
+        <li class="chapter " data-level="2.8" data-path="sleep.html">
+            
+                <a href="sleep.html">
+            
+                    
+                    Fixing Sleep
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" >
             
                 <a target="_blank" href="https://dortania.github.io/USB-Map-Guide/">
             
@@ -416,7 +429,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#fixing-imessage-and-other-services-with-opencore"><b> </b>Fixing iMessage and other services with OpenCore</a></li><ul><li><span class="title-icon "></span><a href="#generate-a-new-serial"><b>1. </b>Generate a new Serial</a></li><li><span class="title-icon "></span><a href="#fixing-en0"><b>2. </b>Fixing En0</a></li><li><span class="title-icon "></span><a href="#fixing-rom"><b>3. </b>Fixing ROM</a></li><li><span class="title-icon "></span><a href="#verifying-nvram"><b>4. </b>Verifying NVRAM</a></li><li><span class="title-icon "></span><a href="#clean-out-old-attempts"><b>5. </b>Clean out old attempts</a></li><li><span class="title-icon "></span><a href="#verifying-your-work-one-last-time"><b>6. </b>Verifying your work one last time</a></li><li><span class="title-icon "></span><a href="#cleaning-up-your-appleid"><b>7. </b>Cleaning up your AppleID</a></li><li><span class="title-icon "></span><a href="#customer-code-error"><b>8. </b>Customer Code error</a></li></ul></ul></div><a href="#fixing-imessage-and-other-services-with-opencore" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><blockquote>
-<p><em>Last modified: Fri Jul 10 2020 21:28:40 GMT+0000 (Coordinated Universal Time)</em></p>
+<p><em>Last modified: Sun Jul 12 2020 23:09:18 GMT+0000 (Coordinated Universal Time)</em></p>
 </blockquote>
 <h1 id="fixing-imessage-and-other-services-with-opencore"><a name="fixing-imessage-and-other-services-with-opencore" class="anchor-navigation-ex-anchor" href="#fixing-imessage-and-other-services-with-opencore"><i class="fa fa-link" aria-hidden="true"></i></a> Fixing iMessage and other services with OpenCore</h1>
 <ul>
@@ -496,7 +509,7 @@ sudo rm /Library/Preferences/SystemConfiguration/preferences.plist
 <h2 id="verifying-nvram"><a name="verifying-nvram" class="anchor-navigation-ex-anchor" href="#verifying-nvram"><i class="fa fa-link" aria-hidden="true"></i></a>4. Verifying NVRAM</h2>
 <p>Something that many forget about iServices is that NVRAM is crucial to getting it working correctly, the reason being is that iMessage keys and such are stored in NVRAM. Without NVRAM, iMessage can neither see nor store keys.</p>
 <p>So we&apos;ll need to verify NVRAM works, regardless if &quot;it should work&quot; as some firmwares can be more of a pain than others.</p>
-<p>Please refer to the <a href="../post-install/nvram.md">Emulated NVRAM</a> section of the OpenCore Guide for both testing if you have working NVRAM and emulating it if you don&apos;t.</p>
+<p>Please refer to the <a href="../misc/nvram.html">Emulated NVRAM</a> section of the OpenCore Guide for both testing if you have working NVRAM and emulating it if you don&apos;t.</p>
 <h2 id="clean-out-old-attempts"><a name="clean-out-old-attempts" class="anchor-navigation-ex-anchor" href="#clean-out-old-attempts"><i class="fa fa-link" aria-hidden="true"></i></a>5. Clean out old attempts</h2>
 <p>This is important for those who&apos;ve tried setting up iMessage but failed, to start make sure your NVRAM has been cleared. You can enable the option in the boot picker in your config under config.plist -&gt; Misc -&gt; Security -&gt; AllowNvramReset.</p>
 <p>Next open terminal and run the following:</p>
@@ -586,7 +599,7 @@ etc ...
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Fixing iServices","level":"2.6","depth":1,"next":{"title":"Fixing Power Management","level":"2.7","depth":1,"path":"universal/pm.md","ref":"universal/pm.md","articles":[]},"previous":{"title":"Fixing DRM","level":"2.5","depth":1,"path":"universal/drm.md","ref":"universal/drm.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","favicon-plus","anchor-navigation-ex","github-buttons","last-modified","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"output":"_book","intopic-toc":{"label":"Navigation"},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"fontsettings":{"theme":"night","family":"sans","size":2},"favicon-plus":{"appleTouchIconPrecomposed152":"","favicon":"","output":"_book"},"highlight":{},"github-edit":{"repo":"dortania/Opencore-Desktop-Guide","branch":"master"},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"favicon":"/icons/favicon.ico","appleTouchIconPrecomposed152":"/icons/appleTouchIconPrecomposed152.png","github-buttons":{"buttons":[{"user":"dortania","repo":"OpenCore-Desktop-Guide","type":"star","size":"large"}]},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"search-plus":{}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"universal/iservices.md","mtime":"2020-07-10T21:28:40.840Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-10T21:29:29.642Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Fixing iServices","level":"2.6","depth":1,"next":{"title":"Fixing Power Management","level":"2.7","depth":1,"path":"universal/pm.md","ref":"universal/pm.md","articles":[]},"previous":{"title":"Fixing DRM","level":"2.5","depth":1,"path":"universal/drm.md","ref":"universal/drm.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","favicon-plus","anchor-navigation-ex","github-buttons","last-modified","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"output":"_book","intopic-toc":{"label":"Navigation"},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"fontsettings":{"theme":"night","family":"sans","size":2},"favicon-plus":{"appleTouchIconPrecomposed152":"","favicon":"","output":"_book"},"highlight":{},"github-edit":{"repo":"dortania/Opencore-Desktop-Guide","branch":"master"},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":false,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"favicon":"/icons/favicon.ico","appleTouchIconPrecomposed152":"/icons/appleTouchIconPrecomposed152.png","github-buttons":{"buttons":[{"user":"dortania","repo":"OpenCore-Desktop-Guide","type":"star","size":"large"}]},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"search-plus":{}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"universal/iservices.md","mtime":"2020-07-12T23:09:18.238Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-12T23:10:08.496Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
