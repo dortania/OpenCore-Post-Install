@@ -33,7 +33,7 @@ This is mainly as a mini-guide in case BootProtect doesn't work or you'd like to
 
 ### Verify Bootstrap entry was applied
 
-For those wanting to verify that the entry was applied in OpenCore, enabling logging(see [OpenCore Debugging](/troubleshooting/debug.md)) and check for entries similar to these:
+For those wanting to verify that the entry was applied in OpenCore, enabling logging(see [OpenCore Debugging](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/debug.html)) and check for entries similar to these:
 
 ```
 OCB: Have existing option 1, valid 1

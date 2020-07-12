@@ -4,13 +4,16 @@
 
 ## Enabling X86PlatformPlugin
 
-So before we can fine tune power management to our liking, we need to first make sure Apple's XCPM core is loaded. Note that this is supported **only on Haswell and newer**, Sandy and Ivy Bridge should refer to the bottom of the guide: [Sandy and Ivy Bridge Power Management](/post-install/pm.md#sandy-and-ivy-bridge-power-management).
+So before we can fine tune power management to our liking, we need to first make sure Apple's XCPM core is loaded. Note that this is supported **only on Haswell and newer**, Sandy, Ivy Bridge and AMD CPUs should refer to the bottom of the guides: 
+
+* [Sandy and Ivy Bridge Power Management](/universal/pm.md#sandy-and-ivy-bridge-power-management)
+* [AMD CPU Power Management](/universal/pm.md#amd-cpu-power-management)
 
 To start, grab [IORegistryExplorer](https://github.com/toleda/audio_ALCInjection/blob/master/IORegistryExplorer_v2.1.zip) and look for `AppleACPICPU`(note if you use search, it won't show the children so clear your search once you've found the entry):
 
 XCPM Present           |  Missing XCPM
 :-------------------------:|:-------------------------:
-![](/images/post-install/pm-md/pm-working.png)  |  ![](/images/post-install/pm-md/pm-not-working.png)
+![](../images/post-install/pm-md/pm-working.png)  |  ![](../images/post-install/pm-md/pm-not-working.png)
 
 As you can see from the left image, we have the X86PlatformPlugin attached meaning Apple's CPU Power Management Drivers are doing their thing. If you get something like to the right image, then there's likely an issue. Make sure to check the following:
 
@@ -43,12 +46,13 @@ XCPM does not natively support Haswell-E and Broadwell-E, this means we need to 
 To start, we're gonna need a couple things:
 
 * X86PlatformPlugin loaded
+  * This means Sandy, Ivy Birdge and AMD CPUs are not supported
 * [CPUFriend](https://github.com/acidanthera/CPUFriend/releases)
 * [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend)
 
 Now lets run CPUFriendFriend.command
 
-![](/images/post-install/pm-md/lpm.png)
+![](../images/post-install/pm-md/lpm.png)
 
 The `min hex freq` should be what the lowest possible TDP for the CPU, on Intel's [ARK site](https://ark.intel.com/) search for `TDP-down Frequency` and convert this value to HEX. Note that not all CPUs support `TDP-down Frequency`, like the i7-9700T vs i7 9700. In these scenarios, you'll want to do a bit more research into your CPU, specifically:
 
@@ -67,13 +71,13 @@ For this example we'll be using the [i9 7920x](https://ark.intel.com/content/www
 
 The last frequency is not your maximum frequency so don't worry about being capped at that limit.
 
-![](/images/post-install/pm-md/macbook.png)
+![](../images/post-install/pm-md/macbook.png)
 
 ```text
 echo "obase=16; 13" | bc
 ```
 
-![](/images/post-install/pm-md/epp.png)
+![](../images/post-install/pm-md/epp.png)
 
 Next up is the Energy Performance Preference, EPP. This tells macOS how fast to turbo up the CPU to its full clock. `00` will tell macOS to let the CPU go as fast as it can as quickly as it can while `FF` will tell macOS to take things slowly and let the CPU ramp up over a much longer period of time. Depending on what you're doing and the cooling on your machine, you may want to set something in the middle. Below chart can help out a bit:
 
@@ -86,8 +90,8 @@ Next up is the Energy Performance Preference, EPP. This tells macOS how fast to 
 
 **Note**: Only Skylake and newer SMBIOS officially support EPP
 
-![](/images/post-install/pm-md/done.png)
-![](/images/post-install/pm-md/files.png)
+![](../images/post-install/pm-md/done.png)
+![](../images/post-install/pm-md/files.png)
 
 Once you're finished, you'll be provided with a CPUFriendDataProvider.kext and ssdt_data.aml. Which you choose is your preference but I recommend the kext variant to avoid any headaches with data injection into Windows and Linux.
 
@@ -125,10 +129,14 @@ To drop the CpuPm and Cpu0Ist tables, head to ACPI -> Delete:
 
 Once this is done, we can now grab ssdtPRGen and run it:
 
-![](/images/post-install/pm-md/prgen-run.png)
+![](../images/post-install/pm-md/prgen-run.png)
 
 Once you're done, you'll be provided with an SSDT.aml under `/Users/your-name>/Library/ssdtPRGen/ssdt.dsl`, you can easily find it with the Cmd+Shift+G shortcut and pasting `~/Library/ssdtPRGen/`
 
-![](/images/post-install/pm-md/prgen-done.png)
+![](../images/post-install/pm-md/prgen-done.png)
 
 Remember to now add this to both EFI/OC/ACPI and your config.plist, I recommend renaming it to SSDT-PM to find it more easily
+
+## AMD CPU Power Management
+
+While macOS might not officially support AMD CPU Power management, there are community efforts to add it. Specifically being [SMCAMDProcessor](https://github.com/trulyspinach/SMCAMDProcessor). Note that when adding this kext, it should be after VirtualSMC in your config.plist as it's a plugin.

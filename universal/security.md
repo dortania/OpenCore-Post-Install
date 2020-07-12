@@ -39,7 +39,7 @@ Setting in your config.plist:
 
 With all this, you can proceed to enable FileVault like on a normal mac under `System Preferences -> Security & Privacy -> FileVault`
 
-For UI issues, see [Fixing Resolution and Verbose](/post-install/verbose.md)
+For UI issues, see [Fixing Resolution and Verbose](/cosmetic/verbose.md)
 
 ## Vault
 
@@ -76,11 +76,11 @@ The last one is what we care about: `sign.command`
 
 So when we run this command, it'll look for the EFI folder located beside our Utilities folder, so we want to bring either our personal EFI into the OpenCorePkg folder or bring Utilities into our EFI folder:
 
-![](/images/post-install/security-md/sign.png)
+![](../images/post-install/security-md/sign.png)
 
 Now we're ready to run `sign.command`:
 
-![](/images/post-install/security-md/sign-demo.png)
+![](../images/post-install/security-md/sign-demo.png)
 
 **Disabling Vault after setup**:
 

@@ -102,8 +102,8 @@ This guide also includes some other fixes than just mapping:
 With GPUs, it's fairly easy to know what might be causing issues. This being unsupported GPUs in macOS. By default, any GPU that doesn't have drivers already provided in the OS will run off very basic drivers known as VESA drivers. These provide minimal display output but also cause a big issue in that macOS doesn't actually know how to properly interact with these devices. To fix this, well need to either trick macOS into thinking it's a generic PCIe device(which it can better handle, ideal for desktops) or completely power off the card(on laptops, desktop dGPUs have issues powering down)
 
 * See here for more info:
-    * [Disabling desktop dGPUs](https://dortania.github.io/Getting-Started-With-ACPI/Desktops/desktop-disable.md)
-    * [Disabling laptop dGPUs](https://dortania.github.io/Getting-Started-With-ACPI/Laptops/laptop-disable.md)
+    * [Disabling desktop dGPUs](https://dortania.github.io/Getting-Started-With-ACPI/Desktops/desktop-disable)
+    * [Disabling laptop dGPUs](https://dortania.github.io/Getting-Started-With-ACPI/Laptops/laptop-disable)
 	
 Special notes for iGPU users on 10.15.4 and newer:
 
@@ -117,7 +117,7 @@ Special note for 4k Displays with AMD dGPUs:
   * You can find the PciRoot of your GPU with [gfxutil](https://github.com/acidanthera/gfxutil/releases)
     * `/path/to/gfxutil -f GFX0`
 
-![](/images/post-install/sleep-md/agdc.png)
+![](../images/post-install/sleep-md/agdc.png)
 
 ### Fixing Thunderbolt
 
@@ -160,9 +160,15 @@ This guide is primarily for dGPU but works the exact same way with NVMe drives(a
 
 **For Intel**:
 
-To verify you have working CPU Power Management, see the [Fixing Power Management](/post-install/pm.md) page. And if not, then patch accordingly.
+To verify you have working CPU Power Management, see the [Fixing Power Management](/universal/pm.md) page. And if not, then patch accordingly.
 
-Also note that incorrect frequency vectors can result in wake issues, so either verify you're using the correct SMBIOS or adjust the frequency vectors of your current SMBIOS with CPUFrend. Tools like [one-key-cpufriend](https://github.com/stevezhengshiqi/one-key-cpufriend) are known for creating bad frequency vectors so be careful with tools not used by Dortania. 
+Also note that incorrect frequency vectors can result in wake issues, so either verify you're using the correct SMBIOS or adjust the frequency vectors of your current SMBIOS with CPUFrend. Tools like [one-key-cpufriend](https://github.com/stevezhengshiqi/one-key-cpufriend) are known for creating bad frequency vectors so be careful with tools not used by Dortania.
+
+A common kernel panic from wake would be:
+
+```
+Sleep Wake failure in EFI
+```
 
 **For AMD**:
 
@@ -204,7 +210,7 @@ For 99% of HP users, this will fix the random key spam. If not, see below thread
 
 ### NVRAM
 
-To verify you have working NVRAM, see the [Emulated NVRAM](/post-install/nvram.md) page to verify you have working NVRAM. And if not, then patch accordingly.
+To verify you have working NVRAM, see the [Emulated NVRAM](/misc/nvram.md) page to verify you have working NVRAM. And if not, then patch accordingly.
 
 ### RTC
 
@@ -236,10 +242,10 @@ IRQ issues usually occur during bootups but some may notice that IRQ calls can b
 This will provide you with both SSDT-HPET.aml and `oc_patches.plist`, You will want to add the SSDT to EFI/OC/ACPI and add the ACPI patches into your config.plist from the oc_patches.plist
 
 ### Audio
-
+ 
 Unmanaged or incorrectly managed audio devices can also cause issues, either disable unused audio devices  in your BIOS or verify they're working correctly here:
 
-* [Fixing Audio](/post-install/audio.md)
+* [Fixing Audio](/universal/audio.md)
 
 ### SMBus
 
@@ -263,10 +269,10 @@ The former 2 are plug n play, while the latter will need some customizations:
 * Open up the kext(ShowPackageContents in finder, `Contents -> Info.plist`) and change the Info.plist -> `IOKitPersonalities -> IOPropertyMatch -> IOCPUNumber` to the number of CPU threads you have starting from `0`(i9 7980xe 18 core would be `35` as it has 36 threads total)
 * Compiled version can be found here: [TSCAdjustReset.kext](https://github.com/dortania/OpenCore-Desktop-Guide/blob/master/extra-files/TSCAdjustReset.kext.zip)
 
-![](/images/post-install/sleep-md/tsc.png)
+![](../images/post-install/sleep-md/tsc.png)
 
 The most common way to see the TSC issue:
 
 Case 1    |  Case 2
 :-------------------------:|:-------------------------:
-![](/images/troubleshooting/troubleshooting-md/asus-tsc.png)  |  ![](/images/troubleshooting/troubleshooting-md/asus-tsc-2.png)
+![](../images/troubleshooting/troubleshooting-md/asus-tsc.png)  |  ![](../images/troubleshooting/troubleshooting-md/asus-tsc-2.png)

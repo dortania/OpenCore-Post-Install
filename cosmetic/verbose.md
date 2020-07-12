@@ -38,7 +38,7 @@ So if you followed closely to this guide during install, you'll likely be runnin
 **Inside your config.plist**:
 
 * `Misc -> Debug -> Target`: 3
-  * `Target` is what determines both what is logged and how, see [OpenCore Debugging](/troubleshooting/debug.md) for more values
+  * `Target` is what determines both what is logged and how, see [OpenCore Debugging](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/debug.html) for more values
   
 **Inside your EFI**:
 

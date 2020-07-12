@@ -1,11 +1,8 @@
 # Fixing RTC write issues
 
-TO-DO:
-* Go into more detail about `rtcfx_exclude`, feel it's a little rushed
-
 What this section attempts to teach is how to resolve RTC(CMOS) issues on reboot/wake with certain machines. Most commonly looking like the image below:
 
-![credit to u/iDrakus for the image](/images/post-install/rtc-md/cmos-error.png)
+![credit to u/iDrakus for the image](../images/post-install/rtc-md/cmos-error.png)
 
 The reason that these CMOS and safe mode errors happen is due to AppleRTC writing to certain areas that are not supported by the hardware properly and thus resulting in panics and errors. 
 
@@ -80,7 +77,7 @@ And finally, set `AppleRtcRam` under UEFI -> ProtocolOverrides to true. This wil
 
 Once all this is done, you should have something similar to below:
 
-![](/images/post-install/rtc-md/rtc-blacklist.png)
+![](../images/post-install/rtc-md/rtc-blacklist.png)
 
 
  

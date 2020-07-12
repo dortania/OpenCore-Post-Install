@@ -11,6 +11,7 @@
 * [Fixing DRM](/universal/drm.md)
 * [Fixing iServices](/universal/iservices.md)
 * [Fixing Power Management](/universal/pm.md)
+* [Fixing Sleep](/universal/sleep.md)
 * [Fixing USB](https://dortania.github.io/USB-Map-Guide/)
 
 ## Laptop Specifics

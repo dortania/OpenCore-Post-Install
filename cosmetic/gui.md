@@ -4,12 +4,12 @@
 
 Main thing this guide will go over:
 
-* [Giving OpenCore a GUI](/extras/gui.md#giving-opencore-a-gui)
-* [Setting up a boot-chime](/extras/gui.md#setting-up-a-boot-chime)
+* [Setting up OpenCore's GUI](#setting-up-opencores-gui)
+* [Setting up a boot-chime](#setting-up-boot-chime-with-audiodxe)
 
 ## Setting up OpenCore's GUI
 
-So to get started, we're gonna need 0.5.7 or newer as these builds have the GUI included with the rest of the files. If you're on an older version, I recommend updating: [Updating OpenCore](/post-install/update.md)
+So to get started, we're gonna need 0.5.7 or newer as these builds have the GUI included with the rest of the files. If you're on an older version, I recommend updating: [Updating OpenCore](/universal/update.md)
 
 Once that's done, we'll need a couple things:
 
@@ -22,7 +22,7 @@ Once you have both of these, we'll next want to add it to our EFI partition:
 * Add the [Resources folder](https://github.com/acidanthera/OcBinaryData) to EFI/OC
 * Add OpenCanopy.efi to EFI/OC/Drivers
 
-![](/images/extras/gui-md/folder-gui.png)
+![](../images/extras/gui-md/folder-gui.png)
 
 Now in our config.plist, we have 2 things we need to fix:
 
@@ -35,7 +35,7 @@ Now in our config.plist, we have 2 things we need to fix:
 
 Once all this is saved, you can reboot and be greeted with a true Mac-like GUI:
 
-![Credit to vit9696](/images/extras/gui-md/gui.png)
+![Credit to vit9696](../images/extras/gui-md/gui.png)
 
 ## Setting up Boot-chime with AudioDxe
 
@@ -49,7 +49,7 @@ So to start, we'll need a couple things:
   * Add the Resources folder to EFI/OC, just like we did with the OpenCore GUI section
   * For those running out of space, `OCEFIAudio_VoiceOver_Boot.wav` is all that's required for the Boot-Chime
 * Debug version of OpenCore with logging enabled
-  * See [OpenCore Debugging](/troubleshooting/debug.md) for more info
+  * See [OpenCore Debugging](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/debug.html) for more info
 
 **Settings up NVRAM**:
 
@@ -109,11 +109,11 @@ So to start, we'll need a couple things:
 
 Once done, you should get something like this:
 
-![](/images/extras/gui-md/audio-config.png)
+![](../images/extras/gui-md/audio-config.png)
 
 **Note for visually impaired**:
 
 * OpenCore hasn't forgotten about you! With the AudioDxe setup, you can enable both picker audio and FileVault VoiceOver with these 2 settings:
   * `Misc -> Boot -> PickerAudioAssist -> True` to enable picker audio
   * `UEFI -> ProtocolOverrides -> AppleAudio -> True` to enable FileVault voice over
-    * See [Security and FileVault](/post-install/security.md) on how to setup the rest for proper FileVault support
+    * See [Security and FileVault](/universal/security.md) on how to setup the rest for proper FileVault support
