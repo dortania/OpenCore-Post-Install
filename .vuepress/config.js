@@ -36,7 +36,8 @@ module.exports = {
 	lastUpdated: true,
 	repo: 'https://github.com/dortania/OpenCore-Post-Install',
     editLinks: false,
-    docsDir: '',
+	  base: '/OpenCore-Post-Install/',
+    docsDir: 'OpenCore-Post-Install',
     editLinkText: '',
 	logo: '/homepage.png',
     nav: [
