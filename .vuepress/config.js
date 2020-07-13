@@ -21,6 +21,8 @@ module.exports = {
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
 	["link", { rel:"'stylesheet", href: "/styles/website.css" }, ]
   ],
+		  base: '/OpenCore-Post-Install/',
+
 
   /**
    * Theme configuration, here is the default theme configuration for VuePress.
@@ -36,7 +38,6 @@ module.exports = {
 	lastUpdated: true,
 	repo: 'https://github.com/dortania/OpenCore-Post-Install',
     editLinks: false,
-	  base: '/OpenCore-Post-Install/',
     docsDir: 'OpenCore-Post-Install',
     editLinkText: '',
 	logo: '/homepage.png',
