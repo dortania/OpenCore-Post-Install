@@ -4,6 +4,9 @@ cache:
   npm: false
 before_script:
 - yarn add vuepress -D
+- yarn add -D vuepress-theme-succinct
+- yarn add -D @vuepress/plugin-medium-zoom
+- yarn add -D @vuepress/plugin-back-to-top
 script:
 - yarn install
 - yarn build
