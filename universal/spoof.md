@@ -27,13 +27,13 @@ Do note that this will disable all GPUs excluding the iGPU.
 
 Here is quite simple, find the PCI route with [gfxutil](https://github.com/acidanthera/gfxutil/releases) and then create a new DeviceProperties section with your spoof:
 
-```text
+```
 path/to/gfxutil -f GFX0
 ```
 
 And the output will result in something similar:
 
-```text
+```
 DevicePath = PciRoot(0x0)/Pci(0x1,0x0)/Pci(0x0,0x0)/Pci(0x0,0x0)/Pci(0x0,0x0)
 ```
 

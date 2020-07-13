@@ -66,11 +66,11 @@ So to start, we'll need a couple things:
     * ex: `0x0`
       * Can also check via terminal(Note if multiple show up, use the vendor ID to find the right device)l:
 
- ```text
+ ```
  ioreg -rxn IOHDACodecDevice | grep VendorID   // List all possible devices
  ```
 
- ```text
+ ```
  ioreg -rxn IOHDACodecDevice | grep IOHDACodecAddress // Grab the codec address
  ```
 
@@ -85,7 +85,7 @@ So to start, we'll need a couple things:
   * ex: `2`
     * You can find all the ones for your codec in the OpenCore debug logs:
 
-```text
+```
 06:065 00:004 OCAU: Matching PciRoot(0x0)/Pci(0x1F,0x3)/VenMsg(A9003FEB-D806-41DB-A491-5405FEEF46C3,00000000)...
 06:070 00:005 OCAU: 1/2 PciRoot(0x0)/Pci(0x1F,0x3)/VenMsg(A9003FEB-D806-41DB-A491-5405FEEF46C3,00000000) (5 outputs) - Success
 ```

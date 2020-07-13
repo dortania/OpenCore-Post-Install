@@ -1,4 +1,5 @@
 _book/
+.vuepress/dist
 node_modules/
 .vscode/
 .DS_Store

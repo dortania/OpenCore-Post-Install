@@ -6,7 +6,7 @@
 
 So to start, we'll assume you already have Lilu and AppleALC installed, if you're unsure if it's been loaded correctly you can run the following in terminal(This will also check if AppleHDA is loaded, as without this AppleALC has nothing to patch):
 
-```text
+```
 kextstat | grep -E "AppleHDA|AppleALC|Lilu"
 ```
 
@@ -29,7 +29,7 @@ Now with a codec, we'll want to cross reference it with AppleALC's supported cod
 
 With the ALC1220, we get the following:
 
-```text
+```
 0x100003, layout 1, 2, 3, 5, 7, 11, 13, 15, 16, 21, 27, 28, 29, 34
 ```
 
@@ -48,7 +48,7 @@ Now with a list of supported layout IDs,  we're ready to try some out
 
 To test out our layout IDs, we're going to be using the boot-arg `alcid=xxx` where xxx is your layout. Remember that to try layout IDs **one at a time**. Do not add multiple IDs or alcid boot-args, if one doesn't work then try the next ID and etc
 
-```text
+```
 config.plist
 ├── NVRAM
   ├── Add
@@ -68,7 +68,7 @@ With AppleALC, there's a priority hierarchy with which properties are prioritize
 
 To start, we'll need to find out where our Audio controller is located on the PCI map. For this, we'll be using a handy tool called [gfxutil](https://github.com/acidanthera/gfxutil/releases) then with the macOS terminal:
 
-```text
+```
 path/to/gfxutil -f HDEF
 ```
 
@@ -125,7 +125,7 @@ So for troubleshooting, we'll need to go over a couple things:
 
 To start, we'll assume you already have Lilu and AppleALC installed, if you're unsure if it's been loaded correctly you can run the following in terminal(This will also check if AppleHDA is loaded, as without this AppleALC has nothing to patch):
 
-```text
+```
 kextstat | grep -E "AppleHDA|AppleALC|Lilu"
 ```
 
@@ -141,14 +141,14 @@ If all 3 show up, you're good to go. And make sure VoodooHDA **is not present**.
 
 Generally the best place to start is by looking through your OpenCore logs and seeing if Lilu and AppleALC injected correctly:
 
-```text
+```
 14:354 00:020 OC: Prelink injection Lilu.kext () - Success
 14:367 00:012 OC: Prelink injection AppleALC.kext () - Success
 ```
 
 If it says failed to inject:
 
-```text
+```
 15:448 00:007 OC: Prelink injection AppleALC.kext () - Invalid Parameter
 ```
 
@@ -186,7 +186,7 @@ As you can see from the above 2, the right image is missing a lot of AppleHDAInp
 
 This section is mainly relevant for those who were replacing the stock AppleHDA with a custom one, this is going to verify whether or not yours is genuine:
 
-```text
+```
 sudo kextcache -i / && sudo kextcache -u /
 ```
 

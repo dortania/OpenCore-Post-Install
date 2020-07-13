@@ -47,7 +47,7 @@ Here under Network Interfaces (network card icon), look for `en0` under `BSD` an
 
 Well, we'll want to reset macOS so it can build the interfaces fresh, open terminal and run the following:
 
-```text
+```
 sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist
 sudo rm /Library/Preferences/SystemConfiguration/preferences.plist
 ```
@@ -102,7 +102,7 @@ This is important for those who've tried setting up iMessage but failed, to star
 
 Next open terminal and run the following:
 
-```text
+```
 sudo rm -rf ~/Library/Caches/com.apple.iCloudHelper*
 sudo rm -rf ~/Library/Caches/com.apple.Messages*
 sudo rm -rf ~/Library/Caches/com.apple.imfoundation.IMRemoteURLConnectionAgent*
@@ -124,7 +124,7 @@ sudo rm -rf ~/Library/Messages
 
 Grab [macserial](https://github.com/acidanthera/MacInfoPkg/releases) and run the following:
 
-```text
+```
 path/to/macserial -s
 ```
 
@@ -136,7 +136,7 @@ This will provide us with a full rundown of our system, verify that what is pres
 * Enable 2 Factor-Auth
 * Remove all iServices from Keychain, some examples:
 
-```text
+```
 ids: identity-rsa-key-pair-signature-v1
 ids: identity-rsa-private-key
 ids: identity-rsa-public-key

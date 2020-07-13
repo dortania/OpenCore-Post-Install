@@ -23,7 +23,7 @@ So to get started I'll assume you've already done basic framebuffer patches in y
 
 Now that we're prepped, we can start looking into busID patching. Checking the dumps on [InsanelyMac](https://www.insanelymac.com/forum/topic/334899-intel-framebuffer-patching-using-whatevergreen/) shows us this for the `3E9B0007` ID(Desktop UHD 630):
 
-```text
+```
 ID: 3E9B0007, STOLEN: 57 MB, FBMEM: 0 bytes, VRAM: 1536 MB, Flags: 0x00801302
 TOTAL STOLEN: 58 MB, TOTAL CURSOR: 1 MB (1572864 bytes), MAX STOLEN: 172 MB, MAX OVERALL: 173 MB (181940224 bytes)
 GPU Name: Intel UHD Graphics 630
@@ -40,7 +40,7 @@ Mobile: 0, PipeCount: 3, PortCount: 3, FBMemoryCount: 3
 
 Looking at all this can be quite overwhelming, but we'll break it down to be a bit simpler. For use we care about this:
 
-```text
+```
 [1] busId: 0x05, pipe: 9, type: 0x00000400, flags: 0x000003C7 - DP
 [2] busId: 0x04, pipe: 10, type: 0x00000400, flags: 0x000003C7 - DP
 [3] busId: 0x06, pipe: 8, type: 0x00000400, flags: 0x000003C7 - DP
@@ -53,7 +53,7 @@ These are your iGPUs ports by default, lets go through port 1 and see what each 
 
 The first port:
 
-```text
+```
 01050900 00040000 C7030000
 ```
 

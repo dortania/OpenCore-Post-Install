@@ -36,7 +36,7 @@ If folders are empty then delete them as well:
 
 To start, open the terminal and run the following one line at a time:
 
-```text
+```
 sudo -s
 sudo nvram -c
 sudo nvram myvar=test
@@ -45,7 +45,7 @@ exit
 
 Now reboot and run this:
 
-```text
+```
 nvram -p | grep -i myvar
 ```
 

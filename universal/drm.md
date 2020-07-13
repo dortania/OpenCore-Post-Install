@@ -40,7 +40,7 @@ If you fail at this point, there's a couple things you can check for:
 
 To check if Lilu and WhateverGreen loaded correctly:
 
-```text
+```
 kextstat | grep -E "Lilu|WhateverGreen"
 ```
 
@@ -48,14 +48,14 @@ kextstat | grep -E "Lilu|WhateverGreen"
 
 Generally the best place to start is by looking through your OpenCore logs and seeing if Lilu and WhateverGreen injected correctly:
 
-```text
+```
 14:354 00:020 OC: Prelink injection Lilu.kext () - Success
 14:367 00:012 OC: Prelink injection WhateverGreen.kext () - Success
 ```
 
 If it says failed to inject:
 
-```text
+```
 15:448 00:007 OC: Prelink injection WhateverGreen.kext () - Invalid Parameter
 ```
 
@@ -68,13 +68,13 @@ Note: To setup file logging, see [OpenCore Debugging](https://dortania.github.io
 
 **Note**: On macOS 10.15 and newer, AppleGVA debugging is disabled by default, if you get a generic error while running VDADecoderChecker you can enable debugging with the following:
 
-```text
+```
 defaults write com.apple.AppleGVA enableSyslog -boolean true
 ```
 
 And to undo this once done:
 
-```text
+```
 defaults delete com.apple.AppleGVA enableSyslog
 ```
 
@@ -145,7 +145,7 @@ So how do we apply it?
 
 Under `DeviceProperties -> Add -> PciRoot(0x0)/Pci(0x2,0x0)`, add:
 
-```text
+```
 igfxfw | Data | <02 00 00 00>
 ```
 
@@ -155,7 +155,7 @@ To enable firmware loading.
 
 The best way to check is to monitor the iGPU's frequency is with either [Intel Power Gadget](https://software.intel.com/en-us/articles/intel-power-gadget) or checking the boot logs for Apple Scheduler references. Make sure you have the `igfxfw` property applied:
 
-```text
+```
 kernel: (AppleIntelCFLGraphics) [IGPU] Graphics Firmware Version: 2.14.0.0
 kernel: (AppleIntelCFLGraphics) [IGPU] Graphics Firmware Version: 2.14.0.0
 kernel: (AppleIntelCFLGraphics) [IGPU] Graphics accelerator is using scheduler: Apple Firmware

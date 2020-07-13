@@ -21,7 +21,7 @@ As you can see from the left image, we have the X86PlatformPlugin attached meani
   * If you're missing this, head to [Getting Started With ACPI](https://dortanian.github.io/Getting-Started-With-ACPI) on how to make this
 * SSDT-PLUG is set to the first thread of your CPU, you can check by selecting the first CPU listed(`CP00` for our example) and make sure you have this in the properties:
 
-```text
+```
 plugin-type | Number | 0x1
 ```
 
@@ -73,7 +73,7 @@ The last frequency is not your maximum frequency so don't worry about being capp
 
 ![](../images/post-install/pm-md/macbook.png)
 
-```text
+```
 echo "obase=16; 13" | bc
 ```
 

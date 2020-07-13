@@ -61,7 +61,7 @@ Boot OpenCore and select the `VerifyMsrE2` option in the picker. This tool will 
 1. You'll find that this string is found within a Setup folder, right-click and export as `Setup.bin`
 2. Open your setup file with `ifrextract` and export as a .txt file with terminal:
 
-   ```text
+   ```
    path/to/ifrextract path/to/Setup.bin path/to/Setup.txt
    ```
 
@@ -71,7 +71,7 @@ Boot OpenCore and select the `VerifyMsrE2` option in the picker. This tool will 
 
 1. Run the Modified GRUB Shell and paste the following where `0x5A4` is replaced with your value:
 
-   ```text
+   ```
    setup_var 0x5A4 0x00
    ```
 
