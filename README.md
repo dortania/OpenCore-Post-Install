@@ -1,4 +1,4 @@
-# OpenCore-Post-Install
+# OpenCore Post-Install
 
 Welcome to the OpenCore Post-Install guide! Please note that if you have not installed macOS yet, we recommend you follow one of our install guides:
 

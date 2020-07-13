@@ -1,0 +1,27 @@
+{
+  "name": "OpenCore-Desktop-Guide",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "authors": {
+    "name": "",
+    "email": ""
+  },
+  "repository": "/OpenCore-Desktop-Guide",
+  "scripts": {
+    "dev": "vuepress dev",
+    "build": "vuepress build"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.5.2",
+    "@vuepress/plugin-medium-zoom": "^1.5.2",
+    "vuepress": "^1.5.2",
+    "vuepress-theme-book": "0.0.3",
+    "vuepress-theme-dark-new": "^0.1.2",
+    "vuepress-theme-succinct": "^1.5.2"
+  },
+  "dependencies": {
+    "vuepress-theme-yuu": "^2.3.0"
+  }
+}

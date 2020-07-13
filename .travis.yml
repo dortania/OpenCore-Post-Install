@@ -3,11 +3,10 @@ node_js: lts/*
 cache:
   npm: false
 before_script:
-- npm install -g gitbook-cli
+- yarn add vuepress -D
 script:
-- gitbook install
-- gitbook build
-- cp icons/* _book/gitbook/images
+- yarn install
+- yarn --build
 deploy:
   local_dir: _book
   provider: pages
