@@ -15,7 +15,6 @@
   "license": "MIT",
   "devDependencies": {
     "@vuepress/plugin-back-to-top": "^1.5.2",
-    "@vuepress/plugin-medium-zoom": "^1.5.2",
     "vuepress": "^1.5.2",
     "vuepress-plugin-medium-zoom": "^1.1.8",
     "vuepress-plugin-smooth-scroll": "0.0.9",
