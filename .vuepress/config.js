@@ -147,11 +147,11 @@ module.exports = {
     plugins: [
         '@vuepress/plugin-back-to-top',
         'vuepress-plugin-smooth-scroll',
-        ['vuepress-plugin-zooming',
+        ['vuepress-plugin-medium-zoom',
             {
                 selector: "img",
                 options: {
-                    bgColor: 'var(--bodyBgColor)'
+                    background: 'var(--bodyBgColor)'
                 }
             }],
     ]
