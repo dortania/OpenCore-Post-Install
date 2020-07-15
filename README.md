@@ -18,6 +18,8 @@ This guide is split into 4 parts:
 
 * [Universal](#universal)
   * All users are recommended to follow
+* [USB Fixes](#usb-fixes)
+  * All users are recommended to follow as well
 * [Laptop Specifics](#laptop-specifics)
   * Laptop users are recommended to follow in addition to the above
 * [Cosmetics](#cosmetics)
@@ -47,6 +49,11 @@ This guide is split into 4 parts:
   * Numerous places to check for when fixing sleep.
 * [Fixing USB](https://dortania.github.io/USB-Map-Guide/)
   * Fixes for USB issues like missing ports and helping with sleep.
+
+### USB Fixes
+
+* [USB Mapping: Introduction](/usb/README.md)
+  * Starting point for correcting your USB
 
 ### Laptop Specifics
 

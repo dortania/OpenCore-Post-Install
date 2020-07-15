@@ -108,6 +108,35 @@ module.exports = {
                 ['https://dortania.github.io/USB-Map-Guide/', 'Fixing USB'],
             ]
         },
+		{
+            title: 'USB Fixes',
+            collapsable: false,
+            sidebarDepth: 1,
+            children: [
+            	['/usb/', 'USB Mapping: Introduction'],
+				['/usb/system-preparation', 'System Preparation'],
+				{
+	            title: 'USB Mapping',
+	            collapsable: true,
+	            sidebarDepth: 1,
+	            children: [
+	            	['/usb/intel-mapping/intel', 'Intel USB mapping'],
+					['/usb/amd-mapping/amd', 'AMD and 3rd Party Mapping'],
+	            ]
+				},
+				{
+	            title: 'Miscellaneous Fixes',
+	            collapsable: true,
+	            sidebarDepth: 1,
+	            children: [
+	            	['/usb/misc/power', 'Fixing USB Power'],
+					['/usb/misc/shutdown', 'Fixing Shutdown/Restart'],
+					['/usb/misc/instant-wake', 'Fixing Instant Wake'],
+					['/usb/misc/keyboard', 'Fixing Keyboard Wake Issues'],
+	            ]
+				},
+            ]
+		},
         {
             title: 'Laptop Specifics',
             collapsable: false,

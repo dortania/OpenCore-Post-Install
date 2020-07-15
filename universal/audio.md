@@ -161,7 +161,7 @@ Note: To setup file logging, see [OpenCore Debugging](https://dortania.github.io
 
 #### Checking if AppleALC is patching correctly
 
-So with AppleALC, one of the most easiest things to check if the patching was done right was to see if your audio controller was renamed correctly. Grab [IORegistryExplorer](https://github.com/toleda/audio_ALCInjection/blob/master/IORegistryExplorer_v2.1.zip) and see if you have an HDEF device:
+So with AppleALC, one of the most easiest things to check if the patching was done right was to see if your audio controller was renamed correctly. Grab [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) and see if you have an HDEF device:
 
 ![](../images/post-install/audio-md/hdef.png)
 

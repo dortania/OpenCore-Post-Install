@@ -9,7 +9,7 @@ So before we can fine tune power management to our liking, we need to first make
 * [Sandy and Ivy Bridge Power Management](/universal/pm.md#sandy-and-ivy-bridge-power-management)
 * [AMD CPU Power Management](/universal/pm.md#amd-cpu-power-management)
 
-To start, grab [IORegistryExplorer](https://github.com/toleda/audio_ALCInjection/blob/master/IORegistryExplorer_v2.1.zip) and look for `AppleACPICPU`(note if you use search, it won't show the children so clear your search once you've found the entry):
+To start, grab [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) and look for `AppleACPICPU`(note if you use search, it won't show the children so clear your search once you've found the entry):
 
 XCPM Present           |  Missing XCPM
 :-------------------------:|:-------------------------:
