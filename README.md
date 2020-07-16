@@ -47,7 +47,7 @@ This guide is split into 4 parts:
   * Fixes and helps improve both hardware idle and boosting states.
 * [Fixing Sleep](/universal/sleep.md)
   * Numerous places to check for when fixing sleep.
-* [Fixing USB](https://dortania.github.io/USB-Map-Guide/)
+* [Fixing USB](/usb/README.md)
   * Fixes for USB issues like missing ports and helping with sleep.
 
 ### USB Fixes

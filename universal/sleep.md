@@ -88,14 +88,16 @@ While minimal changes are needed, here are the ones we care about:
 
 This is the #1 cause of sleep issues on hacks, mainly because Apple's drivers are quite bad at guessing ports and the port limit patches have the ill-effect of creating instability.
 
-* [USB Mapping](https://dortania.github.io/USB-Map-Guide/)
+* [USB Mapping](/usb/README.md)
 
 This guide also includes some other fixes than just mapping:
 
-* [Fixing USB Power](https://dortania.github.io/USB-Map-Guide/misc/power.md)
-* [Fixing Shutdown/Restart](https://dortania.github.io/USB-Map-Guide/misc/shutdown.md)
-* [GPRW/UPRW/LANC Instant Wake Patch](https://dortania.github.io/USB-Map-Guide/misc/instant-wake.md)
-* [Keyboard Wake Issues](https://dortania.github.io/USB-Map-Guide/misc/keyboard.md)
+* [Fixing USB Power](/usb/misc/power.md)
+* [Fixing Shutdown/Restart](/usb/misc/shutdown.md)
+* [GPRW/UPRW/LANC Instant Wake Patch](/usb/misc/instant-wake.md)
+* [Keyboard Wake Issues](/usb/misc/keyboard.md)
+
+**USB maps with macOS Catalina(10.15) and newer**: You may find that even with USB mapping, your sleep breaks. one possible solution is renaming the IOClass value from `AppleUSBMergeNub` to `AppleUSBHostMergeProperties`. See here for more info: [Changes in Catalina's USB IOClass](https://github.com/dortania/bugtracker/issues/15)
 
 ### Fixing GPUs
 

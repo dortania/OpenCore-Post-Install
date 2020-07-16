@@ -48,7 +48,7 @@ So to start off, open [IORegistryExplorer](https://github.com/khronokernel/IOReg
 * XHCX
 * AS43
 * PTXH (Commonly associated with AMD Chipset controllers)
-* PTCP
+* PTCP (Found on AsRock X399, in ACPI these ports are actually called PXTX but macOS will enumerate them differently)
 * PXSX(This is a generic PCIe device, **double check it's a USB device**)
 
 The best way to find controllers is by searching for `XHC` and then looking at the results that come up, the parent of all the ports is the USB controller. Do note that many boards have multiple controllers but the port limit is per controller.
@@ -83,6 +83,7 @@ So what kind of data do we shove into this plist? Well, there are a couple of se
 
 * **Model**: SMBIOS the kext will match against, set this up to what SMBIOS you are currently using
 * **IONameMatch**: The name of the controller it'll match against, in this example we'll use `PTXH`
+  * IOPathMatch is another entry you can use instead, if you have multiple controllers with the same name(ie. 2 XHC0)
 * **port-count**: The last/largest port value that you want to be injected
 * **port**: The address of the USB controller
 * **UsbConnector**: The type of USB connector, which can be found on the [ACPI 6.3 spec, section 9.14](https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf)
@@ -90,6 +91,8 @@ So what kind of data do we shove into this plist? Well, there are a couple of se
 > How do I know which ports are 2.0 and which are 3.0?
 
 Well, the easiest way is grabbing a USB 2.0 and USB 3.0 device, then write down which ports are are what type from observing IOReg.
+
+* **Remember**: USB 3.0 ports have dual personalities, so you **must** test both a 2.0 drive and 3.0 to know which ports are associated with it in IOReg.
 
 Now, let's take this section:
 
@@ -127,10 +130,31 @@ In this DSDT, we're missing HS02, HS03, HS04, HS05, etc. When this happens, we a
 
 ## Port mapping when you have multiple of the same controller
 
-This becomes a problem when we run systems with many USB controllers which all want to have the same identifier, commonly being multiple XHC0 devices or AsMedia controllers showing up as generic PXSX devices. To fix this, we have 2 options:
+This becomes a problem when we run systems with many USB controllers which all want to have the same identifier, commonly being multiple XHC0 devices or AsMedia controllers showing up as generic PXSX devices. To fix this, we have 3 options:
 
+* IOPathMatch property
 * ACPI Rename (won't be covered in this guide, see ACPI section of OpenCore's configuration.pdf)
 * SSDT Recreation
+
+### IOPathMatch property
+
+Actually quite simple, grab the sample USBmap.kext we provided earlier and look for the IONameMatch Property. Now rename this to IOPathMatch.
+
+Finally, grab IOreg and look for your USB controller:
+
+![](../../images/post-install/usb-md/iopathmatch.png)
+
+From here, pay very close attention to which actual device I selected. Specifically the parent of `XHC0@61000000` being `XHC0@0,3`, reason for this is that's our actual USB controller. The child with the same name is actually a root hub but does not concern us
+
+Now copy the `XHC0@0,3` entry and paste it back into the `IOPathMatch` entry in our USBmap.kext's info.plist, this should result in quite a long path name:
+
+```
+IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/D0C0@7,1/IOPP/XHC0@0,3
+```
+
+And once done your USBmap's IOPathMatch should look like this:
+
+![](../../images/post-install/usb-md/path-match-config.png)
 
 ### SSDT Recreation
 

@@ -4,8 +4,8 @@ So an odd quirk you may run into with macOS is that when you shutdown, your PC m
 
 For this we need the following:
 
-* [FixShutdown-USB-SSDT.dsl](https://github.com/dortania/USB-Map-Guide/blob/master/extra-files/FixShutdown-USB-SSDT.dsl)
-* [_PTS to ZPTS Patch](https://github.com/dortania/USB-Map-Guide/blob/master/extra-files/FixShutdown-Patch.plist)
+* [FixShutdown-USB-SSDT.dsl](https://github.com/dortania/OpenCore-Post-Install/blob/master/extra-files/FixShutdown-USB-SSDT.dsl)
+* [_PTS to ZPTS Patch](https://github.com/dortania/OpenCore-Post-Install/blob/master/extra-files/FixShutdown-Patch.plist)
 * USB Controller's ACPI Path
 
 To find the USB Controller that needs fixing, search for `_PRW` in your DSDT and see what Device is mentioned within it, generally this will be something like `SB.PCI0.XHC`.
