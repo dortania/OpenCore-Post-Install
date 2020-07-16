@@ -144,12 +144,12 @@ Finally, grab IOreg and look for your USB controller:
 
 ![](../../images/post-install/usb-md/iopathmatch.png)
 
-From here, pay very close attention to which actual device I selected. Specifically the parent of `XHC0@61000000` being `XHC0@0,3`, reason for this is that's our actual USB controller. The child with the same name is actually a root hub but does not concern us
+From here, pay very close attention to which actual device I selected. Specifically the child of of `XHC0@0,3` being `XHC0@61000000`, reason for this is that's our Root-hub(or what macOS uses to enumerate ports) The child with the same name is actually a root hub but does not concern us
 
-Now copy the `XHC0@0,3` entry and paste it back into the `IOPathMatch` entry in our USBmap.kext's info.plist, this should result in quite a long path name:
+Now copy the `XHC0@61000000` entry and paste it back into the `IOPathMatch` entry in our USBmap.kext's info.plist, this should result in quite a long path name:
 
 ```
-IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/D0C0@7,1/IOPP/XHC0@0,3
+IOService:/AppleACPIPlatformExpert/S0D1@0/AppleACPIPCI/D1C0@7,1/IOPP/XHC0@0,3/XHC0@61000000
 ```
 
 And once done your USBmap's IOPathMatch should look like this:
