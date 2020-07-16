@@ -105,7 +105,6 @@ module.exports = {
                 ['/universal/iservices', 'Fixing iServices'],
                 ['/universal/pm', 'Fixing Power Management'],
                 ['/universal/sleep', 'Fixing Sleep'],
-                ['https://dortania.github.io/USB-Map-Guide/', 'Fixing USB'],
             ]
         },
 		{
