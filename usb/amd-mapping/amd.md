@@ -128,6 +128,24 @@ Something you may have noticed is that your DSDT is even missing some ports, lik
 
 In this DSDT, we're missing HS02, HS03, HS04, HS05, etc. When this happens, we actually need to outright remove all our ports from that controller in our DSDT. What this will let us do is allow macOS to build the ports itself instead of basing it off of the ACPI. Save this modified DSDT.aml and place it in your EFI/OC/ACPI folder and specify it in your config.plist -> ACPI -> Add(note that DSDT.aml must be forced to work correctly)
 
+## Port mapping with generic `AppleUSB20XHCIPort`/'AppleUSB30XHCIPort
+
+An odd issue with some OEM's ACPI is that they never actually define or properly name the USB ports. And so when macOS's IOService starts scanning and building the ports, they're given a generic name. This makes it difficult to really know where your ports are.
+
+To resolve this, we can simply add names with our USBmap.kext, this is thanks to us mathcing the USB map based off of the USB port's location instead of by name. 
+
+So before you USB map, you'll get something like this:
+
+![](../../images/post-install/usb-md/pre-map.png)
+
+With our map, your kext should look something like this:
+
+![](../../images/post-install/usb-md/genirc-plist.png)
+
+And the end result once the map is applied:
+
+![](../../images/post-install/usb-md/post-map.png)
+
 ## Port mapping when you have multiple of the same controller
 
 This becomes a problem when we run systems with many USB controllers which all want to have the same identifier, commonly being multiple XHC0 devices or AsMedia controllers showing up as generic PXSX devices. To fix this, we have 3 options:
