@@ -9,8 +9,7 @@ So with DRM, we have a couple things we need to mention:
 * DRM requires a supported dGPU
   * See the [GPU Buyers Guide](https://dortania.github.io/GPU-Buyers-Guide/) for supported cards
 * DRM is broken for iGPU-only systems
-  * These have never worked with Haswell and newer
-  * For Ivy Bridge, this could be fixed with Shiki (now WhateverGreen) til 10.12.2, but broke with 10.12.3
+  * This could be fixed with Shiki (now WhateverGreen) til 10.12.2, but broke with 10.12.3
 * Working hardware acceleration and decoding
 
 ## Testing Hardware Acceleration and Decoding
