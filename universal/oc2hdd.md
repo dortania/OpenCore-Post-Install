@@ -24,4 +24,4 @@ When you mount your main drive's EFI, you may be greeted with a folder called `A
 
 ## Special notes for legacy users
 
-When transferring over your EFI, there are still boot sectors that need to be written to so your non-UEFI BIOS would be able to find it. So don't forget to rerun the [`BootInstall.command`](https://dortania.github.io/OpenCore-Desktop-Guide/extras/legacy.html) on your macOS drive
+When transferring over your EFI, there are still boot sectors that need to be written to so your non-UEFI BIOS would be able to find it. So don't forget to rerun the [`BootInstall.command`](https://dortania.github.io/OpenCore-Install-Guide/extras/legacy.html) on your macOS drive
