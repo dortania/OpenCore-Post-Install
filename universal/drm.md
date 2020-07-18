@@ -30,7 +30,7 @@ If you fail at this point, there's a couple things you can check for:
   * change GFX0 to IGPU
   * change PEG0 to GFX0
   * change HECI to IMEI
-  * [etc](https://github.com/dortania/OpenCore-Desktop-Guide/blob/master/clover-conversion/Clover-config.md)
+  * [etc](https://github.com/dortania/OpenCore-Install-Guide/blob/master/clover-conversion/Clover-config.md)
 * Make sure Lilu and WhateverGreen are loaded
   * Make sure not to have any legacy graphics patches present as they've been absorbed into WhateverGreen:
     * IntelGraphicsFixup.kext
@@ -63,7 +63,7 @@ Main places you can check as to why:
 * **Injection order**: Make sure that Lilu is above AppleALC in kext order
 * **All kexts are latest release**: Especially important for Lilu plugins, as mismatched kexts can cause issues
 
-Note: To setup file logging, see [OpenCore Debugging](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/debug.html).
+Note: To setup file logging, see [OpenCore Debugging](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html).
 
 **Note**: On macOS 10.15 and newer, AppleGVA debugging is disabled by default, if you get a generic error while running VDADecoderChecker you can enable debugging with the following:
 

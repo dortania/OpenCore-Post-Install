@@ -10,7 +10,7 @@ So the main things to note with updating OpenCore:
 
 * [Releases](https://github.com/acidanthera/OpenCorePkg/releases) happen the first Monday of every month
 * The [Differences.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Differences/Differences.pdf) will tell you all the things added and removed from this version of OpenCore compared to the previous release
-* The OpenCore Installation Guide will have a note in the [header](https://dortania.github.io/OpenCore-Desktop-Guide/) about what release version it supports
+* The OpenCore Installation Guide will have a note in the [header](https://dortania.github.io/OpenCore-Install-Guide/) about what release version it supports
 
 > So how do I update?
 

@@ -63,7 +63,7 @@ module.exports = {
             },
             {
                 text: 'OpenCore Install Guide',
-                link: 'https://dortania.github.io/OpenCore-Desktop-Guide/'
+                link: 'https://dortania.github.io/OpenCore-Install-Guide/'
             },
 			{
                 text: 'Getting Started With ACPI',
