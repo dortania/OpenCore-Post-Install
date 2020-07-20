@@ -1,20 +1,16 @@
 # OpenCore Post-Install
 
-Welcome to the OpenCore Post-Install guide! Please note that if you have not installed macOS yet, we recommend you follow one of our install guides:
+Welcome to the OpenCore Post-Install guide! Please note that if you have not installed macOS yet, we recommend you follow our install guide:
 
-* [OpenCore Desktop Guide](https://dortania.github.io/OpenCore-Install-Guide/)
-* [OpenCore Laptop Guide](https://dortania.github.io/vanilla-laptop-guide/)
+* [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
 
 And while the info here can be applied to both OpenCore and Clover, we primarily focus on OpenCore installations. So you will need to research a bit more if you run into any issues.
 
-
-
 ## How to follow this guide
-
 
 To start, not every section in this guide must be complete. It's up to each user whether they feel they want to add the finishing touches or resolve certain issues
 
-This guide is split into 4 parts:
+This guide is split into 6 parts:
 
 * [Universal](#universal)
   * All users are recommended to follow
