@@ -147,7 +147,11 @@ To calculate the ScanPolicy value, you simply add up all the hexadecimal values(
 
 * allow scanning card reader devices.
 
-By default, ScanPolicy is given a value of `0xF0103`(983,299) which is the combination of the following:
+`0x01000000 (bit 24)` — OC\_SCAN\_ALLOW\_DEVICE\_PCI
+
+* allow scanning devices directly connected to PCI bus (e.g. VIRTIO).
+
+By default, ScanPolicy is given a value of `0x10F0103`(17,760,515) which is the combination of the following:
 
 * OC\_SCAN\_FILE\_SYSTEM\_LOCK
 * OC\_SCAN\_DEVICE\_LOCK
@@ -156,9 +160,10 @@ By default, ScanPolicy is given a value of `0xF0103`(983,299) which is the combi
 * OC\_SCAN\_ALLOW\_DEVICE\_SASEX
 * OC\_SCAN\_ALLOW\_DEVICE\_SCSI
 * OC\_SCAN\_ALLOW\_DEVICE\_NVME
+* OC\_SCAN\_ALLOW\_DEVICE\_PCI
 
 And lets just say for this example that you want to add OC\_SCAN\_ALLOW\_DEVICE\_USB:
 
-`0x00200000` + `0xF0103` = `0x2F0103`
+`0x00200000` + `0x10F0103` = `0x12F0103`
 
-And converting this to decimal gives us `3,080,451`
+And converting this to decimal gives us `19,857,667`
