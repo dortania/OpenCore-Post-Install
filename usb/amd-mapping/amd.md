@@ -71,7 +71,7 @@ All of our ports are here! So why in the world is macOS hiding them? Well there'
 
 Inside the `AppleUSBHostPlatformProperties.kext` you'll find the USB map for most SMBIOS, this means that that machine's USB map is forced onto your system.
 
-Well to kick out these bad maps, we gotta make a plugin kext. For us, that's the [AMD-USB-Map.kext](https://github.com/dortania/USB-Map-Guide/tree/master/extra-files/AMD-USB-Map.kext.zip)
+Well to kick out these bad maps, we gotta make a plugin kext. For us, that's the [AMD-USB-Map.kext](https://github.com/dortania/OpenCore-Post-Install/tree/master/extra-files/AMD-USB-Map.kext.zip)
 
 Now right-click and press `Show Package Contents`, then navigate to `Contents/Info.plist`
 
@@ -180,7 +180,7 @@ With the SSDT Recreation method, what we'll be doing is "renaming" the device bu
 
 To do this, grab the following SSDT:
 
-* [SSDT-SHC0.dsl](https://github.com/dortania/USB-Map-Guide/tree/master/extra-files/SSDT-SHC0.dsl)
+* [SSDT-SHC0.dsl](https://github.com/dortania/OpenCore-Post-Install/tree/master/extra-files/SSDT-SHC0.dsl)
 
 What you'll want to do is find a controller you want to rename, find its full ACPI path and replace the one in the sample SSDT. In our sample, we're be renaming `PCI0.GP13.XHC0` to `SHC0` so change accordingly.
 
