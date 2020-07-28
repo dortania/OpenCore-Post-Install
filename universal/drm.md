@@ -10,6 +10,7 @@ So with DRM, we have a couple things we need to mention:
   * See the [GPU Buyers Guide](https://dortania.github.io/GPU-Buyers-Guide/) for supported cards
 * DRM is broken for iGPU-only systems
   * This could be fixed with Shiki (now WhateverGreen) til 10.12.2, but broke with 10.12.3
+  * This is due to the issue that our iGPUs don't support Apple's firmware and that our [Management Engine](https://en.wikipedia.org/wiki/Intel_Management_Engine) doesn't have Apple's certificate
 * Working hardware acceleration and decoding
 
 ## Testing Hardware Acceleration and Decoding

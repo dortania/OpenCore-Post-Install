@@ -79,4 +79,6 @@ Boot OpenCore and select the `VerifyMsrE2` option in the picker. This tool will 
 
 And you're done! Now you'll have correct CPU power management
 
-**Note**: Every time you reset your BIOS you will need to flip this bit again, make sure to write it down with the BIOS version so you know which.
+* **Note**: Every time you reset your BIOS you will need to flip this bit again, make sure to write it down with the BIOS version so you know which.
+
+* **Note 2**: Some OEMs like Lenovo may have the variable set but cannot unlock it without physically modding the BIOS, for these situations you may need to use a tool like [RU](http://ruexe.blogspot.com/): [CFG LOCK/Unlocking - Alternative method](https://www.reddit.com/r/hackintosh/comments/hz2rtm/cfg_lockunlocking_alternative_method/)
