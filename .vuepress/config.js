@@ -117,10 +117,10 @@ module.exports = {
 				{
 	            title: 'USB Mapping',
 	            collapsable: true,
-	            sidebarDepth: 1,
+	            sidebarDepth: 2,
 	            children: [
 	            	['/usb/intel-mapping/intel', 'Intel USB mapping'],
-					['/usb/amd-mapping/amd', 'AMD and 3rd Party Mapping'],
+					['/usb/manual/manual', 'Manual Mapping'],
 	            ]
 				},
 				{

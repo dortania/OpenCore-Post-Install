@@ -34,14 +34,17 @@ This section is for those who want to get down into the meats of their hackintos
   * Note: This guide will be focusing on OS X 10.11, El Capitan and newer. Older OSes shouldn't require any USB mapping
 * Non-conflicting USB names
   * See previous section: [Checking what renames you need](../usb/system-preparation.md#checking-what-renames-you-need)
-* A USB 2.0 and USb 3.0 device to test with
+* A USB 2.0 and USB 3.0 device to test with
   * You must have 2 separate devices as to ensure no mix ups with personalities
 * [IORegistryExplorer.app](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip)
   * To view the inner workings of macOS more easily
   * If you plan to use Discord for troubleshooting, [v2.1.0](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-210.zip) is a bit easier on file size.
+* [USBInjectAll]()
+  * This is only required for older USB controllers like Broadwell and older, however some Coffee Lake systems may still require it
+  * **Reminder** this kext does not work on AMD
 * [Sample-USB-Map.kext](https://github.com/dortania/OpenCore-Post-Install/tree/master/extra-files/sample-USB-Map.kext.zip)
 * [ProperTree](https://github.com/corpnewt/ProperTree)
-  * or any other plist editor
+  * Or any other plist editor
   
 Now with all this out of the way, lets get to USB mapping!
 
@@ -65,6 +68,33 @@ From the above image we can see 3 USB controllers:
 Pay attention that they're individual controllers, as this means **each USB controller has it's own port limit**. So you're not as starved for USB ports as you may think.
 
 Now I personally know which USB controllers match up with which physical ports, problem is it's not always as obvious which ports match with which controllers. So lets try to figure out which is what.
+
+**Note**: The AppleUSBLegacyRoot entry is an entry that lists all actively USB controllers and ports, these are not USB controllers themselves so you can outright ignore them.
+
+**Note 2**: Keep in mind every motherboard model will have a unique set of port combos, controller types and names. So while our example uses PXSX, yours might have have the XHC0 or PTCP name. And quite common on older motherboards is that you may only have 1 controller, this is alright so don't stress about having the exact same setup as the example.
+
+Common names you can check:
+
+* USB 3.x controllers:
+  * XHC
+  * XHC0
+  * XHC1
+  * XHC2
+  * XHCI
+  * XHCX
+  * AS43
+  * PTXH 
+    * Commonly associated with AMD Chipset controllers
+  * PTCP
+    * Found on AsRock X399
+  * PXSX
+    * This is a generic PCIe device, **double check it's a USB device** as NVMe controllers and other devices can use the same name.
+* USB 2.x controllers:
+  * EHCI
+  * EHC1
+  * EHC2
+  * EUSB
+  * USBE
 
 ### Finding which ports match with which controller
 
@@ -148,6 +178,10 @@ Now that you have the basic idea, you'll want to go around with every USB port a
 
 ### Special Notes
 
+* [Bluetooth](#bluetooth)
+* [USRx Ports](#usrx-ports)
+* [Missing USB Ports](#missing-usb-ports)
+
 #### Bluetooth
 
 So while not obvious to many, Bluetooth actually runs over the USB interface internally. This means that when mapping, you'll need to pay close attention to devices that already show up in IOReg:
@@ -161,6 +195,81 @@ Keep this in mind, as this plays into the Type 255 and getting certain services 
 When mapping, you may notice some extra ports left over, specifically USR1 and USR2. These ports are known as "USBR" ports, or more specifically [USB Redirection Ports](https://software.intel.com/content/www/us/en/develop/documentation/amt-developer-guide/top/storage-redirection.html). Use of these is for remote management but real Macs don't ship with USBR devices and so has no support for them OS-wise. You can actually ignore these entries in your USB map:
 
 ![](../../images/post-install/manual-md/usr.png)
+
+#### Missing USB ports
+
+In some rare situations, certain USB ports may not show up in macOS at all. This is likely due to a missing definition in your ACPI tables, and so we have a few options:
+
+* Coffee Lake and older should use [USBInjectAll](https://github.com/Sniki/OS-X-USB-Inject-All/releases)
+  * Don't forget to add this to both EFI/OC/Kexts and you config.plist's kernel -> Add
+* Comet Lake and newer should use SSDT-RHUB
+* AMD systems should also use SSDT-RHUB
+
+SSDT-RHUB's purpose is to reset your USB controller, and force macOS to reenumerate them. This avoids the hassle of trying to patch your existing ACPI tables.
+
+To create your own SSDT-RHUB-MAP:
+
+* Grab a copy of the SSDT: [SSDT-RHUB.dsl](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/decompiled/SSDT-RHUB.dsl)
+* Grab [maciASL](https://github.com/acidanthera/MaciASL/releases/tag/1.5.7)
+
+Next, open our newly downloaded SSDT with maciASL, you should be presented with the following:
+
+![](../../images/post-install/manual-md/ssdt-rhub-normal.png)
+
+Now, open IOReg and find the USB controller you want to reset(pay very close attention its the USB controller and not the child RHUB with the same name):
+
+
+
+If you look to the right side, you should see the `acpi-apth` property. Here we're going to need to translate it to something our SSDT can use:
+
+```sh
+# before modifying
+IOService:/AppleACPIPlatformExpert/PC00@0/AppleACPIPCI/RP05@1C,4/IOPP/PXSX@0
+```
+
+Now we'll want to strip out any unnecessary data:
+
+* `IOService:/AppleACPIPlatformExpert/`
+* `@##`
+* `IOPP`
+
+Once cleaned up, yours should look similar:
+
+```sh
+# After modifying
+PC00.RP05.PXSX
+```
+
+Following the example from above, we'll be renaming `PCI0.XHC1.RHUB` to `PC00.RP05.PXSX.RHUB`:
+
+**Before**:
+
+```
+External (_SB_.PCI0.XHC1.RHUB, DeviceObj) <- Rename this
+
+Scope (_SB.PCI0.XHC1.RHUB) <- Rename this
+```
+
+![](../../images/post-install/manual-md/ssdt-rhub.png)
+
+Following the example pathing we found, the SSDT should look something like this:
+
+**After**:
+
+```
+External (_SB.PC00.RP05.PXSX.RHUB, DeviceObj) <- Renamed
+
+Scope (_SB.PC00.RP05.PXSX.RHUB) <- Renamed
+```
+
+![](../../images/post-install/manual-md/ssdt-rhub-fixed.png)
+
+
+Once you've edited the SSDT to your USB controller's path, you can export it with `File -> SaveAs -> ACPI Machine Language Binary`:
+
+![](../../images/post-install/manual-md/ssdt-save.png)
+
+Finally, remember to add this SSDT to both EFI/OC/ACPI and your config.plist under ACPI -> Add.
 
 ## Creating our kext
 
