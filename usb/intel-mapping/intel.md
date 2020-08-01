@@ -37,7 +37,7 @@ The interface for USBmap is quite simple and easy to grasp so won't go into deta
 
 Once you're done discovering your ports, select `Press Q then [enter] to stop` then head to `P.  Edit Plist & Create SSDT/Kext` from the main menu.
 
-For this example, I'll choose all the ports that were discovered, remember that there is a 15 port limit so you **cannot** go over it. USB hubs will count as one USB port so you can expand from there is you are limited on ports.
+For this example, I'll choose all the ports that were discovered, remember that there is a 15 port limit so you **cannot** go over it. USB hubs will count as one USB port so you can expand from there if you are limited on ports.
 
 ![](../../images/post-install/usb-md/255.png)
 
