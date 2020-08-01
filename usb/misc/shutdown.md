@@ -10,4 +10,4 @@ For this we need the following:
 
 To find the USB Controller that needs fixing, search for `_PRW` in your DSDT and see what Device is mentioned within it, generally this will be something like `SB.PCI0.XHC`.
 
-With the ACPI path, edit FixShutdown-USB-SSDT.dsl and compile it to a .aml file(Assembled). [MaciASL can help you with this](https://dortanian.github.io/Getting-Started-With-ACPI/Manual/compile.html)
+With the ACPI path, edit FixShutdown-USB-SSDT.dsl and compile it to a .aml file(Assembled). [MaciASL can help you with this](https://dortania.github.io/Getting-Started-With-ACPI/Manual/compile.html)
