@@ -3,7 +3,6 @@
 Table of Contents:
 
 * [Intel USB Mapping](#intel-usb-mapping)
-* [Removing ACPI Renames](#removing-acpi-renames)
 
 So with the prerequisites out of the way, we can finally get to the meat of this guide. And now we get to finally read one of my favorite books before I go to bed each night: [The Advanced Configuration and Power Interface (ACPI) Specification!](https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf)
 

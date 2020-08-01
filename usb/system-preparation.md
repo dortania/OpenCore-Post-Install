@@ -71,8 +71,6 @@ And so with older SMBIOSes(one's not listed above), we need to make sure their p
 | Tablelength | Number | <0> |
 | TableSignature | Data | <> |
 
-And for those worried about ACPI patches applying to other OSes, these will only be temporary and will be removed once we've mapped our ports.
-
 ## Checking what renames you need
 
 So with renames it's pretty easy to find out, first figure out what SMBIOS you're using(can be found in your config.plist under `PlatformInfo -> Generic -> SystemProductName`) and match figure out whether you even need a USB map:
