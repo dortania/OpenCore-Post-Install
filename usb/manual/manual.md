@@ -1,13 +1,6 @@
 # USB Mapping
 
-Table of Contents:
-
-* [AMD and 3rd Party USB Mapping](#amd-and-3rd-party-usb-mapping)
-* [Creating the map](#creating-the-map)
-* [Port mapping on screwed up DSDTs](#port-mapping-on-screwed-up-dsdts)
-* [Port mapping when you have multiple of the same controller](#port-mapping-when-you-have-multiple-of-the-same-controller)
-
-So with the prerequisites out of the way, we can finally get to the meat of this guide. And now we get to finally read one of my favorite books before I go to bed each night: [The Advanced Configuration and Power Interface (ACPI) Specification!](https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf)
+So with the prerequisites out of the way, we can finally get to the meat of this guide. And now we get to finally read one of my favourite books before I go to bed each night: [The Advanced Configuration and Power Interface (ACPI) Specification!](https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf)
 
 Now if you haven't read through this before(which I highly recommend you do, it's a thrilling tale), I'll point you to the meat of the USB situation:
 
@@ -33,7 +26,7 @@ This section is for those who want to get down into the meats of their hackintos
   * This is due to how macOS enumerates ports, trying to map from other OSes makes this difficult
   * Note: This guide will be focusing on OS X 10.11, El Capitan and newer. Older OSes shouldn't require any USB mapping
 * Non-conflicting USB names
-  * See previous section: [Checking what renames you need](../usb/system-preparation.md#checking-what-renames-you-need)
+  * See previous section: [Checking what renames you need](../../system-preparation.md#checking-what-renames-you-need)
 * A USB 2.0 and USB 3.0 device to test with
   * You must have 2 separate devices as to ensure no mix ups with personalities
 * [IORegistryExplorer.app](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip)

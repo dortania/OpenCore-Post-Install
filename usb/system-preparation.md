@@ -97,19 +97,25 @@ SMBIOS needing XHC1, EHC1 and EHC2 renames:
 * MacBookAir5,x  and older
 * MacBookPro11,x and older
 
-Now that we know what renames our SMBIOS need, we can next check the names of our USB controllers. Run the following in terminal:
+Now that we know what renames our SMBIOS need, we can next check the names of our USB controllers. 
 
-```
-ioreg -l -p IOService -w0 | grep -i EHC1
-ioreg -l -p IOService -w0 | grep -i EHC2
+### Checking IOService
+
+Let's take XHC1 and execute the following command:
+
+```sh
 ioreg -l -p IOService -w0 | grep -i XHC1
 ```
-
-We recommend running 1 at a time as terminal may get flooded if you tried to search for all 3 at the same time, the below example shows we don't have anything named EH01 or EH02 **but** we do however require that XHC1 rename:
-
-Rename needed    |  Rename **NOT** needed
+If you see this, you need a rename: |  If you see this, you do not need a rename:
 :-------------------------:|:-------------------------:
 ![](../images/system-preperation-md/ioreg-name.png)  |  ![](../images/system-preperation-md/no-rename-needed.png)
+
+Repeat this step for all the other relevant conflicting devices (e.g. EHC1, EHC2) as listed in the table above for your model.
+
+```sh
+ioreg -l -p IOService -w0 | grep -i EHC1
+ioreg -l -p IOService -w0 | grep -i EHC2
+```
 
 And with that, we now add our needed ACPI renames to our config.plist -> ACPI -> Patch, you can find a pre-made file here(note that you'll need to enable the ones you need):
 
