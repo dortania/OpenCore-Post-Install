@@ -45,4 +45,4 @@ And now when we take into account the quirk `XhciPortLimit`, you can see *why* d
 
 USB Hubs attached to one of your USB controller's ports have a different kind of port limit. In total, a single USB port can be split into 127 ports. This includes USB hubs attached to USB hubs
 
-## Now with the backstory done, lets head to [System Preparations](/system-preparation.md)
+## Now with the backstory done, lets head to [System Preparations](../system-preparation.md)

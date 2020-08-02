@@ -19,14 +19,14 @@ To start we'll need the following:
   * To download the BootCamp drivers
 * SMBIOS injection enabled
   * As the drivers have a SMBIOS check
-* Setup [Bootstrap.efi](/multiboot/bootstrap.md)
+* Setup [Bootstrap.efi](../multiboot/bootstrap.md)
   * Not required but can help alleviate headaches when Windows erases the BOOTx64.efi OpenCore uses
 
 ## Installation
 
 To install, it's as simple as grabbing [Brigadier](https://github.com/corpnewt/brigadier) and running either `Brigadier.bat` for Windows or `Brigadier.command` for macOS. If the SMBIOS you're currently using either has BootCamp issues or want to download for another SMBIOS, you can add `--  model{SMBIOS}` to the end:
 
-```
+```sh
 path/to/Brigadier --model MacPro7,1
 ```
 
@@ -38,13 +38,13 @@ Next you will find our bootcamp drivers under either:
 
 * Windows:
 
-```
+```sh
 \Users\{Username}\bootcamp-{filename}\BootCamp
 ```
 
 * macOS:
 
-```
+```sh
 /Users/{Username}/BootCamp-{filename}/WindowsSupport.dmg
 ```
 
@@ -134,6 +134,6 @@ This is due to OpenCore getting confused when trying to boot Windows and acciden
 
 For the latter, you'll need to run the following(replace `filename.msi` with the BootCamp installation msi):
 
-```
+```sh
 msiexec.exe /x "c:\filename.msi"
 ```

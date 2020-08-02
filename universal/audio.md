@@ -6,13 +6,13 @@
 
 So to start, we'll assume you already have Lilu and AppleALC installed, if you're unsure if it's been loaded correctly you can run the following in terminal(This will also check if AppleHDA is loaded, as without this AppleALC has nothing to patch):
 
-```
+```sh
 kextstat | grep -E "AppleHDA|AppleALC|Lilu"
 ```
 
 If all 3 show up, you're good to go. And make sure VoodooHDA **is not present**. This will conflict with AppleALC otherwise.
 
-If you're having issues, see the [Troubleshooting section](/universal/audio.md#troubleshooting)
+If you're having issues, see the [Troubleshooting section](../universal/audio.md#troubleshooting)
 
 ## Finding your layout ID
 
@@ -68,7 +68,7 @@ With AppleALC, there's a priority hierarchy with which properties are prioritize
 
 To start, we'll need to find out where our Audio controller is located on the PCI map. For this, we'll be using a handy tool called [gfxutil](https://github.com/acidanthera/gfxutil/releases) then with the macOS terminal:
 
-```
+```sh
 path/to/gfxutil -f HDEF
 ```
 
@@ -125,7 +125,7 @@ So for troubleshooting, we'll need to go over a couple things:
 
 To start, we'll assume you already have Lilu and AppleALC installed, if you're unsure if it's been loaded correctly you can run the following in terminal(This will also check if AppleHDA is loaded, as without this AppleALC has nothing to patch):
 
-```
+```sh
 kextstat | grep -E "AppleHDA|AppleALC|Lilu"
 ```
 
@@ -186,7 +186,7 @@ As you can see from the above 2, the right image is missing a lot of AppleHDAInp
 
 This section is mainly relevant for those who were replacing the stock AppleHDA with a custom one, this is going to verify whether or not yours is genuine:
 
-```
+```sh
 sudo kextcache -i / && sudo kextcache -u /
 ```
 

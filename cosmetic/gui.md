@@ -9,7 +9,7 @@ Main thing this guide will go over:
 
 ## Setting up OpenCore's GUI
 
-So to get started, we're gonna need 0.5.7 or newer as these builds have the GUI included with the rest of the files. If you're on an older version, I recommend updating: [Updating OpenCore](/universal/update.md)
+So to get started, we're gonna need 0.5.7 or newer as these builds have the GUI included with the rest of the files. If you're on an older version, I recommend updating: [Updating OpenCore](../universal/update.md)
 
 Once that's done, we'll need a couple things:
 
@@ -66,11 +66,11 @@ So to start, we'll need a couple things:
     * ex: `0x0`
       * Can also check via terminal(Note if multiple show up, use the vendor ID to find the right device)l:
 
- ```
+ ```sh
  ioreg -rxn IOHDACodecDevice | grep VendorID   // List all possible devices
  ```
 
- ```
+ ```sh
  ioreg -rxn IOHDACodecDevice | grep IOHDACodecAddress // Grab the codec address
  ```
 
@@ -116,4 +116,4 @@ Once done, you should get something like this:
 * OpenCore hasn't forgotten about you! With the AudioDxe setup, you can enable both picker audio and FileVault VoiceOver with these 2 settings:
   * `Misc -> Boot -> PickerAudioAssist -> True` to enable picker audio
   * `UEFI -> ProtocolOverrides -> AppleAudio -> True` to enable FileVault voice over
-    * See [Security and FileVault](/universal/security.md) on how to setup the rest for proper FileVault support
+    * See [Security and FileVault](../universal/security.md) on how to setup the rest for proper FileVault support

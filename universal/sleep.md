@@ -88,14 +88,14 @@ While minimal changes are needed, here are the ones we care about:
 
 This is the #1 cause of sleep issues on hacks, mainly because Apple's drivers are quite bad at guessing ports and the port limit patches have the ill-effect of creating instability.
 
-* [USB Mapping](/usb/README.md)
+* [USB Mapping](../usb/README.md)
 
 This guide also includes some other fixes than just mapping:
 
-* [Fixing USB Power](/usb/misc/power.md)
-* [Fixing Shutdown/Restart](/usb/misc/shutdown.md)
-* [GPRW/UPRW/LANC Instant Wake Patch](/usb/misc/instant-wake.md)
-* [Keyboard Wake Issues](/usb/misc/keyboard.md)
+* [Fixing USB Power](../usb/misc/power.md)
+* [Fixing Shutdown/Restart](../usb/misc/shutdown.md)
+* [GPRW/UPRW/LANC Instant Wake Patch](../usb/misc/instant-wake.md)
+* [Keyboard Wake Issues](../usb/misc/keyboard.md)
 
 **USB maps with macOS Catalina(10.15) and newer**: You may find that even with USB mapping, your sleep breaks. one possible solution is renaming the IOClass value from `AppleUSBMergeNub` to `AppleUSBHostMergeProperties`. See here for more info: [Changes in Catalina's USB IOClass](https://github.com/dortania/bugtracker/issues/15)
 
@@ -155,14 +155,14 @@ And avoid problematic drives, the main culprits:
 * Samsung's PM981 and PM991 SSDs
 * Micron's 2200S
 
-If you however do have these drives in your system, it's best to disable them via an SSDT: [Disabling desktop dGPUs](https://dortania.github.io/Getting-Started-With-ACPI/Desktops/desktop-disable.md).
+If you however do have these drives in your system, it's best to disable them via an SSDT: [Disabling desktop dGPUs](https://dortania.github.io/Getting-Started-With-ACPI/Desktops/desktop-disable.html).
 This guide is primarily for dGPU but works the exact same way with NVMe drives(as they're both just PCIe devices)
   
 ### Fixing CPU Power Management
 
 **For Intel**:
 
-To verify you have working CPU Power Management, see the [Fixing Power Management](/universal/pm.md) page. And if not, then patch accordingly.
+To verify you have working CPU Power Management, see the [Fixing Power Management](../universal/pm.md) page. And if not, then patch accordingly.
 
 Also note that incorrect frequency vectors can result in wake issues, so either verify you're using the correct SMBIOS or adjust the frequency vectors of your current SMBIOS with CPUFrend. Tools like [one-key-cpufriend](https://github.com/stevezhengshiqi/one-key-cpufriend) are known for creating bad frequency vectors so be careful with tools not used by Dortania.
 
@@ -197,7 +197,7 @@ The former is quite easy to fix, see here: [Backlight PNLF](https://dortania.git
 
 For the middle, macOS's lid wake detection can bit a bit broken and you may need to outright disable it:
 
-```
+```sh
 sudo pmset lidwake 0
 ```
 And set `lidewake 1` to re-enable it.
@@ -212,7 +212,7 @@ For 99% of HP users, this will fix the random key spam. If not, see below thread
 
 ### NVRAM
 
-To verify you have working NVRAM, see the [Emulated NVRAM](/misc/nvram.md) page to verify you have working NVRAM. And if not, then patch accordingly.
+To verify you have working NVRAM, see the [Emulated NVRAM](../misc/nvram.md) page to verify you have working NVRAM. And if not, then patch accordingly.
 
 ### RTC
 
@@ -247,7 +247,7 @@ This will provide you with both SSDT-HPET.aml and `oc_patches.plist`, You will w
  
 Unmanaged or incorrectly managed audio devices can also cause issues, either disable unused audio devices  in your BIOS or verify they're working correctly here:
 
-* [Fixing Audio](/universal/audio.md)
+* [Fixing Audio](../universal/audio.md)
 
 ### SMBus
 

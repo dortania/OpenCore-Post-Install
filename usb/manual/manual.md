@@ -26,7 +26,7 @@ This section is for those who want to get down into the meats of their hackintos
   * This is due to how macOS enumerates ports, trying to map from other OSes makes this difficult
   * Note: This guide will be focusing on OS X 10.11, El Capitan and newer. Older OSes shouldn't require any USB mapping
 * Non-conflicting USB names
-  * See previous section: [Checking what renames you need](../../system-preparation.md#checking-what-renames-you-need)
+  * See previous section: [Checking what renames you need](../system-preparation.md#checking-what-renames-you-need)
 * A USB 2.0 and USB 3.0 device to test with
   * You must have 2 separate devices as to ensure no mix ups with personalities
 * [IORegistryExplorer.app](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip)
@@ -35,7 +35,7 @@ This section is for those who want to get down into the meats of their hackintos
 * [USBInjectAll]()
   * This is only required for older USB controllers like Broadwell and older, however some Coffee Lake systems may still require it
   * **Reminder** this kext does not work on AMD
-* [Sample-USB-Map.kext](https://github.com/dortania/OpenCore-Post-Install/tree/master/extra-files/sample-USB-Map.kext.zip)
+* [Sample-USB-Map.kext](https://github.com/dortania/OpenCore-Post-Install/blob/master/extra-files/Sample-USB-Map.kext.zip)
 * [ProperTree](https://github.com/corpnewt/ProperTree)
   * Or any other plist editor
   
@@ -62,7 +62,7 @@ Pay attention that they're individual controllers, as this means **each USB cont
 
 Now I personally know which USB controllers match up with which physical ports, problem is it's not always as obvious which ports match with which controllers. So lets try to figure out which is what.
 
-**Note**: The AppleUSBLegacyRoot entry is an entry that lists all actively USB controllers and ports, these are not USB controllers themselves so you can outright ignore them.
+**Note**: The AppleUSBLegacyRoot entry is an entry that lists all active USB controllers and ports, these are not USB controllers themselves so you can outright ignore them.
 
 **Note 2**: Keep in mind every motherboard model will have a unique set of port combos, controller types and names. So while our example uses PXSX, yours might have have the XHC0 or PTCP name. And quite common on older motherboards is that you may only have 1 controller, this is alright so don't stress about having the exact same setup as the example.
 
@@ -270,7 +270,7 @@ Its the time you've all been waiting for, we finally get to create our USB map!
 
 First off, we'll want to grab a sample USB map kext:
 
-* [Sample-USB-Map.kext](https://github.com/dortania/OpenCore-Post-Install/tree/master/extra-files/sample-USB-Map.kext.zip)
+* [Sample-USB-Map.kext](https://github.com/dortania/OpenCore-Post-Install/blob/master/extra-files/Sample-USB-Map.kext.zip)
 
 
 Next right click the .kext, and select `Show Package Contents`. then drill down to the info.plist:
