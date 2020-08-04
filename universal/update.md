@@ -1,8 +1,8 @@
 # Updating OpenCore and macOS
 
-* Supported version: 0.5.9
 
-<extoc></extoc>
+
+
 
 ## Updating OpenCore
 

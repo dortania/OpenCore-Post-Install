@@ -1,8 +1,8 @@
 # Fixing iMessage and other services with OpenCore
 
-* Supported version: 0.5.9
 
-<extoc></extoc>
+
+
 
 This page is for those having iMessage and other iServices issues, this is a very basic guide so will not go as in-depth into the issues as some other guides. This specific guide is a translation and reinterpretation of the AppleLife Guide on fixing iServices: [Как завести сервисы Apple - iMessage, FaceTime, iCloud](https://applelife.ru/posts/727913)
 

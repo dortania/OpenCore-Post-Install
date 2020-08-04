@@ -1,6 +1,6 @@
 # Optimizing Power Management
 
-<extoc></extoc>
+
 
 ## Enabling X86PlatformPlugin
 

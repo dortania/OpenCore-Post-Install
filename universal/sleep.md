@@ -1,6 +1,6 @@
 # Fixing Sleep
 
-* Supported version: 0.5.9
+
 
 So to understand how to fix sleep issues in macOS, we need to first look at what contributes to sleep issues most of the time:
 

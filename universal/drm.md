@@ -1,8 +1,8 @@
 # Fixing DRM support and iGPU performance
 
-* Supported version: 0.5.9
 
-<extoc></extoc>
+
+
 
 So with DRM, we have a couple things we need to mention:
 
