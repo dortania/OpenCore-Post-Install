@@ -77,6 +77,8 @@ The last frequency is not your maximum frequency so don't worry about being capp
 echo "obase=16; 13" | bc
 ```
 
+* Pay close attention we used 13 for 1.3Ghz and not 1.3
+
 ![](../images/post-install/pm-md/epp.png)
 
 Next up is the Energy Performance Preference, EPP. This tells macOS how fast to turbo up the CPU to its full clock. `00` will tell macOS to let the CPU go as fast as it can as quickly as it can while `FF` will tell macOS to take things slowly and let the CPU ramp up over a much longer period of time. Depending on what you're doing and the cooling on your machine, you may want to set something in the middle. Below chart can help out a bit:
