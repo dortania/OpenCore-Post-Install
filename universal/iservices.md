@@ -155,6 +155,6 @@ And a final layer of precaution is to make a new AppleID to play with, this make
 
 ## Customer Code error
 
-Well mate, you've done it. You blacklisted your AppleID. The fix is simple but not pretty, **you MUST call Apple**. Otherwise, there is no proceeding besides using a new account. Adding a payment card before calling can help legitimize the account so it doesn't seem as much like a bot.
+Well mate, you've done it. You blacklisted your AppleID. The fix is simple but not pretty, **you MUST call [Apple](https://support.apple.com/en-us/HT201232)**. Otherwise, there is no proceeding besides using a new account. Adding a payment card before calling can help legitimize the account so it doesn't seem as much like a bot.
 
 ![](../images/post-install/iservices-md/blacklist.png)
