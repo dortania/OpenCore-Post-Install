@@ -41,7 +41,7 @@ For this example, I'll choose all the ports that were discovered, remember that 
 ![](../../images/post-install/usb-md/255.png)
 
 ```text
-T:1,3,4,5,6,716,17,19,21,22:3
+T:1,3,4,5,6,7,16,17,19,21,22:3
 ```
 
 The above will set all ports listed to type 3 which is USB 3.0.
