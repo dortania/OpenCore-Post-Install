@@ -95,7 +95,7 @@ module.exports = {
         {
             title: 'Universal',
             collapsable: false,
-            sidebarDepth: 1,
+            sidebarDepth: 2,
             children: [
                 ['/universal/security', 'Security and FileVault'],
                 ['/universal/audio', 'Fixing Audio'],

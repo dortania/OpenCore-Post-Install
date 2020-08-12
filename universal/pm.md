@@ -4,7 +4,7 @@
 
 ## Enabling X86PlatformPlugin
 
-So before we can fine tune power management to our liking, we need to first make sure Apple's XCPM core is loaded. Note that this is supported **only on Haswell and newer**, Sandy, Ivy Bridge and AMD CPUs should refer to the bottom of the guides: 
+So before we can fine tune power management to our liking, we need to first make sure Apple's XCPM core is loaded. Note that this is supported **only on Haswell and newer(with Ivy Bridge-E)**, consumer Sandy, Ivy Bridge and AMD CPUs should refer to the bottom of the guides: 
 
 * [Sandy and Ivy Bridge Power Management](../universal/pm.md#sandy-and-ivy-bridge-power-management)
 * [AMD CPU Power Management](../universal/pm.md#amd-cpu-power-management)
@@ -29,16 +29,16 @@ plugin-type | Number | 0x1
 
 XCPM does not natively support Haswell-E and Broadwell-E, this means we need to spoof the CPU ID into a model that does supports XCPM:
 
-* **Haswell E**:
+* **Haswell-E**:
 
   * `Kernel -> Emulate`:
-    * Cpuid1Data﻿: `C3060300 00000000 00000000 00000000`
+    * Cpuid1Data: `C3060300 00000000 00000000 00000000`
     * Cpuid1Mask: `FFFFFFFF 00000000 00000000 00000000`
 
 * **Broadwell-E**:
 
   * `Kernel -> Emulate`:
-    * Cpuid1Data﻿: `D4060300﻿ 00000000 00000000 00000000`
+    * Cpuid1Data: `D4060300 00000000 00000000 00000000`
     * Cpuid1Mask: `FFFFFFFF 00000000 00000000 00000000`
 
 ## Using CPU Friend
@@ -48,36 +48,46 @@ To start, we're gonna need a couple things:
 * X86PlatformPlugin loaded
   * This means Sandy, Ivy Birdge and AMD CPUs are not supported
 * [CPUFriend](https://github.com/acidanthera/CPUFriend/releases)
-* [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend)
+* [Fewt's fork of CPUFriendFriend](https://github.com/fewtarius/CPUFriendFriend)
+  * This fork has some additional features that can help both simplify the process and give use some better control
 
-Now lets run CPUFriendFriend.command
+### LFM: Low Frequency Mode
+
+Now lets run CPUFriendFriend.command:
 
 ![](../images/post-install/pm-md/lpm.png)
 
-The `min hex freq` should be what the lowest possible TDP for the CPU, on Intel's [ARK site](https://ark.intel.com/) search for `TDP-down Frequency` and convert this value to HEX. Note that not all CPUs support `TDP-down Frequency`, like the i7-9700T vs i7 9700. In these scenarios, you'll want to do a bit more research into your CPU, specifically:
+When you first open up CPUFriendFriend, you'll be greeted with a prompt for choosing your LFM value. This can be seen as the floor of your CPU, or the lowest value it'll idle at. This value can greatly help with sleep functioning correctly as macOS needs to be able to transition from S3(sleep) to S0(wake) easily.
 
-* Minimum Multiplier (Generally stable with x10 on Intel's consumer platform)
-* FSB (Front Side Bus Frequency, this is 100MHz on most CPUs)
+To determine your LPM value, you can either:
 
-LPM = MinMultiplier x FSB
+* Look for the `TDP-down Frequency` on Intel's [ARK site](https://ark.intel.com/)
+  * Note most CPUs do not have a listed value, so you'll need to determine yourself
+* Or choose recommended values:
 
-For this example we'll be using the [i9 7920x](https://ark.intel.com/content/www/us/en/ark/products/126240/intel-core-i9-7920x-x-series-processor-16-5m-cache-up-to-4-30-ghz.html) which has a base clock of 2.9 GHz but no LPM, so we'll choose 1.3 GHz(13x100) and work our way up/down until we find stability.
+| Generation | LFM Value | Comment |
+| :--- | :--- | :--- |
+| Broadwell+ Laptops | 08 | Equivalent of 800Mhz |
+| Broadwell+ Desktops | 0A | Equivalent of 1000Mhz |
+| Haswell/Broadwell HEDT/Server(ie. X99) | 0D | Equivalent of 1300Mhz |
+| Skylake+ HEDT/Server(ie. X299) | 0C | Equivalent of 1200Mhz |
 
-**Note**:  Mobile SMBIOS will likely have several Frequency Vectors, this is for how many steps your CPU will take. On the MacBook9,1 SMBIOS for example, we get 3 Frequency Vectors. So the idea is:
 
-1. Lowest frequency macOS will idle at(ie. sitting at the desktop)
-2. Middle frequency for simple tasks(ie. text editing or using the finder)
-3. Average frequency for little more demanding tasks(ie. Safari, Youtube, etc)
+* **Note**: LFM value is only available on Broadwell and newer SMBIOS
+* **Note 2**: these values are not set in stone, each machine will have unique characteristics and so you'll need to experiment what works best for your hardware
 
-The last frequency is not your maximum frequency so don't worry about being capped at that limit.
+For this example we'll be using the [i9 7920x](https://ark.intel.com/content/www/us/en/ark/products/126240/intel-core-i9-7920x-x-series-processor-16-5m-cache-up-to-4-30-ghz.html) which has a base clock of 2.9 GHz but no LFM, so we'll choose 1.3 GHz(ie. 1300Mhz) and work our way up/down until we find stability.
 
-![](../images/post-install/pm-md/macbook.png)
+* Note that the LFM value is simply the CPU's multiplier, so you'll need to trim your value appropriately
+  * ie. Divide by 100, then convert to hexadecimal
 
-```
-echo "obase=16; 13" | bc
+```sh
+$ echo "obase=16; 13" | bc
 ```
 
 * Pay close attention we used 13 for 1.3Ghz and not 1.3
+
+### EPP: Energy Performance Preference
 
 ![](../images/post-install/pm-md/epp.png)
 
@@ -88,9 +98,18 @@ Next up is the Energy Performance Preference, EPP. This tells macOS how fast to 
 | 0x00-0x3F| Max Performance |
 | 0x40-0x7F | Balance performance |
 | 0x80-0xBF | Balance power |
-| 0xC0-0xFF | Max Power Saving|
+| 0xC0-0xFF | Max Power Saving |
 
 **Note**: Only Skylake and newer SMBIOS officially support EPP
+
+### Performance Bias
+
+![](../images/post-install/pm-md/pm-bias.png)
+
+This final entry is to help macOS out what kind of overall performance you'd like from your CPU. The general recommendation depends on your exact setup, and experimenting does help figure out what's best for you.
+
+
+### Cleaning up
 
 ![](../images/post-install/pm-md/done.png)
 ![](../images/post-install/pm-md/files.png)
@@ -99,23 +118,28 @@ Once you're finished, you'll be provided with a CPUFriendDataProvider.kext and s
 
 * **Note**: Load order does not matter with the CPUFriendDataProvider as it's just a plist-only kext
 * **Note 2**: Wake issues resulting from CPUFriend is likely due to incorrect frequency vectors, every system is unique so you'll need to play around until you get a stable config. Kernel panics will have `Sleep Wake failure in efi`.
+* **Note 3**: If you do choose to use ssdt_data.aml, note that SSDT-PLUG is no longer needed. However the setup for this SSDT is broken on HEDT platforms like X79, X99 and X299, so we highly recommend SSDT-PLUG with CPUFriendDataProvider.kext instead.
 
 ## Sandy and Ivy Bridge Power Management
 
 With Sandy and Ivy Bridge, consumer PCs have issues connecting to Apple's XCPM. So to get around this we need to create our own Power Management Table.
 
+* **Note**: Ivy Bridge-E CPUs do officially support XCPM, please refer to [Enabling X86PlatformPlugin](#enabling-x86platformplugin) instead
+
 What we'll need:
 
-* CpuPm and Cpu0Ist tables dropped
+* Ensure CpuPm and Cpu0Ist tables are **NOT** dropped
 * [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 
-To drop the CpuPm and Cpu0Ist tables, head to ACPI -> Delete:
+Initialling with OpenCore's setup in the Ivy Bridge section, we recommended users drop their CpuPm and Cpu0Ist to avoid any issues with AppleIntelCPUPowermanagement.kext. But dropping these tables have the adverse affect of breaking turbo boost in Windows. So to resolve this, we'll want to keep our OEM's table but we'll want to add a new table to supplement data only for macOS
+
+To ACPI -> Delete, ensure both of these sections have `Enabled` set to NO:
 
 | Key | Type | Value |
 | :--- | :--- | :--- |
 | All | Boolean | YES |
 | Comment | String | Drop CpuPm |
-| Enabled | Boolean | YES |
+| Enabled | Boolean | NO |
 | OemTableId | Data | 437075506d000000 |
 | TableLength | Number | 0 |
 | TableSignature | Data | 53534454 |
@@ -124,7 +148,7 @@ To drop the CpuPm and Cpu0Ist tables, head to ACPI -> Delete:
 | :--- | :--- | :--- |
 | All | Boolean | YES |
 | Comment | String | Drop Cpu0Ist |
-| Enabled | Boolean | YES |
+| Enabled | Boolean | NO |
 | OemTableId | Data | 4370753049737400 |
 | TableLength | Number | 0 |
 | TableSignature | Data | 53534454 |
