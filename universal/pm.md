@@ -131,9 +131,39 @@ What we'll need:
 * Ensure CpuPm and Cpu0Ist tables are **NOT** dropped
 * [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 
-Initialling with OpenCore's setup in the Ivy Bridge section, we recommended users drop their CpuPm and Cpu0Ist to avoid any issues with AppleIntelCPUPowermanagement.kext. But dropping these tables have the adverse affect of breaking turbo boost in Windows. So to resolve this, we'll want to keep our OEM's table but we'll want to add a new table to supplement data only for macOS
+Initialling with OpenCore's setup in the Ivy Bridge section, we recommended users drop their CpuPm and Cpu0Ist to avoid any issues with AppleIntelCPUPowerManagement.kext. But dropping these tables have the adverse affect of breaking turbo boost in Windows. So to resolve this, we'll want to keep our OEM's table but we'll want to add a new table to supplement data only for macOS. So once we're done creating our CPU-PM table, we'll re-add our OEM's CPU SSDTs.
 
-To ACPI -> Delete, ensure both of these sections have `Enabled` set to NO:
+To start, head to ACPI -> Delete and ensure both of these sections have `Enabled` set to YES:
+
+| Key | Type | Value |
+| :--- | :--- | :--- |
+| All | Boolean | YES |
+| Comment | String | Drop CpuPm |
+| Enabled | Boolean | YES |
+| OemTableId | Data | 437075506d000000 |
+| TableLength | Number | 0 |
+| TableSignature | Data | 53534454 |
+
+| Key | Type | Value |
+| :--- | :--- | :--- |
+| All | Boolean | YES |
+| Comment | String | Drop Cpu0Ist |
+| Enabled | Boolean | YES |
+| OemTableId | Data | 4370753049737400 |
+| TableLength | Number | 0 |
+| TableSignature | Data | 53534454 |
+
+Once this is done, we can now grab ssdtPRGen and run it:
+
+![](../images/post-install/pm-md/prgen-run.png)
+
+Once you're done, you'll be provided with an SSDT.aml under `/Users/your-name>/Library/ssdtPRGen/ssdt.dsl`, you can easily find it with the Cmd+Shift+G shortcut and pasting `~/Library/ssdtPRGen/`
+
+![](../images/post-install/pm-md/prgen-done.png)
+
+Remember to now add this to both EFI/OC/ACPI and your config.plist, I recommend renaming it to SSDT-PM to find it more easily.
+
+Finally, we can disable our previous ACPI -> Delete entries(`Enabled` set to NO):
 
 | Key | Type | Value |
 | :--- | :--- | :--- |
@@ -153,16 +183,51 @@ To ACPI -> Delete, ensure both of these sections have `Enabled` set to NO:
 | TableLength | Number | 0 |
 | TableSignature | Data | 53534454 |
 
-Once this is done, we can now grab ssdtPRGen and run it:
+### ssdtPRgen Troubleshooting
 
-![](../images/post-install/pm-md/prgen-run.png)
+While ssdtPRgen tries to handle any incompatibility issues with your OEM's SSDT, you may find it still clashes on boot as your OEM has already declared certain devices or methods in sections like `_INI` or `_DSM`. 
 
-Once you're done, you'll be provided with an SSDT.aml under `/Users/your-name>/Library/ssdtPRGen/ssdt.dsl`, you can easily find it with the Cmd+Shift+G shortcut and pasting `~/Library/ssdtPRGen/`
+If you find during boot up you get errors such as this one from SSDT-PM:
 
-![](../images/post-install/pm-md/prgen-done.png)
+```
+ACPI Error: Method parse/execution failed [\_SB._INI] , AE_ALREADY_EXIST
+```
 
-Remember to now add this to both EFI/OC/ACPI and your config.plist, I recommend renaming it to SSDT-PM to find it more easily
+This means there's some conflict, to resolve this, we recommend moving ssdtPRgen's info into a format like this:
+
+```c
+DefinitionBlock ("ssdt.aml", "SSDT", 1, "APPLE ", "CpuPm", 0x00021500)
+{
+    External (\_PR_.CPU0, DeviceObj) // External Processor definition
+    External (\_PR_.CPU1, DeviceObj) // External Processor definition
+
+    Scope (\_PR_.CPU0) // Processor's scope
+    {
+        Name (APLF, Zero)
+        Name (APSN, 0x04)
+        Name (APSS, Package (0x20)
+        {
+            /*  … */
+        })
+
+        Method (ACST, 0, NotSerialized)
+        {
+            /*  … */
+        }
+
+        /*  … */
+    }
+```
+
+Pay close attention to what we've done:
+
+* Made sure the Processor object is moved to external
+* Move all your methods into the Processor's scope
+
+For editing and re-compiling the SSDT-PM, see here: [Getting Started With ACPI](https://dortania.github.io/Getting-Started-With-ACPI/)
 
 ## AMD CPU Power Management
 
 While macOS might not officially support AMD CPU Power management, there are community efforts to add it. Specifically being [SMCAMDProcessor](https://github.com/trulyspinach/SMCAMDProcessor). Note that when adding this kext, it should be after VirtualSMC in your config.plist as it's a plugin.
+
+**Warning**: This kext is known to create stability issues as well, if you're receiving random kernel panics or issues booting do keep in mind this kext may be the culprit.
