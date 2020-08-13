@@ -82,7 +82,7 @@ So to start, we'll need a couple things:
 
 * **AudioOut:**
   * The specific output of your Audio controller, easiest way to find the right one is to go through each one(from 0 to N - 1)
-  * ex: `2`
+  * ex: N=`2` (in the example below) so you should try adding 0 to 1
     * You can find all the ones for your codec in the OpenCore debug logs:
 
 ```
