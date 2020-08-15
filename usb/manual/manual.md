@@ -410,6 +410,13 @@ Now that we've gone over how to map your USB ports for a specific controller, yo
 
 Once your saved your USB map's info.plist, remember to add the kext to both your EFI/OC/Kexts and under you config.plist's Kernel -> Add(ProperTree's snapshot can do this for you)
 
+Next, remove/disable:
+
+* USBInjectAll.kext(if you're using it)
+  * Reason for this is USBInjectAll actually breaks how Apple builds port maps. So while it's great for inital port mapping, it can break you final USB map
+* XhciPortLimit(Under Kernel -> Quirks)
+  * Now that we're finally under the 15 port limit, we no longer need this hacky fix
+
 Then reboot, and check IOReg one last time:
 
 ![](../../images/post-install/manual-md/finished.png)
