@@ -211,12 +211,12 @@ The above boot-arg/property will delay AppleHDAController by 1000 ms(1 second), 
 
 ### AppleALC not working correctly with multiple sound cards
 
-For rare situations where you have 2 sounds cards(ex. onboard Realtek and an external PCIe card), you may want to avoid AppleALC patching devices you either don't use or don't need patching(like native PCIe cards). This is especially important if you find that AppleALC will no patch you onboard audio controller
+For rare situations where you have 2 sounds cards(ex. onboard Realtek and an external PCIe card), you may want to avoid AppleALC patching devices you either don't use or don't need patching(like native PCIe cards). This is especially important if you find that AppleALC will not patch you onboard audio controller when the external one is present.
 
-To do this, we'll first need to identify the location of both our audio controllers. The easiest way is to run [gfxutil](https://github.com/acidanthera/gfxutil/releases) and search for the PCI IDs:
+To get around this, we'll first need to identify the location of both our audio controllers. The easiest way is to run [gfxutil](https://github.com/acidanthera/gfxutil/releases) and search for the PCI IDs:
 
 
-```c
+```sh
 /path/to/gfxutil
 ```
 
