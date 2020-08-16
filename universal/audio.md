@@ -95,22 +95,20 @@ Note that the final HEX/Data value should be 4 bytes in total(ie. `0B 00 00 00` 
 
 ## Miscellaneous issues
 
-**No Mic on AMD**:
+### No Mic on AMD
 
 * This is a common issue with when running AppleALC with AMD, specifically no patches have been made to support Mic input. At the moment the "best" solution is to either buy a USB DAC/Mic or go the VoodooHDA.kext method. Problem with VoodooHDA is that it's been known to be unstable and have worse audio quality than AppleALC
 
-**Same layout ID from Clover doesn't work on OpenCore**:
+### Same layout ID from Clover doesn't work on OpenCore
 
 This is likely do to IRQ conflicts, on Clover there's a whole sweep of ACPI hot-patches that are applied automagically. Fixing this is a little bit painful but [SSDTTime](https://github.com/corpnewt/SSDTTime)'s `FixHPET` option can handle most cases.
 
 For odd cases where RTC and HPET take IRQs from other devices like USB and audio, you can reference the [HP Compaq DC7900 ACPI patch](https://github.com/khronokernel/trashOS/blob/master/HP-Compaq-DC7900/README.md#dsdt-edits) example in the trashOS repo
 
-**Kernel Panic on power state changes in 10.15**:
+### Kernel Panic on power state changes in 10.15
 
 * Enable PowerTimeoutKernelPanic in your config.plist:
   * `Kernel -> Quirks -> PowerTimeoutKernelPanic -> True`
-  
-Alternatively you can use `setpowerstate_panic=0` in boot-args, which is the equivalent of the above quirk.
 
 ## Troubleshooting
 
@@ -120,8 +118,9 @@ So for troubleshooting, we'll need to go over a couple things:
 * [Checking if AppleALC is patching correctly](#checking-if-applealc-is-patching-correctly)
 * [Checking AppleHDA is vanilla](#checking-applehda-is-vanilla)
 * [AppleALC working inconsistently](#applealc-working-inconsistently)
+* [AppleALC not working correctly with multiple sound cards](#applealc-not-working-correctly-with-multiple-sound-cards)
 
-#### Checking if you have the right kexts
+### Checking if you have the right kexts
 
 To start, we'll assume you already have Lilu and AppleALC installed, if you're unsure if it's been loaded correctly you can run the following in terminal(This will also check if AppleHDA is loaded, as without this AppleALC has nothing to patch):
 
@@ -131,7 +130,7 @@ kextstat | grep -E "AppleHDA|AppleALC|Lilu"
 
 If all 3 show up, you're good to go. And make sure VoodooHDA **is not present**. This will conflict with AppleALC otherwise. Other kexts to make sure you do not have in your system:
 
-* realtekALC.kext
+* RealtekALC.kext
 * CloverALC.kext
 * VoodooHDA.kext
 * HDA Blocker.kext
@@ -159,7 +158,7 @@ Main places you can check as to why:
 
 Note: To setup file logging, see [OpenCore Debugging](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html).
 
-#### Checking if AppleALC is patching correctly
+### Checking if AppleALC is patching correctly
 
 So with AppleALC, one of the most easiest things to check if the patching was done right was to see if your audio controller was renamed correctly. Grab [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) and see if you have an HDEF device:
 
@@ -182,7 +181,7 @@ Correct layout-id           |  Incorrect layout-id
 
 As you can see from the above 2, the right image is missing a lot of AppleHDAInput devices, meaning that AppleALC can't match up your physical ports to something it can understand and output to. This means you've got some work to find the right layout ID for your system.
 
-#### Checking AppleHDA is vanilla
+### Checking AppleHDA is vanilla
 
 This section is mainly relevant for those who were replacing the stock AppleHDA with a custom one, this is going to verify whether or not yours is genuine:
 
@@ -192,7 +191,7 @@ sudo kextcache -i / && sudo kextcache -u /
 
 This will check if the signature is valid for AppleHDA, if it's not then you're going to need to either get an original copy of AppleHDA for your system and replace it or update macOS(kexts will be cleaned out on updates). This will only happen when you're manually patched AppleHDA so if this is a fresh install it's highly unlikely you will have signature issues.
 
-#### AppleALC working inconsistently
+### AppleALC working inconsistently
 
 Sometimes race conditions can occur where your hardware isn't initialized in time for AppleHDAController resulting in no sound output. To get around this, you can either:
 
@@ -209,3 +208,48 @@ alc-delay | Number | 1000
 ```
 
 The above boot-arg/property will delay AppleHDAController by 1000 ms(1 second), note the ALC delay cannot exceed [3000 ms](https://github.com/acidanthera/AppleALC/blob/master/AppleALC/kern_alc.cpp#L308L311)
+
+### AppleALC not working correctly with multiple sound cards
+
+For rare situations where you have 2 sounds cards(ex. onboard Realtek and an external PCIe card), you may want to avoid AppleALC patching devices you either don't use or don't need patching(like native PCIe cards). This is especially important if you find that AppleALC will no patch you onboard audio controller
+
+To do this, we'll first need to identify the location of both our audio controllers. The easiest way is to run [gfxutil](https://github.com/acidanthera/gfxutil/releases) and search for the PCI IDs:
+
+
+```c
+/path/to/gfxutil
+```
+
+Now with this large output you'll want to find your PciRoot pathing, for this example, lets use a Creative Sound-Blaster AE-9PE PCIe audio card. For this, we know the PCI ID is `1102:0010`. So looking through our gfxutil output we get this:
+
+```
+66:00.0 1102:0010 /PC02@0/BR2A@0/SL05@0 = PciRoot(0x32)/Pci(0x0,0x0)/Pci(0x0,0x0)
+```
+
+From here, we can clearly see our PciRoot pathing is:
+
+```
+PciRoot(0x32)/Pci(0x0,0x0)/Pci(0x0,0x0)
+```
+
+
+* **Note**: This will assume you know both the Vendor and Device ID of the external sound card. For reference, these are the common Vendor IDs:
+  * Creative Labs: `1102`
+  * AsusTek: `1043`
+* **Note 2**: Your ACPI and PciRoot path will look different, so play attention to **your** gfxutil output
+
+
+Now that we have our PciRoot pathing, we can finally open up our config.plist and add our patch.
+
+Under DeviceProperties -> Add, you'll want to add your PciRoot(as a Dictionary) with the child called `external-audio`:
+
+```
+DeviceProperties
+| --- > Add
+	| --- > PciRoot(0x32)/Pci(0x0,0x0)/Pci(0x0,0x0)
+		| ----> external-audio | Data | 01
+```
+
+![](../images/post-install/audio-md/external-audio.png)
+
+And with this done, you can reboot and AppleALC should now ignore your external audio controller!
