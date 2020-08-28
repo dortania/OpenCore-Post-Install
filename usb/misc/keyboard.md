@@ -31,7 +31,7 @@ This method creates a fake ACPI Device that will be associated with the GPE, the
 It's actually quite easy to setup, you'll need the following:
 
 * [USBWakeFixup.kext](https://github.com/osy86/USBWakeFixup/releases)
-  * Both under EFI/OC/Kexts and your config..plist
+  * Both under EFI/OC/Kexts and your config.plist
 * [SSDT-USBW.dsl](https://github.com/osy86/USBWakeFixup/blob/master/SSDT-USBW.dsl)
 
 To create the SSDT-USBW for your specific system, you're gonna need the ACPI path of your USB controller. If we look back above to the gfxutil example, we can see it also lists our ACPI path:
