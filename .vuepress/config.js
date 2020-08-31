@@ -33,7 +33,7 @@ module.exports = {
         ["link", {
             rel: "'stylesheet",
             href: "/styles/website.css"
-        },]
+        }, ]
     ],
     base: '/OpenCore-Post-Install/',
 
@@ -58,117 +58,137 @@ module.exports = {
         nav: [{
             text: 'Dortania Guides',
             items: [{
-                text: 'Home Site',
-                link: 'https://dortania.github.io/'
-            },
-            {
-                text: 'OpenCore Install Guide',
-                link: 'https://dortania.github.io/OpenCore-Install-Guide/'
-            },
-			{
-                text: 'Getting Started With ACPI',
-                link: 'https://dortania.github.io/Getting-Started-With-ACPI/'
-            },
-            {
-                text: 'GPU Buyers Guide',
-                link: 'https://dortania.github.io/GPU-Buyers-Guide/'
-            },
-            {
-                text: 'Wireless Buyers Guide',
-                link: 'https://dortania.github.io/Wireless-Buyers-Guide/'
-            },
-            {
-                text: 'Anti Buyers Guide',
-                link: 'https://dortania.github.io/Anti-Hackintosh-Buyers-Guide/'
-            },
+                    text: 'Home Site',
+                    link: 'https://dortania.github.io/'
+                },
+                {
+                    text: 'OpenCore Install Guide',
+                    link: 'https://dortania.github.io/OpenCore-Install-Guide/'
+                },
+                {
+                    text: 'Getting Started With ACPI',
+                    link: 'https://dortania.github.io/Getting-Started-With-ACPI/'
+                },
+                {
+                    text: 'GPU Buyers Guide',
+                    link: 'https://dortania.github.io/GPU-Buyers-Guide/'
+                },
+                {
+                    text: 'Wireless Buyers Guide',
+                    link: 'https://dortania.github.io/Wireless-Buyers-Guide/'
+                },
+                {
+                    text: 'Anti Buyers Guide',
+                    link: 'https://dortania.github.io/Anti-Hackintosh-Buyers-Guide/'
+                },
             ]
-        },],
+        }, ],
         sidebar: [{
-            title: 'Introduction',
-            collapsable: false,
-            sidebarDepth: 1,
-            children: [
-                '',
-            ]
+                title: 'Introduction',
+                collapsable: false,
+                sidebarDepth: 1,
+                children: [
+                    '',
+                ]
 
-        },
-        {
-            title: 'Universal',
-            collapsable: false,
-            sidebarDepth: 2,
-            children: [
-                ['/universal/security', 'Security and FileVault'],
-                ['/universal/audio', 'Fixing Audio'],
-                ['/universal/oc2hdd', 'Booting without USB'],
-                ['/universal/update', 'Updating OpenCore, kexts and macOS'],
-                ['/universal/drm', 'Fixing DRM'],
-                ['/universal/iservices', 'Fixing iServices'],
-                ['/universal/pm', 'Fixing Power Management'],
-                ['/universal/sleep', 'Fixing Sleep'],
-            ]
-        },
-		{
-            title: 'USB Fixes',
-            collapsable: false,
-            sidebarDepth: 1,
-            children: [
-            	['/usb/', 'USB Mapping: Introduction'],
-				['/usb/system-preparation', 'System Preparation'],
-				{
-	            title: 'USB Mapping',
-	            collapsable: true,
-	            sidebarDepth: 2,
-	            children: [
-	            	['/usb/intel-mapping/intel', 'Intel USB mapping'],
-					['/usb/manual/manual', 'Manual Mapping'],
-	            ]
-				},
-				{
-	            title: 'Miscellaneous Fixes',
-	            collapsable: true,
-	            sidebarDepth: 1,
-	            children: [
-	            	['/usb/misc/power', 'Fixing USB Power'],
-					['/usb/misc/shutdown', 'Fixing Shutdown/Restart'],
-					['/usb/misc/instant-wake', 'Fixing Instant Wake'],
-					['/usb/misc/keyboard', 'Fixing Keyboard Wake Issues'],
-	            ]
-				},
-            ]
-		},
-        {
-            title: 'Laptop Specifics',
-            collapsable: false,
-            children: [
-                ['/laptop-specific/battery', 'Fixing Battery Read-outs'],
+            },
+            {
+                title: 'Universal',
+                collapsable: false,
+                sidebarDepth: 2,
+                children: [
 
-            ]
-        },
-        {
-            title: 'Cosmetics',
-            collapsable: false,
-            children: [
-                ['/cosmetic/verbose', 'Fixing Resolution and Verbose'],
-                ['/cosmetic/gui', 'Add GUI and Boot-chime'],
-            ]
-        },
-        {
-            title: 'Multiboot',
-            collapsable: false,
-            children: [
-                ['/multiboot/bootstrap', 'Setting up Bootstrap.efi'],
-                ['/multiboot/bootcamp', 'Installing BootCamp'],
-            ]
-        },
-        {
-            title: 'Miscellaneous',
-            collapsable: false,
-            children: [
-                ['/misc/rtc', 'Fixing RTC'],
-                ['/misc/msr-lock', 'Fixing CFG Lock'],
-                ['/misc/nvram', 'Emulated NVRAM'],
-            ]
-        },
+                    ['/universal/audio', 'Fixing Audio'],
+                    ['/universal/oc2hdd', 'Booting without USB'],
+                    ['/universal/update', 'Updating OpenCore, kexts and macOS'],
+                    ['/universal/drm', 'Fixing DRM'],
+                    ['/universal/iservices', 'Fixing iServices'],
+                    ['/universal/pm', 'Fixing Power Management'],
+                    ['/universal/sleep', 'Fixing Sleep'],
+                ]
+            },
+            {
+                title: 'USB Fixes',
+                collapsable: false,
+                sidebarDepth: 1,
+                children: [
+                    ['/usb/', 'USB Mapping: Introduction'],
+                    ['/usb/system-preparation', 'System Preparation'],
+                    {
+                        title: 'USB Mapping',
+                        collapsable: true,
+                        sidebarDepth: 2,
+                        children: [
+                            ['/usb/intel-mapping/intel', 'Intel USB mapping'],
+                            ['/usb/manual/manual', 'Manual Mapping'],
+                        ]
+                    },
+                    {
+                        title: 'Miscellaneous Fixes',
+                        collapsable: true,
+                        sidebarDepth: 1,
+                        children: [
+                            ['/usb/misc/power', 'Fixing USB Power'],
+                            ['/usb/misc/shutdown', 'Fixing Shutdown/Restart'],
+                            ['/usb/misc/instant-wake', 'Fixing Instant Wake'],
+                            ['/usb/misc/keyboard', 'Fixing Keyboard Wake Issues'],
+                        ]
+                    },
+                ]
+            },
+            {
+                title: 'Security',
+                collapsable: false,
+                sidebarDepth: 2,
+                children: [
+                    ['/universal/security', 'Security and FileVault'],
+                    {
+                        title: '',
+                        collapsable: false,
+                        sidebarDepth: 2,
+                        children: [
+                            ['/universal/security/filevault', 'FileVault'],
+                            ['/universal/security/vault', 'Vault'],
+                            ['/universal/security/scanpolicy', 'ScanPolicy'],
+                            ['/universal/security/applesecureboot', 'Apple Secure Boot'],
+                            ['/universal/security/uefisecureboot', 'UEFI Secure Boot'],
+                        ]
+                    },
+                ]
+            },
+            {
+                title: 'Laptop Specifics',
+                collapsable: false,
+                children: [
+                    ['/laptop-specific/battery', 'Fixing Battery Read-outs'],
+
+                ]
+            },
+            {
+                title: 'Cosmetics',
+                collapsable: false,
+                children: [
+                    ['/cosmetic/verbose', 'Fixing Resolution and Verbose'],
+                    ['/cosmetic/gui', 'Add GUI and Boot-chime'],
+                ]
+            },
+            {
+                title: 'Multiboot',
+                collapsable: false,
+                children: [
+                    ['/multiboot/bootstrap', 'Setting up Bootstrap.efi'],
+                    ['/multiboot/bootcamp', 'Installing BootCamp'],
+                ]
+            },
+            {
+                title: 'Miscellaneous',
+                collapsable: false,
+                children: [
+                    ['/misc/rtc', 'Fixing RTC'],
+                    ['/misc/msr-lock', 'Fixing CFG Lock'],
+                    ['/misc/nvram', 'Emulated NVRAM'],
+                ]
+            },
 
         ],
     },
@@ -185,6 +205,7 @@ module.exports = {
                 options: {
                     background: 'var(--bodyBgColor)'
                 }
-            }],
+            }
+        ],
     ]
 }
