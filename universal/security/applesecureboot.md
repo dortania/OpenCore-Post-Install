@@ -1,12 +1,25 @@
 # Apple Secure Boot
 
-* Note: SecureBootModel and ApECID require [OpenCore 0.6.1](https://github.com/acidanthera/OpenCorePkg/releases) or newer
+* Note: DmgLoading, SecureBootModel and ApECID require [OpenCore 0.6.1](https://github.com/acidanthera/OpenCorePkg/releases) or newer
+
+
+## DmgLoading
+
+Quite a simple setting however important in regards to Apple Secure Boot. This setting allows you to set load policy with DMGs in OpenCore. By default we recommend using `Signed` however for best security  `Disabled` may be preferred.
+
+Possible options for `Misc -> Security -> DmgLoading`:
+
+| Value | Comment |
+| :--- | :--- |
+| Any      | Allows all DMGs to load in OpenCore, however this option will cause a boot failure Apple Secure Boot is enabled |
+| Signed   | Allows only Apple-signed DMGs like macOS installers to load |
+| Disabled | Disables all external DMG loading, however internal recovery is still allowed with this option |
 
 ## SecureBootModel
 
 SecureBootModel is used set the Apple Secure Boot hardware model and policy, allowing us to enable Apple's Secure Boot with any SMBIOS even if the original SMBIOS did not support it(ie. no T2 present on pre-2017 SMBIOS). Enabling SecureBootModel is the equivalent of ["Medium Security"](https://support.apple.com/HT208330), for Full Security please see [ApECID](#apecid)
 
-Currently the following options for SecureBootModel are supported:
+Currently the following options for `Misc -> Security -> SecureBootModel` are supported:
 
 | Value    | SMBIOS                                  | Minimum macOS Version |
 | :---     | :---                                    | :---                  |
