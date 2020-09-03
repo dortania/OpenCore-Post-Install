@@ -151,7 +151,6 @@ module.exports = {
                             ['/universal/security/vault', 'Vault'],
                             ['/universal/security/scanpolicy', 'ScanPolicy'],
                             ['/universal/security/applesecureboot', 'Apple Secure Boot'],
-                            ['/universal/security/uefisecureboot', 'UEFI Secure Boot'],
                         ]
                     },
                 ]

@@ -54,7 +54,7 @@ Currently the following options for `Misc -> Security -> SecureBootModel` are su
 * Certain boot errors are more likely to be triggered with Secure Boot enabled that were previously not required
   * Commonly seen with certain APTIO IV systems where they may not require IgnoreInvalidFlexRatio and HashServices initially however Secure Boot does.
 * On older CPUs (ie. before Sandy Bridge) enabling Apple Secure Boot might cause slightly slower loading by up to 1 second
-* Operating systems released before Apple Secure Boot landed (ie. macOS 10.12 or earlier) will still boot until [UEFI Secure Boot](./uefisecureboot) is enabled. This is so, 
+* Operating systems released before Apple Secure Boot landed (ie. macOS 10.12 or earlier) will still boot until UEFI Secure Boot is enabled. This is so, 
   * This is due to Apple Secure Boot assuming they are incompatible and will be handled by the firmware just like Microsoft Windows is
 
 ## ApECID
