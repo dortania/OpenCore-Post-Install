@@ -10,7 +10,7 @@ So the main things to note with updating OpenCore:
 
 * [Releases](https://github.com/acidanthera/OpenCorePkg/releases) happen the first Monday of every month
 * The [Differences.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Differences/Differences.pdf) will tell you all the things added and removed from this version of OpenCore compared to the previous release
-* The OpenCore Installation Guide will have a note in the [header](https://dortania.github.io/OpenCore-Install-Guide/) about what release version it supports
+* The OpenCore Install Guide will have a note in the [header](https://dortania.github.io/OpenCore-Install-Guide/) about what release version it supports
 
 > So how do I update?
 
@@ -51,7 +51,7 @@ So the process goes as follows:
   * [OCConfigCompare](https://github.com/corpnewt/OCConfigCompare) to compare between the sample.plist and your config.plist
   * `diff (file input 1) (file input 2)` in terminal
   * [BeyondCompare](https://www.scootersoftware.com)
-  * Make a new config based off reading the updated OpenCore Vanilla Guide
+  * Make a new config based off reading the updated OpenCore Install Guide
 
 * Once you've made the adjustments and made sure you config is compliant with the newest release of OpenCore, make sure to double check your setting with the OpenCore Guide on what to set everything to, otherwise read the [Differences.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Differences/Differences.pdf) if you want to get a bit more technical.
 
