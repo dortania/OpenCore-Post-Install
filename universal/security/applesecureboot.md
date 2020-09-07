@@ -78,7 +78,8 @@ However before setting ApECID, there's a few things we need to note:
 
 
 ```sh
-bless bless --folder "/Volumes/Macintosh HD/System/Library/CoreServices" \ --bootefi --personalize
+ bless bless --folder "/Volumes/Macintosh HD/System/Library/CoreServices" \
+    --bootefi --personalize
 ```
 
 And something to note when reinstalling the OS is that you may receive "Unable to verify macOS" error message. To work around his issue, you'll want to allocate a dedicated RAM disk of 2 MBs for macOS personalization by entering the following commands in the macOS recovery terminal before starting the installation:
