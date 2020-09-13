@@ -110,7 +110,7 @@ With GPUs, it's fairly easy to know what might be causing issues. This being uns
 Special notes for iGPU users on 10.15.4 and newer:
 
 * iGPU wake is partially broken due to numerous hacks apple uses in AppleGraphicsPowerManagement.kext with real Macs, to get around this you'll likely need `igfxonln=1` to force all displays online. Obviously test first to make sure you have this issue.
-* AAPL,ig-platform-id `07009B3E` may fail for desktop Coffee Lake (UHD 630) users, you can try `00009B3E` instead
+* AAPL,ig-platform-id `07009B3E` may fail for desktop Coffee Lake (UHD 630) users, you can try `00009B3E` instead. `0300923E` is also known to work sometimes.
 
 Special note for 4k Displays with AMD dGPUs:
 
