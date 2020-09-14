@@ -61,7 +61,7 @@ If it says failed to inject:
 
 Main places you can check as to why:
 
-* **Injection order**: Make sure that Lilu is above AppleALC in kext order
+* **Injection order**: Make sure that Lilu is above WhateverGreen in kext order
 * **All kexts are latest release**: Especially important for Lilu plugins, as mismatched kexts can cause issues
 
 Note: To setup file logging, see [OpenCore Debugging](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html).
