@@ -81,7 +81,7 @@ So to start, we'll need a couple things:
     * ex: `PciRoot(0x0)/Pci(0x1f,0x3)`
 
 * **AudioOut:**
-  * The specific output of your Audio controller, easiest way to find the right one is to go through each one(from 0 to N - 1)
+  * The specific output of your Audio controller, easiest way to find the right one is to go through each one (from 0)
   * ex: `2`
     * You can find all the ones for your codec in the OpenCore debug logs:
 
