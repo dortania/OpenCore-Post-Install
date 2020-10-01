@@ -14,5 +14,7 @@ So something that makes OpenCore truly special is how it's been built with secur
   * OpenCore's drive policy, determines what types of disks show up in OpenCore's boot menu
 * [**Apple Secure Boot**](./security/applesecureboot)
   * Apple's variant of secure boot in the macOS kernel
+* [**UEFI Secure Boot**](./security/uefisecureboot)
+  * Your firmware's variant of Secure Boot, to be paired with Vault and Apple Secure Boot
 
 

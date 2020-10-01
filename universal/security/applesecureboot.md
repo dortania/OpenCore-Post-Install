@@ -2,7 +2,6 @@
 
 * Note: DmgLoading, SecureBootModel and ApECID require [OpenCore 0.6.1](https://github.com/acidanthera/OpenCorePkg/releases) or newer
 
-
 ## DmgLoading
 
 Quite a simple setting however important in regards to Apple Secure Boot. This setting allows you to set load policy with DMGs in OpenCore. By default we recommend using `Signed` however for best security  `Disabled` may be preferred.
@@ -46,7 +45,7 @@ Currently the following options for `Misc -> Security -> SecureBootModel` are su
 
 * Generally `Default` is more than adequate to use however if you plan to have use this with ApECID for full security, we recommend setting a proper value(ie. closest to your SMBIOS or versions of macOS you plan to boot) since the `Default` value is likely to be updated in the future.
 * The list of cached drivers may be different, resulting in the need to change the list of Added or Forced kernel drivers. 
-  * ie. IO80211Family cannot be injected in this case.
+  * ie. IO80211Family does not need to be injected in this case.
 * Unsigned and several signed kernel drivers cannot be used
   * This includes Nvidia's Web Drivers in 10.13
 * System volume alterations on operating systems with sealing, like macOS 11, may result in the operating system being unbootable. 
@@ -54,7 +53,7 @@ Currently the following options for `Misc -> Security -> SecureBootModel` are su
 * Certain boot errors are more likely to be triggered with Secure Boot enabled that were previously not required
   * Commonly seen with certain APTIO IV systems where they may not require IgnoreInvalidFlexRatio and HashServices initially however Secure Boot does.
 * On older CPUs (ie. before Sandy Bridge) enabling Apple Secure Boot might cause slightly slower loading by up to 1 second
-* Operating systems released before Apple Secure Boot landed (ie. macOS 10.12 or earlier) will still boot until UEFI Secure Boot is enabled. This is so, 
+* Operating systems released before Apple Secure Boot landed (ie. macOS 10.12 or earlier) will still boot until UEFI Secure Boot is enabled.
   * This is due to Apple Secure Boot assuming they are incompatible and will be handled by the firmware just like Microsoft Windows is
 
 ::: details Troubleshooting
