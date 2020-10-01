@@ -57,6 +57,43 @@ Currently the following options for `Misc -> Security -> SecureBootModel` are su
 * Operating systems released before Apple Secure Boot landed (ie. macOS 10.12 or earlier) will still boot until UEFI Secure Boot is enabled. This is so, 
   * This is due to Apple Secure Boot assuming they are incompatible and will be handled by the firmware just like Microsoft Windows is
 
+::: details Troubleshooting
+
+Due to an annoying bug on Apple's end, certain systems may be missing the secure boot files themselves on the drive. Because of this, you may get issues such as:
+
+```
+OCB: LoadImage failed - Security Violation
+```
+
+To resolve, run the following in macOS:
+
+```bash
+# First, find your Preboot volume
+diskutil list
+
+# From the below list, we can see our Preboot volume is disk5s2
+/dev/disk5 (synthesized):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      APFS Container Scheme -                      +255.7 GB   disk5
+                                 Physical Store disk4s2
+   1:                APFS Volume ⁨Big Sur HD - Data⁩       122.5 GB   disk5s1
+   2:                APFS Volume ⁨Preboot⁩                 309.4 MB   disk5s2
+   3:                APFS Volume ⁨Recovery⁩                887.8 MB   disk5s3
+   4:                APFS Volume ⁨VM⁩                      1.1 MB     disk5s4
+   5:                APFS Volume ⁨Big Sur HD⁩              16.2 GB    disk5s5
+   6:              APFS Snapshot ⁨com.apple.os.update-...⁩ 16.2 GB    disk5s5s
+
+# Now mount the Preboot volume
+diskutil mount disk5s2
+
+# Next lets copy over the secure boot files
+sudo cp -a /usr/standalone/i386/. /Volumes/Preboot
+```
+
+Now you can enable SecureBootModel and reboot without issue! And since we're not editing the system volume itself we don't need to worry about disabling SIP or breaking macOS snapshots.
+
+:::
+
 ## ApECID
 
 ApECID is used as an Apple Enclave Identifier, what this means is it allows us to use  personalized Apple Secure Boot identifiers and achieve ["Full Security"](https://support.apple.com/HT208330) as per Apple's secure boot page(when paired with SecureBootModel).
