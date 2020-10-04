@@ -117,9 +117,14 @@ ioreg -l -p IOService -w0 | grep -i EHC1
 ioreg -l -p IOService -w0 | grep -i EHC2
 ```
 
-And with that, we now add our needed ACPI renames to our config.plist -> ACPI -> Patch, you can find a pre-made file here(note that you'll need to enable the ones you need):
+**If nothing returns(like with the right image)**, you don't need any renames. 
+
+**If one of the 3 entries return(like with the left image)**, you'll need a rename for whatever returns.
+
+If you're in the latter camp, you'll now want to add the needed ACPI renames to your config.plist -> ACPI -> Patch, you can find a pre-made file here(note that you'll need to enable the ones you need):
 
 * **[usb-rename.plist](https://github.com/dortania/OpenCore-Post-Install/blob/master/extra-files/usb-rename.plist)**
+  * Simply copy over the required patches to your config.plist
 
 # Parting ways
 
