@@ -86,8 +86,29 @@ diskutil list
 # Now mount the Preboot volume
 diskutil mount disk5s2
 
+# CD into your Preboot volume
+# Note the actual volume is under /System/Volumes/Preboot
+cd /System/Volumes/Preboot
+
+# Grab your UUID
+ls 
+	46923F6E-968E-46E9-AC6D-9E6141DF52FD 
+	CD844C38-1A25-48D5-9388-5D62AA46CFB8
+    
+# If multiple show up(ie. you dual boot multiple versions of macOS), you will
+# need to determine which UUID is correct.
+# Easiest way to determine is printing the value of .disk_label.contentDetails
+# of each volume.
+cat ./46923F6E-968E-46E9-AC6D-9E6141DF52FD/System/Library/CoreServices/.disk_label.contentDetails
+	Big Sur HD%
+
+cat ./CD844C38-1A25-48D5-9388-5D62AA46CFB8/System/Library/CoreServices/.disk_label.contentDetails
+	Catalina HD%
+
 # Next lets copy over the secure boot files
-sudo cp -a /usr/standalone/i386/. /Volumes/Preboot
+# Replace CD844C38-1A25-48D5-9388-5D62AA46CFB8 with your UUID value
+cd ~
+sudo cp -a /usr/standalone/i386/. /System/Volumes/Preboot/CD844C38-1A25-48D5-9388-5D62AA46CFB8/System/Library/CoreServices
 ```
 
 Now you can enable SecureBootModel and reboot without issue! And since we're not editing the system volume itself we don't need to worry about disabling SIP or breaking macOS snapshots.
