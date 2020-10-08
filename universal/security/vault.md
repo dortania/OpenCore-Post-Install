@@ -45,3 +45,4 @@ If you're doing heavy troubleshooting or have the need to disable Vault, the mai
 
 * Grab a new copy of OpenCore.efi
 * `Misc -> Security -> Vault` set to Optional
+* Remove `vault.plist` and `vault.sig`
