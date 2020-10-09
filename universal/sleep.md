@@ -63,7 +63,8 @@ While minimal changes are needed, here are the ones we care about:
 * `Misc -> Boot -> HibernateMode -> None`
   * We're gonna avoid the black magic that is S4 for this guide
 * `NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82 -> boot-args`
-  * `keepsyms=1`- Makes sure that if a kernel panic does happen during sleep, that we get all the important bits from it
+  * `keepsyms=1` - Makes sure that if a kernel panic does happen during sleep, that we get all the important bits from it
+  * `swd_panic=1` - Avoids issue where going to sleep results in a reboot, this should instead give us a kernel panic log
 
 **In your BIOS**:
 
@@ -115,6 +116,7 @@ Special notes for iGPU users on 10.15.4 and newer:
 Other iGPU notes:
 
 * Some systems with iGPUs (e.g. Kaby Lake and Coffee Lake) may cause system instability in lower power states, and can sometimes manifest as NVMe kernel panics. To resolve, you can add `forceRenderStandby=0` to your boot-args to disable RC6 Render Standby. See here for more info: [IGP causes NVMe Kernel Panic CSTS=0xffffffff #1193](https://github.com/acidanthera/bugtracker/issues/1193)
+* Certain Ice Lake laptops may also kernel panic on `Cannot allow DC9 without disallowing DC6` due to issues with transitioning states. A work around for this is using either `-noDC9` or `-nodisplaysleepDC6` in your boot-args
 
 Special note for 4k Displays with AMD dGPUs:
 
