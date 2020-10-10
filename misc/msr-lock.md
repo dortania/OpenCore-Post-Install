@@ -48,15 +48,15 @@ you don't need to do anything and you can disable `Kernel -> Quirks -> AppleCpuP
 
 ## Disabling CFG Lock
 
-So you've cerated the EFI folder but you can't still boot without unlocking before CFG Lock. In order to do this you'll need the following:
+So you've created the EFI folder but you can't still boot without unlocking before CFG Lock. In order to do this you'll need the following:
 
-Inside your EFI/OC/Tools folder and config.plist:
+Inside your `EFI/OC/Tools folder` and `config.plist`:
 
 * [Modified GRUB Shell](https://github.com/datasone/grub-mod-setup_var/releases)
 
 And some apps to help us out:
 
-* [UEFITool](https://github.com/LongSoft/UEFITool/releases) (Make sure it's UEFITool and not UEFIExtrac)
+* [UEFITool](https://github.com/LongSoft/UEFITool/releases) (Make sure it's UEFITool and not UEFIExtract)
 * [Universal-IFR-Extractor](https://github.com/LongSoft/Universal-IFR-Extractor/releases)
 
 And the final part, grabbing your BIOS from the vendors' website.
@@ -80,11 +80,11 @@ Now the fun part!
    path/to/ifrextract path/to/Setup.bin path/to/Setup.txt
    ```
 
-3. Open the text file and search for `CFG Lock, VarStoreInfo (VarOffset/VarName):` and note the offset right after it(ie: `0x5A4`)
+3. Open the text file and search for `CFG Lock, VarStoreInfo (VarOffset/VarName):` and note the offset right after it (ie: `0x5A4`)
 
 ![](../images/extras/msr-lock-md/cfg-find.png)
 
-1. Run the Modified GRUB Shell and write the following command where `0x5A4` is replaced with your value previously extracted:
+1. Run the Modified GRUB Shell and write the following command where `0x5A4` is replaced with the value you've previously extracted:
 
    ```
    setup_var 0x5A4
@@ -95,12 +95,20 @@ Now the fun part!
    ```
    setup_var2 0x5A4
    ```
+   
    Just as before, if you still get `error: offset is out of range` you'd need to use this command:
    
    ```
    setup_var_3 0x5A4
    ```
-   If you don't get any type of error, and you're sure that 
+   
+   If you don't get any type of error, write the command which doesn't lead to `error: offset is out of range` (e.g. `setup_var_3 0x5A4`) and write `0x00` after it:
+   
+   ```
+   setup_var_3 0x5A4 0x00
+   ```
+   
+   At this point **turn off** the PC then start it again and you'll have `CFG Lock` unlocked.
    Do note that variable offsets are unique not just to each motherboard but even to its firmware version. **Never try to use an offset without checking.**
 
 And you're done! Now you'll have correct CPU power management
