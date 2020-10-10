@@ -67,7 +67,7 @@ Now the fun part!
 
 ## Turning off CFG-Lock manually
 
-##### Please note that the only firmwares that can be directly opened by UEFITool are ASUS, MSI and ASRock. Other firmwares need a special procedure which we'll not directly cover into this guide. For Dell firmwares please refer to [dreamwhite's guide](https://github.com/dreamwhite/bios-extraction-guide/tree/master/Dell)
+**Please note that the only firmwares that can be directly opened by UEFITool are ASUS, MSI and ASRock. Other firmwares need a special procedure which we'll not directly cover into this guide. For Dell firmwares please refer to [dreamwhite's guide](https://github.com/dreamwhite/bios-extraction-guide/tree/master/Dell)**
 
 1. Open your firmware with UEFITool and then find `CFG Lock` as a Unicode string. If nothing pops up then your firmware doesn't support `CFG Lock`, otherwise continue on.
 
@@ -90,26 +90,24 @@ Now the fun part!
    setup_var 0x5A4
    ```
 
-   If you get an error such as `error: offset is out of range` run the following command:
+If you get an error such as `error: offset is out of range` run the following command:
    
    ```
    setup_var2 0x5A4
    ```
-   
    Just as before, if you still get `error: offset is out of range` you'd need to use this command:
    
    ```
    setup_var_3 0x5A4
    ```
-   
    If you don't get any type of error, write the command which doesn't lead to `error: offset is out of range` (e.g. `setup_var_3 0x5A4`) and write `0x00` after it:
    
    ```
    setup_var_3 0x5A4 0x00
    ```
    
-   At this point **turn off** the PC then start it again and you'll have `CFG Lock` unlocked.
-   Do note that variable offsets are unique not just to each motherboard but even to its firmware version. **Never try to use an offset without checking.**
+At this point **turn off** the PC then start it again and you'll have `CFG Lock` unlocked.
+Do note that variable offsets are unique not just to each motherboard but even to its firmware version. **Never try to use an offset without checking.**
 
 And you're done! Now you'll have correct CPU power management
 
