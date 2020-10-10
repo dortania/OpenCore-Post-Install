@@ -31,7 +31,7 @@ To check it, you can proceed into two ways:
 1. use the DEBUG version of OpenCore and check what the log says about CFG Lock
 2. use a tool called `VerifyMsrE2` which will speed up the whole checking process
 
-Personally I prefer using the first choice, but to avoid confusion I'll choose option 2.
+Personally we prefer using the first choice, but to avoid confusion we'll choose option 2.
 Add the tool inside `EFI/OC/Tools` and `config.plist` then run `VerifyMsrE2.efi` and check if you read 
 
 ```
