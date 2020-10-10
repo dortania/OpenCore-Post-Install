@@ -31,6 +31,8 @@ To check it, you can proceed into two ways:
 1. use the DEBUG version of OpenCore and check what the log says about CFG Lock
 2. use a tool called `VerifyMsrE2` which will speed up the whole checking process
 
+**for users who prefer using DEBUG release, please check `opencore-YYYY-MM-DD-hhmmss.txt` and search `OCCPU: EIST CFG Lock`. If you read `1` then proceed with the CFG Lock unlocking procedure** 
+
 Personally we prefer using the first choice, but to avoid confusion we'll choose option 2.
 Add the tool inside `EFI/OC/Tools` and `config.plist` then run `VerifyMsrE2.efi` and check if you read 
 
