@@ -236,7 +236,7 @@ PciRoot(0x32)/Pci(0x0,0x0)/Pci(0x0,0x0)
 * **Note**: This will assume you know both the Vendor and Device ID of the external sound card. For reference, these are the common Vendor IDs:
   * Creative Labs: `1102`
   * AsusTek: `1043`
-* **Note 2**: Your ACPI and PciRoot path will look different, so play attention to **your** gfxutil output
+* **Note 2**: Your ACPI and PciRoot path will look different, so pay attention to **your** gfxutil output
 
 
 Now that we have our PciRoot pathing, we can finally open up our config.plist and add our patch.
