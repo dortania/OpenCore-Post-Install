@@ -2,9 +2,7 @@
 
 
 
-
-
-Do note that this is only recommended for users who have already installed macOS, for users who are installing for the first time enable `AppleCpuPmCfgLock` and `AppleXcpmCfgLock` under `Kernel -> Quirks`
+Do note that this guide is only for Intel users. AMD users don't have any type of CFG Lock
 
 ## What is CFG-Lock
 
@@ -25,13 +23,35 @@ So to fix it we have 2 options:
   
 Note: Penyrn based machines actually don't need to worry about unlocking this register
 
+## Checking if your firmware supports CFG Lock unlocking
+
+Before proceeding with the reading of this guide, first of all you'd need to check if your firmware supports CFG Lock unlocking.
+To check it, you can proceed into two ways:
+
+1. use the DEBUG version of OpenCore and check what the log says about CFG Lock
+2. use a tool called `VerifyMsrE2` which will speed up the whole checking process
+
+Personally I prefer using the first choice, but to avoid confusion I'll choose option 2.
+Add the tool inside `EFI/OC/Tools` and `config.plist` then run `VerifyMsrE2.efi` and check if you read 
+
+```
+This firmware has LOCKED MSR 0xE2 register!
+```
+
+If you read
+
+```
+This firmware has UNLOCKED MSR 0xE2 register!
+```
+
+you don't need to do anything and you can disable `Kernel -> Quirks -> AppleCpuPmCfgLock` and `Kernel -> Quirks -> AppleXcpmCfgLock`.
+
 ## Disabling CFG Lock
 
-So you've installed macOS but you're using those pesky `CFG-Lock` patches that we want to get rid of, well to do this is fairly simple. You'll need the following:
+So you've cerated the EFI folder but you can't still boot without unlocking before CFG Lock. In order to do this you'll need the following:
 
 Inside your EFI/OC/Tools folder and config.plist:
 
-* [VerifyMsrE2](https://github.com/acidanthera/OpenCorePkg/releases)
 * [Modified GRUB Shell](https://github.com/datasone/grub-mod-setup_var/releases)
 
 And some apps to help us out:
@@ -39,26 +59,21 @@ And some apps to help us out:
 * [UEFITool](https://github.com/LongSoft/UEFITool/releases) (Make sure it's UEFITool and not UEFIExtrac)
 * [Universal-IFR-Extractor](https://github.com/LongSoft/Universal-IFR-Extractor/releases)
 
-And don't forget to disable the following from your config.plist under `Kernel -> Quirks`:
-
-* `AppleCpuPmCfgLock`
-* `AppleXcpmCfgLock`
-
 And the final part, grabbing your BIOS from the vendors' website.
 
 Now the fun part!
 
-## Checking if CFG-Lock can be turned off
 
-Boot OpenCore and select the `VerifyMsrE2` option in the picker. This tool will tell you whether your BIOS supports CFG-Lock and if it can be unlocked.
 
 ## Turning off CFG-Lock manually
+
+##### Please note that the only firmwares that can be directly opened by UEFITool are ASUS, MSI and ASRock. Other firmwares need a special procedure which we'll not directly cover into this guide. For Dell firmwares please refer to [dreamwhite's guide](https://github.com/dreamwhite/bios-extraction-guide/tree/master/Dell)
 
 1. Open your firmware with UEFITool and then find `CFG Lock` as a Unicode string. If nothing pops up then your firmware doesn't support `CFG Lock`, otherwise continue on.
 
 ![](../images/extras/msr-lock-md/uefi-tool.png)
 
-1. You'll find that this string is found within a Setup folder, right-click and export as `Setup.bin`
+1. You'll find that this string is found within a Setup folder, right-click and export as `Setup.bin` (or even `Setup.sct`)
 2. Open your setup file with `ifrextract` and export as a .txt file with terminal:
 
    ```
@@ -69,12 +84,23 @@ Boot OpenCore and select the `VerifyMsrE2` option in the picker. This tool will 
 
 ![](../images/extras/msr-lock-md/cfg-find.png)
 
-1. Run the Modified GRUB Shell and paste the following where `0x5A4` is replaced with your value:
+1. Run the Modified GRUB Shell and write the following command where `0x5A4` is replaced with your value previously extracted:
 
    ```
-   setup_var 0x5A4 0x00
+   setup_var 0x5A4
    ```
 
+   If you get an error such as `error: offset is out of range` run the following command:
+   
+   ```
+   setup_var2 0x5A4
+   ```
+   Just as before, if you still get `error: offset is out of range` you'd need to use this command:
+   
+   ```
+   setup_var_3 0x5A4
+   ```
+   If you don't get any type of error, and you're sure that 
    Do note that variable offsets are unique not just to each motherboard but even to its firmware version. **Never try to use an offset without checking.**
 
 And you're done! Now you'll have correct CPU power management
