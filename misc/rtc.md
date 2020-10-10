@@ -32,7 +32,7 @@ For the rest of this guide, we're going to assume you've tested option 1(`Disabl
 * These regions will be in the hexadecimal counting system so in reality will be 0x00-0xFF
 * To omit bad regions, we use the boot-arg `rtcfx_exclude=00-FF`
   * Replace `00-FF` with your bad region (or regions)
-  * Remind `boot-args` is located under `NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82` in your config.plist
+  * Reminder that `boot-args` is located under `NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82` in your config.plist
   * This will also require you to have [RTCMemoryFixup](https://github.com/acidanthera/RTCMemoryFixup/releases/tag/1.0.6) in your config.plist and EFI/OC/Kexts folder.
 * There can be multiple bad regions
 * To find the bad region, we'll want to split out search into chunks
@@ -40,7 +40,7 @@ For the rest of this guide, we're going to assume you've tested option 1(`Disabl
 Regarding splitting out chunks, what we'll be doing is omitting chunks of RTC regions until we've narrowed down far enough to the exact spot that's bad. You can see the below on how to start:
 
 1. Testing RtcMemoryFixup
-  * To start, you need to add `rtcfx_exclude=00-FF` in boot-args. If after a reboot the RTC errors seems solved, this will tell you whether your CMOS errors are RTC related
+  * To start, you'll need to add `rtcfx_exclude=00-FF` in boot-args. If after a reboot the RTC errors seems solved, this will tell you whether your CMOS errors are RTC related
 2. Split 0x00-0xFF into 2
   * 0x00-0x7F and 0x80-0xFF
       * write down the excluded range which fixes the RTC errors and proceed by splitting more into chunks
@@ -52,7 +52,7 @@ Regarding splitting out chunks, what we'll be doing is omitting chunks of RTC re
   * Assuming our bad region was within 0x80-0xFF, you'd next split that into 2:
   * 0x80-0xBF and 0xC0-0xFF
     * if you had multiple ranges that are bad
-4. And you go on with this pattern until you've narrowed down the bad region. Note that you will need to reboot each time to test if you're still getting CMOS/Safe-mode errors
+4. And you'll continue on with this pattern until you've narrowed down the bad region. Note that you will need to reboot each time to test if you're still getting CMOS/Safe-mode errors
   * Also note that the final bad spot will usually be a range and not a singular spot.
   * ie. `rtcfx_exclude=85-86` instead of one singular value
 
