@@ -136,7 +136,7 @@ However before setting ApECID, there's a few things we need to note:
 
 
 ```sh
- bless bless --folder "/Volumes/Macintosh HD/System/Library/CoreServices" \
+ bless bless --folder "/Volumes/Macintosh HD 1/System/Library/CoreServices" \
     --bootefi --personalize
 ```
 
