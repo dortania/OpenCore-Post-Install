@@ -82,19 +82,19 @@ diskutil list
    4:                APFS Volume ⁨VM⁩                      1.1 MB     disk5s4
    5:                APFS Volume ⁨Big Sur HD⁩              16.2 GB    disk5s5
    6:              APFS Snapshot ⁨com.apple.os.update-...⁩ 16.2 GB    disk5s5s
-
 # Now mount the Preboot volume
 diskutil mount disk5s2
 
 # CD into your Preboot volume
-# Note the actual volume is under /System/Volumes/Preboot
+# Note the actual volume is under /System/Volumes/Preboot in macOS
+# however in Recovery it's simply under /Volumes/Preboot
 cd /System/Volumes/Preboot
 
 # Grab your UUID
 ls 
 	46923F6E-968E-46E9-AC6D-9E6141DF52FD 
 	CD844C38-1A25-48D5-9388-5D62AA46CFB8
-    
+
 # If multiple show up(ie. you dual boot multiple versions of macOS), you will
 # need to determine which UUID is correct.
 # Easiest way to determine is printing the value of .disk_label.contentDetails
@@ -105,10 +105,17 @@ cat ./46923F6E-968E-46E9-AC6D-9E6141DF52FD/System/Library/CoreServices/.disk_lab
 cat ./CD844C38-1A25-48D5-9388-5D62AA46CFB8/System/Library/CoreServices/.disk_label.contentDetails
 	Catalina HD%
 
-# Next lets copy over the secure boot files
+# Next lets copy over the secure boot files, recovery will need different commands
+
+# Example commands for inside macOS
 # Replace CD844C38-1A25-48D5-9388-5D62AA46CFB8 with your UUID value
 cd ~
 sudo cp -a /usr/standalone/i386/. /System/Volumes/Preboot/CD844C38-1A25-48D5-9388-5D62AA46CFB8/System/Library/CoreServices
+
+# Example commands for Recovery
+# Replace Macintosh\ HD and CD844C38-1A25-48D5-9388-5D62AA46CFB8 with
+# your System Volume's name and Preboot's UUID
+cp -a /Volumes/Macintosh\ HD/usr/standalone/i386/. /Volumes/Preboot/CD844C38-1A25-48D5-9388-5D62AA46CFB8/System/Library/CoreServices
 ```
 
 Now you can enable SecureBootModel and reboot without issue! And since we're not editing the system volume itself we don't need to worry about disabling SIP or breaking macOS snapshots.
