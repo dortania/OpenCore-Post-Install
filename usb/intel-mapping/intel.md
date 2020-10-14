@@ -23,7 +23,7 @@ Here we're greeted with all the possible USB ports in ACPI:
 
 ### Intel USB Mapping
 
-USB mapping on Intel is super easy mainly because both the ACPI is sane and more tools available for the platform. For this guide well be using the [USBmap tool](https://github.com/corpnewt/USBMap) from CorpNewt.
+USB mapping on Intel is super easy mainly because both the ACPI is sane and more tools available for the platform. For this guide we'll be using the [USBmap tool](https://github.com/corpnewt/USBMap) from CorpNewt.
 
 Now open up USBmap.command and select `D.  Discover Ports`:
 
