@@ -15,7 +15,7 @@ XCPM Present           |  Missing XCPM
 :-------------------------:|:-------------------------:
 ![](../images/post-install/pm-md/pm-working.png)  |  ![](../images/post-install/pm-md/pm-not-working.png)
 
-As you can see from the left image, we have the X86PlatformPlugin attached meaning Apple's CPU Power Management Drivers are doing their thing. If you get something like to the right image, then there's likely an issue. Make sure to check the following:
+As you can see from the left image, we have the X86PlatformPlugin attached meaning Apple's CPU Power Management Drivers are doing their thing(Note the CPU's name does not matter, CPU names come in many varitaions such as CP00, CPU0, PR00, etc. What matters is that AppleACPICPU attaches to it). If you get something like to the right image, then there's likely an issue. Make sure to check the following:
 
 * SSDT-PLUG.**aml** is both present and enabled in your config.plist and EFI/OC/ACPI
   * If you're missing this, head to [Getting Started With ACPI](https://dortania.github.io/Getting-Started-With-ACPI) on how to make this
@@ -133,7 +133,7 @@ What we'll need:
 
 Initialling with OpenCore's setup in the Ivy Bridge section, we recommended users drop their CpuPm and Cpu0Ist to avoid any issues with AppleIntelCPUPowerManagement.kext. But dropping these tables have the adverse affect of breaking turbo boost in Windows. So to resolve this, we'll want to keep our OEM's table but we'll want to add a new table to supplement data only for macOS. So once we're done creating our CPU-PM table, we'll re-add our OEM's CPU SSDTs.
 
-To start, head to ACPI -> Delete and ensure both of these sections have `Enabled` set to YES:
+To start, grab your config.plist then head to ACPI -> Delete and ensure both of these sections have `Enabled` set to YES:
 
 | Key | Type | Value |
 | :--- | :--- | :--- |
