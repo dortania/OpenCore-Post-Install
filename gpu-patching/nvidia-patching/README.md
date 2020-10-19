@@ -121,7 +121,7 @@ npm install
 npm run run
 ```
 
-* Note this will require NPM, either grab this via brew or [Node JS's site](https://www.npmjs.com/get-npm)
+* Note this will require NodeJS, either grab this via brew or [Node JS's site](https://nodejs.org/en/)
 
 
 Once its running, you should see the following:
@@ -132,22 +132,39 @@ Next, enter `1` and give it your VBIOS
 
 ![](../../images/gpu-patching/nvidia/nvcap-vbios.png)
 
-Now enter 
+Now press enter, and return to the main menu. Once there, enter `3` to take you to the NVCAP calculation page.
 
+![](../../images/gpu-patching/nvidia/nvcap-initial-nvcap.png)
 
+Here you can see the connectors that NVCAP-Calculator was able to find. Each Display may represent multiple DCB Entries, such as DVI (normally represented as two entries) or duplicate DCB entries. The goal here is to assign each display to a head. Each head can only output to one display at a time. For example, if your using 2 DVI ports, each should be on their own head to have proper dual monitor support.
 
+Note that some displays may be assigned automatically. An LVDS display will be put on it's own head automatically, and TV displays will be put on the TV head automatically.
 
+To assign a display to a head, you type the number of the display then the number of the head. For example, typing in `1 1` results in:
 
+![](../../images/gpu-patching/nvidia/nvcap-assign-entry.png)
 
+You can type in `1 1` again to remove the display from the head. Once done, it should look something like this:
 
+![](../../images/gpu-patching/nvidia/nvcap-complete-displays.png)
 
+You should set the NVCAP values directly below the heads now as well.
 
+| NVCAP Value | Details | Example Command |
+| :---------: | :------ | :-------------- |
+| Version | `04` for Tesla V1 (7 series and older), `05` for Tesla V2 and newer (8 series and newer) | `n1 04` |
+| Composite | `01` for S-Video, `00` otherwise | `n2` to toggle<br/>`n2 true` |
+| Script based Power/Backlight | `00` ony useful for genuine MacBook Pros | `n3 0` |
+| Field F (Unknown) | `07`: Clover's Default<br/>`0A`: Desktop-class GPU (Chameleon's Default)<br/>`0B`: Laptop-class GPU <br/>`0E`: 300 series+ MacBook Air/Low end<br/>`0F`: 300 series+ MacBook Pro/iMac/High end | `n4 0x0f` |
 
+Once done, enter in `c` to calculate the NVCAP value
 
+![](../../images/gpu-patching/nvidia/nvcap-calculated.png)
 
-
-
-
+You now have your NVCAP value!
+```
+NVCAP: 05000000 00000300 0c000000 0000000f 00000000
+```
 
 For those who are wanting a break down on how to calculate the NVCAP value:
 
