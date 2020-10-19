@@ -27,13 +27,13 @@ path/to/gfxutil -f display
 This should spit out something like the following:
 
 ```
-67:00.0 10DE:0A20 /PC02@0/BR2A@0/GFX0@0/ = PciRoot(0x2)/Pci(0x0,0x0)/Pci(0x0,0x0)/
+67:00.0 10DE:0A20 /PC02@0/BR2A@0/GFX0@0/ = PciRoot(0x2)/Pci(0x0,0x0)/Pci(0x0,0x0)
 ```
 
 What we care about is the PciRoot section, as this is where our GPU is located and where we'll be injecting our properties:
 
 ```
-PciRoot(0x2)/Pci(0x0,0x0)/Pci(0x0,0x0)/
+PciRoot(0x2)/Pci(0x0,0x0)/Pci(0x0,0x0)
 ```
 
 
@@ -152,10 +152,10 @@ You should set the NVCAP values directly below the heads now as well.
 
 | NVCAP Value | Details | Example Command |
 | :---------: | :------ | :-------------- |
-| Version | `04` for Tesla V1 (7 series and older), `05` for Tesla V2 and newer (8 series and newer) | `n1 04` |
+| Version | `04` for 7 series and older, `05` for 8 series and newer | `n1 04` |
 | Composite | `01` for S-Video, `00` otherwise | `n2` to toggle<br/>`n2 true` |
 | Script based Power/Backlight | `00` ony useful for genuine MacBook Pros | `n3 0` |
-| Field F (Unknown) | `07`: Clover's Default<br/>`0A`: Desktop-class GPU (Chameleon's Default)<br/>`0B`: Laptop-class GPU <br/>`0E`: 300 series+ MacBook Air/Low end<br/>`0F`: 300 series+ MacBook Pro/iMac/High end | `n4 0x0f` |
+| Field F (Unknown) | `0F` for 300 series and newer, otherwise `07` | `n4 0x0f` |
 
 Once done, enter in `c` to calculate the NVCAP value
 
@@ -174,7 +174,7 @@ Info based off of [WhateverGreen's NVCAP.bt file](https://github.com/acidanthera
 
 | NVCAP Bit | Name | Comment |
 | :--- | :--- | :--- |
-| Byte 1 | NVCAP Version | `04` for Tesla V1(7 series and older), `05` for Tesla V2(8 series and newer) |
+| Byte 1 | NVCAP Version | `04` for 7 series and older, `05` for 8 series and newer |
 | Byte 2 | Laptop with Lid | `01` for true, `00` otherwise |
 | Byte 3 | Composite | `01` for S-Video, `00` otherwise |
 | Byte 4 | Backlight | `01` for Tesla V1 with Backlight, otherwise `00` for newer GPUs regardless of screen type |
@@ -186,8 +186,32 @@ Info based off of [WhateverGreen's NVCAP.bt file](https://github.com/acidanthera
 | Byte 15 | ScriptBasedPowerAndBacklight| `00`, only relevant for genuine MacBook Pros |
 | Byte 16 | Unknown | `0F` for 300 series and newer, otherwise `07` |
 | Byte 17 | EDID | `00` |
-| Byte 18 | Unknown | `00` |
-| Byte 19 | Unknown | `00` |
-| Byte 20 | Unknown | `00` |
+| Byte 18 | Reserved | `00` |
+| Byte 19 | Reserved | `00` |
+| Byte 20 | Reserved | `00` |
 
 :::
+
+### Cleaning up
+
+Now that we've gotten all our properties, we can now add em up and place them in our config.plist:
+
+```
+PciRoot(0x2)/Pci(0x0,0x0)/Pci(0x0,0x0)
+
+model          | String | GeForce GT 220
+device_type    | String | NVDA,Parent
+VRAM,totalsize |  Data  | 0000004000000000
+rom-revision   | String | Dortania
+NVCAP |  Data  |  Data  | 05000000 00000300 0c000000 0000000f 00000000
+@0,compatible  | String | NVDA,NVMac
+@0,device_type | String | display
+@0,name        | String | NVDA,Display-1
+@1,compatible  | String | NVDA,NVMac
+@1,device_type | String | display
+@1,name        | String | NVDA,Display-B
+```
+
+Open your config.plist and head to `DeviceProperties -> Add`, next create a new child with the name of your GPU's path(ie the one with gfxutil). Then, finally add the properties as children to the PciRoot. You should end up with something similar:
+
+![](../../images/gpu-patching/nvidia/deviceproperties.png)

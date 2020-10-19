@@ -110,7 +110,6 @@ Desktops need very little properties, and most of the time can boot without any:
 | AAPL01,BacklightIntensity |  Data  | 3F000008 |
 | AAPL01,BootDisplay        |  Data  | 01000000 |
 | AAPL01,DataJustify        |  Data  | 01000000 |
-| AAPL01,Refresh            |  Data  | 3B000000 |
 | AAPL01,DualLink           |  Data  | 00       | 
 
 * Set AAPL01,DualLink to 01 if your internal display is higher than 1366x768
@@ -123,27 +122,27 @@ For a full list of what Clover injects, see below:
 The below properties is what Clover will inject for GMA 900/950 series iGPUs:
 
 ```
-built-in                  = 01      
-AAPL,HasPanel             = 01000000
-AAPL01,BacklightIntensity = 3F000008
-AAPL01,BootDisplay        = 01000000
-AAPL01,DataJustify        = 01000000
-AAPL01,Dither             = 00000000
-AAPL01,Interlace          = 00000000
-AAPL01,Inverter           = 00000000
-AAPL01,InverterCurrent    = 00000000
-AAPL01,LinkFormat         = 00000000
-AAPL01,LinkType           = 00000000
-AAPL01,Pipe               = 01000000
-AAPL01,Refresh            = 3B000000
-AAPL01,Stretch            = 00000000
-AAPL01,T1                 = 00000000
-AAPL01,T2                 = 01000000
-AAPL01,T3                 = C8000000
-AAPL01,T4                 = C8010000
-AAPL01,T5                 = 01000000
-AAPL01,T6                 = 00000000
-AAPL01,T7                 = 90100000
+| built-in                  | Data | 01       |
+| AAPL,HasPanel             | Data | 01000000 |
+| AAPL01,BacklightIntensity | Data | 3F000008 |
+| AAPL01,BootDisplay        | Data | 01000000 |
+| AAPL01,DataJustify        | Data | 01000000 |
+| AAPL01,Dither             | Data | 00000000 |
+| AAPL01,Interlace          | Data | 00000000 |
+| AAPL01,Inverter           | Data | 00000000 |
+| AAPL01,InverterCurrent    | Data | 00000000 |
+| AAPL01,LinkFormat         | Data | 00000000 |
+| AAPL01,LinkType           | Data | 00000000 |
+| AAPL01,Pipe               | Data | 01000000 |
+| AAPL01,Refresh            | Data | 3B000000 |
+| AAPL01,Stretch            | Data | 00000000 |
+| AAPL01,T1                 | Data | 00000000 |
+| AAPL01,T2                 | Data | 01000000 |
+| AAPL01,T3                 | Data | C8000000 |
+| AAPL01,T4                 | Data | C8010000 |
+| AAPL01,T5                 | Data | 01000000 |
+| AAPL01,T6                 | Data | 00000000 |
+| AAPL01,T7                 | Data | 90100000 |
 ```
 
 :::
@@ -224,7 +223,6 @@ X3100 need very little properties, and most of the time can boot without any:
 | AAPL01,BacklightIntensity |  Data  | 38000008  |
 | AAPL01,BootDisplay        |  Data  | 01000000  |
 | AAPL01,DataJustify        |  Data  | 01000000  |
-| AAPL01,Refresh            |  Data  | 3D000000  |
 | AAPL01,DualLink           |  Data  | 00        | 
 
 * Set AAPL01,DualLink to 01 if your internal display is higher than 1366x768
@@ -237,32 +235,32 @@ For a full list of what Clover injects, see below:
 The below properties is what Clover will inject for GMA 900/950 series iGPUs:
 
 ```
-built-in                       = 01      
-AAPL,HasPanel                  = 01000000
-AAPL,SelfRefreshSupported      = 01000000
-AAPL,aux-power-connected       = 01000000
-AAPL,backlight-control         = 01000008
-AAPL00,blackscreen-preferences = 00000008
-AAPL01,BootDisplay             = 01000000
-AAPL01,BacklightIntensity      = 38000008
-AAPL01,blackscreen-preferences = 00000000
-AAPL01,DataJustify             = 01000000
-AAPL01,Dither                  = 00000000
-AAPL01,Interlace               = 00000000
-AAPL01,Inverter                = 00000000
-AAPL01,InverterCurrent         = 08520000    
-AAPL01,LinkFormat              = 00000000
-AAPL01,LinkType                = 00000000
-AAPL01,Pipe                    = 01000000
-AAPL01,Refresh                 = 3D000000
-AAPL01,Stretch                 = 00000000
-AAPL01,T1                      = 00000000
-AAPL01,T2                      = 01000000
-AAPL01,T3                      = C8000000
-AAPL01,T4                      = C8010000
-AAPL01,T5                      = 01000000
-AAPL01,T6                      = 00000000
-AAPL01,T7                      = 90100000
+| built-in                       | Data | 01       |
+| AAPL,HasPanel                  | Data | 01000000 |
+| AAPL,SelfRefreshSupported      | Data | 01000000 |
+| AAPL,aux-power-connected       | Data | 01000000 |
+| AAPL,backlight-control         | Data | 01000008 |
+| AAPL00,blackscreen-preferences | Data | 00000008 |
+| AAPL01,BootDisplay             | Data | 01000000 |
+| AAPL01,BacklightIntensity      | Data | 38000008 |
+| AAPL01,blackscreen-preferences | Data | 00000000 |
+| AAPL01,DataJustify             | Data | 01000000 |
+| AAPL01,Dither                  | Data | 00000000 |
+| AAPL01,Interlace               | Data | 00000000 |
+| AAPL01,Inverter                | Data | 00000000 |
+| AAPL01,InverterCurrent         | Data | 08520000 |    
+| AAPL01,LinkFormat              | Data | 00000000 |
+| AAPL01,LinkType                | Data | 00000000 |
+| AAPL01,Pipe                    | Data | 01000000 |
+| AAPL01,Refresh                 | Data | 3D000000 |
+| AAPL01,Stretch                 | Data | 00000000 |
+| AAPL01,T1                      | Data | 00000000 |
+| AAPL01,T2                      | Data | 01000000 |
+| AAPL01,T3                      | Data | C8000000 |
+| AAPL01,T4                      | Data | C8010000 |
+| AAPL01,T5                      | Data | 01000000 |
+| AAPL01,T6                      | Data | 00000000 |
+| AAPL01,T7                      | Data | 90100000 |
 ```
 
 :::
