@@ -188,6 +188,37 @@ module.exports = {
                     ['/misc/nvram', 'Emulated NVRAM'],
                 ]
             },
+            {
+                title: 'GPU Patching',
+                collapsable: false,
+                children: [
+                    ['/gpu-patching/', 'In-depth GPU patching'],
+		            {
+		                title: 'Modern Intel iGPU',
+		                collapsable: false,
+		                children: [
+		                    ['/gpu-patching/intel-patching/', 'Intro to iGPU patching'],
+		                    ['/gpu-patching/intel-patching/vram', 'VRAM patching'],
+							['/gpu-patching/intel-patching/connector', 'Connector-type patching'],
+							['/gpu-patching/intel-patching/busid', 'BusID patching'],
+		                ]
+		            },
+		            {
+		                title: 'Legacy Intel iGPU',
+		                collapsable: false,
+		                children: [
+		                    ['/gpu-patching/legacy-intel/', 'GMA Patching'],
+		                ]
+		            },
+		            {
+		                title: 'Legacy Nvidia',
+		                collapsable: false,
+		                children: [
+		                    ['/gpu-patching/nvidia-patching/', 'Nvidia Patching'],
+		                ]
+		            },
+                ]
+            },
 
         ],
     },
