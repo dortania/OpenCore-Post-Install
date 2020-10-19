@@ -174,20 +174,20 @@ Info based off of [WhateverGreen's NVCAP.bt file](https://github.com/acidanthera
 
 | NVCAP Bit | Name | Comment |
 | :--- | :--- | :--- |
-| Bit 1 | NVCAP Version | `04` for Tesla V1(7 series and older), `05` for Tesla V2(8 series and newer) |
-| Bit 2 | Laptop with Lid | `01` for true, `00` otherwise |
-| Bit 3 | Composite | `01` for S-Video, `00` otherwise |
-| Bit 4 | Backlight | `01` for Tesla V1 with Backlight, otherwise `00` for newer GPUs regardless of screen type |
-| Bits 5+6   | TVDCBMask    | `00 00`, relates to DCB entry 5 |
-| Bits 7+8   | Head0DCBMask | `00 00`, see below |
-| Bits 9+10  | Head1DCBMask | `00 00`, see below |
-| Bits 11+12 | Head2DCBMask | `00 00`, non-applicable for Fermi and older |
-| Bits 13+14 | Head3DCBMask | `00 00`, non-applicable for Fermi and older |
-| Bit 15 | ScriptBasedPowerAndBacklight| `00`, only relevant for genuine MacBook Pros |
-| Bit 16 | Unknown | `0F` for 300 series and newer, otherwise `07` |
-| Bit 17 | EDID | `00` |
-| Bit 18 | Unknown | `00` |
-| Bit 19 | Unknown | `00` |
-| Bit 20 | Unknown | `00` |
+| Byte 1 | NVCAP Version | `04` for Tesla V1(7 series and older), `05` for Tesla V2(8 series and newer) |
+| Byte 2 | Laptop with Lid | `01` for true, `00` otherwise |
+| Byte 3 | Composite | `01` for S-Video, `00` otherwise |
+| Byte 4 | Backlight | `01` for Tesla V1 with Backlight, otherwise `00` for newer GPUs regardless of screen type |
+| Bytes 5+6   | TVDCBMask    | `00 00`, relates to DCB entry 5 |
+| Bytes 7+8   | Head0DCBMask | `00 00`, see below |
+| Bytes 9+10  | Head1DCBMask | `00 00`, see below |
+| Bytes 11+12 | Head2DCBMask | `00 00`, non-applicable for Fermi and older |
+| Bytes 13+14 | Head3DCBMask | `00 00`, non-applicable for Fermi and older |
+| Byte 15 | ScriptBasedPowerAndBacklight| `00`, only relevant for genuine MacBook Pros |
+| Byte 16 | Unknown | `0F` for 300 series and newer, otherwise `07` |
+| Byte 17 | EDID | `00` |
+| Byte 18 | Unknown | `00` |
+| Byte 19 | Unknown | `00` |
+| Byte 20 | Unknown | `00` |
 
 :::
