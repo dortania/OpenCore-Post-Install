@@ -1,4 +1,4 @@
-DefinitionBlock ("", "SSDT", 2, "Slav", "SHC0", 0x00000000)
+DefinitionBlock ("", "SSDT", 2, "DRTNIA", "SHC0", 0x00000000)
 {
     External (_SB_.PCI0.GP13, DeviceObj) // Partial path to controller
     External (_SB_.PCI0.GP13.XHC0, DeviceObj) // Full path to controller
