@@ -55,6 +55,8 @@ Note: `nvram -c` requires SIP to be off, an alternative is to wipe NVRAM at the 
 
 ## Enabling emulated NVRAM (with a nvram.plist)
 
+There is no mention of where the `nvram.plist` needs to be placed, or what needs to be inside of it. Could this section be expanded with that information?
+
 To enable emulated NVRAM, you'll need 3 things set:
 
 ![](../images/post-install/nvram-md/nvram.png)
@@ -69,6 +71,7 @@ Within your config.plist:
   * `LegacyEnable`: set to `YES`
   * `LegacyOverwrite` set to `YES`
   * `LegacySchema`: NVRAM variables set(OpenCore compares these to the variables present in nvram.plist)
+    * This bit isn't clear. What do the NVRAM variables need to be set to? To they need to be set within the config.plist, or the nvram.plist? Or both? Could this section be expanded?
   * `WriteFlash`: set to `YES`
 
 And within your EFI:
