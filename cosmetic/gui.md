@@ -1,7 +1,5 @@
 # OpenCore beauty treatment
 
-
-
 Main thing this guide will go over:
 
 * [Setting up OpenCore's GUI](#setting-up-opencores-gui)
@@ -50,6 +48,7 @@ So to start, we'll need a couple things:
   * For those running out of space, `OCEFIAudio_VoiceOver_Boot.wav` is all that's required for the Boot-Chime
 * Debug version of OpenCore with logging enabled
   * See [OpenCore Debugging](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html) for more info
+  * Note: after you're done setting up, you can revert to the RELEASE builds
 
 **Settings up NVRAM**:
 

@@ -4,6 +4,9 @@ This section is mainly relevant for those who cannot use certain display outputs
 
 This page will be a bit more technical as we've assumed you've read through the previous pages and have a decent grasp of WhateverGreen.
 
+* [Patching the display type](./connector.md)
+* [Patching the VRAM requirement of macOS](./vram.md)
+
 ## Parsing the framebuffer
 
 To start, lets assume we're using a Z390 board with a UHD 630. This system is iGPU-only in macOS and has issues with using certain display-outs, and is using the `0x3E9B0007` framebuffer.
@@ -62,9 +65,9 @@ Things to keep in mind:
 
 Here we have 2 sections:
 
-* [Mapping within macOS]()
+* [Mapping within macOS](#mapping-withinb-macos)
   * You can boot macOS and use at least 1 display
-* [Mapping without macOS]()
+* [Mapping without macOS](#mapping-without-macos)
   * Blackscreen on all displays
   
 ### Mapping within macOS

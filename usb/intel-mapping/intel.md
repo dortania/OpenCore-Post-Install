@@ -1,5 +1,7 @@
 # USB Mapping
 
+### This guide is  outdated, see [USBMap's README](https://github.com/corpnewt/USBMap) for updated information until this guide is rewritten
+
 Table of Contents:
 
 * [Intel USB Mapping](#intel-usb-mapping)
