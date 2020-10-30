@@ -1,6 +1,8 @@
 # Apple Secure Boot
 
-* Note: DmgLoading, SecureBootModel and ApECID require [OpenCore 0.6.1](https://github.com/acidanthera/OpenCorePkg/releases) or newer
+* **Note**: 
+   * DmgLoading, SecureBootModel and ApECID require [OpenCore 0.6.1](https://github.com/acidanthera/OpenCorePkg/releases) or newer
+   * Due to a bug in macOS Big Sur Beta 10+, macOS will refuse to boot when Apple Secure Boot is enabled
 
 ## DmgLoading
 
