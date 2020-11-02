@@ -3,6 +3,23 @@
 * Note: DmgLoading, SecureBootModel and ApECID require [OpenCore 0.6.1](https://github.com/acidanthera/OpenCorePkg/releases) or newer
 * Note 2: macOS Big Sur requires OpenCore 0.6.3+ for proper Apple Secure Boot support
 
+
+## What is Apple Secure Boot
+
+* Information based off of [vit9696's thread](https://applelife.ru/posts/905541), [Apple's T2 docs](https://www.apple.com/euro/macbook-pro-13/docs/a/Apple_T2_Security_Chip_Overview.pdf) and [Osy's Secure Boot page](https://osy.gitbook.io/hac-mini-guide/details/secure-boot)
+
+To best understand Apple Secure Boot, lets take a look at how the boot process works in Macs vs OpenCore in regards to security:
+
+![](../../images/post-install/security-md/extension.png)
+
+As we can see, there's several layers of trust incorporated into Apple Secure Boot:
+
+1. OpenCore will verify the ECID value written into boot.efi, to ensure your hard drive cannot be used in another computer
+2. boot.efi will verify the kernelcache to ensure it has not been tampered with
+3. apfs.kext and AppleImage4 ensure your System Volume's snapshot has not been tampered with(Only applicable with Big Sur+)
+
+Not all of these verifications are required to boot, but they're all possible for those who want maximum security. Currently information regarding firmware-based Secure Boot is not covered however all Apple Secure Boot options are detailed below.
+
 ## DmgLoading
 
 Quite a simple setting however important in regards to Apple Secure Boot. This setting allows you to set load policy with DMGs in OpenCore. By default we recommend using `Signed` however for best security  `Disabled` may be preferred.
@@ -11,7 +28,7 @@ Possible options for `Misc -> Security -> DmgLoading`:
 
 | Value | Comment |
 | :--- | :--- |
-| Any      | Allows all DMGs to load in OpenCore, however this option will cause a boot failure Apple Secure Boot is enabled |
+| Any      | Allows all DMGs to load in OpenCore, however this option will cause a boot failure if Apple Secure Boot is enabled |
 | Signed   | Allows only Apple-signed DMGs like macOS installers to load |
 | Disabled | Disables all external DMG loading, however internal recovery is still allowed with this option |
 
@@ -41,13 +58,14 @@ Currently the following options for `Misc -> Security -> SecureBootModel` are su
 | j215      | MacBookPro16,4 (June 2020)              | 10.15.5 (19F96)       |
 | j185      | iMac20,1 (August 2020)                  | 10.15.6 (19G2005)     |
 | j185f     | iMac20,2 (August 2020)                  | 10.15.6 (19G2005)     |
-| x86legacy | Non-T2 Macs in Big Sur                  | 11.0.0                |
+| x86legacy | Non-T2 Macs in 11.0(Recommended for VMs)| 11.0.0                |
 
 ### Special Notes with SecureBootModel
 
 * Generally `Default` is more than adequate to use however if you plan to have use this with ApECID for full security, we recommend setting a proper value(ie. closest to your SMBIOS or versions of macOS you plan to boot) since the `Default` value is likely to be updated in the future.
+  * `x86legacy` is not required for normal Mac models without T2's, any of the above values are supported.
 * The list of cached drivers may be different, resulting in the need to change the list of Added or Forced kernel drivers. 
-  * ie. IO80211Family cannot be injected in this case.
+  * ie. IO80211Family cannot be injected in this case, as it is already present in the kernelcache
 * Unsigned and several signed kernel drivers cannot be used
   * This includes Nvidia's Web Drivers in 10.13
 * System volume alterations on operating systems with sealing, like macOS 11, may result in the operating system being unbootable. 
@@ -57,6 +75,8 @@ Currently the following options for `Misc -> Security -> SecureBootModel` are su
 * On older CPUs (ie. before Sandy Bridge) enabling Apple Secure Boot might cause slightly slower loading by up to 1 second
 * Operating systems released before Apple Secure Boot landed (ie. macOS 10.12 or earlier) will still boot until UEFI Secure Boot is enabled. This is so, 
   * This is due to Apple Secure Boot assuming they are incompatible and will be handled by the firmware just like Microsoft Windows is
+* Virtaul Machines will want to use `x86legacy` for Secure Boot support
+  * Note using any other model will require `ForceSecureBootScheme` enabled
 
 ::: details Troubleshooting
 
