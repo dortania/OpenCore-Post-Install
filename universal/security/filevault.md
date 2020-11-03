@@ -24,7 +24,6 @@ Setting in your config.plist:
 * UEFI -> ProtocolOverrides
   * `FirmwareVolume` set to YES
   * `HashServices` set to YES for Broadwell and older(this includes X99), this is needed for systems with broken SHA-1 hashing
-  * `AppleSmcIo` set to YES(this replaces VirtualSMC.efi)
 * UEFI -> Quirks
   * `RequestBootVarRouting` set to YES
   * `ExitBootServicesDelay` set to `3000`-`5000` if you receive `Still waiting for root device` on Aptio IV firmwares(Broadwell and older)
