@@ -190,6 +190,7 @@ Fret not, for their is still hope for you as well! [AMDRyzenCPUPowerManagement.k
 * [IRQ Conflicts](#irq-conflicts)
 * [Audio](#audio)
 * [SMBus](#smbus)
+* [TSC](#tsc)
 
 ### Displays
 
@@ -263,7 +264,7 @@ See here on more info on how to make it: [Fixing SMBus support](https://dortania
 
 ### TSC
 
-The TSC(Time Stamp Counter) is responsible for making sure you're hardware is running at the correct speed, problem is some firmware(mainly HEDT/Server and Asus Laptops) will not write the TSC to all cores cause issues. To get around this, we have 3 options:
+The TSC(Time Stamp Counter) is responsible for making sure you're hardware is running at the correct speed, problem is some firmware(mainly HEDT/Server and Asus Laptops) will not write the TSC to all cores causing issues. To get around this, we have 3 options:
 
 * [CpuTscSync](https://github.com/lvs1974/CpuTscSync/releases)
   * For troublesome laptops
