@@ -65,7 +65,7 @@ And to calculate the properties few properties:
 
 ### model
 
-Technically cosmetic, however macOS expects this entry to we'll provide it. The format is as follows:
+Technically cosmetic, however macOS expects this entry so we'll provide it. The format is as follows:
 
 ```md
 GeForce [Device Name]
@@ -203,7 +203,7 @@ model          | String | GeForce GT 220
 device_type    | String | NVDA,Parent
 VRAM,totalsize |  Data  | 0000004000000000
 rom-revision   | String | Dortania
-NVCAP |  Data  |  Data  | 05000000 00000300 0c000000 0000000f 00000000
+NVCAP          |  Data  | 05000000 00000300 0c000000 0000000f 00000000
 @0,compatible  | String | NVDA,NVMac
 @0,device_type | String | display
 @0,name        | String | NVDA,Display-1
