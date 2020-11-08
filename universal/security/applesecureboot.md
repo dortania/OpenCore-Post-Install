@@ -13,10 +13,11 @@ To best understand Apple Secure Boot, lets take a look at how the boot process w
 
 As we can see, there's several layers of trust incorporated into Apple Secure Boot:
 
-1. OpenCore will verify the boot.efi manifest (e.g. boot.efi.j137ap.im4m) to ensure that boot.efi was signed by Apple and can be used by this Secure Boot model.
+* OpenCore will verify the boot.efi manifest (e.g. boot.efi.j137ap.im4m) to ensure that boot.efi was signed by Apple and can be used by this Secure Boot model.
   * For non-zero ApECID,  OpenCore will additionally verify the ECID value, written in the boot.efi manifest (e.g. boot.efi.j137ap.XXXXXXXX.im4m), to ensure that a compromised hard drive from a different machine with the same Secure Boot model cannot be used in your computer.
-2. boot.efi will verify the kernelcache to ensure it has not been tampered with
-3. apfs.kext and AppleImage4 ensure your System Volume's snapshot has not been tampered with(Only applicable with Big Sur+)
+
+* boot.efi will verify the kernelcache to ensure it has not been tampered with
+* apfs.kext and AppleImage4 ensure your System Volume's snapshot has not been tampered with(Only applicable with Big Sur+)
 
 Not all of these verifications are required to boot, but they're all possible for those who want maximum security. Currently information regarding firmware-based Secure Boot is not covered however all Apple Secure Boot options are detailed below.
 
