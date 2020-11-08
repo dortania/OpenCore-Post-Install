@@ -3,7 +3,6 @@
 * Note: DmgLoading, SecureBootModel and ApECID require [OpenCore 0.6.1](https://github.com/acidanthera/OpenCorePkg/releases) or newer
 * Note 2: macOS Big Sur requires OpenCore 0.6.3+ for proper Apple Secure Boot support
 
-
 ## What is Apple Secure Boot
 
 * Information based off of [vit9696's thread](https://applelife.ru/posts/905541), [Apple's T2 docs](https://www.apple.com/euro/macbook-pro-13/docs/a/Apple_T2_Security_Chip_Overview.pdf) and [Osy's Secure Boot page](https://osy.gitbook.io/hac-mini-guide/details/secure-boot)
@@ -64,18 +63,18 @@ Currently the following options for `Misc -> Security -> SecureBootModel` are su
 
 * Generally `Default` is more than adequate to use however if you plan to have use this with ApECID for full security, we recommend setting a proper value(ie. closest to your SMBIOS or versions of macOS you plan to boot) since the `Default` value is likely to be updated in the future.
   * `x86legacy` is not required for normal Mac models without T2's, any of the above values are supported.
-* The list of cached drivers may be different, resulting in the need to change the list of Added or Forced kernel drivers. 
+* The list of cached drivers may be different, resulting in the need to change the list of Added or Forced kernel drivers.
   * ie. IO80211Family cannot be injected in this case, as it is already present in the kernelcache
 * Unsigned and several signed kernel drivers cannot be used
   * This includes Nvidia's Web Drivers in 10.13
-* System volume alterations on operating systems with sealing, like macOS 11, may result in the operating system being unbootable. 
+* System volume alterations on operating systems with sealing, like macOS 11, may result in the operating system being unbootable.
   * If you plan to disable macOS's APFS snapshots, please remember to disable SecureBootModel as well
 * Certain boot errors are more likely to be triggered with Secure Boot enabled that were previously not required
   * Commonly seen with certain APTIO IV systems where they may not require IgnoreInvalidFlexRatio and HashServices initially however Secure Boot does.
 * On older CPUs (ie. before Sandy Bridge) enabling Apple Secure Boot might cause slightly slower loading by up to 1 second
-* Operating systems released before Apple Secure Boot landed (ie. macOS 10.12 or earlier) will still boot until UEFI Secure Boot is enabled. This is so, 
+* Operating systems released before Apple Secure Boot landed (ie. macOS 10.12 or earlier) will still boot until UEFI Secure Boot is enabled. This is so,
   * This is due to Apple Secure Boot assuming they are incompatible and will be handled by the firmware just like Microsoft Windows is
-* Virtaul Machines will want to use `x86legacy` for Secure Boot support
+* Virtual Machines will want to use `x86legacy` for Secure Boot support
   * Note using any other model will require `ForceSecureBootScheme` enabled
 
 ::: details Troubleshooting
@@ -112,19 +111,19 @@ diskutil mount disk5s2
 cd /System/Volumes/Preboot
 
 # Grab your UUID
-ls 
-	46923F6E-968E-46E9-AC6D-9E6141DF52FD 
-	CD844C38-1A25-48D5-9388-5D62AA46CFB8
+ls
+ 46923F6E-968E-46E9-AC6D-9E6141DF52FD
+ CD844C38-1A25-48D5-9388-5D62AA46CFB8
 
 # If multiple show up(ie. you dual boot multiple versions of macOS), you will
 # need to determine which UUID is correct.
 # Easiest way to determine is printing the value of .disk_label.contentDetails
 # of each volume.
 cat ./46923F6E-968E-46E9-AC6D-9E6141DF52FD/System/Library/CoreServices/.disk_label.contentDetails
-	Big Sur HD%
+ Big Sur HD%
 
 cat ./CD844C38-1A25-48D5-9388-5D62AA46CFB8/System/Library/CoreServices/.disk_label.contentDetails
-	Catalina HD%
+ Catalina HD%
 
 # Next lets copy over the secure boot files, recovery will need different commands
 
@@ -155,13 +154,11 @@ python3 -c 'import secrets; print(secrets.randbits(64))'
 
 With this unique 64-bit int, you can now enter it under Misc -> ApECID in your config.plist
 
-
 However before setting ApECID, there's a few things we need to note:
 
 * Fresh installs with ApECID set to a non-zero value will require a network connection at install time for verification
 * SecureBootModel should have a defined value instead of `Default` to avoid issues if the value were to change in later OpenCore versions.
 * Pre-existing installs will need to use bless, for this you'll need to first reboot into recovery and run the following command(Replace Macintosh HD with your system's volume name):
-
 
 ```sh
  bless bless --folder "/Volumes/Macintosh HD/System/Library/CoreServices" \
@@ -171,9 +168,9 @@ However before setting ApECID, there's a few things we need to note:
 And something to note when reinstalling the OS is that you may receive "Unable to verify macOS" error message. To work around his issue, you'll want to allocate a dedicated RAM disk of 2 MBs for macOS personalization by entering the following commands in the macOS recovery terminal before starting the installation:
 
 ```sh
-disk=$(hdiutil attach -nomount ram://4096) 
-diskutil erasevolume HFS+ SecureBoot $disk 
-diskutil unmount $disk 
-mkdir /var/tmp/OSPersonalizationTemp 
+disk=$(hdiutil attach -nomount ram://4096)
+diskutil erasevolume HFS+ SecureBoot $disk
+diskutil unmount $disk
+mkdir /var/tmp/OSPersonalizationTemp
 diskutil mount -mountpoint /var/tmp/OSPersonalizationTemp $disk
 ```

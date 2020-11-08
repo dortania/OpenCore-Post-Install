@@ -1,6 +1,6 @@
 # USB Mapping
 
-So with the prerequisites out of the way, we can finally get to the meat of this guide. And now we get to finally read one of my favourite books before I go to bed each night: [The Advanced Configuration and Power Interface (ACPI) Specification!](https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf)
+So with the prerequisites out of the way, we can finally get to the meat of this guide. And now we get to finally read one of my favorite books before I go to bed each night: [The Advanced Configuration and Power Interface (ACPI) Specification!](https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf)
 
 Now if you haven't read through this before(which I highly recommend you do, it's a thrilling tale), I'll point you to the meat of the USB situation:
 
@@ -19,7 +19,6 @@ Here we're greeted with all the possible USB ports in ACPI:
 
 ## USB Mapping: The manual way
 
-
 This section is for those who want to get down into the meats of their hackintosh, to really understand what it's doing and help if there's any issues with USBmap.py and other mapping tools. To start, we'll need a few things:
 
 * Installed version of macOS
@@ -32,7 +31,7 @@ This section is for those who want to get down into the meats of their hackintos
 * [IORegistryExplorer.app](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip)
   * To view the inner workings of macOS more easily
   * If you plan to use Discord for troubleshooting, [v2.1.0](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-210.zip) is a bit easier on file size.
-* [USBInjectAll]()
+* [USBInjectAll](https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads/)
   * This is only required for older USB controllers like Broadwell and older, however some Coffee Lake systems may still require it
   * **Reminder** this kext does not work on AMD
 * [Sample-USB-Map.kext](https://github.com/dortania/OpenCore-Post-Install/blob/master/extra-files/Sample-USB-Map.kext.zip)
@@ -51,7 +50,6 @@ For this example, lets try and map an Asus X299-E Strix board:
 
 ![](../../images/post-install/manual-md/initial-boot.png)
 
-
 From the above image we can see 3 USB controllers:
 
 * PXSX(1, Top)
@@ -64,7 +62,7 @@ Now I personally know which USB controllers match up with which physical ports, 
 
 **Note**: The AppleUSBLegacyRoot entry is an entry that lists all active USB controllers and ports, these are not USB controllers themselves so you can outright ignore them.
 
-**Note 2**: Keep in mind every motherboard model will have a unique set of port combos, controller types and names. So while our example uses PXSX, yours might have have the XHC0 or PTCP name. And quite common on older motherboards is that you may only have 1 controller, this is alright so don't stress about having the exact same setup as the example.
+**Note 2**: Keep in mind every motherboard model will have a unique set of port combos, controller types and names. So while our example uses PXSX, yours might have the XHC0 or PTCP name. And quite common on older motherboards is that you may only have 1 controller, this is alright so don't stress about having the exact same setup as the example.
 
 Common names you can check:
 
@@ -76,7 +74,7 @@ Common names you can check:
   * XHCI
   * XHCX
   * AS43
-  * PTXH 
+  * PTXH
     * Commonly associated with AMD Chipset controllers
   * PTCP
     * Found on AsRock X399
@@ -95,13 +93,11 @@ To start, I'm going to plug a USB device into my front USB 3.1(Type-A) and 3.2(T
 
 ![](../../images/post-install/manual-md/front-io-plugged.png)
 
-
 Next lets look at IOReg, and we can see where our USB devices fell:
 
 | USB-C | USB-A |
 | :--- | :--- |
 | ![](../../images/post-install/manual-md/usb-c-test.png) | ![](../../images/post-install/manual-md/usb-a-test-3.png) |
-
 
 Here we see a few things:
 
@@ -125,14 +121,14 @@ We see that the USB 2.0 personality of our 3.0 port is `XHCI -> HS03`, now you s
 * Front Type-A:
   * HS03: 2.0 Personality
   * SS03: 3.0 Personality
- 
+
 **Note**: If your USB ports show up as either AppleUSB20XHCIPort or AppleUSB30XHCIPort, you can still map however it will be a bit more difficult. Instead of writing down the names, pay very close attention to the `port` property on the right hand side:
 
 ![](../../images/post-install/manual-md/location-id.png)
 
 ### Creating a personal map
 
-This is where we pull out out pen and paper, and start to write down which ports physically match up with which digital ports. An example of what your map can look like:
+This is where we pull out pen and paper, and start to write down which ports physically match up with which digital ports. An example of what your map can look like:
 
 | Name Mapping | Property Mapping |
 | :--- | :--- |
@@ -155,13 +151,12 @@ Next lets map our USB-C port, this is where it gets quite tricky as you may have
 | 9 | Type C connector - USB 2.0 and USB 3.0 with Switch | Flipping the device **does not** change the ACPI port |
 | 10 | Type C connector - USB 2.0 and USB 3.0 without Switch | Flipping the device **does** change the ACPI port. generally seen on 3.1/2 motherboard headers |
 
-So when we map our USB-C header, we notice it occupies the SS01 port. But when we flip it, we actually populate it on the SS02 port. When this happens, you'll want to write this down for when we apply the port type. 
+So when we map our USB-C header, we notice it occupies the SS01 port. But when we flip it, we actually populate it on the SS02 port. When this happens, you'll want to write this down for when we apply the port type.
 
 * Note: All personalities from this port will be put under the Type 10
 * Note 2: Not all USB-C headers will be Type 10, **double check yours**
 
 ![](../../images/post-install/manual-md/usb-c-test-2.png)
-
 
 ### Continuing mapping
 
@@ -185,7 +180,7 @@ Keep this in mind, as this plays into the Type 255 and getting certain services 
 
 #### USRx Ports
 
-When mapping, you may notice some extra ports left over, specifically USR1 and USR2. These ports are known as "USBR" ports, or more specifically [USB Redirection Ports](https://software.intel.com/content/www/us/en/develop/documentation/amt-developer-guide/top/storage-redirection.html). Use of these is for remote management but real Macs don't ship with USBR devices and so has no support for them OS-wise. You can actually ignore these entries in your USB map:
+When mapping, you may notice some extra ports left over, specifically USR1 and USR2. These ports are known as "USBR" ports, or more specifically [USB Redirection Ports](https://software.Intel.com/content/www/us/en/develop/documentation/amt-developer-guide/top/storage-redirection.html). Use of these is for remote management but real Macs don't ship with USBR devices and so has no support for them OS-wise. You can actually ignore these entries in your USB map:
 
 ![](../../images/post-install/manual-md/usr.png)
 
@@ -210,8 +205,6 @@ Next, open our newly downloaded SSDT with maciASL, you should be presented with 
 ![](../../images/post-install/manual-md/ssdt-rhub-normal.png)
 
 Now, open IOReg and find the USB controller you want to reset(pay very close attention its the USB controller and not the child RHUB with the same name):
-
-
 
 If you look to the right side, you should see the `acpi-apth` property. Here we're going to need to translate it to something our SSDT can use:
 
@@ -257,7 +250,6 @@ Scope (_SB.PC00.RP05.PXSX.RHUB) <- Renamed
 
 ![](../../images/post-install/manual-md/ssdt-rhub-fixed.png)
 
-
 Once you've edited the SSDT to your USB controller's path, you can export it with `File -> SaveAs -> ACPI Machine Language Binary`:
 
 ![](../../images/post-install/manual-md/ssdt-save.png)
@@ -266,12 +258,11 @@ Finally, remember to add this SSDT to both EFI/OC/ACPI and your config.plist und
 
 ## Creating our kext
 
-Its the time you've all been waiting for, we finally get to create our USB map! 
+Its the time you've all been waiting for, we finally get to create our USB map!
 
 First off, we'll want to grab a sample USB map kext:
 
 * [Sample-USB-Map.kext](https://github.com/dortania/OpenCore-Post-Install/blob/master/extra-files/Sample-USB-Map.kext.zip)
-
 
 Next right click the .kext, and select `Show Package Contents`. then drill down to the info.plist:
 
@@ -372,15 +363,15 @@ And a reminder of all possible port types:
 | 10 | Type C connector - USB 2.0 and USB 3.0 without Switch | Flipping the device **does** change the ACPI port. generally seen on 3.1/2 motherboard headers |
 | 255 | Proprietary connector | For Internal USB ports like Bluetooth |
 
-It should be coming full circle now, as you can see how our previous work with mapping out our ports works. 
+It should be coming full circle now, as you can see how our previous work with mapping out our ports works.
 
 #### Name
 
-The name property is actually the name of the USB port's dictionary, and is used solely for house keeping. Keep in mind every USb port you want to use needs to have its own unique USB port dictionary.
+The name property is actually the name of the USB port's dictionary, and is used solely for house keeping. Keep in mind every USB port you want to use needs to have its own unique USB port dictionary.
 
-The name itself holds no value besides showing up in IOReg and so this can be whatever you like. To keep this sane, we use the name already given by our ACPI tables(in this case HS01) but the name can be any 4 character entry. However do not go over this 4 char limit, as unintended side effects can happen. 
+The name itself holds no value besides showing up in IOReg and so this can be whatever you like. To keep this sane, we use the name already given by our ACPI tables(in this case HS01) but the name can be any 4 character entry. However do not go over this 4 char limit, as unintended side effects can happen.
 
-* Note: Those with AppleUSB20XHCIPort or AppleUSB30XHCIPort names for USB ports, you should choose a name easy to identify. On intel, this is HSxx for 2.0 personalities and SSxx for 3.0 personalities 
+* Note: Those with AppleUSB20XHCIPort or AppleUSB30XHCIPort names for USB ports, you should choose a name easy to identify. On Intel, this is HSxx for 2.0 personalities and SSxx for 3.0 personalities
 
 ![](../../images/post-install/manual-md/name.png)
 
@@ -413,14 +404,13 @@ Once your saved your USB map's info.plist, remember to add the kext to both your
 Next, remove/disable:
 
 * USBInjectAll.kext(if you're using it)
-  * Reason for this is USBInjectAll actually breaks how Apple builds port maps. So while it's great for inital port mapping, it can break you final USB map
+  * Reason for this is USBInjectAll actually breaks how Apple builds port maps. So while it's great for initial port mapping, it can break you final USB map
 * XhciPortLimit(Under Kernel -> Quirks)
   * Now that we're finally under the 15 port limit, we no longer need this hacky fix
 
 Then reboot, and check IOReg one last time:
 
 ![](../../images/post-install/manual-md/finished.png)
-
 
 Voila! As you can see, our USB map applied successfully!
 
@@ -429,6 +419,3 @@ The main properties to verify are:
 * Correct UsbConnector property on your USB ports
 * Comment applied(if injected)
 * Unused ports were removed
-
-
-

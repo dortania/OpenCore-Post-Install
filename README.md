@@ -63,7 +63,7 @@ This guide is split into 6 parts:
 * [Fixing Resolution and Verbose](./cosmetic/verbose.md)
   * Helps fix the resolution of OpenCore, and allows you to get that sweet Apple logo while booting!
 
-### Multiboot 
+### Multiboot
 
 * [Setting up Bootstrap.efi](./multiboot/bootstrap.md)
   * Ensures Windows doesn't remove OpenCore from our system.
@@ -77,4 +77,4 @@ This guide is split into 6 parts:
 * [Fixing CFG Lock](./misc/msr-lock.md)
   * Allows use to remove some kernel patches for better stability
 * [Emulated NVRAM](./misc/nvram.md)
-  * For users who have broken NVRAm, or need to test it.
+  * For users who have broken NVRAM, or need to test it.

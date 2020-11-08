@@ -1,7 +1,6 @@
 # Legacy Nvidia Patching
 
-* Please note this page is more of an info dump, we won't be ging to too great of detail on setup though we plan to expand this page more for it.
-
+* Please note this page is more of an info dump, we won't be going to too great of detail on setup though we plan to expand this page more for it.
 
 With legacy Nvidia GPUs, macOS has difficulties enabling acceleration due to many missing properties. To work around this, we can inject properties into IOService for macOS to easily interpret.
 
@@ -14,7 +13,6 @@ To start off, we'll be assuming the following:
 * Lilu and WhateverGreen are loaded
   * verify by running `kextstat | grep -E "Lilu|WhateverGreen"`
   
-  
 ### Finding the GPU pathing
 
 First lets grab [gfxutil](https://github.com/acidanthera/gfxutil/releases) and run the following:
@@ -22,7 +20,6 @@ First lets grab [gfxutil](https://github.com/acidanthera/gfxutil/releases) and r
 ```
 path/to/gfxutil -f display
 ```
-
 
 This should spit out something like the following:
 
@@ -35,7 +32,6 @@ What we care about is the PciRoot section, as this is where our GPU is located a
 ```
 PciRoot(0x2)/Pci(0x0,0x0)/Pci(0x0,0x0)
 ```
-
 
 ### Building our DeviceProperties
 
@@ -54,7 +50,6 @@ With Nvidia GPUs, there's actually not too many properties required for setup. T
 | @1,compatible | NVDA,NVMac | Always set as `NVDA,NVMac` |
 | @1,device_type | display | Always set as `display` |
 | @1,name | NVDA,Display-B | Always set as `NVDA,Display-B` |
-
 
 And to calculate the properties few properties:
 
@@ -82,11 +77,11 @@ For this example, lets convert 1024MB to hexadecimal:
 ```md
 # Convert 1024MB Megabytes to Bytes
 echo '1024 * 1024 * 1024' | bc
-	1073741824
+ 1073741824
 
 # Convert from decimal to hexadecimal
 echo 'obase=16; ibase=10; 1073741824' | bc
-	40000000
+ 40000000
 
 # Hexswap so it can be injected correctly
 # ie. swap in pairs
@@ -101,7 +96,7 @@ VRAM,totalsize = 0000004000000000
 
 ### rom-revision
 
-Simply can be any value, however the property must exist as some GPUs fail to initialise without it(ex. GT 220's)
+Simply can be any value, however the property must exist as some GPUs fail to initialize without it(ex. GT 220's)
 
 ```
 rom-revision = Dortania
@@ -113,7 +108,6 @@ This is where the fun comes it, as we'll now need to calculate the NVCAP value. 
 
 To use this program, simply grab your VBIOS([TechPowerUp hosts most VBIOS](https://www.techpowerup.com/vgabios/)) and run NVCAP-Calculator:
 
-
 ```bash
 git clone https://github.com/1Revenger1/NVCAP-Calculator
 cd NVCAP-Calculator
@@ -122,7 +116,6 @@ npm run run
 ```
 
 * Note this will require NodeJS, either grab this via brew or [Node JS's site](https://nodejs.org/en/)
-
 
 Once its running, you should see the following:
 
@@ -162,6 +155,7 @@ Once done, enter in `c` to calculate the NVCAP value
 ![](../../images/gpu-patching/nvidia/nvcap-calculated.png)
 
 You now have your NVCAP value!
+
 ```
 NVCAP: 05000000 00000300 0c000000 0000000f 00000000
 ```

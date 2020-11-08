@@ -10,14 +10,14 @@ CFG-Lock is a setting in your BIOS that allows for a specific register(in this c
 
 So to fix it we have 2 options:
 
-1. Patch macOS to work with our hardware
+#### 1. Patch macOS to work with our hardware
 
 * This creates instability and unnecessary patching for many
 * The 2 patches we use for this:
   * `AppleCpuPmCfgLock` for AppleIntelPowerManagement.kext
   * `AppleXcpmCfgLock` for the Kernel(XNU)
 
-2. Patch our firmware to support MSR E2 write
+#### 2. Patch our firmware to support MSR E2 write
 
 * Very much preferred, as avoids patching allowing for greater flexibility regarding stability and OS upgrades
   
@@ -31,10 +31,9 @@ To check it, you can proceed into two ways:
 1. [Use the DEBUG version of OpenCore and check what the log says about CFG Lock](#checking-via-opencore-logs)
 2. [Use a tool called `VerifyMsrE2` which will speed up the whole checking process](#checking-via-verifymsre2)
 
-
 ### Checking via OpenCore logs
 
-For users who prefer using DEBUG release, you'll want to enabe the DEBUG variant of OpenCore with `Target` set to `67` and boot OpenCore. This should provide you with a file in the format of `opencore-YYYY-MM-DD-hhmmss.txt` on the root of the drive.
+For users who prefer using DEBUG release, you'll want to enable the DEBUG variant of OpenCore with `Target` set to `67` and boot OpenCore. This should provide you with a file in the format of `opencore-YYYY-MM-DD-hhmmss.txt` on the root of the drive.
 
 Within this file, search for `OCCPU: EIST CFG Lock`:
 
@@ -42,10 +41,9 @@ Within this file, search for `OCCPU: EIST CFG Lock`:
 OCCPU: EIST CFG Lock 1
 ```
 
-If it returns `1`, then you proceed with this guide here: [Disabling CFG Lock](#disabling-cfg-lock). 
+If it returns `1`, then you proceed with this guide here: [Disabling CFG Lock](#disabling-cfg-lock).
 
 Otherwise(ie. `0`), no reason to continue and you can simply disable `Kernel -> Quirks -> AppleCpuPmCfgLock` and `Kernel -> Quirks -> AppleXcpmCfgLock`.
-
 
 ### Checking via VerifyMsrE2
 
@@ -110,21 +108,23 @@ Now the fun part!
    ```
 
 If you get an error such as `error: offset is out of range` run the following command:
-   
+
    ```
    setup_var2 0x5A4
    ```
+
    Just as before, if you still get `error: offset is out of range` you'd need to use this command:
-   
+
    ```
    setup_var_3 0x5A4
    ```
+
    If you don't get any type of error, write the command which doesn't lead to `error: offset is out of range` (e.g. `setup_var_3 0x5A4`) and write `0x00` after it:
-   
+
    ```
    setup_var_3 0x5A4 0x00
    ```
-   
+
 At this point, run either `reset` in the shell or simply reboot your machine. And with that, you should have `CFG Lock` unlocked! To verify, you can run over the methods listed at [Checking if your firmware supports CFG Lock unlocking](#checking-if-your-firmware-supports-cfg-lock-unlocking) to verify whether the variable was set correctly then finally disable `Kernel -> Quirks -> AppleCpuPmCfgLock` and `Kernel -> Quirks -> AppleXcpmCfgLock`.
 
 * Do note that variable offsets are unique not just to each motherboard but even to its firmware version. **Never try to use an offset without checking.**

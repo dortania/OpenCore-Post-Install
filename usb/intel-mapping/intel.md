@@ -4,7 +4,7 @@
 
 Table of Contents:
 
-* [Intel USB Mapping](#intel-usb-mapping)
+* [Intel USB Mapping](#Intel-usb-mapping)
 
 So with the prerequisites out of the way, we can finally get to the meat of this guide. And now we get to finally read one of my favorite books before I go to bed each night: [The Advanced Configuration and Power Interface (ACPI) Specification!](https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf)
 
@@ -34,7 +34,7 @@ Now open up USBmap.command and select `D.  Discover Ports`:
 
 The interface for USBmap is quite simple and easy to grasp so won't go into detail here, the [README.md](https://github.com/corpnewt/USBMap) should do you well enough. The basic idea is insert a device, give it a name to remember the port by, remove and then try another port until you have a whole list of ports you want to keep.
 
-* **Note**: USRx(ie. USR1, USR2) ports are not real USB ports, they're specifically [USBR ports](https://software.intel.com/content/www/us/en/develop/documentation/amt-developer-guide/top/storage-redirection.html) which macOS has no support for(and why real Macs don't have this). These can be excluded from your USB map.
+* **Note**: USRx(ie. USR1, USR2) ports are not real USB ports, they're specifically [USBR ports](https://software.Intel.com/content/www/us/en/develop/documentation/amt-developer-guide/top/storage-redirection.html) which macOS has no support for(and why real Macs don't have this). These can be excluded from your USB map.
 
 Once you're done discovering your ports, select `Press Q then [enter] to stop` then head to `P.  Edit Plist & Create SSDT/Kext` from the main menu.
 

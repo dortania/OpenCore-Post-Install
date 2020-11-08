@@ -97,7 +97,7 @@ SMBIOS needing XHC1, EHC1 and EHC2 renames:
 * MacBookAir5,x  and older
 * MacBookPro11,x and older
 
-Now that we know what renames our SMBIOS need, we can next check the names of our USB controllers. 
+Now that we know what renames our SMBIOS need, we can next check the names of our USB controllers.
 
 ### Checking IOService
 
@@ -106,6 +106,7 @@ Let's take XHC1 and execute the following command:
 ```sh
 ioreg -l -p IOService -w0 | grep -i XHC1
 ```
+
 If you see this, you need a rename: |  If you see this, you do not need a rename:
 :-------------------------:|:-------------------------:
 ![](../images/system-preperation-md/ioreg-name.png)  |  ![](../images/system-preperation-md/no-rename-needed.png)
@@ -117,7 +118,7 @@ ioreg -l -p IOService -w0 | grep -i EHC1
 ioreg -l -p IOService -w0 | grep -i EHC2
 ```
 
-**If nothing returns(like with the right image)**, you don't need any renames. 
+**If nothing returns(like with the right image)**, you don't need any renames.
 
 **If one of the 3 entries return(like with the left image)**, you'll need a rename for whatever returns.
 
@@ -130,7 +131,7 @@ If you're in the latter camp, you'll now want to add the needed ACPI renames to 
 
 But now we must part into 2 sections, depending on which hardware you have:
 
-* [Intel USB Mapping](../usb/intel-mapping/intel.md)
+* [Intel USB Mapping](../usb/Intel-mapping/Intel.md)
   * A more automated process, Intel only however
 * [Manual USB Mapping](../usb/manual/manual.md)
   * More step by step process, and is the only way to map AMD and 3rd party USB controllers properly.
