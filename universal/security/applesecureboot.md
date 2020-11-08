@@ -161,15 +161,17 @@ However before setting ApECID, there's a few things we need to note:
 
 * Fresh installs with ApECID set to a non-zero value will require a network connection at install time for verification
 * SecureBootModel should have a defined value instead of `Default` to avoid issues if the value were to change in later OpenCore versions.
-* Pre-existing installs will need to use bless, for this you'll need to first reboot into recovery and run the following command(Replace Macintosh HD with your system's volume name):
+* Pre-existing installs will need to personalize the volume, for this you'll need to first reboot into recovery and run the following command(Replace `Macintosh HD` with your system's volume name):
 
 
 ```sh
+# Run this command after setting your ApECID value
+# You'll also need an active network connection in recovery to run this command
  bless bless --folder "/Volumes/Macintosh HD/System/Library/CoreServices" \
     --bootefi --personalize
 ```
 
-And something to note when reinstalling the OS is that you may receive "Unable to verify macOS" error message. To work around his issue, you'll want to allocate a dedicated RAM disk of 2 MBs for macOS personalization by entering the following commands in the macOS recovery terminal before starting the installation:
+And something to note when reinstalling macOS 10.15 or older is that you may receive "Unable to verify macOS" error message. To work around his issue, you'll want to allocate a dedicated RAM disk of 2 MBs for macOS personalization by entering the following commands in the macOS recovery terminal before starting the installation:
 
 ```sh
 disk=$(hdiutil attach -nomount ram://4096) 
