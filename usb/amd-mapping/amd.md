@@ -90,7 +90,7 @@ So what kind of data do we shove into this plist? Well, there are a couple of se
 
 > How do I know which ports are 2.0 and which are 3.0?
 
-Well, the easiest way is grabbing a USB 2.0 and USB 3.0 device, then write down which ports are are what type from observing IOReg.
+Well, the easiest way is grabbing a USB 2.0 and USB 3.0 device, then write down which ports are what type from observing IOReg.
 
 * **Remember**: USB 3.0 ports have dual personalities, so you **must** test both a 2.0 drive and 3.0 to know which ports are associated with it in IOReg.
 
@@ -132,7 +132,7 @@ In this DSDT, we're missing HS02, HS03, HS04, HS05, etc. When this happens, we a
 
 An odd issue with some OEM's ACPI is that they never actually define or properly name the USB ports. And so when macOS's IOService starts scanning and building the ports, they're given a generic name. This makes it difficult to really know where your ports are.
 
-To resolve this, we can simply add names with our USBmap.kext, this is thanks to us mathcing the USB map based off of the USB port's location instead of by name. 
+To resolve this, we can simply add names with our USBmap.kext, this is thanks to us matching the USB map based off of the USB port's location instead of by name.
 
 So before you USB map, you'll get something like this:
 
@@ -162,7 +162,7 @@ Finally, grab IOreg and look for your USB controller:
 
 ![](../../images/post-install/usb-md/iopathmatch.png)
 
-From here, pay very close attention to which actual device I selected. Specifically the child of of `XHC0@0,3` being `XHC0@61000000`, reason for this is that's our Root-hub(or what macOS uses to enumerate ports) The child with the same name is actually a root hub but does not concern us
+From here, pay very close attention to which actual device I selected. Specifically the child of `XHC0@0,3` being `XHC0@61000000`, reason for this is that's our Root-hub(or what macOS uses to enumerate ports) The child with the same name is actually a root hub but does not concern us
 
 Now copy the `XHC0@61000000` entry and paste it back into the `IOPathMatch` entry in our USBmap.kext's info.plist, this should result in quite a long path name:
 

@@ -40,24 +40,25 @@ By default in Macs with iGPUs, there are a few configurations:
 The reason why this is important is due to the amount of iGPU configurations Apple supports in the iGPU kexts, specifically known as framebuffer personalities. These personalities determine many things including number of displays, types of displays allowed, location of these displays, minimum VRAM required, etc, and so we need to either hope one of these profiles matches our hardware or try to patch it.
 
 To specify a framebuffer personality in macOS, we use the DeviceProperties section in OpenCore to add an entry called `AAPL,ig-platform-id`
+
 * Note: on Sandy Bridge, we use `AAPL,snb-platform-id` instead
 
 The format of this entry is hexadecimal, and is byte swapped from the actual value. A full list of these values can be found in WhateverGreen's manual: [FAQ.IntelHD.en.md](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md)
 
-For this example, lets try to find a framebuffer compatible for a desktop HD 4600 iGPU. We'll first want to scroll down the manual until we hit the [Intel HD Graphics 4200-5200 (Haswell processors)](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#intel-hd-graphics-4200-5200-haswell-processors) entry. Here we're given a list of all supported framebuffers in macOS, including the hardware type(ie. Mobile vs desktop), VRAM requirements, etc. If you scroll to the bottom of this list, you're also given some recommended options:
+For this example, lets try to find a framebuffer compatible for a desktop HD 4600 iGPU. We'll first want to scroll down the manual until we hit the [Intel HD Graphics 4200-5200 (Haswell processors)](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md#Intel-hd-graphics-4200-5200-haswell-processors) entry. Here we're given a list of all supported framebuffers in macOS, including the hardware type(ie. Mobile vs desktop), VRAM requirements, etc. If you scroll to the bottom of this list, you're also given some recommended options:
 
 ```
 Desktop :
-	0x0D220003 (default)
+ 0x0D220003 (default)
 Laptop :
-	0x0A160000 (default)
-	0x0A260005 (recommended)
-	0x0A260006 (recommended)
+ 0x0A160000 (default)
+ 0x0A260005 (recommended)
+ 0x0A260006 (recommended)
 Empty Framebuffer :
-	0x04120004 (default)
+ 0x04120004 (default)
 ```
 
-The first 2 entires are pretty obvious, however the last one(Empty Framebuffer) refers to systems where they have a dGPU already setup but still have an iGPU enabled in the background to handle tasks such as hardware accelerated decoding in tasks it excels at.
+The first 2 entries are pretty obvious, however the last one(Empty Framebuffer) refers to systems where they have a dGPU already setup but still have an iGPU enabled in the background to handle tasks such as hardware accelerated decoding in tasks it excels at.
 
 Now since we're using the desktop HD 4600, we'll grab the corresponding framebuffer profile: `0x0D220003`
 
@@ -88,7 +89,7 @@ From here, lets open up our config.plist and head to DeviceProperties -> Add. No
 
 To determine whether you need a new `device-id` injected, you'll want to compare [WhateverGreen's list of supported IDs](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) to what you have.
 
-For this example, lets take a look at the i3-4150 with an HD 4400 iGPU. Using [Intel's ARK page](https://ark.intel.com/content/www/us/en/ark/products/77486/intel-core-i3-4150-processor-3m-cache-3-50-ghz.html), we can see the following:
+For this example, lets take a look at the i3-4150 with an HD 4400 iGPU. Using [Intel's ARK page](https://ark.Intel.com/content/www/us/en/ark/products/77486/Intel-core-i3-4150-processor-3m-cache-3-50-ghz.html), we can see the following:
 
 ```
 Device ID = 0x41E
@@ -96,18 +97,17 @@ Device ID = 0x41E
 
 Now that we have our actual Device ID, lets compare it to [WhateverGreen's list](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md):
 
-
 ```
 Native supported DevIDs:
 
-	0x0d26
-	0x0a26
-	0x0a2e
-	0x0d22
-	0x0412
+ 0x0d26
+ 0x0a26
+ 0x0a2e
+ 0x0d22
+ 0x0412
 ```
 
-Unfortunately the ID is not present in macOS, so we'll need to find a similar iGPU to ours and use their Device ID. The HD 4600 found in the [i3-4330](https://ark.intel.com/content/www/us/en/ark/products/77769/intel-core-i3-4330-processor-4m-cache-3-50-ghz.html) is a very close match, so we'll use its Device ID:
+Unfortunately the ID is not present in macOS, so we'll need to find a similar iGPU to ours and use their Device ID. The HD 4600 found in the [i3-4330](https://ark.Intel.com/content/www/us/en/ark/products/77769/Intel-core-i3-4330-processor-4m-cache-3-50-ghz.html) is a very close match, so we'll use its Device ID:
 
 ```
 Device ID = 0x412
@@ -143,7 +143,6 @@ Now that we've gone over the basics of setting up an iGPU, lets getting into som
   * `kextstat | grep -E "Lilu|WhateverGreen"`
 * `DeviceProperties -> Add -> PciRoot(0x0)/Pci(0x2,0x0)` has been correctly setup
   * Refer to your specific generation in the [config.plist section](https://dortania.github.io/OpenCore-Install-Guide/)
-
 
 Now head forth into your framebuffer patching journey!:
 

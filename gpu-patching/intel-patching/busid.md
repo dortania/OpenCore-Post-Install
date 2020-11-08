@@ -28,7 +28,6 @@ Mobile: 0, PipeCount: 3, PortCount: 3, FBMemoryCount: 3
 03060800 00040000 C7030000
 ```
 
-
 Now lets parse it down to the BudID information, as this is what we will be patching:
 
 ```
@@ -39,7 +38,6 @@ Now lets parse it down to the BudID information, as this is what we will be patc
 02040A00 00040000 C7030000
 03060800 00040000 C7030000
 ```
-
 
 Here we see that this framebuffer personality has 3 Bus IDs listed, lets try to break them down to be a bit more understandable. Lets take entry 1:
 
@@ -123,7 +121,6 @@ framebuffer-con2-enable  | Data | 01000000
 framebuffer-con2-alldata | Data | 01050A00 00080000 87010000
 ```
 
-
 #### Replace sections of the entry
 
 To replace sections of the entry, we'll first want to locate our entry and ensure it's enumerated correctly. This is because Apple's has entries starting at 0 and progresses through that:
@@ -142,6 +139,7 @@ Next lets make the patch, we know that port needs to be patched to 01 and BusID 
 * framebuffer-con2-busid = 05
 
 And finally, we get these patches:
+
 ```
 framebuffer-patch-enable | Data | 01000000
 framebuffer-con2-enable  | Data | 01000000
@@ -166,13 +164,12 @@ For this example, we'll use the 0x3E9B0007 framebuffer again.
 
 To start, we'll be trying to go through entry 1's BusIDs in hope we find working value.
 
+##### 1. Here plug in your HDMI display
 
-1. Here plug in your HDMI display
+##### 2. Set Port 1 to the HDMI connector type
 
-2. Set Port 1 to the HDMI connector type:
+* 01xx0900 **00080000** C7030000
 
-   * 01xx0900 **00080000** C7030000
-   
 ::: details Supported Connector Types
 
 Common connector types supported in macOS
@@ -192,17 +189,17 @@ Reminder that VGA on Skylake and newer are actually DisplayPort internally, so u
 
 :::
 
-3. Disable ports 2 and 3 with busid=00:
+##### 3. Disable ports 2 and 3 with busid=00
 
-   * 02**00**0A00 00040000 C7030000
-   * 03**00**0800 00040000 C7030000
+* 02**00**0A00 00040000 C7030000
+* 03**00**0800 00040000 C7030000
 
-4. Walk through busids for Port 1 if the previous didn't work. The maximum busid on most platforms generally 0x06
+##### 4. Walk through busids for Port 1 if the previous didn't work. The maximum busid on most platforms generally 0x06
 
-   * 01**01**0900 00080000 C7030000
-   * 01**02**0900 00080000 C7030000
-   * 01**03**0900 00080000 C7030000
-   * etc
+* 01**01**0900 00080000 C7030000
+* 01**02**0900 00080000 C7030000
+* 01**03**0900 00080000 C7030000
+* etc
 
 If you still get no output, set port 1's busid to 00 and start going through busids for port 2 and so on
 
@@ -214,18 +211,18 @@ If you still get no output, set port 1's busid to 00 and start going through bus
 
 You'll now want to add the following patches to `DeviceProperteies -> Add -> PciRoot(0x0)/Pci(0x2,0x0)`:
 
-
 ```
 framebuffer-patch-enable | Data | 01000000
-framebuffer-con0-enable  | Data | 01000000 
-framebuffer-con1-enable  | Data | 01000000 
-framebuffer-con2-enable  | Data | 01000000 
-framebuffer-con0-alldata | Data | port 1 (ie. 01010900 00080000 C7030000) 
+framebuffer-con0-enable  | Data | 01000000
+framebuffer-con1-enable  | Data | 01000000
+framebuffer-con2-enable  | Data | 01000000
+framebuffer-con0-alldata | Data | port 1 (ie. 01010900 00080000 C7030000)
 framebuffer-con1-alldata | Data | port 2 (ie. 02000A00 00040000 C7030000)
-framebuffer-con2-alldata | Data | port 3 (ie. 03000800 00040000 C7030000) 
+framebuffer-con2-alldata | Data | port 3 (ie. 03000800 00040000 C7030000)
 ```
 
 Note that:
+
 * port 1 would be labeled as con0
 * port 1's BusID is set to 01
 * port 2 and 3's BusID are set to 00, disabling them
@@ -235,5 +232,3 @@ When done, you should get something similar:
 ![](../../images/gpu-patching/path-done.png)
 
 And as mentioned before, if this combo doesn't work, increment port 1's BusID and if that doesn't work disable port 1's busID and try port 2 and so forth.
-
-

@@ -1,7 +1,5 @@
 # GPU Patching
 
-
-
 This little section is for those who need more than what is provided by simple framebuffer patching and WhateverGreen's auto-patches:
 
 * [Applying a fakeID for unsupported GPUs](https://dortania.github.io/Getting-Started-With-ACPI/Universal/spoof.html)

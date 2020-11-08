@@ -1,7 +1,5 @@
 # Moving OpenCore from USB to macOS Drive
 
-
-
 ## Grabbing OpenCore off the USB
 
 So to start, we'll first want to grab OpenCore off of our installer. To do this, we'll be using a neat tool from CorpNewt called [MountEFI](https://github.com/corpnewt/MountEFI)

@@ -1,10 +1,8 @@
 # Optimizing Power Management
 
-
-
 ## Enabling X86PlatformPlugin
 
-So before we can fine tune power management to our liking, we need to first make sure Apple's XCPM core is loaded. Note that this is supported **only on Haswell and newer(with Ivy Bridge-E)**, consumer Sandy, Ivy Bridge and AMD CPUs should refer to the bottom of the guides: 
+So before we can fine tune power management to our liking, we need to first make sure Apple's XCPM core is loaded. Note that this is supported **only on Haswell and newer(with Ivy Bridge-E)**, consumer Sandy, Ivy Bridge and AMD CPUs should refer to the bottom of the guides:
 
 * [Sandy and Ivy Bridge Power Management](../universal/pm.md#sandy-and-ivy-bridge-power-management)
 * [AMD CPU Power Management](../universal/pm.md#amd-cpu-power-management)
@@ -15,7 +13,7 @@ XCPM Present           |  Missing XCPM
 :-------------------------:|:-------------------------:
 ![](../images/post-install/pm-md/pm-working.png)  |  ![](../images/post-install/pm-md/pm-not-working.png)
 
-As you can see from the left image, we have the X86PlatformPlugin attached meaning Apple's CPU Power Management Drivers are doing their thing(Note the CPU's name does not matter, CPU names come in many varitaions such as CP00, CPU0, PR00, etc. What matters is that AppleACPICPU attaches to it). If you get something like to the right image, then there's likely an issue. Make sure to check the following:
+As you can see from the left image, we have the X86PlatformPlugin attached meaning Apple's CPU Power Management Drivers are doing their thing(Note the CPU's name does not matter, CPU names come in many variations such as CP00, CPU0, PR00, etc. What matters is that AppleACPICPU attaches to it). If you get something like to the right image, then there's likely an issue. Make sure to check the following:
 
 * SSDT-PLUG.**aml** is both present and enabled in your config.plist and EFI/OC/ACPI
   * If you're missing this, head to [Getting Started With ACPI](https://dortania.github.io/Getting-Started-With-ACPI) on how to make this
@@ -46,7 +44,7 @@ XCPM does not natively support Haswell-E and Broadwell-E, this means we need to 
 To start, we're gonna need a couple things:
 
 * X86PlatformPlugin loaded
-  * This means Sandy, Ivy Birdge and AMD CPUs are not supported
+  * This means Sandy, Ivy Bridge and AMD CPUs are not supported
 * [CPUFriend](https://github.com/acidanthera/CPUFriend/releases)
 * [Fewt's fork of CPUFriendFriend](https://github.com/fewtarius/CPUFriendFriend)
   * This fork has some additional features that can help both simplify the process and give use some better control
@@ -61,7 +59,7 @@ When you first open up CPUFriendFriend, you'll be greeted with a prompt for choo
 
 To determine your LPM value, you can either:
 
-* Look for the `TDP-down Frequency` on Intel's [ARK site](https://ark.intel.com/)
+* Look for the `TDP-down Frequency` on Intel's [ARK site](https://ark.Intel.com/)
   * Note most CPUs do not have a listed value, so you'll need to determine yourself
 * Or choose recommended values:
 
@@ -72,17 +70,16 @@ To determine your LPM value, you can either:
 | Haswell/Broadwell HEDT/Server(ie. X99) | 0D | Equivalent of 1300Mhz |
 | Skylake+ HEDT/Server(ie. X299) | 0C | Equivalent of 1200Mhz |
 
-
 * **Note**: LFM value is only available on Broadwell and newer SMBIOS
 * **Note 2**: these values are not set in stone, each machine will have unique characteristics and so you'll need to experiment what works best for your hardware
 
-For this example we'll be using the [i9 7920x](https://ark.intel.com/content/www/us/en/ark/products/126240/intel-core-i9-7920x-x-series-processor-16-5m-cache-up-to-4-30-ghz.html) which has a base clock of 2.9 GHz but no LFM, so we'll choose 1.3 GHz(ie. 1300Mhz) and work our way up/down until we find stability.
+For this example we'll be using the [i9 7920x](https://ark.Intel.com/content/www/us/en/ark/products/126240/Intel-core-i9-7920x-x-series-processor-16-5m-cache-up-to-4-30-ghz.html) which has a base clock of 2.9 GHz but no LFM, so we'll choose 1.3 GHz(ie. 1300Mhz) and work our way up/down until we find stability.
 
 * Note that the LFM value is simply the CPU's multiplier, so you'll need to trim your value appropriately
   * ie. Divide by 100, then convert to hexadecimal
 
 ```sh
-$ echo "obase=16; 13" | bc
+echo "obase=16; 13" | bc
 ```
 
 * Pay close attention we used 13 for 1.3Ghz and not 1.3
@@ -108,7 +105,6 @@ Next up is the Energy Performance Preference, EPP. This tells macOS how fast to 
 
 This final entry is to help macOS out what kind of overall performance you'd like from your CPU. The general recommendation depends on your exact setup, and experimenting does help figure out what's best for you.
 
-
 ### Cleaning up
 
 ![](../images/post-install/pm-md/done.png)
@@ -131,7 +127,7 @@ What we'll need:
 * Ensure CpuPm and Cpu0Ist tables are **NOT** dropped
 * [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 
-Initialling with OpenCore's setup in the Ivy Bridge section, we recommended users drop their CpuPm and Cpu0Ist to avoid any issues with AppleIntelCPUPowerManagement.kext. But dropping these tables have the adverse affect of breaking turbo boost in Windows. So to resolve this, we'll want to keep our OEM's table but we'll want to add a new table to supplement data only for macOS. So once we're done creating our CPU-PM table, we'll re-add our OEM's CPU SSDTs.
+Initialing with OpenCore's setup in the Ivy Bridge section, we recommended users drop their CpuPm and Cpu0Ist to avoid any issues with AppleIntelCPUPowerManagement.kext. But dropping these tables have the adverse affect of breaking turbo boost in Windows. So to resolve this, we'll want to keep our OEM's table but we'll want to add a new table to supplement data only for macOS. So once we're done creating our CPU-PM table, we'll re-add our OEM's CPU SSDTs.
 
 To start, grab your config.plist then head to ACPI -> Delete and ensure both of these sections have `Enabled` set to YES:
 
@@ -185,7 +181,7 @@ Finally, we can disable our previous ACPI -> Delete entries(`Enabled` set to NO)
 
 ### ssdtPRgen Troubleshooting
 
-While ssdtPRgen tries to handle any incompatibility issues with your OEM's SSDT, you may find it still clashes on boot as your OEM has already declared certain devices or methods in sections like `_INI` or `_DSM`. 
+While ssdtPRgen tries to handle any incompatibility issues with your OEM's SSDT, you may find it still clashes on boot as your OEM has already declared certain devices or methods in sections like `_INI` or `_DSM`.
 
 If you find during boot up you get errors such as this one from SSDT-PM:
 
