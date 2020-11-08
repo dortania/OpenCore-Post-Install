@@ -1,9 +1,5 @@
 # Fixing audio with AppleALC
 
-
-
-
-
 So to start, we'll assume you already have Lilu and AppleALC installed, if you're unsure if it's been loaded correctly you can run the following in terminal(This will also check if AppleHDA is loaded, as without this AppleALC has nothing to patch):
 
 ```sh
@@ -215,7 +211,6 @@ For rare situations where you have 2 sounds cards(ex. onboard Realtek and an ext
 
 To get around this, we'll first need to identify the location of both our audio controllers. The easiest way is to run [gfxutil](https://github.com/acidanthera/gfxutil/releases) and search for the PCI IDs:
 
-
 ```sh
 /path/to/gfxutil
 ```
@@ -232,12 +227,10 @@ From here, we can clearly see our PciRoot pathing is:
 PciRoot(0x32)/Pci(0x0,0x0)/Pci(0x0,0x0)
 ```
 
-
 * **Note**: This will assume you know both the Vendor and Device ID of the external sound card. For reference, these are the common Vendor IDs:
   * Creative Labs: `1102`
   * AsusTek: `1043`
 * **Note 2**: Your ACPI and PciRoot path will look different, so pay attention to **your** gfxutil output
-
 
 Now that we have our PciRoot pathing, we can finally open up our config.plist and add our patch.
 
@@ -246,8 +239,8 @@ Under DeviceProperties -> Add, you'll want to add your PciRoot(as a Dictionary) 
 ```
 DeviceProperties
 | --- > Add
-	| --- > PciRoot(0x32)/Pci(0x0,0x0)/Pci(0x0,0x0)
-		| ----> external-audio | Data | 01
+ | --- > PciRoot(0x32)/Pci(0x0,0x0)/Pci(0x0,0x0)
+  | ----> external-audio | Data | 01
 ```
 
 ![](../images/post-install/audio-md/external-audio.png)

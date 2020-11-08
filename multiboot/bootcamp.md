@@ -1,7 +1,5 @@
 # Installing and using BootCamp utilities
 
-
-
 So a neat feature of OpenCore is the ability to avoid the BIOS entirely and use Startup disk solely for multiboot. Problem comes in when we try to boot windows and have no way of setting the boot option back to macOS. That's where the BootCamp utilities come in.
 
 * Note: This guide will not cover the creation of the Windows installer, only the installation of BootCamp drivers.
@@ -73,7 +71,7 @@ Once all is finished, you now have BootCamp switching! There should be a little 
 
 * [Can't find Windows/BootCamp drive in picker](#cant-find-windowsbootcamp-drive-in-picker)
 * ["You can't change the startup disk to the selected disk" error](#you-cant-change-the-startup-disk-to-the-selected-disk-error)
-* [Booting Windows results in BlueScreen or Linux crashes](#booting-windows-results-in-bluescreen-or-linux-crashes)
+* [Booting Windows results in BlueScreen or Linux crashes](#booting-windows-results-in-bluescreen-or-Linux-crashes)
 * [Booting Windows error: `OCB: StartImage failed - Already started`](#booting-windows-error-ocb-startimage-failed---already-started)
 * [Windows Startup Disk can't see APFS drives](#windows-startup-disk-cant-see-apfs-drives)
 

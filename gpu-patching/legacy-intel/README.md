@@ -8,7 +8,7 @@ Covers support for the following GPU models:
   * GMA 3150's can be spoofed for support, however proper acceleration is missing
 * GMA X3100(10.5-10.7)
   * Note only mobile models(ie. 965 Express Chipset Family)
- 
+
 Please note this page is more of an info dump, we won't be going to too great of detail on setup though we plan to expand this page more for it. Information is based off of [Clover's InjectIntel](https://github.com/CloverHackyColor/CloverBootloader/blob/2961827dce9c0ab26345c00fb5a9c581f96c0d6b/rEFIt_UEFI/Platform/gma.cpp)
 
 ## Prerequisites
@@ -42,9 +42,9 @@ Within AppleIntelGMA950.kext's Info.plist, the following Device IDs are supporte
 ```md
 # Values pulled from OS X 10.7.0
 0x2582 - GMA 900 - Grantsdale - 945GM/GMS/940GML
-0x2592 - GMA 900 - Alviso     - 945G            
+0x2592 - GMA 900 - Alviso     - 945G
 0x2772 - GMA 950 - Lakeport   - 915GM/GMS/910GML
-0x27A2 - GMA 950 - Calistoga  - 82915G/GV/910GL 
+0x27A2 - GMA 950 - Calistoga  - 82915G/GV/910GL
 ```
 
 If your iGPU is from one of the above families, but the device ID is not present you can easily add a fake device-id:
@@ -53,13 +53,12 @@ If your iGPU is from one of the above families, but the device ID is not present
 # GMA 950(Calistoga) Fake ID
 config.plist:
 |-DeviceProperties
-	|- Add
-		|- PciRoot(0x0)/Pci(0x2,0x0)
-			|- device-id | Data | A2270000
+ |- Add
+  |- PciRoot(0x0)/Pci(0x2,0x0)
+   |- device-id | Data | A2270000
 ```
 
 For a full list of supported GPU families, see below:
- 
 
 ::: details GMA Device families
 
@@ -87,11 +86,9 @@ Following pulled from Clover's GMA.c:
 
 :::
 
-
 ### Property injection
 
 To ensure proper acceleration with OpenCore, head to your config.plist then `DeviceProperties -> Add`. Create a new child called `PciRoot(0x0)/Pci(0x2,0x0)` and we'll be adding our needed properties:
-
 
 Desktops need very little properties, and most of the time can boot without any:
 
@@ -106,11 +103,11 @@ Desktops need very little properties, and most of the time can boot without any:
 
 ```
 | model                     | String | GMA 950  | // Mainly cosmetic
-| AAPL,HasPanel             |  Data  | 01000000 | 
+| AAPL,HasPanel             |  Data  | 01000000 |
 | AAPL01,BacklightIntensity |  Data  | 3F000008 |
 | AAPL01,BootDisplay        |  Data  | 01000000 |
 | AAPL01,DataJustify        |  Data  | 01000000 |
-| AAPL01,DualLink           |  Data  | 00       | 
+| AAPL01,DualLink           |  Data  | 00       |
 
 * Set AAPL01,DualLink to 01 if your internal display is higher than 1366x768
 ```
@@ -147,7 +144,6 @@ The below properties is what Clover will inject for GMA 900/950 series iGPUs:
 
 :::
 
-
 For GMA 3150 users, you'll also want to add this patch:
 
 ::: details GMA 3150 Patch
@@ -165,7 +161,6 @@ MinKernel  = 8.00.00
 ```
 
 Source: [GMA.c](https://github.com/CloverHackyColor/CloverBootloader/blob/2961827dce9c0ab26345c00fb5a9c581f96c0d6b/rEFIt_UEFI/Platform/gma.cpp#L1735L1739)
-
 
 :::
 
@@ -186,13 +181,12 @@ If your iGPU is from the Crestline family, however the device ID is not present 
 # GMA X3100(Crestline) Fake ID
 config.plist:
 |-DeviceProperties
-	|- Add
-		|- PciRoot(0x0)/Pci(0x2,0x0)
-			|- device-id | Data | 022A0000
+ |- Add
+  |- PciRoot(0x0)/Pci(0x2,0x0)
+   |- device-id | Data | 022A0000
 ```
 
 For a full list of supported GPU families, see below:
- 
 
 ::: details GMA Device families
 
@@ -223,7 +217,7 @@ X3100 need very little properties, and most of the time can boot without any:
 | AAPL01,BacklightIntensity |  Data  | 38000008  |
 | AAPL01,BootDisplay        |  Data  | 01000000  |
 | AAPL01,DataJustify        |  Data  | 01000000  |
-| AAPL01,DualLink           |  Data  | 00        | 
+| AAPL01,DualLink           |  Data  | 00        |
 
 * Set AAPL01,DualLink to 01 if your internal display is higher than 1366x768
 ```
@@ -248,7 +242,7 @@ The below properties is what Clover will inject for GMA 900/950 series iGPUs:
 | AAPL01,Dither                  | Data | 00000000 |
 | AAPL01,Interlace               | Data | 00000000 |
 | AAPL01,Inverter                | Data | 00000000 |
-| AAPL01,InverterCurrent         | Data | 08520000 |    
+| AAPL01,InverterCurrent         | Data | 08520000 |
 | AAPL01,LinkFormat              | Data | 00000000 |
 | AAPL01,LinkType                | Data | 00000000 |
 | AAPL01,Pipe                    | Data | 01000000 |
@@ -277,7 +271,7 @@ Example SSDT:
 DefinitionBlock ("", "SSDT", 2, "DRTNIA", "SsdtDvi", 0x00001000)
 {
     External (_SB_.PCI0.SBRG.GFX0.DVI_, DeviceObj)
-	
+
     Scope (\_SB.PCI0.SBRG.GFX0.DVI)
     {
         Method (_STA, 0, NotSerialized)  // _STA: Status
@@ -298,11 +292,10 @@ DefinitionBlock ("", "SSDT", 2, "DRTNIA", "SsdtDvi", 0x00001000)
 
 Another odd issues with 10.6 and older is that the PciRoot's _UID value **must** be Zero else the kernel panic will happen. Example of bad UID entry:
 
-
 ```c
 Device (PCI0)  {
-	Name (_HID, EisaId ("PNP0A08")) // Use PNP0A08 to find your PciRoot
-	Name (_CID, EisaId ("PNP0A03"))
-	Name (_ADR, One)                
-	Name (_UID, Zero)               // Needs to be patched to Zero
+ Name (_HID, EisaId ("PNP0A08")) // Use PNP0A08 to find your PciRoot
+ Name (_CID, EisaId ("PNP0A03"))
+ Name (_ADR, One)
+ Name (_UID, Zero)               // Needs to be patched to Zero
 ```

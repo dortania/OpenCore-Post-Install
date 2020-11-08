@@ -96,7 +96,6 @@ NVRAM
     |---boot-args | Sting | darkwake=514
 ```
 
-
 The below is more for clarification for users who are already using darkwake or are looking into it, specifically clarifying what values no longer work:
 
 * `darkwake=8`: This hasn't been in the kernel since [Mavericks](https://opensource.apple.com/source/xnu/xnu-2422.115.4/iokit/Kernel/IOPMrootDomain.cpp.auto.html)
