@@ -1,9 +1,5 @@
 # Fixing iMessage and other services with OpenCore
 
-
-
-
-
 This page is for those having iMessage and other iServices issues, this is a very basic guide so will not go as in-depth into the issues as some other guides. This specific guide is a translation and reinterpretation of the AppleLife Guide on fixing iServices: [Как завести сервисы Apple - iMessage, FaceTime, iCloud](https://applelife.ru/posts/727913)
 
 **Note**: You and you alone are responsible for your AppleID, read the guide carefully and take full responsibility if you screw up. Dortania and other guides are not held accountable for what **you** do.
@@ -158,6 +154,7 @@ And a final layer of precaution is to make a new AppleID to play with, this make
 Well mate, you've done it. You blacklisted your AppleID. The fix is simple but not pretty, **you MUST call [Apple](https://support.apple.com/en-us/HT201232)**. Otherwise, there is no proceeding besides using a new account. Adding a payment card before calling can help legitimize the account so it doesn't seem as much like a bot.
 
 ![](../images/post-install/iservices-md/blacklist.png)
- * For Apple contacting, there are 2 methods
-   * Apple calls you: [Apple Support](https://getsupport.apple.com/). You must click on Apple ID and then select the iCloud, Facetime & Messages. Now, you should click on Talk to Apple Support Now and type your phone number
-   * You can contact Apple for support and service as well, look for your country in the list and then make a phone call: [Apple Support Phone Numbers](https://support.apple.com/HT201232)
+
+* For Apple contacting, there are 2 methods
+  * Apple calls you: [Apple Support](https://getsupport.apple.com/). You must click on Apple ID and then select the iCloud, Facetime & Messages. Now, you should click on Talk to Apple Support Now and type your phone number
+  * You can contact Apple for support and service as well, look for your country in the list and then make a phone call: [Apple Support Phone Numbers](https://support.apple.com/HT201232)

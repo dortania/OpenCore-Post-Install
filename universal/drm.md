@@ -1,8 +1,6 @@
 # Fixing DRM support and iGPU performance
 
-
 * **Note**: Safari 14 and macOS 11, Big Sur are currently unsupported by WhateverGreen's DRM patches. Safari 13 in Catalina and older are supported just fine however.
-
 
 So with DRM, we have a couple things we need to mention:
 
@@ -137,7 +135,7 @@ Here's another example. This time, We have an Ryzen 3700X and an RX 480. Our con
 
 So how do we fix iGPU performance? Well by loading Apple's GuC (Graphics Micro Code). The main thing to note is that firmware loading is restricted to:
 
-* Skylake and newer CPU with a [supported iGPU](https://dortania.github.io/GPU-Buyers-Guide/modern-gpus/intel-gpu)
+* Skylake and newer CPU with a [supported iGPU](https://dortania.github.io/GPU-Buyers-Guide/modern-gpus/Intel-gpu)
 * **And** a recent chipset, 300-series or newer: Z390, B360, H370, H310, etc. (***not*** Z370, as it is actually 200-series)
 * Do note that even with recent chipsets, firmware loading is not guaranteed to work. If you experience a kernel panic or lots of graphics errors after trying this, it is probably because firmware loading is not supported on your setup.
 
@@ -153,7 +151,7 @@ To enable firmware loading.
 
 ![Example of igfxfw injected into iGPU](../images/post-install/drm-md/igpu-path.png)
 
-The best way to check is to monitor the iGPU's frequency is with either [Intel Power Gadget](https://software.intel.com/en-us/articles/intel-power-gadget) or checking the boot logs for Apple Scheduler references. Make sure you have the `igfxfw` property applied:
+The best way to check is to monitor the iGPU's frequency is with either [Intel Power Gadget](https://software.Intel.com/en-us/articles/Intel-power-gadget) or checking the boot logs for Apple Scheduler references. Make sure you have the `igfxfw` property applied:
 
 ```
 kernel: (AppleIntelCFLGraphics) [IGPU] Graphics Firmware Version: 2.14.0.0

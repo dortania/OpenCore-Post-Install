@@ -1,7 +1,5 @@
 # Fixing Sleep
 
-
-
 So to understand how to fix sleep issues in macOS, we need to first look at what contributes to sleep issues most of the time:
 
 * Incorrectly managed devices(most commonly PCIe based devices)
@@ -15,7 +13,7 @@ The reason for this is when devices get an S3 call(or S0 for wake), the driver n
 * NVMe Drives
 
 And there are others that can cause sleep issues that aren't directly(or obviously) related to PCI/e:
- 
+
 * CPU Power Management
 * Displays
 * NVRAM
@@ -26,7 +24,7 @@ And there are others that can cause sleep issues that aren't directly(or obvious
 * TSC
 
 And something many people forget are over and under-clocks:
- 
+
 * CPUs
   * AVX often breaks iGPUs and hurt overall stability
 * Bad RAM(Both overclocks and mismatched RAM)
@@ -37,14 +35,13 @@ And something many people forget are over and under-clocks:
 
 ## Preparations
 
-
 **In macOS**:
 
 Before we get in too deep, we'll want to first ready our system:
 
 ```
-sudo pmset autopoweroff 0 
-sudo pmset powernap 0 
+sudo pmset autopoweroff 0
+sudo pmset powernap 0
 sudo pmset standby 0
 sudo pmset proximitywake 0
 ```
@@ -105,9 +102,9 @@ This guide also includes some other fixes than just mapping:
 With GPUs, it's fairly easy to know what might be causing issues. This being unsupported GPUs in macOS. By default, any GPU that doesn't have drivers already provided in the OS will run off very basic drivers known as VESA drivers. These provide minimal display output but also cause a big issue in that macOS doesn't actually know how to properly interact with these devices. To fix this, well need to either trick macOS into thinking it's a generic PCIe device(which it can better handle, ideal for desktops) or completely power off the card(on laptops, desktop dGPUs have issues powering down)
 
 * See here for more info:
-    * [Disabling desktop dGPUs](https://dortania.github.io/Getting-Started-With-ACPI/Desktops/desktop-disable)
-    * [Disabling laptop dGPUs](https://dortania.github.io/Getting-Started-With-ACPI/Laptops/laptop-disable)
-	
+  * [Disabling desktop dGPUs](https://dortania.github.io/Getting-Started-With-ACPI/Desktops/desktop-disable)
+  * [Disabling laptop dGPUs](https://dortania.github.io/Getting-Started-With-ACPI/Laptops/laptop-disable)
+
 Special notes for iGPU users on 10.15.4 and newer:
 
 * iGPU wake is partially broken due to numerous hacks apple uses in AppleGraphicsPowerManagement.kext with real Macs, to get around this you'll likely need `igfxonln=1` to force all displays online. Obviously test first to make sure you have this issue.
@@ -148,7 +145,6 @@ NICs(network Interface Controllers) are fairly easy to fix with sleep, it's main
 * Disable `Wake for network access` in macOS(SystemPreferences -> Power)
   * Seems to break on a lot of hacks
   
-  
 ### Fixing NVMe
 
 So macOS can be quite picky when it comes to NVMe drives, and there's also the issue that Apple's power management drivers are limited to Apple branded drives only. So the main things to do are:
@@ -170,7 +166,7 @@ This guide is primarily for dGPU but works the exact same way with NVMe drives(a
 
 To verify you have working CPU Power Management, see the [Fixing Power Management](../universal/pm.md) page. And if not, then patch accordingly.
 
-Also note that incorrect frequency vectors can result in wake issues, so either verify you're using the correct SMBIOS or adjust the frequency vectors of your current SMBIOS with CPUFrend. Tools like [one-key-cpufriend](https://github.com/stevezhengshiqi/one-key-cpufriend) are known for creating bad frequency vectors so be careful with tools not used by Dortania.
+Also note that incorrect frequency vectors can result in wake issues, so either verify you're using the correct SMBIOS or adjust the frequency vectors of your current SMBIOS with CPUFriend. Tools like [one-key-cpufriend](https://github.com/stevezhengshiqi/one-key-cpufriend) are known for creating bad frequency vectors so be careful with tools not used by Dortania.
 
 A common kernel panic from wake would be:
 
@@ -180,7 +176,7 @@ Sleep Wake failure in EFI
 
 **For AMD**:
 
-Fret not, for their is still hope for you as well! [AMDRyzenCPUPowerManagement.kext](https://github.com/trulyspinach/SMCAMDProcessor) can add power management to Ryzen based CPUs. Installation and usage is explained on the repo's README.md 
+Fret not, for their is still hope for you as well! [AMDRyzenCPUPowerManagement.kext](https://github.com/trulyspinach/SMCAMDProcessor) can add power management to Ryzen based CPUs. Installation and usage is explained on the repo's README.md
 
 ## Other Culprits
 
@@ -207,6 +203,7 @@ For the middle, macOS's lid wake detection can bit a bit broken and you may need
 ```sh
 sudo pmset lidwake 0
 ```
+
 And set `lidewake 1` to re-enable it.
 
 The latter requires a bit more work. What we'll be doing is trying to nullify semi random key spams that happen on Skylake and newer based HPs though pop up in other OEMs as well. This will also assume that your keyboard is PS2 based and are running [VoodooPS2](https://github.com/acidanthera/VoodooPS2/releases).
@@ -251,7 +248,7 @@ IRQ issues usually occur during bootups but some may notice that IRQ calls can b
 This will provide you with both SSDT-HPET.aml and `oc_patches.plist`, You will want to add the SSDT to EFI/OC/ACPI and add the ACPI patches into your config.plist from the oc_patches.plist
 
 ### Audio
- 
+
 Unmanaged or incorrectly managed audio devices can also cause issues, either disable unused audio devices  in your BIOS or verify they're working correctly here:
 
 * [Fixing Audio](../universal/audio.md)
