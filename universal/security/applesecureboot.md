@@ -13,7 +13,8 @@ To best understand Apple Secure Boot, lets take a look at how the boot process w
 
 As we can see, there's several layers of trust incorporated into Apple Secure Boot:
 
-1. OpenCore will verify the ECID value written into boot.efi, to ensure your hard drive cannot be used in another computer
+1. OpenCore will verify the boot.efi manifest (e.g. boot.efi.j137ap.im4m) to ensure that boot.efi was signed by Apple and can be used by this Secure Boot model.
+  * For non-zero ApECID,  OpenCore will additionally verify the ECID value, written in the boot.efi manifest (e.g. boot.efi.j137ap.XXXXXXXX.im4m), to ensure that a compromised hard drive from a different machine with the same Secure Boot model cannot be used in your computer.
 2. boot.efi will verify the kernelcache to ensure it has not been tampered with
 3. apfs.kext and AppleImage4 ensure your System Volume's snapshot has not been tampered with(Only applicable with Big Sur+)
 
@@ -158,14 +159,16 @@ However before setting ApECID, there's a few things we need to note:
 
 * Fresh installs with ApECID set to a non-zero value will require a network connection at install time for verification
 * SecureBootModel should have a defined value instead of `Default` to avoid issues if the value were to change in later OpenCore versions.
-* Pre-existing installs will need to use bless, for this you'll need to first reboot into recovery and run the following command(Replace Macintosh HD with your system's volume name):
+* Pre-existing installs will need to personalize the volume, for this you'll need to first reboot into recovery and run the following command(Replace `Macintosh HD` with your system's volume name):
 
 ```sh
+# Run this command after setting your ApECID value
+# You'll also need an active network connection in recovery to run this command
  bless bless --folder "/Volumes/Macintosh HD/System/Library/CoreServices" \
     --bootefi --personalize
 ```
 
-And something to note when reinstalling the OS is that you may receive "Unable to verify macOS" error message. To work around his issue, you'll want to allocate a dedicated RAM disk of 2 MBs for macOS personalization by entering the following commands in the macOS recovery terminal before starting the installation:
+And something to note when reinstalling macOS 10.15 or older is that you may receive "Unable to verify macOS" error message. To work around his issue, you'll want to allocate a dedicated RAM disk of 2 MBs for macOS personalization by entering the following commands in the macOS recovery terminal before starting the installation:
 
 ```sh
 disk=$(hdiutil attach -nomount ram://4096)
