@@ -130,6 +130,11 @@ Here's another example. This time, We have an Ryzen 3700X and an RX 480. Our con
 * IQSV stands for Intel Quick Sync Video: this only works if iGPU is present and enabled and it is set up correctly.
 * Special configurations (like Haswell + AMD dGPU with an iMac SMBIOS, but iGPU is disabled) are not covered in the chart. You must do research on this yourself.
 * [Shiki source](https://github.com/acidanthera/WhateverGreen/blob/master/WhateverGreen/kern_shiki.hpp) is useful in understanding what flags do what and when they should be used, and may help with special configurations.
+* For error `VDADecoderCreate failed. err: -12473` in Big Sur, forcing the AMD Decoder(on applicable systems) can help resolve this:
+
+    ```sh
+    defaults write com.apple.AppleGVA gvaForceAMDAVCDecode -boolean yes
+    ```
 
 ## Fixing iGPU performance
 
