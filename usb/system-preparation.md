@@ -131,7 +131,7 @@ If you're in the latter camp, you'll now want to add the needed ACPI renames to 
 
 But now we must part into 2 sections, depending on which hardware you have:
 
-* [Intel USB Mapping](../usb/Intel-mapping/Intel.md)
+* [Intel USB Mapping](../usb/intel-mapping/intel.md)
   * A more automated process, Intel only however
 * [Manual USB Mapping](../usb/manual/manual.md)
   * More step by step process, and is the only way to map AMD and 3rd party USB controllers properly.
