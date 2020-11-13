@@ -1,10 +1,8 @@
 # Using Bootstrap.efi
 
-So with OpenCore 0.5.8 and newer, we get a neat little file inside our EFI/OC/Bootstrap folder called Bootstrap.efi. What this allows us to do is add OpenCore to our motherboard's boot menu and prevent issues where either Windows or Linux try to overwrite the BOOTx64.efi file which can happen during updates and completely delete any way of booting OpenCore.
+With OpenCore 0.5.8 and newer, the EFI/OC/Bootstrap folder contains Bootstrap.efi. This allows adding OpenCore to our motherboard's boot menu and prevent issues where either Windows or Linux try to overwrite the BOOTx64.efi file which can happen when installing or updating Windows and breaks OpenCore's ability to boot.
 
-## Preparation
-
-So to start we're gonna need the following:
+## Prerequisites
 
 * [OpenCore 0.5.8 or newer](https://github.com/acidanthera/OpenCorePkg/releases)
   * Verify you have EFI/OC/Bootstrap/Bootstrap.efi
@@ -18,20 +16,20 @@ So to start we're gonna need the following:
   
 ## Booting
 
-So once you've got the prerequisites out of the way, we're ready to boot! So what the first boot with these settings enabled is create a new boot option in our BIOS(Boot9696) and every boot after this will update the entry making sure it's correct. This now allows us to either remove BOOTx64.efi or not worry about it when other OSes overwrite this file.
+During the first boot after the prerequistes have been met, it will create a new boot option in our BIOS(Boot9696) and future boots will update the entry making sure it's correct. This now allows us to either remove BOOTx64.efi or not worry about it when other OSes overwrite this file.
 
-If no new boot option is created, you can go down and follow the troubleshooting steps on manually adding it. But triple check the above settings are correct on your system.
-  
+You are now successfully using Bootstrap.
+
 ## Troubleshooting
 
-This is mainly as a mini-guide in case BootProtect doesn't work or you'd like to do it manually.
+If no new boot option is created, you can follow these troubleshooting steps but first double-check the prerequisites were met. The following sections are a mini-guide in case BootProtect doesn't work or you'd like to do it manually.
 
 * [Verify Bootstrap entry was applied](#verify-bootstrap-entry-was-applied)
 * [Removing Bootstrap entry from BIOS](#removing-bootstrap-entry-from-bios)
 
 ### Verify Bootstrap entry was applied
 
-For those wanting to verify that the entry was applied in OpenCore, enabling logging(see [OpenCore Debugging](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html)) and check for entries similar to these:
+For those wanting to verify that the entry was applied in OpenCore, enable logging(see [OpenCore Debugging](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html)) and check for entries similar to these:
 
 ```
 OCB: Have existing option 1, valid 1
@@ -40,9 +38,9 @@ OCB: Boot order has first option as the default option
 
 ### Removing Bootstrap entry from BIOS
 
-Because the Bootstrap entry is a protected entry when resetting NVRAM, you'll need to set certain settings:
+Because the Bootstrap entry is a protected entry when resetting NVRAM, you'll need the following settings in your config.plist:
 
 * Misc -> Security -> AllowNvramReset -> true
 * Misc -> Security -> BootProtect -> None
 
-Once these 2 are set in your config.plist, you can next reboot into the OpenCore picker and select the `Reset NVRAM` entry
+Once these are set, you can reboot into the OpenCore picker and select the `Reset NVRAM` entry.
