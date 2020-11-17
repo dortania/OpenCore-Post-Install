@@ -35,6 +35,10 @@ Once all this is saved, you can reboot and be greeted with a true Mac-like GUI:
 
 ![Credit to vit9696](../images/extras/gui-md/gui.png)
 
+For those who'd like a Big Sur styled theme, you can grab it here: [OpenCanopy-Big-Sur](https://github.com/khronokernel/OpenCanopy-Big-Sur):
+
+![](../images/extras/gui-md/BigSur-Picker.png)
+
 ## Setting up Boot-chime with AudioDxe
 
 So to start, we'll need a couple things:
