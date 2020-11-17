@@ -86,7 +86,7 @@ For this, open up your config.plist and head to the `NVRAM -> Add` section. Here
 
 Next you'll want to add our bad RTC region as an array, so `rtcfx_exclude=85-86` will become `rtc-blacklist | Data | 8586`. This will also work with longer ranges such as 85-89 and such however with `rtc-blacklist` you must include every entry(ie. `<85 86 87 88 89>`). Remember to remove the boot-arg once you're set `rtc-blacklist`
 
-Next ensure you have `NVRAM -> Block` also set as NVRAM variables will not be overwritten by OpenCore unless explicitly told so.
+Next ensure you have `NVRAM -> Delete` also set as NVRAM variables will not be overwritten by OpenCore unless explicitly told so.
 
 Once all this is done, you should have something similar to below:
 
