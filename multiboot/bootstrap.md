@@ -16,7 +16,7 @@ With OpenCore 0.5.8 and newer, the EFI/OC/Bootstrap folder contains Bootstrap.ef
   
 ## Booting
 
-During the first boot after the prerequistes have been met, it will create a new boot option in our BIOS(Boot9696) and future boots will update the entry making sure it's correct. This now allows us to either remove BOOTx64.efi or not worry about it when other OSes overwrite this file.
+During the first boot after the prerequisites have been met, it will create a new boot option in our BIOS(Boot9696) and future boots will update the entry making sure it's correct. This now allows us to either remove BOOTx64.efi or not worry about it when other OSes overwrite this file.
 
 You are now successfully using Bootstrap.
 
