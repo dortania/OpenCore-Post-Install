@@ -338,6 +338,7 @@ E2
 E2500
 EB
 EC0
+ECC
 ECDV
 ECID
 ECs
@@ -746,6 +747,7 @@ Pre-existing
 Preboot
 Prebuilt
 Prelinked
+Profiler
 ProperTree
 ProperTree's
 Psystar
@@ -1087,6 +1089,7 @@ distro's
 distros
 dmg
 dmg's
+dmidecode
 dortania
 dreamwhite's
 eDP
