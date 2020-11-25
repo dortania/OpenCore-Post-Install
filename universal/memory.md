@@ -468,3 +468,9 @@ Simply copy over your work from the CustomMemory.plist and paste it into Platfor
 ![](../images/post-install/memory-md/memory-example-done.png)
 
 Once this is copied over, enable `PlatformInfo -> CustomMemory` and reboot. The error should be no more now!
+
+Reminder that you must **fill** all 12 slots with memory, otherwise the error will not disappear:
+
+| Fixed System Profiler | Fixed About This Mac |
+| :--- | :--- |
+| ![](../images/post-install/memory-md/memory-fixed-system-profiler.png) | ![](../images/post-install/memory-md/memory-fixed-aboutthismac.png) |
