@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Fixing MacPro7,1 Memory Errors | OpenCore Post-Install</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    <link rel="&#39;stylesheet" href="/OpenCore-Post-Install/styles/website.css">
+    <meta name="description" content="OpenCore post-install guide">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <link rel="preload" href="/OpenCore-Post-Install/assets/css/0.styles.716e941d.css" as="style"><link rel="preload" href="/OpenCore-Post-Install/assets/js/app.e61e0ceb.js" as="script"><link rel="preload" href="/OpenCore-Post-Install/assets/js/2.5e2f3c7c.js" as="script"><link rel="preload" href="/OpenCore-Post-Install/assets/js/9.b81c1ca4.js" as="script"><link rel="preload" href="/OpenCore-Post-Install/assets/js/37.173cf53b.js" as="script"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/10.c30b7d2b.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/11.006c1959.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/12.17167f92.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/13.6ff29dc7.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/14.599e3aba.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/15.1533ce7f.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/16.5847773f.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/17.60e9a309.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/18.d0f7fe79.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/19.9646c562.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/20.5d3184bd.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/21.2444a200.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/22.ffaef491.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/23.58457be6.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/24.0c6bba67.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/25.2521c34e.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/26.3f4d9ca9.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/27.305941dc.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/28.647b4b3a.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/29.7126839c.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/3.fbaf0872.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/30.06d3c37e.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/31.4a2b8933.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/32.ac105027.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/33.392893d4.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/34.eccf14a7.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/35.43835fd4.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/36.dbf09c7d.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/38.c49e2cb0.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/39.af56d340.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/4.2ebd9051.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/40.c6914c6a.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/41.1c45c3aa.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/42.592147d4.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/43.4f5f1ae5.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/44.b03c6715.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/45.711c6fcf.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/46.9f8bba63.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/47.928916bf.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/48.884f94e6.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/49.54f163d2.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/5.514a5fa2.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/50.25ad7b19.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/51.b5f4a512.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/6.e3c27804.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/7.1248f5d2.js"><link rel="prefetch" href="/OpenCore-Post-Install/assets/js/8.d0f0b0ca.js">
+    <link rel="stylesheet" href="/OpenCore-Post-Install/assets/css/0.styles.716e941d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/OpenCore-Post-Install/" class="home-link router-link-active"><img src="/OpenCore-Post-Install/homepage.png" alt="OpenCore Post-Install" class="logo"> <span class="site-name can-hide">OpenCore Post-Install</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Dortania Guides" class="dropdown-title"><span class="title">Dortania Guides</span> <span class="arrow down"></span></button> <button type="button" aria-label="Dortania Guides" class="mobile-dropdown-title"><span class="title">Dortania Guides</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://dortania.github.io/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Home Site
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://dortania.github.io/OpenCore-Install-Guide/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  OpenCore Install Guide
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://dortania.github.io/Getting-Started-With-ACPI/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Getting Started With ACPI
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://dortania.github.io/GPU-Buyers-Guide/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GPU Buyers Guide
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://dortania.github.io/Wireless-Buyers-Guide/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Wireless Buyers Guide
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://dortania.github.io/Anti-Hackintosh-Buyers-Guide/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Anti Buyers Guide
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <div class="nav-item"><a role="button" aria-label="Switch to light mode" class="nav-link"><span>Switch theme</span></a></div> <a href="https://github.com/dortania/OpenCore-Post-Install" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Dortania Guides" class="dropdown-title"><span class="title">Dortania Guides</span> <span class="arrow down"></span></button> <button type="button" aria-label="Dortania Guides" class="mobile-dropdown-title"><span class="title">Dortania Guides</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://dortania.github.io/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Home Site
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://dortania.github.io/OpenCore-Install-Guide/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  OpenCore Install Guide
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://dortania.github.io/Getting-Started-With-ACPI/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Getting Started With ACPI
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://dortania.github.io/GPU-Buyers-Guide/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GPU Buyers Guide
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://dortania.github.io/Wireless-Buyers-Guide/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Wireless Buyers Guide
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://dortania.github.io/Anti-Hackintosh-Buyers-Guide/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Anti Buyers Guide
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <div class="nav-item"><a role="button" aria-label="Switch to light mode" class="nav-link"><span>Switch theme</span></a></div> <a href="https://github.com/dortania/OpenCore-Post-Install" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Introduction</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/OpenCore-Post-Install/" aria-current="page" class="sidebar-link">OpenCore Post-Install</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Universal</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/OpenCore-Post-Install/universal/audio.html" class="sidebar-link">Fixing Audio</a></li><li><a href="/OpenCore-Post-Install/universal/oc2hdd.html" class="sidebar-link">Booting without USB</a></li><li><a href="/OpenCore-Post-Install/universal/update.html" class="sidebar-link">Updating OpenCore, kexts and macOS</a></li><li><a href="/OpenCore-Post-Install/universal/drm.html" class="sidebar-link">Fixing DRM</a></li><li><a href="/OpenCore-Post-Install/universal/iservices.html" class="sidebar-link">Fixing iServices</a></li><li><a href="/OpenCore-Post-Install/universal/pm.html" class="sidebar-link">Fixing Power Management</a></li><li><a href="/OpenCore-Post-Install/universal/sleep.html" class="sidebar-link">Fixing Sleep</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>USB Fixes</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/OpenCore-Post-Install/usb/" class="sidebar-link">USB Mapping: Introduction</a></li><li><a href="/OpenCore-Post-Install/usb/system-preparation.html" class="sidebar-link">System Preparation</a></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>USB Mapping</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>Miscellaneous Fixes</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Security</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/OpenCore-Post-Install/universal/security.html" class="sidebar-link">Security and FileVault</a></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span></span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/OpenCore-Post-Install/universal/security/filevault.html" class="sidebar-link">FileVault</a></li><li><a href="/OpenCore-Post-Install/universal/security/vault.html" class="sidebar-link">Vault</a></li><li><a href="/OpenCore-Post-Install/universal/security/scanpolicy.html" class="sidebar-link">ScanPolicy</a></li><li><a href="/OpenCore-Post-Install/universal/security/applesecureboot.html" class="sidebar-link">Apple Secure Boot</a></li></ul></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Laptop Specifics</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/OpenCore-Post-Install/laptop-specific/battery.html" class="sidebar-link">Fixing Battery Read-outs</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Cosmetics</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/OpenCore-Post-Install/cosmetic/verbose.html" class="sidebar-link">Fixing Resolution and Verbose</a></li><li><a href="/OpenCore-Post-Install/cosmetic/gui.html" class="sidebar-link">Add GUI and Boot-chime</a></li><li><a href="/OpenCore-Post-Install/universal/memory.html" aria-current="page" class="active sidebar-link">Fixing MacPro7,1 Memory Errors</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/OpenCore-Post-Install/universal/memory.html#mapping-our-memory" class="sidebar-link">Mapping our memory</a></li><li class="sidebar-sub-header"><a href="/OpenCore-Post-Install/universal/memory.html#cleaning-up" class="sidebar-link">Cleaning up</a></li></ul></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Multiboot</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/OpenCore-Post-Install/multiboot/bootstrap.html" class="sidebar-link">Setting up Bootstrap.efi</a></li><li><a href="/OpenCore-Post-Install/multiboot/bootcamp.html" class="sidebar-link">Installing BootCamp</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Miscellaneous</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/OpenCore-Post-Install/misc/rtc.html" class="sidebar-link">Fixing RTC</a></li><li><a href="/OpenCore-Post-Install/misc/msr-lock.html" class="sidebar-link">Fixing CFG Lock</a></li><li><a href="/OpenCore-Post-Install/misc/nvram.html" class="sidebar-link">Emulated NVRAM</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>GPU Patching</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/OpenCore-Post-Install/gpu-patching/" class="sidebar-link">In-depth GPU patching</a></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>Modern Intel iGPU</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/OpenCore-Post-Install/gpu-patching/intel-patching/" class="sidebar-link">Intro to iGPU patching</a></li><li><a href="/OpenCore-Post-Install/gpu-patching/intel-patching/vram.html" class="sidebar-link">VRAM patching</a></li><li><a href="/OpenCore-Post-Install/gpu-patching/intel-patching/connector.html" class="sidebar-link">Connector-type patching</a></li><li><a href="/OpenCore-Post-Install/gpu-patching/intel-patching/busid.html" class="sidebar-link">BusID patching</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>Legacy Intel iGPU</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/OpenCore-Post-Install/gpu-patching/legacy-intel/" class="sidebar-link">GMA Patching</a></li></ul></section></li><li><section class="sidebar-group is-sub-group depth-1"><p class="sidebar-heading"><span>Legacy Nvidia</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/OpenCore-Post-Install/gpu-patching/nvidia-patching/" class="sidebar-link">Nvidia Patching</a></li></ul></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-succinct-content content__default"><h1 id="fixing-macpro7-1-memory-errors"><a href="#fixing-macpro7-1-memory-errors" class="header-anchor">#</a> Fixing MacPro7,1 Memory Errors</h1> <p>On macOS Catalina and newer, users of the MacPro7,1 SMBIOS will experience this error on each boot:</p> <table><thead><tr><th style="text-align:left;">Notification error</th> <th style="text-align:left;">About This Mac Error</th></tr></thead> <tbody><tr><td style="text-align:left;"><img width="1362" src="/OpenCore-Post-Install/assets/img/memory-error-notification.88c0943e.png"></td> <td style="text-align:left;"><img src="/OpenCore-Post-Install/assets/img/memory-error-aboutthismac.ecac0f88.png" alt=""></td></tr></tbody></table> <p>The exact reason for this error is a bit unknown, however ways to resolve this error have been made possible. The most common way to remove the error was to use <a href="https://github.com/IOIIIO/MacProMemoryNotificationDisabler" target="_blank" rel="noopener noreferrer">MacProMemoryNotificationDisabler.kext<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> however it can cause a lot of userspace stability issues as well as no longer working in Big Sur(due to missing userspace patching capabilities from Lilu).</p> <p>In this guide, we'll be discussing another way to remove the error: Using OpenCore's CustomMemory</p> <p>The exact way we'll be doing this is adding fake memory until we reach 12 filled slots, as any less or any empty slots will still result in memory errors. Note this won't be a super in-depth guide, instead explaining the basics of how to setup Custom Memory.</p> <h2 id="mapping-our-memory"><a href="#mapping-our-memory" class="header-anchor">#</a> Mapping our memory</h2> <p>To start, we'll want to grab the following files:</p> <ul><li><a href="https://github.com/dortania/OpenCore-Post-Install/blob/master/extra-files/CustomMemory.plist.zip" target="_blank" rel="noopener noreferrer">CustomMemory.plist<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <ul><li>Example setup for using CustomMemory in OpenCore</li></ul></li> <li><a href="https://github.com/acidanthera/dmidecode/releases" target="_blank" rel="noopener noreferrer">dmidecode<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <ul><li>Tool used for extracting SMBIOS info in macOS</li></ul></li></ul> <p>Here is a premade file which has properties already set out for you, one you open it you should see the following:</p> <p><img src="/OpenCore-Post-Install/assets/img/CustomMemory-open.4edb1e60.png" alt=""></p> <p>From here we see may properties, lets try to break it down:</p> <ul><li><a href="#datawidth">DataWidth</a></li> <li><a href="#errorcorrection">ErrorCorrection</a></li> <li><a href="#formfactor">FormFactor</a></li> <li><a href="#maxcapacity">MaxCapacity</a></li> <li><a href="#totalwidth">TotalWidth</a></li> <li><a href="#type">Type</a></li> <li><a href="#typedetail">TypeDetail</a></li> <li><a href="#devices">Devices</a> <ul><li><a href="#assettag">AssetTag</a></li> <li><a href="#banklocator">BankLocator</a></li> <li><a href="#devicelocator">DeviceLocator</a></li> <li><a href="#manufacturer">Manufacturer</a></li> <li><a href="#partnumber">PartNumber</a></li> <li><a href="#serialnumber">SerialNumber</a></li> <li><a href="#size">Size</a></li> <li><a href="#speed">Speed</a></li></ul></li> <li><a href="#cleaning-up">Cleaning up</a></li></ul> <h3 id="datawidth"><a href="#datawidth" class="header-anchor">#</a> DataWidth</h3> <p>Specifies the data width, in bits, of the memory. A DataWidth of 0 and a TotalWidth of 8 indicates that the device is being used solely to provide 8 error-correction bits.</p> <p>To determine the DataWidth, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Data Width:&quot;</span>
+<span class="token comment"># Example Output</span>
+ Data Width: <span class="token number">64</span> bits
+ Data Width: Unknown
+ Data Width: <span class="token number">64</span> bits
+ Data Width: Unknown
+ Data Width: <span class="token number">64</span> bits
+ Data Width: Unknown
+ Data Width: <span class="token number">64</span> bits
+ Data Width: Unknown
+<span class="token comment"># Final Value</span>
+DataWidth <span class="token operator">=</span> <span class="token number">64</span>
+</code></pre></div><h3 id="errorcorrection"><a href="#errorcorrection" class="header-anchor">#</a> ErrorCorrection</h3> <p>Specifies ECC support:</p> <div class="language- extra-class"><pre class="language-text"><code>1 — Other
+2 — Unknown
+3 — None
+4 — Parity
+5 — Single-bit ECC
+6 — Multi-bit ECC
+7 — CRC
+</code></pre></div><p>To determine ErrorCorrection, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Error Correction Type:&quot;</span>
+<span class="token comment"># Example Output</span>
+ Error Correction Type: None
+<span class="token comment"># Final Value</span>
+ErrorCorrection <span class="token operator">=</span> <span class="token number">3</span>
+</code></pre></div><h3 id="formfactor"><a href="#formfactor" class="header-anchor">#</a> FormFactor</h3> <p>Specifies Memory Form Factor</p> <div class="language- extra-class"><pre class="language-text"><code>1  — Other
+2  — Unknown
+9  — DIMM
+13 — SODIMM
+15 — FB-DIMM
+</code></pre></div><p>To determine FormFactor, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Form Factor:&quot;</span>
+<span class="token comment"># Example Output</span>
+ Form Factor: DIMM
+ Form Factor: DIMM
+ Form Factor: DIMM
+ Form Factor: DIMM
+ Form Factor: DIMM
+ Form Factor: DIMM
+ Form Factor: DIMM
+ Form Factor: DIMM
+<span class="token comment"># Final Value</span>
+FormFactor <span class="token operator">=</span> <span class="token number">9</span>
+</code></pre></div><h3 id="maxcapacity"><a href="#maxcapacity" class="header-anchor">#</a> MaxCapacity</h3> <p>Specifies maximum supported memory in your system</p> <p>Type: Bytes</p> <div class="language- extra-class"><pre class="language-text"><code>8GB   - 8589934592
+16GB  - 17179869184
+32GB  - 34359738368
+64GB  - 68719476736
+128GB - 137438953472
+256GB - 274877906944
+</code></pre></div><h3 id="totalwidth"><a href="#totalwidth" class="header-anchor">#</a> TotalWidth</h3> <p>Specifies the total width, in bits, of the memory, including any check or error-correction bits. If there are no error-correction bits, this value should be equal to DataWidth.</p> <p>To determine TotalWidth, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Total Width:&quot;</span>
+<span class="token comment"># Example Output</span>
+ Total Width: <span class="token number">72</span> bits
+ Total Width: Unknown
+ Total Width: <span class="token number">72</span> bits
+ Total Width: Unknown
+ Total Width: <span class="token number">72</span> bits
+ Total Width: Unknown
+ Total Width: <span class="token number">72</span> bits
+ Total Width: Unknown
+<span class="token comment"># Final Value</span>
+TotalWidth <span class="token operator">=</span> <span class="token number">72</span>
+</code></pre></div><h3 id="type"><a href="#type" class="header-anchor">#</a> Type</h3> <p>Specifies memory type</p> <div class="language- extra-class"><pre class="language-text"><code>1  — Other
+2  — Unknown
+15 — SDRAM
+18 — DDR
+19 — DDR2
+20 — DDR2 FB-DIMM
+24 — DDR3
+26 — DDR4
+27 — LPDDR
+28 — LPDDR2
+29 — LPDDR3
+30 — LPDDR4
+</code></pre></div><p>To determine Type, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Type:&quot;</span>
+<span class="token comment"># Example Output</span>
+ Type: DDR4
+ Type: Unknown
+ Type: DDR4
+ Type: Unknown
+ Type: DDR4
+ Type: Unknown
+ Type: DDR4
+ Type: Unknown
+<span class="token comment"># Final Value</span>
+Type <span class="token operator">=</span> <span class="token number">26</span>
+</code></pre></div><h3 id="typedetail"><a href="#typedetail" class="header-anchor">#</a> TypeDetail</h3> <p>Specifies other memory type information</p> <div class="language- extra-class"><pre class="language-text"><code>Bit 0 — Reserved, set to 0
+Bit 1 — Other
+Bit 2 — Unknown
+Bit 7 — Synchronous
+Bit 13 — Registered (buffered)
+Bit 14 — Unbuffered (unregistered)
+</code></pre></div><p>Combine all that are applicable, example:</p> <div class="language- extra-class"><pre class="language-text"><code>Bit 13 — Registered (buffered)
+Bit 14 — Unbuffered (unregistered)
+-----------------------------------
+27 = TypeDetail
+</code></pre></div><p>To determine TypeDetail, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Type Detail:&quot;</span>
+<span class="token comment"># Example Output</span>
+ Type Detail: Synchronous
+ Type Detail: Synchronous
+ Type Detail: Synchronous
+ Type Detail: Synchronous
+ Type Detail: Synchronous
+ Type Detail: Synchronous
+ Type Detail: Synchronous
+ Type Detail: Synchronous
+<span class="token comment"># Final Value</span>
+TypeDetail <span class="token operator">=</span> <span class="token number">7</span>
+</code></pre></div><h3 id="devices"><a href="#devices" class="header-anchor">#</a> Devices</h3> <p>Array of Memory Devices, and where we do out magic to fix the error. In the sample CustomMemory.plist I provided, we have 12 slots listed here. From this, you'll want to open up System Profiler in macOS and look at the Memory tab:</p> <p><img src="/OpenCore-Post-Install/assets/img/system-profiler.1f390279.png" alt=""></p> <p>Here we see which slots are populated by memory, and which are empty. For filled slots, simply run through the below on how to pull information. For slots that are empty however, you'll want to add some blank information into thinking macOS has populated device. Ensure that by the end, you have 12 total slots filled with devices.</p> <p>Example of filled slots vs fake:</p> <p><img src="/OpenCore-Post-Install/assets/img/memory-example.eb665fb8.png" alt=""></p> <p>We recommend setting the Size and Speed to both 1, to ensure applications that do pull from memory are not confused that you have more than you should.</p> <p>Next lets break down the properties:</p> <ul><li><a href="#assettag">AssetTag</a></li> <li><a href="#banklocator">BankLocator</a></li> <li><a href="#devicelocator">DeviceLocator</a></li> <li><a href="#manufacturer">Manufacturer</a></li> <li><a href="#partnumber">PartNumber</a></li> <li><a href="#serialnumber">SerialNumber</a></li> <li><a href="#size">Size</a></li> <li><a href="#speed">Speed</a></li></ul> <h4 id="assettag"><a href="#assettag" class="header-anchor">#</a> AssetTag</h4> <p>To determine AssetTag, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Asset Tag:&quot;</span>
+<span class="token comment">#Example Output</span>
+
+<span class="token comment"># Final Value</span>
+</code></pre></div><ul><li>If dmidecode prints <code>Not Specified</code>, you can simply leave this entry blank</li></ul> <h4 id="banklocator"><a href="#banklocator" class="header-anchor">#</a> BankLocator</h4> <p>To determine BankLocator, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Bank Locator:&quot;</span>
+<span class="token comment">#Example Output</span>
+
+<span class="token comment"># Final Value</span>
+</code></pre></div><ul><li>If dmidecode prints <code>Not Specified</code>, you can simply leave this entry blank</li></ul> <h4 id="devicelocator"><a href="#devicelocator" class="header-anchor">#</a> DeviceLocator</h4> <p>To determine DeviceLocator, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Locator:&quot;</span>
+<span class="token comment">#Example Output</span>
+ Locator: DIMM_A1
+ Locator: DIMM_A2
+ Locator: DIMM_B1
+ Locator: DIMM_B2
+ Locator: DIMM_C1
+ Locator: DIMM_C2
+ Locator: DIMM_D1
+ Locator: DIMM_D2
+<span class="token comment"># Final Value</span>
+Entry <span class="token number">1</span>:  DIMM_A1
+Entry <span class="token number">2</span>:  DIMM_A2
+Entry <span class="token number">3</span>:  DIMM_B1
+Entry <span class="token number">4</span>:  DIMM_B2
+Entry <span class="token number">5</span>:  DIMM_C1
+Entry <span class="token number">6</span>:  DIMM_C2
+Entry <span class="token number">7</span>:  DIMM_D1
+Entry <span class="token number">8</span>:  DIMM_D2
+Entry <span class="token number">9</span>:  DIMM_EMPTY
+Entry <span class="token number">10</span>: DIMM_EMPTY
+Entry <span class="token number">11</span>: DIMM_EMPTY
+Entry <span class="token number">12</span>: DIMM_EMPTY
+</code></pre></div><h4 id="manufacturer"><a href="#manufacturer" class="header-anchor">#</a> Manufacturer</h4> <p>To determine Manufacturer, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Manufacturer:&quot;</span>
+<span class="token comment">#Example Output</span>
+
+<span class="token comment"># Final Value</span>
+</code></pre></div><h4 id="partnumber"><a href="#partnumber" class="header-anchor">#</a> PartNumber</h4> <p>To determine PartNumber, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Part Number:&quot;</span>
+<span class="token comment">#Example Output</span>
+ Part Number: KHX2666C16/8G
+ Part Number: NO DIMM
+ Part Number: KHX2666C16/8G
+ Part Number: NO DIMM
+ Part Number: KHX2666C16/8G
+ Part Number: NO DIMM
+ Part Number: KHX2666C15D4/8G
+ Part Number: NO DIMM
+<span class="token comment"># Final Value</span>
+Entry <span class="token number">1</span>:  KHX2666C16/8G
+Entry <span class="token number">2</span>:  EmptyDIMM
+Entry <span class="token number">3</span>:  KHX2666C16/8G
+Entry <span class="token number">4</span>:  EmptyDIMM
+Entry <span class="token number">5</span>:  KHX2666C16/8G
+Entry <span class="token number">6</span>:  EmptyDIMM
+Entry <span class="token number">7</span>:  KHX2666C15D4/8G
+Entry <span class="token number">8</span>:  EmptyDIMM
+Entry <span class="token number">9</span>:  EmptyDIMM
+Entry <span class="token number">10</span>: EmptyDIMM
+Entry <span class="token number">11</span>: EmptyDIMM
+Entry <span class="token number">12</span>: EmptyDIMM
+</code></pre></div><h4 id="serialnumber"><a href="#serialnumber" class="header-anchor">#</a> SerialNumber</h4> <p>To determine SerialNumber, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Serial Number:&quot;</span>
+<span class="token comment">#Example Output</span>
+ Serial Number: 0F095257
+ Serial Number: NO DIMM
+ Serial Number: 0C099A57
+ Serial Number: NO DIMM
+ Serial Number: 752EDED8
+ Serial Number: NO DIMM
+ Serial Number: A2032E84
+ Serial Number: NO DIMM
+<span class="token comment"># Final Value</span>
+Entry <span class="token number">1</span>:  0F095257
+Entry <span class="token number">2</span>:  EmptyDIMM
+Entry <span class="token number">3</span>:  0C099A57
+Entry <span class="token number">4</span>:  EmptyDIMM
+Entry <span class="token number">5</span>:  752EDED8
+Entry <span class="token number">6</span>:  EmptyDIMM
+Entry <span class="token number">7</span>:  A2032E84
+Entry <span class="token number">8</span>:  EmptyDIMM
+Entry <span class="token number">9</span>:  EmptyDIMM
+Entry <span class="token number">10</span>: EmptyDIMM
+Entry <span class="token number">11</span>: EmptyDIMM
+Entry <span class="token number">12</span>: EmptyDIMM
+</code></pre></div><h4 id="size"><a href="#size" class="header-anchor">#</a> Size</h4> <p>Size of single memory stick in MB</p> <div class="language- extra-class"><pre class="language-text"><code>1GB  - 1024
+2GB  - 2048
+4GB  - 4096
+8GB  - 8192
+16GB - 16384
+32GB - 32768
+64GB - 65536
+12GB - 131072
+</code></pre></div><p>To determine Size, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Size:&quot;</span>
+<span class="token comment">#Example Output</span>
+ Size: <span class="token number">8</span> GB
+ Size: No Module Installed
+ Size: <span class="token number">8</span> GB
+ Size: No Module Installed
+ Size: <span class="token number">8</span> GB
+ Size: No Module Installed
+ Size: <span class="token number">8</span> GB
+ Size: No Module Installed
+<span class="token comment"># Final Value</span>
+Entry <span class="token number">1</span>:  <span class="token number">8192</span>
+Entry <span class="token number">2</span>:  <span class="token number">1</span>
+Entry <span class="token number">3</span>:  <span class="token number">8192</span>
+Entry <span class="token number">4</span>:  <span class="token number">1</span>
+Entry <span class="token number">5</span>:  <span class="token number">8192</span>
+Entry <span class="token number">6</span>:  <span class="token number">1</span>
+Entry <span class="token number">7</span>:  <span class="token number">8192</span>
+Entry <span class="token number">8</span>:  <span class="token number">1</span>
+Entry <span class="token number">9</span>:  <span class="token number">1</span>
+Entry <span class="token number">10</span>: <span class="token number">1</span>
+Entry <span class="token number">11</span>: <span class="token number">1</span>
+Entry <span class="token number">12</span>: <span class="token number">1</span>
+</code></pre></div><h4 id="speed"><a href="#speed" class="header-anchor">#</a> Speed</h4> <p>Speed of memory in Mhz</p> <p>ex: <code>3000Mhz</code></p> <p>To determine Speed, run the following:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>path/to/dmidecode -t memory <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">&quot; Speed:&quot;</span>
+<span class="token comment">#Example Output</span>
+ Speed: <span class="token number">2666</span> MT/s
+ Speed: Unknown
+ Speed: <span class="token number">2666</span> MT/s
+ Speed: Unknown
+ Speed: <span class="token number">2666</span> MT/s
+ Speed: Unknown
+ Speed: <span class="token number">2666</span> MT/s
+ Speed: Unknown
+<span class="token comment"># Final Value</span>
+Entry <span class="token number">1</span>:  <span class="token number">2666</span>
+Entry <span class="token number">2</span>:  <span class="token number">1</span>
+Entry <span class="token number">3</span>:  <span class="token number">2666</span>
+Entry <span class="token number">4</span>:  <span class="token number">1</span>
+Entry <span class="token number">5</span>:  <span class="token number">2666</span>
+Entry <span class="token number">6</span>:  <span class="token number">1</span>
+Entry <span class="token number">7</span>:  <span class="token number">2666</span>
+Entry <span class="token number">8</span>:  <span class="token number">1</span>
+Entry <span class="token number">9</span>:  <span class="token number">1</span>
+Entry <span class="token number">10</span>: <span class="token number">1</span>
+Entry <span class="token number">11</span>: <span class="token number">1</span>
+Entry <span class="token number">12</span>: <span class="token number">1</span>
+</code></pre></div><h2 id="cleaning-up"><a href="#cleaning-up" class="header-anchor">#</a> Cleaning up</h2> <p>Now that you've built the table, we can now merge it into our config.plist.</p> <p>Simply copy over your work from the CustomMemory.plist and paste it into PlatformInfo:</p> <p><img src="/OpenCore-Post-Install/assets/img/memory-example-done.ee737213.png" alt=""></p> <p>Once this is copied over, enable <code>PlatformInfo -&gt; CustomMemory</code> and reboot. The error should be no more now!</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">11/24/2020, 10:53:35 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ⟵
+      <a href="/OpenCore-Post-Install/cosmetic/gui.html" class="prev">
+        Add GUI and Boot-chime
+      </a></span> <span class="next"><a href="/OpenCore-Post-Install/multiboot/bootstrap.html">
+        Setting up Bootstrap.efi
+      </a>
+      ⟶
+    </span></p></div> </main></div><div class="global-ui"><div style="visibility:hidden;display:none;"></div><!----></div></div>
+    <script src="/OpenCore-Post-Install/assets/js/app.e61e0ceb.js" defer></script><script src="/OpenCore-Post-Install/assets/js/2.5e2f3c7c.js" defer></script><script src="/OpenCore-Post-Install/assets/js/9.b81c1ca4.js" defer></script><script src="/OpenCore-Post-Install/assets/js/37.173cf53b.js" defer></script>
+  </body>
+</html>
