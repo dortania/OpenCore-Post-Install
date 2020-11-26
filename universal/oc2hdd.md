@@ -4,6 +4,20 @@
 
 So to start, we'll first want to grab OpenCore off of our installer. To do this, we'll be using a neat tool from CorpNewt called [MountEFI](https://github.com/corpnewt/MountEFI)
 
+Depending on your operating system, you'll have to follow different steps.
+
+### Windows
+
+* Install and run [Clover Configurator](https://mackie100projects.altervista.org/download-clover-configurator/).
+* macOS will complain that the application was authored by an unidentified developer. Open "Security & Privacy" and select "Open Anyway".
+* Select Tools -> Mount EFI.
+* Find a partition labeled "EFI on APFS Container" representing your hard drive. Select "Mount Partition" then "Open Partition".
+* Open the USB partition (Finder -> Go -> Computer -> BOOT).
+* Drag the "EFI" folder from the USB to the hard drive partition.
+* Select "Unmount partition" in Clover Configurator.
+
+### Other operating systems
+
 For this example, we'll assume your USB is called `Install macOS Catalina`:
 
 ![](../images/post-install/oc2hdd-md/usb-mount.png)
@@ -19,6 +33,16 @@ Now with this done, lets mount our macOS drive. With macOS Catalina, macOS is ac
 ![](../images/post-install/oc2hdd-md/hdd-clean.png)
 
 When you mount your main drive's EFI, you may be greeted with a folder called `APPLE`, this is used for updating the firmware on real Macs but has no effect on our hardware. You can wipe everything on the EFI partition and replace it with the one found on your USB
+
+## VMWare
+
+* Reboot
+* Hit F8 (before macOS boots) to enter VMware's BIOS
+* Enter setup -> Configure boot options -> Add boot option -> EFI -> EFI -> OC -> Bootstrap -> Bootstrap.efi
+* Enter a description, then "Commit changes and exit" -> "Exit the Boot Maintenance Manager"
+* Configure boot options -> Change boot order -> Configure your new entry to boot first -> "Commit changes and exit"
+* Exit to the top menu then select "Reset the system"
+* Install VMWare Tools
 
 ## Special notes for legacy users
 
