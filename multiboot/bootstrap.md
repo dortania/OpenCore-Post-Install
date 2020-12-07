@@ -8,6 +8,7 @@ With OpenCore 0.5.8 and newer, the EFI/OC/Bootstrap folder contains Bootstrap.ef
   * Verify you have EFI/OC/Bootstrap/Bootstrap.efi
 * config.plist settings:
   * Misc -> Security -> BootProtect -> Bootstrap
+    * Use `BootstrapShort` for Insyde based firmwares, commonly found on laptops
   * UEFI -> Quirks -> RequestBootVarRouting -> True
 * [OpenShell](https://github.com/acidanthera/OpenCorePkg/releases)
   * Bundled with OpenCore
