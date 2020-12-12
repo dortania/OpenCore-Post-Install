@@ -2,18 +2,18 @@
 
 ## Troubleshooting
 
-* [Windows installer creating EFI partion even if one already created by mac os](#windows-installer-creating-EFI-partion-even-if-one-already-created-by-mac-os)
+* [Windows installer creating EFI partition even if one already created by mac os](#windows-installer-creating-EFI-partition-even-if-one-already-created-by-mac-os)
 * [Windows installer error: `No device drivers were found`](#windows-installer-error-no-device-drivers-were-found)
 * [Booting Windows results in BlueScreen or Linux crashes](#booting-windows-results-in-bluescreen-or-Linux-crashes)
 * [Booting Windows error: `OCB: StartImage failed - Already started`](#booting-windows-error-ocb-startimage-failed---already-started)
 
-### Windows installer creating EFI partion even if one already created by mac os
+### Windows installer creating EFI partition even if one already created by mac os
 
-This is probably due to a problem with gpt table created by mac. If you are installing from scratch then you may want to create your own FAT32 EFI partion. It must be 200MiB to support osx. You can create it for example with [gparted live usb](https://gparted.org/download.php). Also don't forget to set `esp` and `boot` flags for this partion.
+This is probably due to a problem with gpt table created by mac. If you are installing from scratch then you may want to create your own `FAT32` EFI partition. It must be 200MiB to support osx. You can create it for example with [gparted live usb](https://gparted.org/download.php). Also don't forget to set `esp` and `boot` flags for this partition.
 
 ### Windows installer error: `No device drivers were found`
 
-This is probably due to usb3.0, try to use usb2.0 port. You also can download and provide usb3.0 drivers for Windows from your motherboard manufacturers.
+This is probably due to usb3.0, try to use usb2.0 port. You also can download and provide usb3.0 drivers for Windows installer from your motherboard manufacturers.
 
 ### Booting Windows results in BlueScreen or Linux crashes
 
