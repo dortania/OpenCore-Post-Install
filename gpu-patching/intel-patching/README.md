@@ -136,7 +136,7 @@ Now that we have our device-id, we'll do the same thing as before with ig-platfo
 
 ## Learning to patch with WhateverGreen
 
-Now that we've gone over the basics of setting up an iGPU, lets getting into some deeper topics. We'll need to go over some  prerequisites first:
+Now that we've gone over the basics of setting up an iGPU, let's get into some deeper topics. We'll need to go over some  prerequisites first:
 
 * Lilu and WhateverGreen are present under EFI/OC/Kexts and in your config.plist
   * To verify if they loaded correctly in macOS, run the below command(if nothing is outputted, the kexts are not loading)
