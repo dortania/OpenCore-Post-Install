@@ -73,7 +73,7 @@ This is a section many may have forgotten about but this is found in your config
 To find your actual MAC Address/ROM value, you can find in a couple places:
 
 * BIOS
-* macOS: System Preferences -> Network -> Ethernet -> Advanced -> MAC Address
+* macOS: System Preferences -> Network -> Ethernet -> Advanced -> Hardware -> MAC Address
 * Windows: Settings -> Network & Internet -> Ethernet -> Ethernet -> Physical MAC Address
 
 * **Note**: en0 can be either Wifi, ethernet or even Thunderbolt, adapt the above example to your situation.
