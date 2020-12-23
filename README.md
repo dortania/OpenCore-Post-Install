@@ -62,6 +62,8 @@ This guide is split into 6 parts:
   * Add a fancy GUI to OpenCore and even a boot chime!
 * [Fixing Resolution and Verbose](./cosmetic/verbose.md)
   * Helps fix the resolution of OpenCore, and allows you to get that sweet Apple logo while booting!
+* [Fixing MacPro7,1 Memory Errors](./universal/memory.md)
+  * Fixes MacPro7,1 memory errors on boot
 
 ### Multiboot
 

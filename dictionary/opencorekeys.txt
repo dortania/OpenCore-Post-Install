@@ -22,6 +22,7 @@ AppleUserInterfaceTheme
 AppleXcpmCfgLock
 AppleXcpmExtraMsrs
 AppleXcpmForceBoost
+AssetTag
 AudioCodec
 AudioDevice
 AudioOut
@@ -32,6 +33,7 @@ BID
 BIOSReleaseDate
 BIOSVendor
 BIOSVersion
+BankLocator
 BlessOverride
 BoardAssetTag
 BoardLocationInChassis
@@ -56,8 +58,11 @@ ConsoleAttributes
 ConsoleMode
 Cpuid1Data
 Cpuid1Mask
+CustomMemory
 CustomSMBIOSGuid
 DataHub
+DataWidth
+DeviceLocator
 DevicePathsSupported
 DeviceProperties
 DevirtualiseMmio
@@ -75,6 +80,7 @@ DummyPowerManagement
 EnableJumpstart
 EnableSafeModeSlide
 EnableWriteUnprotector
+ErrorCorrection
 ExecutablePath
 ExistBootServicesDelay
 ExposeSensitiveData
@@ -86,6 +92,7 @@ FirmwareFeatures
 FirmwareFeaturesMask
 FirmwareVolume
 ForceExitBootServices
+FormFactor
 HaltLevel
 HashServices
 HibernateMode
@@ -110,6 +117,7 @@ LegacyOverwrite
 LegacySchema
 Lifewire
 MLB
+MaxCapacity
 MaxKernel
 MemoryFormFactor
 MinDate
@@ -120,6 +128,7 @@ MmioWhitelist
 NormalizeHeaders
 OSInfo
 OemTableId
+PartNumber
 PickerAttributes
 PickerAudioAssist
 PickerMode
@@ -158,6 +167,7 @@ SMBIOS
 SanitiseClearScreen
 ScanPolicy
 SerialInit
+SerialNumber
 SetupVirtualMap
 ShowPicker
 SignalAppleOS
@@ -184,6 +194,8 @@ Target
 TextRenderer
 ThirdPartyDrives
 TimerResolution
+TotalWidth
+TypeDetail
 UEFI
 UIScale
 UnblockFsConnect

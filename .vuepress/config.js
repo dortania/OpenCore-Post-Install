@@ -169,6 +169,7 @@ module.exports = {
                 children: [
                     ['/cosmetic/verbose', 'Fixing Resolution and Verbose'],
                     ['/cosmetic/gui', 'Add GUI and Boot-chime'],
+                    ['/universal/memory', 'Fixing MacPro7,1 Memory Errors'],
                 ]
             },
             {

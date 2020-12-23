@@ -338,6 +338,7 @@ E2
 E2500
 EB
 EC0
+ECC
 ECDV
 ECID
 ECs
@@ -623,6 +624,7 @@ Mellanox
 Memfast
 MemoryFix
 Merom
+Mhz
 MinMultiplier
 Misconfigured
 MonitorControl
@@ -746,6 +748,7 @@ Pre-existing
 Preboot
 Prebuilt
 Prelinked
+Profiler
 ProperTree
 ProperTree's
 Psystar
@@ -1087,6 +1090,7 @@ distro's
 distros
 dmg
 dmg's
+dmidecode
 dortania
 dreamwhite's
 eDP
@@ -1258,6 +1262,7 @@ precompiled
 prelinked
 prelinkedkernel
 prelinker
+premade
 probs
 r10
 r4

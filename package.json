@@ -1,7 +1,7 @@
 {
    "name": "OpenCore-Post-Install",
    "version": "0.6.3",
-   "description": "OpenCore post-install guide",
+   "description": "OpenCore Post-Install guide",
    "main": "",
    "author": {
       "name": "Dortania",
