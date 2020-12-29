@@ -131,11 +131,11 @@ At this point, run either `reset` in the shell or simply reboot your machine. An
 
 1. Open the text file and search for `CFG Lock, VarStoreInfo (VarOffset/VarName):` and note the offset right after it (ie: `0x43`) with (ie: `VarStore: 0x3`)
 
-![](../images/extras/msr-lock-md/cfg-find-2.png
+![](../images/extras/msr-lock-md/cfg-find-2.png)
 
 2. Open the text file and search for `Varstoreid: 0x3` and note the name corresponding to the variable is it (ie: `CpuSetup`)
 
-![](../images/extras/msr-lock-md/name-var-find.png
+![](../images/extras/msr-lock-md/name-var-find.png)
 
 3. In this case do not use ModGRUBShell, if you inject the variable on setup brick risks, the variable must be injected on CpuSetup and you need to use the method with ru.efi
 
