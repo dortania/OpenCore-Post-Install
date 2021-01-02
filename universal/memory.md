@@ -52,7 +52,7 @@ Specifies the data width, in bits, of the memory. A DataWidth of 0 and a TotalWi
 To determine the DataWidth, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Data Width:"
+path/to/dmidecode -t memory | grep "Data Width:"
 # Example Output
  Data Width: 64 bits
  Data Width: Unknown
@@ -83,7 +83,7 @@ Specifies ECC support:
 To determine ErrorCorrection, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Error Correction Type:"
+path/to/dmidecode -t memory | grep "Error Correction Type:"
 # Example Output
  Error Correction Type: None
 # Final Value
@@ -105,7 +105,7 @@ Specifies Memory Form Factor
 To determine FormFactor, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Form Factor:"
+path/to/dmidecode -t memory | grep "Form Factor:"
 # Example Output
  Form Factor: DIMM
  Form Factor: DIMM
@@ -141,7 +141,7 @@ Specifies the total width, in bits, of the memory, including any check or error-
 To determine TotalWidth, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Total Width:"
+path/to/dmidecode -t memory | grep "Total Width:"
 # Example Output
  Total Width: 72 bits
  Total Width: Unknown
@@ -177,7 +177,7 @@ Specifies memory type
 To determine Type, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Type:"
+path/to/dmidecode -t memory | grep "Type:"
 # Example Output
  Type: DDR4
  Type: Unknown
@@ -216,7 +216,7 @@ Bit 14 — Unbuffered (unregistered)
 To determine TypeDetail, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Type Detail:"
+path/to/dmidecode -t memory | grep "Type Detail:"
 # Example Output
  Type Detail: Synchronous
  Type Detail: Synchronous
@@ -260,7 +260,7 @@ Next lets break down the properties:
 To determine AssetTag, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Asset Tag:"
+path/to/dmidecode -t memory | grep "Asset Tag:"
 #Example Output
 
 # Final Value
@@ -273,7 +273,7 @@ path/to/dmidecode -t memory | grep " Asset Tag:"
 To determine BankLocator, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Bank Locator:"
+path/to/dmidecode -t memory | grep "Bank Locator:"
 #Example Output
 
 # Final Value
@@ -286,7 +286,7 @@ path/to/dmidecode -t memory | grep " Bank Locator:"
 To determine DeviceLocator, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Locator:"
+path/to/dmidecode -t memory | grep "Locator:"
 #Example Output
  Locator: DIMM_A1
  Locator: DIMM_A2
@@ -316,7 +316,7 @@ Entry 12: DIMM_EMPTY
 To determine Manufacturer, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Manufacturer:"
+path/to/dmidecode -t memory | grep "Manufacturer:"
 #Example Output
 
 # Final Value
@@ -327,7 +327,7 @@ path/to/dmidecode -t memory | grep " Manufacturer:"
 To determine PartNumber, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Part Number:"
+path/to/dmidecode -t memory | grep "Part Number:"
 #Example Output
  Part Number: KHX2666C16/8G
  Part Number: NO DIMM
@@ -357,7 +357,7 @@ Entry 12: EmptyDIMM
 To determine SerialNumber, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Serial Number:"
+path/to/dmidecode -t memory | grep "Serial Number:"
 #Example Output
  Serial Number: 0F095257
  Serial Number: NO DIMM
@@ -400,7 +400,7 @@ Size of single memory stick in MB
 To determine Size, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Size:"
+path/to/dmidecode -t memory | grep "Size:"
 #Example Output
  Size: 8 GB
  Size: No Module Installed
@@ -434,7 +434,7 @@ ex: `3000Mhz`
 To determine Speed, run the following:
 
 ```sh
-path/to/dmidecode -t memory | grep " Speed:"
+path/to/dmidecode -t memory | grep "Speed:"
 #Example Output
  Speed: 2666 MT/s
  Speed: Unknown
