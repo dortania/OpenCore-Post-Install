@@ -18,7 +18,7 @@ So with USB, we need to understand not all ports are the same and that some port
 * A USB 3.0 port is actually seen as 2 ports to macOS: a USB 2.0 **and** USB 3.0
 * This is also how USB can keep its backwards compatibility, as all USB 3.0 devices **must** support USB 2.0
 
-Now lets look at a diagram of a USB port to better understand this:
+Now let's look at a diagram of a USB port to better understand this:
 
 ![Image from usb3.com](../images/post-install/usb-md/usb-3.png)
 
@@ -46,4 +46,4 @@ And now when we take into account the quirk `XhciPortLimit`, you can see *why* d
 
 USB Hubs attached to one of your USB controller's ports have a different kind of port limit. In total, a single USB port can be split into 127 ports. This includes USB hubs attached to USB hubs
 
-## Now with the backstory done, lets head to [System Preparations](./system-preparation.md)
+## Now with the backstory done, let's head to [System Preparations](./system-preparation.md)
