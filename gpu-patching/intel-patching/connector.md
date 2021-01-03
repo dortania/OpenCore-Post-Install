@@ -4,7 +4,7 @@
 
 This section is mainly relevant for users who either get black screen or incorrect color output on their displays(usually HDMI ports). This is due to Apple forcing display types onto your hardware,. To work around it, we'll patch Apple's connector types to properly respect our hardware.
 
-For this example, lets take a UHD 630 system with an HDMI display attached. The machine has already been correctly setup however there's a Pink/Purple tint on the HDMI display.
+For this example, let's take a UHD 630 system with an HDMI display attached. The machine has already been correctly setup however there's a Pink/Purple tint on the HDMI display.
 
 Grab a copy of [IOReg](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) and search for the `iGPU` entry:
 

@@ -9,7 +9,7 @@ This page will be a bit more technical as we've assumed you've read through the 
 
 ## Parsing the framebuffer
 
-To start, lets assume we're using a Z390 board with a UHD 630. This system is iGPU-only in macOS and has issues with using certain display-outs, and is using the `0x3E9B0007` framebuffer.
+To start, let's assume we're using a Z390 board with a UHD 630. This system is iGPU-only in macOS and has issues with using certain display-outs, and is using the `0x3E9B0007` framebuffer.
 
 When we look at this framebuffer from [WhateverGreen's manual](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md), we see the following:
 
@@ -28,7 +28,7 @@ Mobile: 0, PipeCount: 3, PortCount: 3, FBMemoryCount: 3
 03060800 00040000 C7030000
 ```
 
-Now lets parse it down to the BudID information, as this is what we will be patching:
+Now let's parse it down to the BudID information, as this is what we will be patching:
 
 ```
 [1] busId: 0x05, pipe: 9, type: 0x00000400, flags: 0x000003C7 - DP
@@ -39,7 +39,7 @@ Now lets parse it down to the BudID information, as this is what we will be patc
 03060800 00040000 C7030000
 ```
 
-Here we see that this framebuffer personality has 3 Bus IDs listed, lets try to break them down to be a bit more understandable. Lets take entry 1:
+Here we see that this framebuffer personality has 3 Bus IDs listed, let's try to break them down to be a bit more understandable. Let's take entry 1:
 
 ```
 [1] busId: 0x05, pipe: 9, type: 0x00000400, flags: 0x000003C7 - DP
