@@ -73,11 +73,11 @@ And within your EFI:
 
 Now grab the ['LogoutHook.command'](https://github.com/acidanthera/OpenCorePkg/releases)(Inside `/Utilities/LogoutHook/`) and place it somewhere safe (e.g. within your user directory, as shown below):
 
-`/Users/(your username)/LogoutHook/LogoutHook.command`
+`/Users/$(whoami)/LogoutHook/LogoutHook.command`
 
 Open up terminal and run the following:
 
-`sudo defaults write com.apple.loginwindow LogoutHook /Users/(your username)/LogoutHook/LogoutHook.command`
+`sudo defaults write com.apple.loginwindow LogoutHook /Users/$(whoami)/LogoutHook/LogoutHook.command`
 
 And voila! You have emulated NVRAM!
 
