@@ -319,6 +319,7 @@ DVMT-prealloc
 DaVinci
 DarkWake
 Decluttering
+DefaultBackground
 Dev
 DeviceManager
 DevicePath
@@ -651,6 +652,7 @@ Niresh
 NoOne
 NodeJS
 Notiflux
+Nouveau
 NullCPUPowerManagement
 NullCPUPowerManagment
 Nvidia
@@ -1061,6 +1063,7 @@ chipsets
 chunklist
 codec
 codecs
+colour
 con0
 con1
 con2
