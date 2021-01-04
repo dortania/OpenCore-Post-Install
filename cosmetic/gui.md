@@ -22,22 +22,25 @@ Once you have both of these, we'll next want to add it to our EFI partition:
 
 ![](../images/extras/gui-md/folder-gui.png)
 
-Now in our config.plist, we have 2 things we need to fix:
+Now in our config.plist, we have 4 things we need to fix:
 
 * `Misc -> Boot -> PickerMode`: `External`
 * `Misc -> Boot -> PickerAttributes`:`1`
   * This enables .VolumeIcon.icns reading off the drive, this is how macOS installer icons work
-    * 0x0008: This is another value which allows for alternative icons, such as the legacy GUI found on legacy Macs. This can be combined with `1` for both legacy GUI and custom drive icons(PickerAttributes: `9`)
     * Other settings for PickerAttributes can be found in the [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf)
+* `Misc -> Boot -> PickerVariant`: `Modern`
+  * Applicable variables:
+    * `Auto` — Automatically select one set of icons based on DefaultBackground colour.
+    * `Default` — Normal icon set.
+    * `Modern` — Nouveau icon set.
+    * `Old` — Vintage icon set.
 * `UEFI -> Drivers` and add OpenCanopy.efi
 
 Once all this is saved, you can reboot and be greeted with a true Mac-like GUI:
 
-![Credit to vit9696](../images/extras/gui-md/gui.png)
-
-For those who'd like a Big Sur styled theme, you can grab it here: [OpenCanopy-Big-Sur](https://github.com/khronokernel/OpenCanopy-Big-Sur):
-
-![](../images/extras/gui-md/BigSur-Picker.png)
+| Default | Modern | Old |
+| :--- | :--- | :--- |
+| ![](../images/extras/gui-md/gui.png) | ![](../images/extras/gui-md/gui-nouveau.png) | ![](../images/extras/gui-md/gui-old.png) |
 
 ## Setting up Boot-chime with AudioDxe
 
@@ -103,6 +106,10 @@ So to start, we'll need a couple things:
 
 * **PlayChime:**
   * Set this to `True`
+
+* **SetupDelay:**
+  * By default, leave this at `0`
+  * Some codecs many need extra time for setup, we recommend setting to `500000`(0.5 Seconds) if you have issues
 
 * **VolumeAmplifier:**
   * The Volume amplification, value will differ depending on your codec
