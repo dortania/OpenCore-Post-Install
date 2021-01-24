@@ -105,7 +105,7 @@ So to start, we'll need a couple things:
   * Note boot-chime will not play if MinimumVolume is higher than `SystemAudioVolume` that we set back in the `NVRAM` section
 
 * **PlayChime:**
-  * Set this to `True`
+  * Set this to `Enabled`
 
 * **SetupDelay:**
   * By default, leave this at `0`
