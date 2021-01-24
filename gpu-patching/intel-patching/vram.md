@@ -2,9 +2,9 @@
 
 This section is mainly relevant for users who cannot unlock their BIOS to increase the allocated VRAM for their iGPU which results in a kernel panic in macOS. To work around this, we'll first want to identify the minimum amount of VRAM required for the framebuffer and then patch it to require less.
 
-For this example, lets take a Haswell Lake Framebuffer that's commonly used on desktop Haswell iGPUs: `0x0D220003`(`0300220D` when hex swapped)
+For this example, let's take a Haswell Lake Framebuffer that's commonly used on desktop Haswell iGPUs: `0x0D220003`(`0300220D` when hex swapped)
 
-Now lets take a look at the corresponding information in [WhateverGreen's manual](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md)(note you'll need to click "Spoiler: Azul connectors")
+Now let's take a look at the corresponding information in [WhateverGreen's manual](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md)(note you'll need to click "Spoiler: Azul connectors")
 
 ```
 ID: 0D220003, STOLEN: 32 MB, FBMEM: 19 MB, VRAM: 1536 MB, Flags: 0x00000402
@@ -35,7 +35,7 @@ Here the main entries we care about:
 | TOTAL CURSOR | 1 MB | Memory reserved for cursor |
 | TOTAL STOLEN | 52 MB | Combination of the above |
 
-Now lets say for example your motherboard only allocates 32MB for the iGPU, this will be too little for what the framebuffer expects and so will most likely kernel panic when it tries to write into an area of memory that does not exist.
+Now let's say for example your motherboard only allocates 32MB for the iGPU, this will be too little for what the framebuffer expects and so will most likely kernel panic when it tries to write into an area of memory that does not exist.
 
 That's where WhateverGreen's patching capabilities come in, here we're able to set the exact amount of iGPU memory the framebuffer expects with the following properties:
 

@@ -69,7 +69,7 @@ For the latter, you don't need to do any CFG-Lock patches and can simply disable
 
 So you've created the EFI folder but you can't still boot without unlocking before CFG Lock. In order to do this you'll need the following:
 
-Inside your `EFI/OC/Tools folder` and `config.plist`, add the following tool(this can be done with ProperTree's snapshot function(ie. Cmd+R)):
+Inside your `EFI/OC/Tools` folder and `config.plist`, add the following tool(this can be done with ProperTree's snapshot function(ie. Cmd+R)):
 
 * [Modified GRUB Shell](https://github.com/datasone/grub-mod-setup_var/releases)
 
