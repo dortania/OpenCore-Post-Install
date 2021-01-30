@@ -67,7 +67,7 @@ This guide is split into 6 parts:
 
 ### Multiboot
 
-* [Setting up Bootstrap.efi](./multiboot/bootstrap.md)
+* [Setting up LauncherOption](./multiboot/bootstrap.md)
   * Ensures Windows doesn't remove OpenCore from our system.
 * [Installing BootCamp](./multiboot/bootcamp.md)
   * Allows us to install Bootcamp for easy boot switching.

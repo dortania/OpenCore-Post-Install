@@ -176,7 +176,7 @@ module.exports = {
                 title: 'Multiboot',
                 collapsable: false,
                 children: [
-                    ['/multiboot/bootstrap', 'Setting up Bootstrap.efi'],
+                    ['/multiboot/bootstrap', 'Setting up LauncherOption'],
                     ['/multiboot/bootcamp', 'Installing BootCamp'],
                 ]
             },
