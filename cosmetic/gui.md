@@ -25,8 +25,8 @@ Once you have both of these, we'll next want to add it to our EFI partition:
 Now in our config.plist, we have 4 things we need to fix:
 
 * `Misc -> Boot -> PickerMode`: `External`
-* `Misc -> Boot -> PickerAttributes`:`1`
-  * This enables .VolumeIcon.icns reading off the drive, this is how macOS installer icons work
+* `Misc -> Boot -> PickerAttributes`: `17`
+  * This enables mouse/trackpad support as well as .VolumeIcon.icns reading from the drive, allows for macOS installer icons to appear in the picker
     * Other settings for PickerAttributes can be found in the [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf)
 * `Misc -> Boot -> PickerVariant`: `Modern`
   * Applicable variables:
