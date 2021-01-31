@@ -33,6 +33,7 @@ So the process goes as follows:
 * The important ones to update:
 
   * `EFI/BOOT/BOOTx64.efi`
+  * `EFI/OC/Bootstrap/Bootstrap.efi` (If you are using [Bootstrap](../multiboot/bootstrap.md) for multiboot.)
   * `EFI/OC/OpenCore.efi`
   * `EFI/OC/Drivers/OpenRuntime`(**Don't forget this one, OpenCore will not boot with mismatched versions**)
 
