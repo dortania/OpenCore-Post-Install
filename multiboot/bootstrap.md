@@ -53,7 +53,7 @@ Once these are set, you can reboot into the OpenCore picker and select the `Rese
 
 ## Updating BootStrap in 0.6.6
 
-For those updating to 0.6.6, you may have noticed BootStrap.efi has been removed from OpenCorePkg. This is due to changes with how OpenCore works, specifically becoming an Application instead of a driver. This means OpenCore.efi can be loaded directly and the reliance on BootStrap.efi is no longer needed.
+For those updating to 0.6.6, you may have noticed Bootstrap.efi has been removed from OpenCore. This is due to changes with how OpenCore works; specifically OpenCore is now a UEFI application instead of a driver. This means OpenCore.efi can be loaded directly and the reliance on Bootstrap.efi is no longer needed.
 
 To update, simply update everything else in your OpenCore setup and ensure EFI/BOOT/BOOTx64.efi is still present. Then set `Misc -> Boot -> LauncherOption` to `Full` and reboot. First boot your firmware will need to use BOOTx64.efi, however after this OpenCore will set OpenCore.efi into your firmware boot options. For more information, see the [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf)
 
