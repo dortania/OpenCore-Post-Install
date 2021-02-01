@@ -50,7 +50,6 @@ Because the LauncherOption entry is a protected entry when resetting NVRAM, you'
 
 Once these are set, you can reboot into the OpenCore picker and select the `Reset NVRAM` entry.
 
-
 ## Updating BootStrap in 0.6.6
 
 For those updating to 0.6.6, you may have noticed Bootstrap.efi has been removed from OpenCore. This is due to changes with how OpenCore works; specifically OpenCore is now a UEFI application instead of a driver. This means OpenCore.efi can be loaded directly and the reliance on Bootstrap.efi is no longer needed.
@@ -59,7 +58,7 @@ To update, simply update everything else in your OpenCore setup and ensure EFI/B
 
 Conversion notes:
 
-| 0.5.8 - 0.6.5 | 0.6.6+ | 
+| 0.5.8 - 0.6.5 | 0.6.6+ |
 | :--- | :--- |
 | Misc -> Security -> BootProtect | Misc -> Boot -> LauncherOption |
 | Bootstrap | Full |
