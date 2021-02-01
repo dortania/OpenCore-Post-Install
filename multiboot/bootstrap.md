@@ -1,6 +1,6 @@
 # Using LauncherOption
 
-* Note: With OpenCore 0.6.6, Bootstrap.efi has been replaced with LauncherOption. See here for more info on updating: [Updating BootStrap in 0.6.6](#updating-bootstrap-in-0-6-6)
+* Note: With OpenCore 0.6.6, Bootstrap.efi has been replaced with LauncherOption. See here for more info on updating: [Updating Bootstrap in 0.6.6](#updating-bootstrap-in-0-6-6)
 
 With OpenCore 0.6.6 and newer, were are now able to launch OpenCore directly from our firmwares without BOOTx64.efi. This allows us to add OpenCore to our motherboard's boot menu and prevent issues where either Windows or Linux try to overwrite the BOOTx64.efi file which can happen when installing or updating Windows and breaks OpenCore's ability to boot.
 
@@ -9,7 +9,7 @@ With OpenCore 0.6.6 and newer, were are now able to launch OpenCore directly fro
 ![](../images/bootstrap-md/config.png)
 
 * [OpenCore 0.6.6 or newer](https://github.com/acidanthera/OpenCorePkg/releases)
-  * For 0.6.5 and older users upgrading, see here: [Updating BootStrap in 0.6.6](#updating-bootstrap-in-0-6-6)
+  * For 0.6.5 and older users upgrading, see here: [Updating Bootstrap in 0.6.6](#updating-bootstrap-in-0-6-6)
 * config.plist settings:
   * `Misc -> Boot -> LauncherOption -> Full`
     * Use `Short` for Insyde based firmwares, commonly found on laptops
@@ -50,11 +50,14 @@ Because the LauncherOption entry is a protected entry when resetting NVRAM, you'
 
 Once these are set, you can reboot into the OpenCore picker and select the `Reset NVRAM` entry.
 
-## Updating BootStrap in 0.6.6
+## Updating Bootstrap in 0.6.6
 
 For those updating to 0.6.6, you may have noticed Bootstrap.efi has been removed from OpenCore. This is due to changes with how OpenCore works; specifically OpenCore is now a UEFI application instead of a driver. This means OpenCore.efi can be loaded directly and the reliance on Bootstrap.efi is no longer needed.
 
 To update, simply update everything else in your OpenCore setup and ensure EFI/BOOT/BOOTx64.efi is still present. Then set `Misc -> Boot -> LauncherOption` to `Full` and reboot. First boot your firmware will need to use BOOTx64.efi, however after this OpenCore will set OpenCore.efi into your firmware boot options. For more information, see the [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf)
+
+* For those who wish to keep Bootstrap.efi, you can simply grab OpenCorePkg's OpenCore.efi(0.6.6) and rename it to Bootstrap.efi. Then place it under EFI/OC/Bootstrap, and add this to `LauncherPath` in your config.plist:
+  * `\EFI\OC\Bootstrap\Bootstrap.efi`
 
 Conversion notes:
 
