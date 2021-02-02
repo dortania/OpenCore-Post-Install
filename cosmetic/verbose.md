@@ -41,8 +41,6 @@ So if you followed closely to this guide during install, you'll likely be runnin
 * Replace the following files with the [release versions](https://github.com/acidanthera/OpenCorePkg/releases)(if previously using DEBUG versions):
   * EFI/BOOT/
     * `BOOTx64.efi`
-  * EFI/OC/Bootstrap/
-    * `Bootstrap.efi`
   * EFI/OC/Drivers/
     * `OpenRuntime.efi`
   * EFI/OC/
