@@ -67,6 +67,8 @@ This guide is split into 6 parts:
 
 ### Multiboot
 
+* [OpenCore Multiboot](https://dortania.github.io/OpenCore-Multiboot/)
+  * Dedicated guide to multibooting with OpenCore
 * [Setting up LauncherOption](./multiboot/bootstrap.md)
   * Ensures Windows doesn't remove OpenCore from our system.
 * [Installing BootCamp](./multiboot/bootcamp.md)

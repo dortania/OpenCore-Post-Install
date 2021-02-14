@@ -65,6 +65,10 @@ module.exports = {
                     text: 'OpenCore Install Guide',
                     link: 'https://dortania.github.io/OpenCore-Install-Guide/'
                 },
+	            {
+	                text: 'OpenCore Multiboot',
+	                link: 'https://dortania.github.io/OpenCore-Multiboot/'
+	            },
                 {
                     text: 'Getting Started With ACPI',
                     link: 'https://dortania.github.io/Getting-Started-With-ACPI/'
@@ -176,6 +180,7 @@ module.exports = {
                 title: 'Multiboot',
                 collapsable: false,
                 children: [
+					['https://dortania.github.io/OpenCore-Multiboot/', 'OpenCore Multiboot'],
                     ['/multiboot/bootstrap', 'Setting up LauncherOption'],
                     ['/multiboot/bootcamp', 'Installing BootCamp'],
                 ]
