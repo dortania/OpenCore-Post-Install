@@ -34,8 +34,8 @@ To start, open the terminal and run the following one line at a time:
 
 ```sh
 sudo -s
-sudo nvram -c
-sudo nvram myvar=test
+nvram -c
+nvram myvar=test
 exit
 ```
 
