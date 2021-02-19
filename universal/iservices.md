@@ -99,6 +99,7 @@ This is important for those who've tried setting up iMessage but failed, to star
 Next open terminal and run the following:
 
 ```
+bash
 sudo rm -rf ~/Library/Caches/com.apple.iCloudHelper*
 sudo rm -rf ~/Library/Caches/com.apple.Messages*
 sudo rm -rf ~/Library/Caches/com.apple.imfoundation.IMRemoteURLConnectionAgent*
