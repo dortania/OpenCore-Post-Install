@@ -2,10 +2,14 @@
 
 ## Enabling X86PlatformPlugin
 
-So before we can fine tune power management to our liking, we need to first make sure Apple's XCPM core is loaded. Note that this is supported **only on Haswell and newer(with Ivy Bridge-E)**, consumer Sandy, Ivy Bridge and AMD CPUs should refer to the bottom of the guides:
+So before we can fine tune power management to our liking, we need to first make sure Apple's XCPM core is loaded. Note that this is supported **only on Haswell and newer**, consumer Sandy, Ivy Bridge and AMD CPUs should refer to the bottom of the guides:
 
 * [Sandy and Ivy Bridge Power Management](../universal/pm.md#sandy-and-ivy-bridge-power-management)
 * [AMD CPU Power Management](../universal/pm.md#amd-cpu-power-management)
+
+Ivy Bridge and Ivy Bridge-E note: Apple dropped support for XCPM back in macOS Sierra, so XCPM is only supported between 10.8.5 and 10.11.6. Newer OSes will require the [ssdtPRgen method](../universal/pm.md#sandy-and-ivy-bridge-power-management)
+
+* To enabled XCPM in older OSes(ie. 10.11 and older), simply add `-xcpm` to your boot-args
 
 To start, grab [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) and look for `AppleACPICPU`(note if you use search, it won't show the children so clear your search once you've found the entry):
 
