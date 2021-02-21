@@ -114,13 +114,11 @@ Once you're finished, you'll be provided with a CPUFriendDataProvider.kext and s
 
 * **Note**: Load order does not matter with the CPUFriendDataProvider as it's just a plist-only kext
 * **Note 2**: Wake issues resulting from CPUFriend is likely due to incorrect frequency vectors, every system is unique so you'll need to play around until you get a stable config. Kernel panics will have `Sleep Wake failure in efi`.
-* **Note 3**: If you do choose to use ssdt_data.aml, note that SSDT-PLUG is no longer needed. However the setup for this SSDT is broken on HEDT platforms like X79, X99 and X299, so we highly recommend SSDT-PLUG with CPUFriendDataProvider.kext instead.
+* **Note 3**: If you do choose to use ssdt_data.aml, note that SSDT-PLUG is no longer needed. However the setup for this SSDT is broken on HEDT platforms like X99 and X299, so we highly recommend SSDT-PLUG with CPUFriendDataProvider.kext instead.
 
 ## Sandy and Ivy Bridge Power Management
 
 With Sandy and Ivy Bridge, consumer PCs have issues connecting to Apple's XCPM. So to get around this we need to create our own Power Management Table.
-
-* **Note**: Ivy Bridge-E CPUs do officially support XCPM, please refer to [Enabling X86PlatformPlugin](#enabling-x86platformplugin) instead
 
 What we'll need:
 
@@ -221,6 +219,13 @@ Pay close attention to what we've done:
 * Move all your methods into the Processor's scope
 
 For editing and re-compiling the SSDT-PM, see here: [Getting Started With ACPI](https://dortania.github.io/Getting-Started-With-ACPI/)
+
+### BIOS Troubleshooting
+
+For some boards, you may need to ensure the following BIOS options are set for CPU Power Management:
+
+* C States: `True`
+* P States Coordination: `SW_ALL`
 
 ## AMD CPU Power Management
 
