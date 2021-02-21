@@ -49,9 +49,13 @@ So the process goes as follows:
   * [BeyondCompare](https://www.scootersoftware.com)
   * Make a new config based off reading the updated OpenCore Install Guide
 
-* Once you've made the adjustments and made sure you config is compliant with the newest release of OpenCore, make sure to double check your setting with the OpenCore Guide on what to set everything to, otherwise read the [Differences.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Differences/Differences.pdf) if you want to get a bit more technical.
+![](../images/post-install/update-md/oc-config-compare.png)
 
- ![](../images/post-install/update-md/oc-config-compare.png)
+* Once you've made the adjustments, to make sure that you config is compliant with the newest release of OpenCore, use OpenCore Utility ocvalidate: it'll tell you whether there are errors in your config.
+If you want to get a bit more technical read the [Differences.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Differences/Differences.pdf).
+
+
+![](https://i.imgur.com/q5YBRoq.png)
 
 ### 5. **Boot!**
 
