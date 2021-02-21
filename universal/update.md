@@ -52,6 +52,7 @@ So the process goes as follows:
 ![](../images/post-install/update-md/oc-config-compare.png)
 
 * Once you've made the adjustments, to make sure that you config is compliant with the newest release of OpenCore, use OpenCore Utility ocvalidate: it'll tell you whether there are errors in your config.
+    * Please note, that `ocvalidate` must match the used OpenCore release and may not be able to detect all configuration flaws present in the file.
 If you want to get a bit more technical read the [Differences.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Differences/Differences.pdf).
 
 
