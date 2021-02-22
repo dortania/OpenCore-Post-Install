@@ -405,7 +405,7 @@ Next, remove/disable:
 
 * USBInjectAll.kext(if you're using it)
   * Reason for this is USBInjectAll actually breaks how Apple builds port maps. So while it's great for initial port mapping, it can break you final USB map
-* XhciPortLimit(Under Kernel -> Quirks)
+* Kernel -> Quirks -> XhciPortLimit -> False
   * Now that we're finally under the 15 port limit, we no longer need this hacky fix
 
 Then reboot, and check IOReg one last time:
