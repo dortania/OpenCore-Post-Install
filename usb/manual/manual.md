@@ -422,7 +422,7 @@ Remember to add this SSDT to both EFI/OC/ACPI and your config.plist under ACPI -
 
 Save the config.plist, and reboot.
 
-## Option 2:Creating our kext
+## Option 2: Creating our kext
 
 Its the time you've all been waiting for, we finally get to create our USB map!
 
