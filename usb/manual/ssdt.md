@@ -107,7 +107,7 @@ Where:
     }
 ```
 
-* **Inactive ports**: For every other USB port which couldn't be found in the discovery process in IORegistryExplorer, you can return `GENG (Zero, Zero)` to disable a 2.0 port or keep the same method with `GUPC (Zero)`. In this case, if the port is disabled, the connector type is ignored - but the `Return` function must have two arguments, otherwise the compiler returns an error.
+* **Inactive ports**: for every other USB port which couldn't be found in the discovery process in IORegistryExplorer, you can return `GENG (Zero, Zero)` to disable a 2.0 port or keep the same method with `GUPC (Zero)`. In this case, if the port is disabled, the connector type is ignored - but the `Return` function must have two arguments, otherwise the compiler returns an error.
 
     * First approach *(always correct, because the GENG method has already been defined)*:
     ```
