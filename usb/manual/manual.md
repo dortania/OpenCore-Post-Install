@@ -411,13 +411,13 @@ Remember to add this SSDT to both EFI/OC/ACPI and your config.plist under ACPI -
   Open your config.plist, use the [ProperTree](https://github.com/corpnewt/ProperTree) and you should do these last tweaks:
 
   * Use the OC snapsphot feature to add the edited USB SSDT name in your `ACPI > Add` section
-  * We also have to tell OpenCore to block the unmodified one hardcoded in our ACPI by specifing the `TableLenght` value in `config.plist/ACPI/Block` 
+  * We also have to tell OpenCore to block the unmodified one hardcoded in our ACPI by specifing the table `Lenght` value in `config.plist/ACPI/Block` 
   * The `TableSignature` value has to be filled converting the word `SSDT` from ASCII to hex
   * Set your (Optional) `OemTableid` converting your SSDT table ASCII value (in our case, `xh_rvp08`) to hex
 
 ![](../../images/post-install/manual-md/acpi-block-original-ssdt-usb-table.png)
 
-* Note: Some firmware may use the same name (`OemTableId`) for different SSDTs, (e.g. Gigabyte and some MSI boards). This is why we recommend to check the `TableLenght` value to ensure proper blocking of the correct table and to avoid dropping unwanted ACPI tables, if you found that at least two SSDTs have the same `TableId` name you can empty the `OemTableId` field in and only use `TableLength`.
+* Note: Some firmware may use the same name (`OemTableId`) for different SSDTs, (e.g. Gigabyte and some MSI boards). This is why we recommend to check the  table `Lenght` value to ensure proper blocking of the correct table and to avoid dropping unwanted ACPI tables, if you found that at least two SSDTs have the same `TableId` name you can empty the `OemTableId` field in and only use `TableLength` option in your `config.plist`.
 
 
 Save the config.plist, and reboot.
