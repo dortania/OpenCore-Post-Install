@@ -260,9 +260,7 @@ Finally, remember to add this SSDT to both EFI/OC/ACPI and your config.plist und
 
 A little bit of history worth to mention:
 
-* Thanks to [Gengik84](https://www.macos86.it/profile/1-gengik84/) and the [macos86.it community](https://www.macos86.it/topic/9-mappatura-porte-usb/) for developing and testing this quick and easy method, the original post dates back to 2018.
-
-* Shame on Maldon [who stole it later in 2019](https://www.olarila.com/topic/6181-guide-native-usb-fix-for-desktops-no-injectorkext-required-skylake/) without mentioning any credits
+* Thanks to [Gengik84](https://www.macos86.it/profile/1-gengik84/) and the [macos86.it community](https://www.macos86.it/topic/9-mappatura-porte-usb/) for developing and testing this quick and easy method, the original post dates back to 2018. Unfortunately there are some folks [who stole it later in 2019](https://www.olarila.com/topic/6181-guide-native-usb-fix-for-desktops-no-injectorkext-required-skylake/) without mentioning any credits - and this is one of many to say the least.
 
 Prerequisites:
 
@@ -413,7 +411,7 @@ Remember to add this SSDT to both EFI/OC/ACPI and your config.plist under ACPI -
   * Use the OC snapsphot feature to add the edited USB SSDT name in your `ACPI > Add` section
   * We also have to tell OpenCore to block the unmodified one hardcoded in our ACPI by specifing the table `Lenght` value in `config.plist/ACPI/Block` 
   * The `TableSignature` value has to be filled converting the word `SSDT` from ASCII to hex
-  * Set your (Optional) `OemTableid` converting your SSDT table ASCII value (in our case, `xh_rvp08`) to hex
+  * (Optional) Set your `OemTableid` converting your SSDT table ASCII value (in our case, `xh_rvp08`) to hex
 
 ![](../../images/post-install/usb-md/block-original-ssdt-usb-table.png)
 
