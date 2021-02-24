@@ -1,4 +1,4 @@
-## Option 2: Creating our kext
+## Kext creation method
 
 Its the time you've all been waiting for, we finally get to create our USB map!
 
