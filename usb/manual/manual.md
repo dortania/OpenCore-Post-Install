@@ -275,9 +275,9 @@ Before any modification, write down the `Length` value which is located in the b
 
 The unmodified, original ACPI table has a lenght of `2835`, this is going to be useful later in the guide, when we're going to tell OpenCore to avoid loading that table in favour of the new one we're going to modify.
 
-Let's start by adding the `GENG` method that can be found in MaciASL's Patch menu or this [link](https://github.com/1alessandro1/OpenCore-Post-Install/blob/master/extra-files/UsbConnectorTypePatch.txt)
+Let's start by adding the `GENG` method that can be found in MaciASL's Patch menu or this [link](https://github.com/1alessandro1/OpenCore-Post-Install/blob/master/extra-files/UsbConnectorTypePatch.txt) copy all those lines present in the .txt to the clipboard.
 
-Copy paste the whole contents of the file to MaciASL's `Patch text` as shown:
+Now open MaciASL's `Patch` menu and paste the whole contents of the file to this textbox as shown:
 
 ![](../../images/post-install/usb-md/maciasl-patch-usb-method.png)
 
