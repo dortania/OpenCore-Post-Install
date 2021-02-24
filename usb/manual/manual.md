@@ -258,17 +258,30 @@ Finally, remember to add this SSDT to both EFI/OC/ACPI and your config.plist und
 
 ## Option 1: SSDT method
 
-Before any modification, write down the `Table Length` value which is located in the beginning of the file, as shown: 
+A little bit of history worth to mention:
+
+* Thanks to [Gengik84](https://www.macos86.it/profile/1-gengik84/) and the [macos86.it community](https://www.macos86.it/topic/9-mappatura-porte-usb/) for developing and testing this quick and easy method, the original post dates back to 2018.
+
+* Shame on Maldon [who stole it later in 2019](https://www.olarila.com/topic/6181-guide-native-usb-fix-for-desktops-no-injectorkext-required-skylake/) without mentioning any credits
+
+Prerequisites:
+
+* This guide assumes that the user knows how to use MaciASL, IORegistryExplorer and ProperTree. We'll use a sample motherboard, the ASUS Z370 Prime A II where the USB devices are described in the `SSDT_xh-rvp08.aml`. 
+* Use OpenCore's `SysReport` feature to look where your OEM put the definitions for your USB devices in the ACPI tables (if none found in the SSDTs, your last chance should be your DSDT)
+
+Before any modification, write down the `Length` value which is located in the beginning of the file, as shown: 
  
 ![](../../images/post-install/usb-md/usb-map-ssdt-table-lenght.png)  
 
-Here, for the ASUS Z370 Prime A II the `SSDT_xh-rvp08.aml` (unmodified, original table) has a lenght of `2835`. 
-This value is going to be useful when we're telling OpenCore to avoid loading that table in favour of the new one we're going do modify.
+The unmodified, original ACPI table has a lenght of `2835`, this is going to be useful later in the guide, when we're going to tell OpenCore to avoid loading that table in favour of the new one we're going do modify.
 
-Let's start by adding the `GENG` method that can be found in MaciASL's Patch menu or this link: .
+Let's start by adding the `GENG` method that can be found in MaciASL's Patch menu or this [link](https://github.com/1alessandro1/OpenCore-Post-Install/blob/master/extra-files/UsbConnectorTypePatch.txt)
 
+Copy paste the whole contents of the file to MaciASL's `Patch text` as shown:
 
-Copy paste the whole contents of the file to 
+![](../../images/post-install/usb-md/maciasl-patch-usb-method.png)
+
+**Note: At this point, this section assumes that the user already discovered how to track every single type and kind of port in your system using 2.0 and 3.0 USB devices.**
 
 After applying your patch look for the first USB 2.0 personality in your list (from the discovering process explained before).
 
