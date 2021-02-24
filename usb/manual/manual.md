@@ -417,7 +417,7 @@ Remember to add this SSDT to both EFI/OC/ACPI and your config.plist under ACPI -
 
 ![](../../images/post-install/usb-md/block-original-ssdt-usb-table.png)
 
-* Note: Some firmware may use the same name (`OemTableId`) for different SSDTs, (e.g. Gigabyte and some MSI boards). This is why we recommend to check the  table `Lenght` value to ensure proper blocking of the correct table and to avoid dropping unwanted ACPI tables, if you found that at least two SSDTs have the same `TableId` name you can empty the `OemTableId` field in and only use `TableLength` option in your `config.plist`.
+* Note: Some firmware may use the same name (`OemTableId`) for different SSDTs, (e.g. Gigabyte and some MSI boards). This is why we recommend to check the  table `Lenght` value to ensure proper blocking of the correct table and to avoid dropping unwanted ACPI tables, if you found that at least two SSDTs have the same `TableId` name then you cannot use the `OemTableId` field, therefore opting for `TableLength` option in your config.plist
 
 
 Save the config.plist, and reboot.
