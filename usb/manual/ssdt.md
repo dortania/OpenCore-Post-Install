@@ -4,7 +4,7 @@ A little bit of history worth to mention:
 
 * Thanks to [Gengik84](https://www.macos86.it/profile/1-gengik84/) and the [macos86.it community](https://www.macos86.it/topic/9-mappatura-porte-usb/) for developing and testing this quick and easy method, the original post dates back to 2018, even though some folks [stole it later in 2019](https://www.olarila.com/topic/6181-guide-native-usb-fix-for-desktops-no-injectorkext-required-skylake/) without mentioning any credits.
 
-Prerequisites:
+## Prerequisites:
 
 * This guide assumes that the user knows how to use MaciASL, IORegistryExplorer and ProperTree. We'll use a sample motherboard, the ASUS Z370 Prime A II where the USB devices are described in the `SSDT_xh-rvp08.aml`. 
 * Use OpenCore's `SysReport` feature to look where your OEM put the definitions for your USB devices in the ACPI tables (if none found in the SSDTs, your last chance should be your DSDT)
@@ -14,6 +14,8 @@ Before any modification, write down the `Length` value which is located in the b
 ![](../../images/post-install/usb-md/usb-map-ssdt-table-lenght.png)  
 
 The unmodified, original ACPI table has a lenght of `2835`, this is going to be useful later in the guide, when we're going to tell OpenCore to avoid loading that table in favour of the new one we're going to modify.
+
+## Adding the method to the original SSDT
 
 Let's start by adding the `GENG` method that can be found in MaciASL's Patch menu or this [link](https://github.com/1alessandro1/OpenCore-Post-Install/blob/master/extra-files/UsbConnectorTypePatch.txt) copy all those lines present in the .txt to the clipboard.
 
