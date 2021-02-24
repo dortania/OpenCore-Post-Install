@@ -1,0 +1,29 @@
+/*
+ * Maintained by Gengik84, MacOS86.it
+ * 
+ * example:
+ *          Return (GENG (One, 0x03))  for connector type usb3 ( standard connector )
+ * or       Return (GENG (One, 0x09))  for connector type usb3 type C ( HS+SS with Switch )
+ * or       Return (GENG (One, 0xFF))  for internal (255) 
+ *
+ * Other connector type available:
+ *
+ *  Return (GENG (One, 0x00))  for connector type usb2 ( Type A )
+ *  Return (GENG (One, 0x0A))  for connector type usb3 type C ( HS+SS without Switch )
+*/
+
+into scope label \_SB.PCI0.XHC.RHUB insert begin
+ Method (GENG, 2, Serialized)\n
+        {\n
+            Name (PCKG, Package (0x04)\n
+            {\n
+                Zero, \n
+                0xFF, \n
+                Zero, \n
+                Zero\n
+            })\n
+            PCKG [Zero] = Arg0\n
+            PCKG [One] = Arg1\n
+            Return (PCKG) /* \GENG.PCKG */\n
+        }\n
+end;  
