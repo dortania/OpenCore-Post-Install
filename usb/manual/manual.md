@@ -273,7 +273,7 @@ Before any modification, write down the `Length` value which is located in the b
  
 ![](../../images/post-install/usb-md/usb-map-ssdt-table-lenght.png)  
 
-The unmodified, original ACPI table has a lenght of `2835`, this is going to be useful later in the guide, when we're going to tell OpenCore to avoid loading that table in favour of the new one we're going do modify.
+The unmodified, original ACPI table has a lenght of `2835`, this is going to be useful later in the guide, when we're going to tell OpenCore to avoid loading that table in favour of the new one we're going to modify.
 
 Let's start by adding the `GENG` method that can be found in MaciASL's Patch menu or this [link](https://github.com/1alessandro1/OpenCore-Post-Install/blob/master/extra-files/UsbConnectorTypePatch.txt)
 
