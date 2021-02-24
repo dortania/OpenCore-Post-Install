@@ -1,4 +1,4 @@
-## Option 1: SSDT method
+## SSDT method
 
 A little bit of history worth to mention:
 
