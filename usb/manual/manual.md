@@ -402,7 +402,7 @@ Where:
 
 Once you've defined every port using these criterias, go to *File > Save As...*
 
-![](../../images/post-install/manual-md/ssdt-save-usbmap.png)
+![](../../images/post-install/usb-md/ssdt-save-usbmap.png)
 
 Remember to add this SSDT to both EFI/OC/ACPI and your config.plist under ACPI -> Add.
 
