@@ -68,7 +68,7 @@ If Bootstrap is enabled prior to updating to 0.6.6, and your motherboard's firmw
 
 If your firmware does not automatically detect `EFI/BOOT/BOOTx64.efi` or you cannot put OpenCore's launcher there for any reason, you have multiple other options:
 
-* Put `OpenShell.efi` on a USB, rename and move to `EFI/BOOT/BOOTx64.efi`, and follow the above steps, except insteading of selecting `BOOTx64.efi` from the boot menu, boot into the USB and launch OpenCore from there directly.
+* Put `OpenShell.efi` on a USB, rename and move to `EFI/BOOT/BOOTx64.efi`, and follow the above steps, except instead of selecting `BOOTx64.efi` from the boot menu, boot into the USB and launch OpenCore from there directly.
 * Add a folder `EFI/OC/Bootstrap` and copy and rename BOOTx64.efi from the OpenCore package to `EFI/OC/Bootstrap/Bootstrap.efi`. Then, after updating your OpenCore setup, set `Misc -> Boot -> LauncherOption` to the appropriate option (`Full`, or `Short` if previously using `BootstrapShort`) and boot OpenCore using the existing entry create by Bootstrap. After your first boot, you should see a new OpenCore boot entry added. You can then reset NVRAM in OpenCore (making sure to keep `LauncherOption` enabled so you don't delete the new entry) to get rid of the old Bootstrap boot entry.
 
 Conversion notes:

@@ -49,9 +49,13 @@ So the process goes as follows:
   * [BeyondCompare](https://www.scootersoftware.com)
   * Make a new config based off reading the updated OpenCore Install Guide
 
-* Once you've made the adjustments and made sure you config is compliant with the newest release of OpenCore, make sure to double check your setting with the OpenCore Guide on what to set everything to, otherwise read the [Differences.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Differences/Differences.pdf) if you want to get a bit more technical.
+![](../images/post-install/update-md/oc-config-compare.png)
 
- ![](../images/post-install/update-md/oc-config-compare.png)
+* Once you've made the adjustments, to make sure that you config is compliant with the newest release of OpenCore, you can the OpenCore Utility ocvalidate: this tool will help ensure your config.plist is matching the OpenCore specification of the matching build.
+  * Please note, that `ocvalidate` must match the used OpenCore release and may not be able to detect all configuration flaws present in the file. We recommend to double check your setting with the OpenCore Guide on what to set everything to, otherwise read the [Differences.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Differences/Differences.pdf)  for more in-depth documentation on changes.
+  * To run `ocvalidate`, `cd` into OpenCore's `Utilties/ocvalidate/` and run `./ocvalidate <insert_config.plist>`. Note you may need to run `chmod +x ocvalidate` for it to execute.
+
+![](../images/post-install/update-md/ocvalidate.png)
 
 ### 5. **Boot!**
 
