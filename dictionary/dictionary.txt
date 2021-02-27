@@ -858,6 +858,7 @@ SystemPreferences
 SystemProfilerMemoryFixup
 T2
 T2's
+TCP
 TDP
 TIMR
 TMR
@@ -1029,6 +1030,7 @@ architected
 args
 arse
 auth
+autodetect
 automagically
 autopoweroff
 ba10b5d

@@ -42,7 +42,7 @@ Well this gets into a fun subset of computers, the hexadecimal counting system! 
 
 And now when we take into account the quirk `XhciPortLimit`, you can see *why* data corruption can happen. As we're pushing past the 0xF limit and going into someone else's space. So avoid this quirk when possible.
 
-* Note: While the name `XhciPortLimit` may seem that it's limiting the number of XHCI ports, it's in-fact patching the XCHI Port Limit to a higher value.
+* Note: While the name `XhciPortLimit` may seem that it's limiting the number of XHCI ports, it's in-fact patching the XHCI Port Limit to a higher value.
 
 > What about USB hubs?
 
