@@ -154,6 +154,7 @@ module.exports = {
                             ['/universal/security/filevault', 'FileVault'],
                             ['/universal/security/vault', 'Vault'],
                             ['/universal/security/scanpolicy', 'ScanPolicy'],
+							['/universal/security/password', 'OpenCore Menu Password'],
                             ['/universal/security/applesecureboot', 'Apple Secure Boot'],
                         ]
                     },

@@ -12,6 +12,8 @@ In this guide, we'll be discussing another way to remove the error: Using OpenCo
 
 The exact way we'll be doing this is adding fake memory until we reach 12 filled slots, as any less or any empty slots will still result in memory errors. Note this won't be a super in-depth guide, instead explaining the basics of how to setup Custom Memory.
 
+* Note: for some users, simply disabling the notification(not the error itself) is more than enough. For these users, we recommend installing [RestrictEvents](https://github.com/acidanthera/RestrictEvents/releases)
+
 ## Mapping our memory
 
 To start, we'll want to grab the following files:

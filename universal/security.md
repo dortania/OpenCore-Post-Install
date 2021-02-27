@@ -8,5 +8,7 @@ So something that makes OpenCore truly special is how it's been built with secur
   * OpenCore's semi-secure boot, used for snapshotting OpenCore so no unwanted changes happen
 * [**ScanPolicy**](./security/scanpolicy)
   * OpenCore's drive policy, determines what types of disks show up in OpenCore's boot menu
+* [**OpenCore Password Setup**](./security/password)
+  * Enable password in OpenCore boot menu
 * [**Apple Secure Boot**](./security/applesecureboot)
   * Apple's variant of secure boot in the macOS kernel
