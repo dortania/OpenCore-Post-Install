@@ -200,7 +200,7 @@ rom-revision   | String | Dortania
 NVCAP          |  Data  | 05000000 00000300 0c000000 0000000f 00000000
 @0,compatible  | String | NVDA,NVMac
 @0,device_type | String | display
-@0,name        | String | NVDA,Display-1
+@0,name        | String | NVDA,Display-A
 @1,compatible  | String | NVDA,NVMac
 @1,device_type | String | display
 @1,name        | String | NVDA,Display-B
