@@ -51,12 +51,11 @@ So the process goes as follows:
 
 ![](../images/post-install/update-md/oc-config-compare.png)
 
-* Once you've made the adjustments, to make sure that you config is compliant with the newest release of OpenCore, use OpenCore Utility ocvalidate: it'll tell you whether there are errors in your config.
-    * Please note, that `ocvalidate` must match the used OpenCore release and may not be able to detect all configuration flaws present in the file.
-If you want to get a bit more technical read the [Differences.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Differences/Differences.pdf).
+* Once you've made the adjustments, to make sure that you config is compliant with the newest release of OpenCore, you can the OpenCore Utility ocvalidate: this tool will help ensure your config.plist is matching the OpenCore specification of the matching build.
+  * Please note, that `ocvalidate` must match the used OpenCore release and may not be able to detect all configuration flaws present in the file. We recommend to double check your setting with the OpenCore Guide on what to set everything to, otherwise read the [Differences.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Differences/Differences.pdf)  for more in-depth documentation on changes.
+  * To run `ocvalidate`, `cd` into OpenCore's `Utilties/ocvalidate/` and run `./ocvalidate <insert_config.plist>`. Note you may need to run `chmod +x ocvalidate` for it to execute.
 
-
-![](https://i.imgur.com/q5YBRoq.png)
+![](../images/post-install/update-md/ocvalidate.png)
 
 ### 5. **Boot!**
 
