@@ -99,6 +99,8 @@ This guide also includes some other fixes than just mapping:
 
 **USB maps with macOS Catalina(10.15) and newer**: You may find that even with USB mapping, your sleep breaks. one possible solution is renaming the IOClass value from `AppleUSBMergeNub` to `AppleUSBHostMergeProperties`. See here for more info: [Changes in Catalina's USB IOClass](https://github.com/dortania/bugtracker/issues/15)
 
+* Note: Some USB devices that do not have proper drivers in macOS can unfortunately result in sleep issues. For example, Corsair water coolers with USB addressable control can prevent the machine from sleeping correctly. For these situations, we recommend users disconnect these troublesome devices when debugging sleep issues.
+
 ### Fixing GPUs
 
 With GPUs, it's fairly easy to know what might be causing issues. This being unsupported GPUs in macOS. By default, any GPU that doesn't have drivers already provided in the OS will run off very basic drivers known as VESA drivers. These provide minimal display output but also cause a big issue in that macOS doesn't actually know how to properly interact with these devices. To fix this, well need to either trick macOS into thinking it's a generic PCIe device(which it can better handle, ideal for desktops) or completely power off the card(on laptops, desktop dGPUs have issues powering down)
