@@ -7,7 +7,7 @@ A little bit of history worth to mention:
 ## Prerequisites:
 
 * Hardware limitations: this guide requires 6th gen Intel or newer, AMD is not supported. Also, laptops could be supported but requires to load a custom DSDT which is not recommended by us
-* Human limitations: this guide  assumes that the user knows how to use MaciASL, IORegistryExplorer and ProperTree. We'll use a sample motherboard, the ASUS Z370 Prime A II where the USB devices are described in the `SSDT_xh-rvp08.aml`. 
+* Human limitations: this guide  assumes that the user knows how to use [MaciASL](https://github.com/acidanthera/MaciASL/releases/latest), [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) and [ProperTree](https://github.com/corpnewt/ProperTree). We'll use a sample motherboard, the ASUS Z370 Prime A II where the USB devices are described in the `SSDT_xh-rvp08.aml`. 
 * Software limitations: OpenCore's `SysReport` feature to look where your OEM put the definitions for your USB devices in the ACPI tables (if none found in the SSDTs, your last chance should be your DSDT but loading a custom DSDT is not recommended by us)
 
 
