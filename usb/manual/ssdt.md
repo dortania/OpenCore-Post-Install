@@ -2,7 +2,7 @@
 
 A little bit of history worth to mention:
 
-* Thanks to [Gengik84](https://www.macos86.it/profile/1-gengik84/) and the [macos86.it community](https://www.macos86.it/topic/9-mappatura-porte-usb/) for developing and testing this quick and easy method, the original post dates back to 2018, even though some folks [stole it later in 2019](https://www.olarila.com/topic/6181-guide-native-usb-fix-for-desktops-no-injectorkext-required-skylake/) without mentioning any credits.
+* Thanks to [Gengik84](https://www.macos86.it/profile/1-gengik84/) and the [macos86.it community](https://www.macos86.it/topic/9-mappatura-porte-usb/) for developing and testing the `GENG Method`, the original post dates back to 2018.
 
 ## Prerequisites:
 
