@@ -23,7 +23,7 @@ Now open MaciASL's `Patch` menu and paste the whole contents of the file to this
 
 ![](../../images/post-install/usb-md/maciasl-patch-usb-method.png)
 
-**Note: At this point, this section assumes that the user already discovered [how to track every single type of port in your system](https://dortania.github.io/OpenCore-Post-Install/usb/manual/manual.html#finding-your-usb-ports) using 2.0 and 3.0 USB devices.**
+**Note**: At this point, this section assumes that the user already discovered [how to track every single type of port in your system](https://dortania.github.io/OpenCore-Post-Install/usb/manual/manual.html#finding-your-usb-ports) using 2.0 and 3.0 USB devices.
 
 After applying your patch look for the first USB 2.0 personality in your list (from the discovering process explained before).
 
