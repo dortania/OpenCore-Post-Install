@@ -6,8 +6,10 @@ A little bit of history worth to mention:
 
 ## Prerequisites:
 
-* This guide **valid for Skylake and newer** assumes that the user knows how to use MaciASL, IORegistryExplorer and ProperTree. We'll use a sample motherboard, the ASUS Z370 Prime A II where the USB devices are described in the `SSDT_xh-rvp08.aml`. 
+* Hardware limitations: this guide requires 6th gen Intel or newer, AMD is not supported. Also, laptops could be supported but requires to edit the DSDT which is not recommended by dortania.
+* This guide  assumes that the user knows how to use MaciASL, IORegistryExplorer and ProperTree. We'll use a sample motherboard, the ASUS Z370 Prime A II where the USB devices are described in the `SSDT_xh-rvp08.aml`. 
 * Use OpenCore's `SysReport` feature to look where your OEM put the definitions for your USB devices in the ACPI tables (if none found in the SSDTs, your last chance should be your DSDT)
+
 
 Before any modification, write down the `Length` value which is located in the beginning of the file, as shown: 
  
