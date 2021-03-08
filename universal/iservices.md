@@ -119,7 +119,7 @@ sudo rm -rf ~/Library/Messages
 
 ## Verifying your work one last time
 
-Grab [macserial](https://github.com/acidanthera/MacInfoPkg/releases) and run the following:
+Grab `macserial` (in the "Utilities" folder of the [OpenCore](https://github.com/acidanthera/OpenCorePkg) package) and run the following:
 
 ```
 path/to/macserial -s
