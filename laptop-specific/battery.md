@@ -12,6 +12,8 @@ While custom DSDT injection should be avoided as to prevent issues with Windows 
 
 * Note 2: Avoid using the MaciASL and iASL provided by Rehabman, they have been long neglected and so highly recommended grabbing a newer variant from Acidanthera: [MaciASL](https://github.com/acidanthera/MaciASL/releases)
 
+* Note 3: Rehabman's guide recommends using the `ACPIBatteryManager.kext` driver, but that is a very outdated driver, so the `SMCBatteryManager.kext` VirtualSMC Plugin should be used instead: [VirtualSMC](https://github.com/acidanthera/VirtualSMC/releases)
+
 ## Battery Hot-patching
 
 Once you've finally gotten your DSDT patched and battery working in macOS, it's time to finally create our very own hot-patches. How these differ from regular DSDT patching is that it's done on the fly with the DSDT allowing for greater flexibility with firmware updates:
