@@ -33,7 +33,7 @@ And we find that the OEM (ASUS) already defined its own `GUPC` method to mark th
 
 ![](../../images/post-install/usb-md/Original-OEM-method.png)  
   
-  According to the Advanced Configuration and Power Interface (ACPI) Specification, version 6.3, at page [673](https://uefi.org/sites/default/files/resources/ACPI_6_3_May16.pdf#page=673), the `_UPC`  method has these possible values for the `Return` function:
+  According to the Advanced Configuration and Power Interface (ACPI) Specification, version 6.4, at page [587](https://uefi.org/sites/default/files/resources/ACPI_Spec_6_4_Jan22.pdf#page=587) <!---For a good chart rows x columns see [673](https://uefi.org/sites/default/files/resources/ACPI_6_3_May16.pdf#page=673), the connectors are defined the same way-->, the `_UPC`  method has these possible values for the `Return` function:
 
 ```
 Return Value Information:
