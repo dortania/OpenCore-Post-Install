@@ -90,7 +90,18 @@ $ uuidgen
 976AA603-75FC-456B-BC6D-9011BFB4968E
 ```
 
-Then simply replace those values in your config.plist in the same section:
+Then simply replace those values in your config.plist:
+
+|Key|Data|
+|---|---|
+|MLB|`C02733401J9JG36A8`|
+|Mac Address|`00:16:CB:00:11:22`|
+|ROM|`0016cb001122`|
+|SystemProductName|`iMacPro1,1`|
+|SystemSerialNumber|`C02V7UYGHX87`|
+|SystemUUID|`976AA603-75FC-456B-BC6D-9011BFB4968E`|
+
+It should look something like this:
 
 ```xml
     <key>MLB</key>
