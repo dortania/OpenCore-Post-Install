@@ -18,7 +18,17 @@ The following items will be created below and are required to use iServices:
 
 **Note**: You and you alone are responsible for your AppleID, read the guide carefully and take full responsibility if you screw up. Dortania and other guides are not held accountable for what **you** do.
 
-## Generate a new Serial and Board Serial (MLB) for your model.
+## Using GenSMBIOS: https://github.com/corpnewt/GenSMBIOS
+
+Download [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS) and select option 1 to download MacSerial and next option 3 to generate some new serials. What we're looking for is a valid serial that currently has no registered purchase date.
+
+Tip: `iMacPro1,1 10` will print 10 serials, this will save you some time on generating
+
+![](../images/post-install/iservices-md/serial-list.png)
+
+## Using macserial: https://github.com/acidanthera/OpenCorePkg/tree/master/Utilities/macserial
+
+Generate a new Serial and Board Serial (MLB) for your model.
 
 Compile [macserial](https://github.com/acidanthera/OpenCorePkg/tree/master/Utilities/macserial) from source.
 
@@ -48,7 +58,7 @@ C02V7UYGHX87 | C02733401J9JG36A8
 The value on the left is your **Serial number**.
 The value on the right is your **Board Serial (MLB)**.
 
-## Choose a MAC Address 
+## Choose a MAC Address
 
 Select a MAC Address with an Organizationally Unique Identifier (OUI) that corresponds to a real Apple, Inc. interface.
 
@@ -124,13 +134,7 @@ Brand new Apple ID's will almost certainly not work. Having other real devices i
 
 If you see a [support warning, see below](#customer-code-error).
 
-### Alternative Option: https://github.com/corpnewt/GenSMBIOS
-
-Download [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS) and select option 1 to download MacSerial and next option 3 to generate some new serials. What we're looking for is a valid serial that currently has no registered purchase date.
-
-Tip: `iMacPro1,1 10` will print 10 serials, this will save you some time on generating
-
-![](../images/post-install/iservices-md/serial-list.png)
+## Serial Number Validity
 
 Now enter the serial into the [Apple Check Coverage page](https://checkcoverage.apple.com/), you will get 1 of 3 responses:
 
