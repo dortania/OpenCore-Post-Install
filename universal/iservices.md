@@ -28,9 +28,15 @@ Tip: `iMacPro1,1 10` will print 10 serials, this will save you some time on gene
 
 ## Using macserial
 
+This is for Linux users and an alternative to using GenSMBIOS.
+
 Generate a new Serial and Board Serial (MLB) for your model.
 
-Compile [macserial](https://github.com/acidanthera/OpenCorePkg/tree/master/Utilities/macserial) from source.
+To generate this you will need macserial.
+
+You can download the latest release of OpenCorePkg from here: https://github.com/acidanthera/OpenCorePkg/releases
+
+Or compile the development [macserial](https://github.com/acidanthera/OpenCorePkg/tree/master/Utilities/macserial) from source.
 
 ```bash
 git clone --depth 1 https://github.com/acidanthera/OpenCorePkg.git
