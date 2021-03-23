@@ -34,7 +34,7 @@ Generate a new Serial and Board Serial (MLB) for your model.
 
 To generate this you will need macserial.
 
-You can download the latest release of OpenCorePkg from here: https://github.com/acidanthera/OpenCorePkg/releases
+You can download the [latest release of OpenCorePkg from here.](https://github.com/acidanthera/OpenCorePkg/releases)
 
 Or compile the development [macserial](https://github.com/acidanthera/OpenCorePkg/tree/master/Utilities/macserial) from source.
 
