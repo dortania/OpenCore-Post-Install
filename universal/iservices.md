@@ -26,7 +26,7 @@ Tip: `iMacPro1,1 10` will print 10 serials, this will save you some time on gene
 
 ![](../images/post-install/iservices-md/serial-list.png)
 
-## Using macserial: https://github.com/acidanthera/OpenCorePkg/tree/master/Utilities/macserial
+## Using macserial
 
 Generate a new Serial and Board Serial (MLB) for your model.
 
