@@ -97,6 +97,8 @@ For example:
 
 **ROM:** `0016cb001122`
 
+![](../images/post-install/iservices-md/config-rom.png)
+
 ## Generate an UUID
 
 Type `uuidgen` in Terminal
@@ -195,24 +197,6 @@ Now search through the pcidevices.plist and find the PciRoot of your ethernet co
 Now with the PciRoot, go into your config.plist -> DeviceProperties -> Add and apply the property of `built-in` with type `Data` and value `01`
 
 ![Add to config.plist](../images/post-install/iservices-md/config-built-in.png)
-
-## Fixing ROM
-
-This is a section many may have forgotten about but this is found in your config.plist under PlatformInfo -> generic -> ROM
-
-To find your actual MAC Address/ROM value, you can find in a couple places:
-
-* BIOS
-* macOS: System Preferences -> Network -> Ethernet -> Advanced -> Hardware -> MAC Address
-* Windows: Settings -> Network & Internet -> Ethernet -> Ethernet -> Physical MAC Address
-
-* **Note**: en0 can be either Wifi, ethernet or even Thunderbolt, adapt the above example to your situation.
-
-Some users have even gone as far as using real Apple MAC Address dumps for their config, for this guide we'll be using our real MAC Address but note that this is another option.
-
-When adding this to your config, `c0:7e:bf:c3:af:ff` should be converted to `c07ebfc3afff` as the `Data` type cannot accept colons(`:`).
-
-![](../images/post-install/iservices-md/config-rom.png)
 
 ## Verifying NVRAM
 
