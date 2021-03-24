@@ -46,7 +46,7 @@ So the process goes as follows:
 
   * [OCConfigCompare](https://github.com/corpnewt/OCConfigCompare) to compare between the sample.plist and your config.plist
   * `diff (file input 1) (file input 2)` in terminal
-  * [BeyondCompare](https://www.scootersoftware.com)
+  * [Meld Merge (MacOS)](https://github.com/yousseb/meld/releases/) or [WinMerge (Windows](https://winmerge.org/)
   * Make a new config based off reading the updated OpenCore Install Guide
 
 ![](../images/post-install/update-md/oc-config-compare.png)
