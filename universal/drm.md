@@ -1,7 +1,7 @@
 # Fixing DRM support and iGPU performance
 
 * **Note**: Safari 14 and macOS 11, Big Sur are currently unsupported by WhateverGreen's DRM patches. Safari 13 in Catalina and older are supported just fine however.
-* **Note 2**: Browsers not using hardware based DRM(ie. Chrome), will have working DRM without any work both on iGPUs and dGPUs. The below guide is for Safari and other applications with hardware based DRM
+* **Note 2**: Browsers not using hardware based DRM(ie. Google Chrome or Mozilla Firefox), will have working DRM without any work both on iGPUs and dGPUs. The below guide is for Safari and other applications with hardware based DRM
 
 So with DRM, we have a couple things we need to mention:
 
