@@ -51,7 +51,7 @@ To start, we're gonna need a couple things:
   * This means Sandy, Ivy Bridge and AMD CPUs are not supported
 * [CPUFriend](https://github.com/acidanthera/CPUFriend/releases)
 * [Fewt's fork of CPUFriendFriend](https://github.com/fewtarius/CPUFriendFriend)
-  * This fork has some additional features that can help both simplify the process and give use some better control
+  * This fork has some additional features that can help both simplify the process and give us some better control
 
 ### LFM: Low Frequency Mode
 
