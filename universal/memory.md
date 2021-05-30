@@ -6,9 +6,19 @@ On macOS Catalina and newer, users of the MacPro7,1 SMBIOS will experience this 
 | :--- | :--- |
 | <img width="1362" src=../images/post-install/memory-md/memory-error-notification.png>  | ![](../images/post-install/memory-md/memory-error-aboutthismac.png) |
 
-The exact reason for this error is a bit unknown, however ways to resolve this error have been made possible. The most common way to remove the error is to use [RestrictEvents](https://github.com/acidanthera/RestrictEvents/releases) and we highly encourage all users to use this kext instead.
+The exact reason for this error is a bit unknown, however ways to resolve this error have been made possible. The most common way to remove the error is to use [RestrictEvents](https://github.com/acidanthera/RestrictEvents/releases). However, the RestrictEvents extension is a multi-function extension and you may not need nor want the extra functions that the extensio will provide.
 
-For those who wish to attempt the legacy mapping way, see the below guide. Note it will require you to map all your DIMMs manually so this will be a time consuming process.
+If you just want to remove the annoying pop-up, then this guide is for you...
+
+## A bit of background
+
+Mac OS expects that the underlying hardware is from Apple. Therefore, when building a hackintosh/ryzentosh we need to try and match the hardware as closely as possible. For those areas where our hardware differs, then we must try to convince Mac OS that the hardware is a match.
+
+Consider your mainboard. If you are emulating a Mac Pro 7,1, then the Apple mainboard has 12 physical RAM slots. Our mainboards will probably have fewer physical memory slots. We will use OpenCore's custom memory mapping feature to report 12 physical slots to Mac OS. We can then assign our actual memory configuration into these 12 slots.
+
+Take a look at [Install and replace memory in your Mac Pro (2019)](https://support.apple.com/en-gb/HT210103?cid=macOS_UI_Memory_article_HT210103). The diagrams in the section "Check supported configurations" show you how a Mac Pro 7,1 expects the physical RAM to be installed.
+
+**Please note that a Mac Pro 7,1 has a minimum requirement of 4 DIMMs.** Therefore we recommend that your system should also have a minimum of 4 physical DIMMs. If your system only has two DIMMs (maybe your mainboard only has two slots) then you will want to use the custom mapping feature to present 4 DIMMs even though you only have two. We'll explain how later...
 
 ## Mapping our memory
 
