@@ -20,7 +20,7 @@ Take a look at [Install and replace memory in your Mac Pro (2019)](https://suppo
 
 **Please note that a Mac Pro 7,1 has a minimum requirement of 4 DIMMs.** Therefore we recommend that your system should also have a minimum of 4 physical DIMMs. If your system only has two DIMMs (maybe your mainboard only has two slots) then you will want to use the custom mapping feature to present 4 DIMMs even though you only have two. We'll explain how later...
 
-## Mapping our memory
+## Gathering the values from your DIMMs using dmidecode
 
 To start, we'll want to grab the following files:
 
@@ -29,11 +29,11 @@ To start, we'll want to grab the following files:
 * [dmidecode](https://github.com/acidanthera/dmidecode/releases)
   * Tool used for extracting SMBIOS info in macOS
 
-Here is a premade file which has properties already set out for you, one you open it you should see the following:
+Below is an image of the premade file (CustomMemory.plist above) which has properties already set out for you, one you open it you should see the following:
 
 ![](../images/post-install/memory-md/CustomMemory-open.png)
 
-From here we see may properties, lets try to break it down:
+From here we see many properties, lets try to break it down:
 
 * [DataWidth](#datawidth)
 * [ErrorCorrection](#errorcorrection)
@@ -240,21 +240,10 @@ TypeDetail = 7
 
 ### Devices
 
-The array of Memory Devices, and where we do out magic to fix the error. In the sample CustomMemory.plist provided, we have 12 slots listed. All twelve slots are set up to report an EMPTY Slot. Only 4 out of the 8 fields are pre-populated. You will use the values that you discovered above to present your RAM properly to MacOS.
+The array of Memory Devices, and where we do our magic to fix the error. In the sample CustomMemory.plist provided, we have 12 slots listed. All twelve slots are set up to report an EMPTY Slot.
 
-* The order of the array items is important, and should be kept as it is.
-* * For example Item 0 represents Slot 8 on the real Mac Pro 7,1 mainboard. In turn Apple labels this slot as Channel A / DIMM 1  
-* The naming convention for the DeviceLocator field is taken from a real Mac Pro 7,1.
+![](../images/post-install/memory-md/memory-devices-expanded.png)
 
-![](../images/post-install/memory-md/system-profiler.png)
-
-Here we see which slots are populated by memory, and which are empty. For filled slots, simply run through the below on how to pull information. For slots that are empty however, you'll want to add some blank information into thinking macOS has populated device. Ensure that by the end, you have 12 total slots filled with devices.
-
-Example of filled slots vs fake:
-
-![](../images/post-install/memory-md/memory-example.png)
-
-We recommend setting the Size and Speed to both 1, to ensure applications that do pull from memory are not confused that you have more than you should.
 
 Next lets break down the properties:
 
@@ -274,11 +263,14 @@ To determine AssetTag, run the following:
 ```sh
 path/to/dmidecode -t memory | grep "Asset Tag:"
 #Example Output
-
-# Final Value
+Asset Tag: <BAD INDEX>
+or
+Asset Tag: Not Specified
+or
+Asset Tag: Some other text
 ```
 
-* If dmidecode prints `Not Specified`, you can simply leave this entry blank
+* If dmidecode prints `<BAD INDEX>` or `Not Specified`, you can simply leave this entry blank
 
 #### BankLocator
 
@@ -287,41 +279,14 @@ To determine BankLocator, run the following:
 ```sh
 path/to/dmidecode -t memory | grep "Bank Locator:"
 #Example Output
-
-# Final Value
+ Bank Locator: Not Specified
 ```
 
 * If dmidecode prints `Not Specified`, you can simply leave this entry blank
 
 #### DeviceLocator
 
-To determine DeviceLocator, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Locator:"
-#Example Output
- Locator: DIMM_A1
- Locator: DIMM_A2
- Locator: DIMM_B1
- Locator: DIMM_B2
- Locator: DIMM_C1
- Locator: DIMM_C2
- Locator: DIMM_D1
- Locator: DIMM_D2
-# Final Value
-Entry 1:  DIMM_A1
-Entry 2:  DIMM_A2
-Entry 3:  DIMM_B1
-Entry 4:  DIMM_B2
-Entry 5:  DIMM_C1
-Entry 6:  DIMM_C2
-Entry 7:  DIMM_D1
-Entry 8:  DIMM_D2
-Entry 9:  DIMM_EMPTY
-Entry 10: DIMM_EMPTY
-Entry 11: DIMM_EMPTY
-Entry 12: DIMM_EMPTY
-```
+* For best results use the CustomMemory.plist file values. Do not change them.
 
 #### Manufacturer
 
@@ -330,8 +295,7 @@ To determine Manufacturer, run the following:
 ```sh
 path/to/dmidecode -t memory | grep "Manufacturer:"
 #Example Output
-
-# Final Value
+ Manufacturer: CRUCIAL
 ```
 
 #### PartNumber
@@ -349,19 +313,6 @@ path/to/dmidecode -t memory | grep "Part Number:"
  Part Number: NO DIMM
  Part Number: KHX2666C15D4/8G
  Part Number: NO DIMM
-# Final Value
-Entry 1:  KHX2666C16/8G
-Entry 2:  EmptyDIMM
-Entry 3:  KHX2666C16/8G
-Entry 4:  EmptyDIMM
-Entry 5:  KHX2666C16/8G
-Entry 6:  EmptyDIMM
-Entry 7:  KHX2666C15D4/8G
-Entry 8:  EmptyDIMM
-Entry 9:  EmptyDIMM
-Entry 10: EmptyDIMM
-Entry 11: EmptyDIMM
-Entry 12: EmptyDIMM
 ```
 
 #### SerialNumber
@@ -379,24 +330,11 @@ path/to/dmidecode -t memory | grep "Serial Number:"
  Serial Number: NO DIMM
  Serial Number: A2032E84
  Serial Number: NO DIMM
-# Final Value
-Entry 1:  0F095257
-Entry 2:  EmptyDIMM
-Entry 3:  0C099A57
-Entry 4:  EmptyDIMM
-Entry 5:  752EDED8
-Entry 6:  EmptyDIMM
-Entry 7:  A2032E84
-Entry 8:  EmptyDIMM
-Entry 9:  EmptyDIMM
-Entry 10: EmptyDIMM
-Entry 11: EmptyDIMM
-Entry 12: EmptyDIMM
 ```
 
 #### Size
 
-Size of single memory stick in MB
+Size of single memory stick in MB. Set this to 0 if the DIMM slot should be EMPTY
 
 ```
 1GB  - 1024
@@ -422,19 +360,6 @@ path/to/dmidecode -t memory | grep "Size:"
  Size: No Module Installed
  Size: 8 GB
  Size: No Module Installed
-# Final Value
-Entry 1:  8192
-Entry 2:  1
-Entry 3:  8192
-Entry 4:  1
-Entry 5:  8192
-Entry 6:  1
-Entry 7:  8192
-Entry 8:  1
-Entry 9:  1
-Entry 10: 1
-Entry 11: 1
-Entry 12: 1
 ```
 
 #### Speed
@@ -456,20 +381,78 @@ path/to/dmidecode -t memory | grep "Speed:"
  Speed: Unknown
  Speed: 2666 MT/s
  Speed: Unknown
-# Final Value
-Entry 1:  2666
-Entry 2:  1
-Entry 3:  2666
-Entry 4:  1
-Entry 5:  2666
-Entry 6:  1
-Entry 7:  2666
-Entry 8:  1
-Entry 9:  1
-Entry 10: 1
-Entry 11: 1
-Entry 12: 1
 ```
+
+## Mapping our memory
+
+Now might be a good time to refresh your memory to help you understand how OpenCore is mapping the Custom Memory items in the plist file to the layout that a real Mac Pro 7,1 presents. See [Install and replace memory in your Mac Pro (2019)](https://support.apple.com/en-gb/HT210103?cid=macOS_UI_Memory_article_HT210103). The diagrams in the section "Check supported configurations" show you how a Mac Pro 7,1 expects the physical RAM to be installed.
+
+* The naming convention for the DeviceLocator field is taken from a real Mac Pro 7,1.
+* The order of the array items is important, and should be kept as it is. For example:
+  * Item 0
+    * Represents Slot 8 on the real Mac Pro 7,1 mainboard.
+    * In turn Apple labels this slot as Channel A / DIMM 1
+  * Item 1
+    * Represents Slot 7 on the real Mac Pro 7,1 mainboard.
+    * In turn Apple labels this slot as Channel A / DIMM 2
+  * Item 2
+    * Represents Slot 10 on the real Mac Pro 7,1 mainboard.
+    * In turn Apple labels this slot as Channel B / DIMM 1
+  * Item 3
+    * Represents Slot 9 on the real Mac Pro 7,1 mainboard.
+    * In turn Apple labels this slot as Channel B / DIMM 2
+  * Item 4
+    * Represents Slot 12 on the real Mac Pro 7,1 mainboard.
+    * In turn Apple labels this slot as Channel C / DIMM 1
+  * Item 5
+    * Represents Slot 11 on the real Mac Pro 7,1 mainboard.
+    * In turn Apple labels this slot as Channel C / DIMM 2
+* If a memory slot is not populated on a real Mac Pro 7,1 the Manufacturer field is set to the text value NO DIMM
+  * This is the critcal field to fix the error message.
+
+## Presenting four DIMMs to Mac OS correctly
+
+If you have four DIMMs installed on your mainboard, great! 
+
+Your values from using dmidecode (described above) might be similar to this:
+
+```Data Width: 64 bits
+Error Correction Type: None
+Form Factor: DIMM
+Total Width: 64 bits
+Type: DDR4
+Type Detail: Synchronous
+
+Asset Tag: Not Specified
+Bank Locator: Not Specified
+Locator: DIMM 1
+Manufacturer: CRUCIAL
+Part Number: BLE8G4D36BEEAK.M8FE1
+Serial Number: 8899AABB
+Size: 8 GB
+Speed: 3600 MT/s
+```
+
+You will edit your OpenCore EFI config.plist file to enter these values correctly.
+Using your favorite plist editor, open the `PlatformInfo` section.
+* Set the value of the `CustomMemory` field to `true` (or the value 1 depending on your editor).
+  * You can defer this step until later. Don't forget it though, it is the master on/off value.
+
+Under the `PlatformInfo` section there will be a `Memory` section. Open the `Memory` section.
+
+
+
+![](../images/post-install/memory-md/system-profiler.png)
+
+Here we see which slots are populated by memory, and which are empty. For filled slots, simply run through the below on how to pull information. For slots that are empty however, you'll want to add some blank information into thinking macOS has populated device. Ensure that by the end, you have 12 total slots filled with devices.
+
+Example of filled slots vs fake:
+
+![](../images/post-install/memory-md/memory-example.png)
+
+We recommend setting the Size and Speed to both 1, to ensure applications that do pull from memory are not confused that you have more than you should.
+
+
 
 ## Cleaning up
 
