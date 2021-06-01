@@ -4,22 +4,10 @@
 <dict>
 	<key>PlatformInfo</key>
 	<dict>
+		<key>CustomMemory</key>
+		<true/>
 		<key>Memory</key>
 		<dict>
-			<key>DataWidth</key>
-			<integer>64</integer>
-			<key>ErrorCorrection</key>
-			<integer>3</integer>
-			<key>FormFactor</key>
-			<integer>9</integer>
-			<key>MaxCapacity</key>
-			<integer>137438953472</integer>
-			<key>TotalWidth</key>
-			<integer>64</integer>
-			<key>Type</key>
-			<integer>26</integer>
-			<key>TypeDetail</key>
-			<integer>128</integer>
 			<key>Devices</key>
 			<array>
 				<dict>
@@ -28,9 +16,9 @@
 					<key>BankLocator</key>
 					<string></string>
 					<key>DeviceLocator</key>
-					<string>Slot 1</string>
+					<string>Slot 8 (Channel A / DIMM 1)</string>
 					<key>Manufacturer</key>
-					<string>Acidanthera</string>
+					<string>NO DIMM</string>
 					<key>PartNumber</key>
 					<string></string>
 					<key>SerialNumber</key>
@@ -46,7 +34,97 @@
 					<key>BankLocator</key>
 					<string></string>
 					<key>DeviceLocator</key>
-					<string>Slot 2</string>
+					<string>Slot 7 (Channel A / DIMM 2)</string>
+					<key>Manufacturer</key>
+					<string>NO DIMM</string>
+					<key>PartNumber</key>
+					<string></string>
+					<key>SerialNumber</key>
+					<string></string>
+					<key>Size</key>
+					<integer>0</integer>
+					<key>Speed</key>
+					<integer>0</integer>
+				</dict>
+				<dict>
+					<key>AssetTag</key>
+					<string></string>
+					<key>BankLocator</key>
+					<string></string>
+					<key>DeviceLocator</key>
+					<string>Slot 10 (Channel B / DIMM 1)</string>
+					<key>Manufacturer</key>
+					<string>NO DIMM</string>
+					<key>PartNumber</key>
+					<string></string>
+					<key>SerialNumber</key>
+					<string></string>
+					<key>Size</key>
+					<integer>0</integer>
+					<key>Speed</key>
+					<integer>0</integer>
+				</dict>
+				<dict>
+					<key>AssetTag</key>
+					<string></string>
+					<key>BankLocator</key>
+					<string></string>
+					<key>DeviceLocator</key>
+					<string>Slot 9 (Channel B / DIMM 2)</string>
+					<key>Manufacturer</key>
+					<string>NO DIMM</string>
+					<key>PartNumber</key>
+					<string></string>
+					<key>SerialNumber</key>
+					<string></string>
+					<key>Size</key>
+					<integer>0</integer>
+					<key>Speed</key>
+					<integer>0</integer>
+				</dict>
+				<dict>
+					<key>AssetTag</key>
+					<string></string>
+					<key>BankLocator</key>
+					<string></string>
+					<key>DeviceLocator</key>
+					<string>Slot 12 (Channel C / DIMM 1)</string>
+					<key>Manufacturer</key>
+					<string>NO DIMM</string>
+					<key>PartNumber</key>
+					<string></string>
+					<key>SerialNumber</key>
+					<string></string>
+					<key>Size</key>
+					<integer>0</integer>
+					<key>Speed</key>
+					<integer>0</integer>
+				</dict>
+				<dict>
+					<key>AssetTag</key>
+					<string></string>
+					<key>BankLocator</key>
+					<string></string>
+					<key>DeviceLocator</key>
+					<string>Slot 11 (Channel C / DIMM 2)</string>
+					<key>Manufacturer</key>
+					<string>NO DIMM</string>
+					<key>PartNumber</key>
+					<string></string>
+					<key>SerialNumber</key>
+					<string></string>
+					<key>Size</key>
+					<integer>0</integer>
+					<key>Speed</key>
+					<integer>0</integer>
+				</dict>
+				<dict>
+					<key>AssetTag</key>
+					<string></string>
+					<key>BankLocator</key>
+					<string></string>
+					<key>DeviceLocator</key>
+					<string>Slot 5 (Channel D / DIMM 1)</string>
 					<key>Manufacturer</key>
 					<string></string>
 					<key>PartNumber</key>
@@ -64,9 +142,9 @@
 					<key>BankLocator</key>
 					<string></string>
 					<key>DeviceLocator</key>
-					<string>Slot 3</string>
+					<string>Slot 6 (Channel D / DIMM 2)</string>
 					<key>Manufacturer</key>
-					<string>Acidanthera</string>
+					<string>NO DIMM</string>
 					<key>PartNumber</key>
 					<string></string>
 					<key>SerialNumber</key>
@@ -82,9 +160,9 @@
 					<key>BankLocator</key>
 					<string></string>
 					<key>DeviceLocator</key>
-					<string>Slot 4</string>
+					<string>Slot 3 (Channel E / DIMM 1)</string>
 					<key>Manufacturer</key>
-					<string>Acidanthera</string>
+					<string></string>
 					<key>PartNumber</key>
 					<string></string>
 					<key>SerialNumber</key>
@@ -100,9 +178,9 @@
 					<key>BankLocator</key>
 					<string></string>
 					<key>DeviceLocator</key>
-					<string>Slot 5</string>
+					<string>Slot 4 (Channel E / DIMM 2)</string>
 					<key>Manufacturer</key>
-					<string>Acidanthera</string>
+					<string>NO DIMM</string>
 					<key>PartNumber</key>
 					<string></string>
 					<key>SerialNumber</key>
@@ -118,9 +196,9 @@
 					<key>BankLocator</key>
 					<string></string>
 					<key>DeviceLocator</key>
-					<string>Slot 6</string>
+					<string>Slot 1 (Channel F / DIMM 1)</string>
 					<key>Manufacturer</key>
-					<string>Acidanthera</string>
+					<string>NO DIMM</string>
 					<key>PartNumber</key>
 					<string></string>
 					<key>SerialNumber</key>
@@ -136,99 +214,9 @@
 					<key>BankLocator</key>
 					<string></string>
 					<key>DeviceLocator</key>
-					<string>Slot 7</string>
+					<string>Slot 2 (Channel F / DIMM 2)</string>
 					<key>Manufacturer</key>
-					<string>Acidanthera</string>
-					<key>PartNumber</key>
-					<string></string>
-					<key>SerialNumber</key>
-					<string></string>
-					<key>Size</key>
-					<integer>0</integer>
-					<key>Speed</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string></string>
-					<key>BankLocator</key>
-					<string></string>
-					<key>DeviceLocator</key>
-					<string>Slot 8</string>
-					<key>Manufacturer</key>
-					<string>Acidanthera</string>
-					<key>PartNumber</key>
-					<string></string>
-					<key>SerialNumber</key>
-					<string></string>
-					<key>Size</key>
-					<integer>0</integer>
-					<key>Speed</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string></string>
-					<key>BankLocator</key>
-					<string></string>
-					<key>DeviceLocator</key>
-					<string>Slot 9</string>
-					<key>Manufacturer</key>
-					<string>Acidanthera</string>
-					<key>PartNumber</key>
-					<string></string>
-					<key>SerialNumber</key>
-					<string></string>
-					<key>Size</key>
-					<integer>0</integer>
-					<key>Speed</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string></string>
-					<key>BankLocator</key>
-					<string></string>
-					<key>DeviceLocator</key>
-					<string>Slot 10</string>
-					<key>Manufacturer</key>
-					<string>Acidanthera</string>
-					<key>PartNumber</key>
-					<string></string>
-					<key>SerialNumber</key>
-					<string></string>
-					<key>Size</key>
-					<integer>0</integer>
-					<key>Speed</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string></string>
-					<key>BankLocator</key>
-					<string></string>
-					<key>DeviceLocator</key>
-					<string>Slot 11</string>
-					<key>Manufacturer</key>
-					<string>Acidanthera</string>
-					<key>PartNumber</key>
-					<string></string>
-					<key>SerialNumber</key>
-					<string></string>
-					<key>Size</key>
-					<integer>0</integer>
-					<key>Speed</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
-					<key>AssetTag</key>
-					<string></string>
-					<key>BankLocator</key>
-					<string></string>
-					<key>DeviceLocator</key>
-					<string>Slot 12</string>
-					<key>Manufacturer</key>
-					<string>Acidanthera</string>
+					<string>NO DIMM</string>
 					<key>PartNumber</key>
 					<string></string>
 					<key>SerialNumber</key>
@@ -239,6 +227,20 @@
 					<integer>0</integer>
 				</dict>
 			</array>
+			<key>DataWidth</key>
+			<integer>64</integer>
+			<key>ErrorCorrection</key>
+			<integer>3</integer>
+			<key>FormFactor</key>
+			<integer>9</integer>
+			<key>MaxCapacity</key>
+			<real>274877906944</real>
+			<key>TotalWidth</key>
+			<integer>64</integer>
+			<key>Type</key>
+			<integer>26</integer>
+			<key>TypeDetail</key>
+			<integer>128</integer>
 		</dict>
 	</dict>
 </dict>
