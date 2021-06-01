@@ -240,7 +240,11 @@ TypeDetail = 7
 
 ### Devices
 
-Array of Memory Devices, and where we do out magic to fix the error. In the sample CustomMemory.plist I provided, we have 12 slots listed here. From this, you'll want to open up System Profiler in macOS and look at the Memory tab:
+The array of Memory Devices, and where we do out magic to fix the error. In the sample CustomMemory.plist provided, we have 12 slots listed. All twelve slots are set up to report an EMPTY Slot. Only 4 out of the 8 fields are pre-populated. You will use the values that you discovered above to present your RAM properly to MacOS.
+
+* The order of the array items is important, and should be kept as it is.
+* * For example Item 0 represents Slot 8 on the real Mac Pro 7,1 mainboard. In turn Apple labels this slot as Channel A / DIMM 1  
+* The naming convention for the DeviceLocator field is taken from a real Mac Pro 7,1.
 
 ![](../images/post-install/memory-md/system-profiler.png)
 
