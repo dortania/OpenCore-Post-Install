@@ -442,31 +442,9 @@ Using your favorite plist editor, open the `PlatformInfo` section.
 
 Under the `PlatformInfo` section there will be a `Memory` section. Open the `Memory` section.
 
+![](../images/post-install/memory-md/memory-platforminfo-memory.png)
 
 
-![](../images/post-install/memory-md/system-profiler.png)
-
-Here we see which slots are populated by memory, and which are empty. For filled slots, simply run through the below on how to pull information. For slots that are empty however, you'll want to add some blank information into thinking macOS has populated device. Ensure that by the end, you have 12 total slots filled with devices.
-
-Example of filled slots vs fake:
-
-![](../images/post-install/memory-md/memory-example.png)
-
-We recommend setting the Size and Speed to both 1, to ensure applications that do pull from memory are not confused that you have more than you should.
-
-
-
-## Cleaning up
-
-Now that you've built the table, we can now merge it into our config.plist.
-
-Simply copy over your work from the CustomMemory.plist and paste it into PlatformInfo:
-
-![](../images/post-install/memory-md/memory-example-done.png)
-
-Once this is copied over, enable `PlatformInfo -> CustomMemory` and reboot. The error should be no more now!
-
-Reminder that you must **fill** all 12 slots with memory, otherwise the error will not disappear:
 
 | Fixed System Profiler | Fixed About This Mac |
 | :--- | :--- |
