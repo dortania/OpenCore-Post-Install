@@ -131,4 +131,4 @@ Save your config.plist file and reboot your system. If everything goes as planne
 
 On the [previous page](memory-gathering-data.md) we learned how to gather the correct values using dmidecode.
 
-On the next page we will look at the layout for [other multiples, including what to do if your mainboard only has two physical slots...](memory-presenting-other-multiples.md)
+On the [next page](memory-presenting-other-multiples.md) we will look at the layout for other multiples, including what to do if your mainboard only has two physical slots...
