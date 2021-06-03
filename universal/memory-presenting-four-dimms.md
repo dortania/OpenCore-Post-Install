@@ -199,7 +199,7 @@ Populate these items / slots
 | 8 | is slot 3 | referenced as Channel E / DIMM 1 |
 | 9 | is slot 4 | referenced as Channel E / DIMM 2 |
 | 10 | is slot 1 | referenced as Channel F / DIMM 1 |
-| 11 | is slot 2 | referencd as Channel F / DIMM 2 |
+| 11 | is slot 2 | referenced as Channel F / DIMM 2 |
 
 
 
