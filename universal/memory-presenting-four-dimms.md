@@ -108,7 +108,7 @@ In the config.plist file Devices section...
 | 0 | is slot 8 | referenced as Channel A / DIMM 1 |
 | 2 | is slot 10 | referenced as Channel B / DIMM 1 |
 | 6 | is slot 5 | referenced as Channel D / DIMM 1 |
-| 8 | is slot 3 | referenced as Channel C / DIMM 1 |
+| 8 | is slot 3 | referenced as Channel E / DIMM 1 |
 
 ![](../images/post-install/memory-md/memory-platforminfo-memory-devices-populated.png)
 
@@ -121,9 +121,85 @@ Keys `Size` and `Speed` should both be set to `0` for an empty slot.
 ![](../images/post-install/memory-md/memory-platforminfo-memory-devices-empty-1.png)
 ![Empty Slots](../images/post-install/memory-md/memory-platforminfo-memory-devices-empty-2.png)
 
-Save your config.plist file and reboot your system. If everything goes as planned, the first thing you will notice is the absence of the memory error notification. 
+Save your config.plist file and reboot your system. If everything goes as planned, the first thing you will notice is the absence of the memory error notification. If that is not enough, check out About This Mac, and drill into the System Profiler memory section.
 
 | Fixed System Profiler | Fixed About This Mac |
 | :--- | :--- |
 | ![](../images/post-install/memory-md/memory-fixed-system-profiler.png) | ![](../images/post-install/memory-md/memory-fixed-aboutthismac.png) |
+
+---
+
+# Presenting six DIMMs to Mac OS correctly
+
+Populate these items / slots
+
+| Item number | Is Slot | Referenced as |
+|-------------|---------|---------------|
+| 0 | is slot 8 | referenced as Channel A / DIMM 1 |
+| 2 | is slot 10 | referenced as Channel B / DIMM 1 |
+| 4 | is slot 12 | referenced as Channel C / DIMM 1 |
+| 6 | is slot 5 | referenced as Channel D / DIMM 1 |
+| 8 | is slot 3 | referenced as Channel E / DIMM 1 |
+| 10 | is slot 1 | referenced as Channel F / DIMM 1 |
+
+---
+
+# Presenting eight DIMMs to Mac OS correctly
+
+Populate these items / slots
+
+| Item number | Is Slot | Referenced as |
+|-------------|---------|---------------|
+| 0 | is slot 8 | referenced as Channel A / DIMM 1 |
+| 1 | is slot 7 | referenced as Channel A / DIMM 2 |
+| 2 | is slot 10 | referenced as Channel B / DIMM 1 |
+| 3 | is slot 9 | referenced as Channel B / DIMM 2 |
+| 6 | is slot 5 | referenced as Channel D / DIMM 1 |
+| 7 | is slot 6 | referenced as Channel D / DIMM 2 |
+| 8 | is slot 3 | referenced as Channel E / DIMM 1 |
+| 9 | is slot 4 | referenced as Channel E / DIMM 2 |
+
+---
+
+# Presenting ten DIMMs to Mac OS correctly
+
+Populate these items / slots
+
+| Item number | Is Slot | Referenced as |
+|-------------|---------|---------------|
+| 0 | is slot 8 | referenced as Channel A / DIMM 1 |
+| 1 | is slot 7 | referenced as Channel A / DIMM 2 |
+| 2 | is slot 10 | referenced as Channel B / DIMM 1 |
+| 3 | is slot 9 | referenced as Channel B / DIMM 2 |
+| 4 | is slot 12 | referencd as Channel C / DIMM 1 |
+| 6 | is slot 5 | referenced as Channel D / DIMM 1 |
+| 7 | is slot 6 | referenced as Channel D / DIMM 2 |
+| 8 | is slot 3 | referenced as Channel E / DIMM 1 |
+| 9 | is slot 4 | referenced as Channel E / DIMM 2 |
+| 10 | is slot 1 | referenced as Channel F / DIMM 1 |
+
+
+
+---
+
+# Presenting twelve DIMMs to Mac OS correctly
+
+Populate these items / slots
+
+| Item number | Is Slot | Referenced as |
+|-------------|---------|---------------|
+| 0 | is slot 8 | referenced as Channel A / DIMM 1 |
+| 1 | is slot 7 | referenced as Channel A / DIMM 2 |
+| 2 | is slot 10 | referenced as Channel B / DIMM 1 |
+| 3 | is slot 9 | referenced as Channel B / DIMM 2 |
+| 4 | is slot 12 | referencd as Channel C / DIMM 1 |
+| 5 | is slot 11 | referencd as Channel C / DIMM 2 |
+| 6 | is slot 5 | referenced as Channel D / DIMM 1 |
+| 7 | is slot 6 | referenced as Channel D / DIMM 2 |
+| 8 | is slot 3 | referenced as Channel E / DIMM 1 |
+| 9 | is slot 4 | referenced as Channel E / DIMM 2 |
+| 10 | is slot 1 | referenced as Channel F / DIMM 1 |
+| 11 | is slot 2 | referencd as Channel F / DIMM 2 |
+
+
 
