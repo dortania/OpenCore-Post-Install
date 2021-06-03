@@ -65,7 +65,13 @@ Using your favorite plist editor, open the `PlatformInfo` section.
 
 ![](../images/post-install/memory-md/memory-platforminfo-custommemory.png)
 
+> If the CustomMemory key is not present manually add it, or copy it from one of the example plist files to the config.plist.
+
+---
+
 Under the `PlatformInfo` section there will be a `Memory` section. Open the `Memory` section.
+
+> If the Memory section is not present, manually add it or copy it from one of the example plist files to the config.plist.
 
 Set the values here using the values you discovered from your physical RAM.
 
@@ -94,10 +100,11 @@ E.G. Using our example data seen above...
 
 ![](../images/post-install/memory-md/memory-platforminfo-memory.png)
 
-
-
+---
 
 Under the `Memory` section there will be a `Devices` section. Open the `Devices` section.
+
+> If the Devices section is not present manually add it, or copy it from one of the example plist files to the config.plist.
 
 We are going to "populate" the 12-slots with four DIMMS. Referring back to [Install and replace memory in your Mac Pro (2019)](https://support.apple.com/en-gb/HT210103?cid=macOS_UI_Memory_article_HT210103) we can see that our four DIMMS need to go into slots 3, 5, 8, and 10.
 
