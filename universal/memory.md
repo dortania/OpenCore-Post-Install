@@ -29,7 +29,7 @@ To start, we'll want to grab the following files:
 * [dmidecode](https://github.com/acidanthera/dmidecode/releases)
   * Tool used for extracting SMBIOS info in macOS
 
-Below is an image of the premade file (CustomMemory.plist above) which has properties already set out for you, one you open it you should see the following:
+Below is an image of the premade file (CustomMemory.plist above) which has properties already set out for you, once you open it you should see the following:
 
 ![](../images/post-install/memory-md/CustomMemory-open.png)
 
@@ -437,6 +437,8 @@ You will edit your OpenCore EFI config.plist file to enter these values correctl
 Using your favorite plist editor, open the `PlatformInfo` section.
 * Set the value of the `CustomMemory` field to `true` (or the value 1 depending on your editor).
   * You can defer this step until later. Don't forget it though, it is the master on/off value.
+
+![](../images/post-install/memory-md/memory-platforminfo-custommemory.png)
 
 Under the `PlatformInfo` section there will be a `Memory` section. Open the `Memory` section.
 
