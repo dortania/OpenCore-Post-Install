@@ -127,3 +127,6 @@ Save your config.plist file and reboot your system. If everything goes as planne
 | :--- | :--- |
 | ![](../images/post-install/memory-md/memory-fixed-aboutthismac.png) | ![](../images/post-install/memory-md/memory-fixed-system-profiler.png) | 
 
+---
+
+On the next page we will look at the layout for [other multiples, including what to do if your mainboard only has two physical slots...](memory-presenting-other-multiples.md)
