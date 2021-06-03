@@ -18,7 +18,6 @@
 To start, we'll want to grab the following file:
 
 * [dmidecode](https://github.com/acidanthera/dmidecode/releases)
-  * Tool used for extracting SMBIOS info in macOS
 
 * Unzip the downloaded file.
   * You will have a command-line executable file in your Downloads folder. 
