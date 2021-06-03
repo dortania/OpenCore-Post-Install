@@ -47,6 +47,28 @@ Populate these items / slots
 | 9 | is slot 4 | referenced as Channel E / DIMM 2 |
 | 10 | is slot 1 | referenced as Channel F / DIMM 1 |
 
+
+---
+
+# Presenting twelve DIMMs to Mac OS correctly
+
+Populate these items / slots
+
+| Item number | Is Slot | Referenced as |
+|-------------|---------|---------------|
+| 0 | is slot 8 | referenced as Channel A / DIMM 1 |
+| 1 | is slot 7 | referenced as Channel A / DIMM 2 |
+| 2 | is slot 10 | referenced as Channel B / DIMM 1 |
+| 3 | is slot 9 | referenced as Channel B / DIMM 2 |
+| 4 | is slot 12 | referencd as Channel C / DIMM 1 |
+| 5 | is slot 11 | referencd as Channel C / DIMM 2 |
+| 6 | is slot 5 | referenced as Channel D / DIMM 1 |
+| 7 | is slot 6 | referenced as Channel D / DIMM 2 |
+| 8 | is slot 3 | referenced as Channel E / DIMM 1 |
+| 9 | is slot 4 | referenced as Channel E / DIMM 2 |
+| 10 | is slot 1 | referenced as Channel F / DIMM 1 |
+| 11 | is slot 2 | referenced as Channel F / DIMM 2 |
+
 ---
 
 # What if my mainboard only has two physical slots?
