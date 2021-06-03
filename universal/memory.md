@@ -467,14 +467,39 @@ E.G. Using my example data seen above...
 
 `TypeDetail` = 128
 
-Remember, the `MaxCapacity` value is dependant upon the type of processor fitted to an Apple Mac Pro 7,1. See [Mac Pro (2019) memory specifications](https://support.apple.com/en-gb/HT210405). The value should be one of:
+> Remember, the `MaxCapacity` value is dependant upon the type of processor fitted to an Apple Mac Pro 7,1. See [Mac Pro (2019) memory specifications](https://support.apple.com/en-gb/HT210405). The value should be one of:
 
 | Max RAM | Expressed as bytes |
 |---------|--------------------|
 | 768GB | `824633720832` |
 | 1.5TB | `1649267441664` |
 
+
+
 Under the `Memory` section there will be a `Devices` section. Open the `Devices` section.
+
+We are going to "populate" the 12-slots with four DIMMS. Referring back to [Install and replace memory in your Mac Pro (2019)](https://support.apple.com/en-gb/HT210103?cid=macOS_UI_Memory_article_HT210103) we can see that our four DIMMS need to go into slots 3, 5, 8, and 10.
+
+In the config.plist file Devices section...
+
+| Item number | Is Slot | Referenced as |
+|-------------|---------|---------------|
+| 0 | is slot 8 | referenced as Channel A / DIMM 1 |
+| 2 | is slot 10 | referenced as Channel B / DIMM 1 |
+| 6 | is slot 5 | referenced as Channel D / DIMM 1 |
+| 8 | is slot 3 | referenced as Channel C / DIMM 1 |
+
+![](../images/post-install/memory-md/memory-platforminfo-memory-devices-populated.png)
+
+All other items should be "EMPTY" slots.
+
+The important key is the `Manufacturer` key should be set to `NO DIMM` for an empty slot. 
+
+Keys `Size` and `Speed` should both be set to `0` for an empty slot.
+
+![](../images/post-install/memory-md/memory-platforminfo-memory-devices-unpopulated.png)
+![](../images/post-install/memory-md/memory-platforminfo-memory-devices-unpopulated2.png)
+
 
 
 | Fixed System Profiler | Fixed About This Mac |
