@@ -39,7 +39,6 @@ The PlatformInfo Memory section of the OpenCore config.plist allows us to preset
 Using the example unpopulated plist file, opened in XCode, the OpenCore Devices section looks like this:
 
 ![](../images/post-install/memory-md/memory-platforminfo-memory-devices-unpopulated.png)
-
 ![](../images/post-install/memory-md/memory-platforminfo-memory-devices-unpopulated2.png)
 
 * The order of the array items is important, and should be kept as it is. For example:
