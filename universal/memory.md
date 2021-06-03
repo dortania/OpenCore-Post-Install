@@ -151,3 +151,8 @@ Keys `Size` and `Speed` should both be set to `0` for an empty slot.
 | Fixed System Profiler | Fixed About This Mac |
 | :--- | :--- |
 | ![](../images/post-install/memory-md/memory-fixed-system-profiler.png) | ![](../images/post-install/memory-md/memory-fixed-aboutthismac.png) |
+
+
+---
+
+On the [next page](memory-gathering-data.md) we will discover how to use dmidecode to find the values to use in the config.plist file...
