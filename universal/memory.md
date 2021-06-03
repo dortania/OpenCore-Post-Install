@@ -12,7 +12,7 @@ If you just want to remove the annoying pop-up, then this guide is for you...
 
 ## A bit of background
 
-Mac OS expects that the underlying hardware to be Apple hardware. Therefore, when building a hackintosh/ryzentosh we need to try and match the hardware as closely as possible. For those areas where our hardware differs we must try to convince Mac OS that the hardware is a match.
+Mac OS expects the underlying hardware to be Apple hardware. Therefore, when building a hackintosh/ryzentosh we need to try and match the hardware as closely as possible. For those areas where our hardware differs, we must try to convince Mac OS that the hardware is a match.
 
 Consider your mainboard. If you are emulating a Mac Pro 7,1 then the Apple mainboard has 12 physical RAM slots. Our mainboards will probably have fewer physical memory slots. We will use OpenCore's custom memory mapping feature to report 12 physical slots to Mac OS. We can then assign our actual memory configuration into these 12 slots.
 
@@ -24,7 +24,7 @@ Take a look at [Install and replace memory in your Mac Pro (2019)](https://suppo
 
 To start, we'll want to grab the following files:
 
-* [CustomMemory.plist](https://github.com/dortania/OpenCore-Post-Install/blob/master/extra-files/CustomMemory.plist.zip)
+* [CustomMemory.plist](../blob/master/extra-files/CustomMemory.plist.zip)
   * Example setup for using CustomMemory in OpenCore
 * [dmidecode](https://github.com/acidanthera/dmidecode/releases)
   * Tool used for extracting SMBIOS info in macOS
@@ -407,7 +407,7 @@ Now might be a good time to refresh your memory to help you understand how OpenC
   * Item 5
     * Represents Slot 11 on the real Mac Pro 7,1 mainboard.
     * In turn Apple labels this slot as Channel C / DIMM 2
-* If a memory slot is not populated on a real Mac Pro 7,1 the Manufacturer field is set to the text value NO DIMM
+* If a memory slot is not populated on a real Mac Pro 7,1 the Manufacturer field is set to the text value `NO DIMM`
   * This is the critcal field to fix the error message.
 
 ## Presenting four DIMMs to Mac OS correctly
