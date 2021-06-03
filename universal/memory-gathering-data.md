@@ -446,4 +446,4 @@ path/to/dmidecode -t memory | grep "Speed:"
 
 On the [previous page](memory.md) we covered the overview of OpenCore's custom memory feature.
 
-On the [next page](memory-presenting-four-dimms.md) we will learn how to gather the correct values using dmidecode.
+On the [next page](memory-presenting-four-dimms.md) we will edit OpenCore's config.plist file to add these discovered values...
