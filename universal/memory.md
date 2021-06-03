@@ -129,17 +129,22 @@ FormFactor = 9
 
 ### MaxCapacity
 
-Specifies maximum supported memory in your system
+Specifies maximum supported memory in your system.
+
+The `MaxCapacity` value is dependant upon the type of processor fitted to an Apple Mac Pro 7,1. See [Mac Pro (2019) memory specifications](https://support.apple.com/en-gb/HT210405). The value should be one of:
+
+| Max RAM | Expressed as bytes |
+|---------|--------------------|
+| 768GB | `824633720832` |
+| 1.5TB | `1649267441664` |
+
+Either of these values is okay, but since we are trying to convince Mac OS that the hardware is an Apple Mac Pro, choose the value based on how many cores your system has.
 
 Type: Bytes
 
 ```
-8GB   - 8589934592
-16GB  - 17179869184
-32GB  - 34359738368
-64GB  - 68719476736
-128GB - 137438953472
-256GB - 274877906944
+# Final Value
+MaxCapacity = 824633720832
 ```
 
 ### TotalWidth
@@ -445,7 +450,7 @@ Under the `PlatformInfo` section there will be a `Memory` section. Open the `Mem
 
 ![](../images/post-install/memory-md/memory-platforminfo-memory.png)
 
-Set the values here using the values you discovered from your physical (above from dmidecode).
+Set the values here using the values you discovered from your physical RAM (above from dmidecode).
 E.G. Using my example data seen above...
 
 `DataWidth` = 64
@@ -462,11 +467,14 @@ E.G. Using my example data seen above...
 
 `TypeDetail` = 128
 
-The `MaxCapacity` value is dependant upon the type of processor fitted to an Apple Mac Pro 7,1. See [Mac Pro (2019) memory specifications](https://support.apple.com/en-gb/HT210405). The value should be one of:
+Remember, the `MaxCapacity` value is dependant upon the type of processor fitted to an Apple Mac Pro 7,1. See [Mac Pro (2019) memory specifications](https://support.apple.com/en-gb/HT210405). The value should be one of:
 
 | Max RAM | Expressed as bytes |
+|---------|--------------------|
 | 768GB | `824633720832` |
 | 1.5TB | `1649267441664` |
+
+Under the `Memory` section there will be a `Devices` section. Open the `Devices` section.
 
 
 | Fixed System Profiler | Fixed About This Mac |
