@@ -123,7 +123,7 @@ Keys `Size` and `Speed` should both be set to `0` for an empty slot.
 
 Save your config.plist file and reboot your system. If everything goes as planned, the first thing you will notice is the absence of the memory error notification. If that is not enough, check out About This Mac, and drill into the System Profiler memory section.
 
-| Fixed System Profiler | Fixed About This Mac |
+| Fixed About This Mac | Fixed System Profiler |
 | :--- | :--- |
-| ![](../images/post-install/memory-md/memory-fixed-system-profiler.png) | ![](../images/post-install/memory-md/memory-fixed-aboutthismac.png) |
+| ![](../images/post-install/memory-md/memory-fixed-aboutthismac.png) | ![](../images/post-install/memory-md/memory-fixed-system-profiler.png) | 
 
