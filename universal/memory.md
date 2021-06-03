@@ -390,7 +390,7 @@ path/to/dmidecode -t memory | grep "Speed:"
 
 ## Mapping our memory
 
-Now might be a good time to refresh your memory to help you understand how OpenCore is mapping the Custom Memory items in the plist file to the layout that a real Mac Pro 7,1 presents. See [Install and replace memory in your Mac Pro (2019)](https://support.apple.com/en-gb/HT210103?cid=macOS_UI_Memory_article_HT210103). The diagrams in the section "Check supported configurations" show you how a Mac Pro 7,1 expects the physical RAM to be installed.
+Now might be a good time to refresh your memory to help you understand how OpenCore is mapping the Custom Memory items in the plist file to the layout that a real Mac Pro 7,1 presents. See [Install and replace memory in your Mac Pro (2019)](https://support.apple.com/en-gb/HT210103?cid=macOS_UI_Memory_article_HT210103). The diagrams in the section "Check supported configurations" show you how a Mac Pro 7,1 expects the physical RAM to be installed. A Mac Pro 7,1 can have 4, 6, 8, 10, or 12 DIMMs installed. We will demonstrate the 4-DIMM solution here, but simply follow the same procedure for the other multiples.
 
 * The naming convention for the DeviceLocator field is taken from a real Mac Pro 7,1.
 * The order of the array items is important, and should be kept as it is. For example:
@@ -448,8 +448,6 @@ Using your favorite plist editor, open the `PlatformInfo` section.
 
 Under the `PlatformInfo` section there will be a `Memory` section. Open the `Memory` section.
 
-![](../images/post-install/memory-md/memory-platforminfo-memory.png)
-
 Set the values here using the values you discovered from your physical RAM (above from dmidecode).
 E.G. Using my example data seen above...
 
@@ -473,6 +471,9 @@ E.G. Using my example data seen above...
 |---------|--------------------|
 | 768GB | `824633720832` |
 | 1.5TB | `1649267441664` |
+
+![](../images/post-install/memory-md/memory-platforminfo-memory.png)
+
 
 
 
@@ -498,7 +499,7 @@ The important key is the `Manufacturer` key should be set to `NO DIMM` for an em
 Keys `Size` and `Speed` should both be set to `0` for an empty slot.
 
 ![](../images/post-install/memory-md/memory-platforminfo-memory-devices-unpopulated.png)
-![](../images/post-install/memory-md/memory-platforminfo-memory-devices-unpopulated2.png)
+![Empty Slots](../images/post-install/memory-md/memory-platforminfo-memory-devices-unpopulated2.png)
 
 
 
