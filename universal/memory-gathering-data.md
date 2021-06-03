@@ -442,3 +442,9 @@ path/to/dmidecode -t memory | grep "Speed:"
  Speed: Unknown
 ```
 
+
+---
+
+On the [previous page](memory.md) we covered the overview of OpenCore's custom memory feature.
+
+On the [next page](memory-gathering-data.md) we will learn how to gather the correct values using dmidecode.
