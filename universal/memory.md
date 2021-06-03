@@ -447,15 +447,23 @@ Under the `PlatformInfo` section there will be a `Memory` section. Open the `Mem
 
 Set the values here using the values you discovered from your physical (above from dmidecode).
 E.G. Using my example data seen above...
+
 `DataWidth` = 64
+
 `ErrorCorrection` = 3
+
 `FormFactor` = 9
-`MaxCapacity` = 274877906944 [^1]
+
+`MaxCapacity` = 824633720832
+
 `TotalWidth` = 64
+
 `Type` = 26
+
 `TypeDetail` = 128
 
-[^1]: The `MaxCapacity` value is dependant upon the type of processor fitted to an Apple Mac Pro 7,1. See [Mac Pro (2019) memory specifications](https://support.apple.com/en-gb/HT210405). The value should be one of:
+The `MaxCapacity` value is dependant upon the type of processor fitted to an Apple Mac Pro 7,1. See [Mac Pro (2019) memory specifications](https://support.apple.com/en-gb/HT210405). The value should be one of:
+
 | Max RAM | Expressed as bytes |
 | 768GB | `824633720832` |
 | 1.5TB | `1649267441664` |
