@@ -78,4 +78,6 @@ If your mainboard has only two physical slots you will still need to present fou
 For example, if you have two physical 8GB DIMMs, halve that value to 4GB and present four DIMMs
 
 
+---
 
+On the [previous page](memory-presenting-four-dimms.md) we learned how to present four DIMMs to Mac OS.
