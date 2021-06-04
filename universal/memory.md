@@ -6,7 +6,7 @@ On macOS Catalina and newer, users of the MacPro7,1 SMBIOS will experience this 
 | :--- | :--- |
 | <img width="1362" src=../images/post-install/memory-md/memory-error-notification.png>  | ![](../images/post-install/memory-md/memory-error-aboutthismac.png) |
 
-The exact reason for this error is a bit unknown, however ways to resolve this error have been made possible. The most common way to remove the error is to use [RestrictEvents](https://github.com/acidanthera/RestrictEvents/releases) Kernel extension (KEXT) from the OpenCore team. However, the RestrictEvents extension is a multi-function extension and you may not need nor want the extra functions that the extension will provide.
+The most common way to remove the error is to use [RestrictEvents](https://github.com/acidanthera/RestrictEvents/releases) Kernel extension (KEXT) from the OpenCore team. However, the RestrictEvents extension is a multi-function extension and you may not need nor want the extra functions that the extension will provide.
 
 If you just want to remove the annoying pop-up, then this guide is for you...
 
