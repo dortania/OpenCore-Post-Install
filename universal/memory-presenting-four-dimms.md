@@ -131,7 +131,11 @@ Keys `Size` and `Speed` should both be set to `0` for an empty slot.
 ![Populated Slots](../images/post-install/memory-md/memory-platforminfo-memory-devices-empty-1.png)
 ![Empty Slots](../images/post-install/memory-md/memory-platforminfo-memory-devices-empty-2.png)
 
-Save your config.plist file and reboot your system. If everything goes as planned, the first thing you will notice is the absence of the memory error notification. If that is not enough, check out About This Mac, and drill into the System Profiler memory section.
+- Save your config.plist file.
+- Clear the notification if it is still showing on screen (otherwise, when you restart it will still show even if your memory is now presented correctly!)
+- Reboot your system.
+ 
+If everything goes as planned, the first thing you will notice is the absence of the memory error notification. If that is not enough, check out About This Mac, and drill into the System Profiler memory section.
 
 | Fixed About This Mac | Fixed System Profiler |
 | :--- | :--- |
