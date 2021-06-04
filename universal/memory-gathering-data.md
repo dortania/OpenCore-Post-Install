@@ -1,6 +1,6 @@
 # Gathering the values from your DIMMs using dmidecode
 
-> Ensure your OpenCore config is NOT using `CustomMemory` for this first part of the process. By doing this your low-level EFI/ACPI tables will be what Mac OS is presented with. You will be seeing the physical information directly...
+> Ensure your OpenCore config is NOT using `CustomMemory` for this first part of the process. This will ensure that your low-level EFI/ACPI tables will be what Mac OS is presented with. You will be seeing the physical information directly...
 > * Mount your EFI partition
 > * Navigate to the EFI folder, OC folder, and edit your config.plist file
 > * Find the `PlatformInfo` section, and set the `CustomMemory` key to `false` (or 0, or No, depending on your editor)
@@ -27,7 +27,7 @@ To start, we'll want to grab the following file:
 * Run the dmidecode app
   * `./dmidecode -t memory`
 
-> The first time you run the command Mac OS Gatekeeper will probably pop up a warning suggesting that you should delete the dmidecode app.
+> The first time you run the command Mac OS Gatekeeper will probably pop up a warning suggesting that you should delete the dmidecode tool.
 >  ![](../images/post-install/memory-md/memory-dmidecode-gatekeeper-1.png)
 > * Keep the file by clicking the `Cancel` button.
 > * Next, open the `System Preferences` app.
@@ -73,12 +73,6 @@ The `Memory` section of the OpenCore config.plist file has many properties, lets
 ### DataWidth
 
 Specifies the data width, in bits, of the memory. 
-
-A DataWidth of 64 and a TotalWidth of 64 indicates that the device has 64-bits of data with no error-correction bits.
-
-A DataWidth of 64 and a TotalWidth of 72 indicates that the device has 64-bits of data with 8 error-correction bits.
-
-A DataWidth of 0 and a TotalWidth of 8 indicates that the device is being used solely to provide 8 error-correction bits.
 
 To determine the DataWidth, run the following:
 
@@ -182,6 +176,12 @@ MaxCapacity = 824633720832
 
 Specifies the total width, in bits, of the memory, including any check or error-correction bits. If there are no error-correction bits, this value should be equal to DataWidth.
 
+A DataWidth of 64 and a TotalWidth of 64 indicates that the device has 64-bits of data with no error-correction bits.
+
+A DataWidth of 64 and a TotalWidth of 72 indicates that the device has 64-bits of data with 8 error-correction bits.
+
+A DataWidth of 0 and a TotalWidth of 8 indicates that the device is being used solely to provide 8 error-correction bits.
+
 To determine TotalWidth, run the following:
 
 ```sh
@@ -282,7 +282,9 @@ TypeDetail = 7
 
 ### Devices
 
-The array of Memory Devices, and where we do our magic to fix the error. In the sample CustomMemory.plist provided, we have 12 slots listed. All twelve slots are set up to report an EMPTY Slot.
+This is the array of Memory Devices, and it is where we do our magic to fix the error. 
+
+In the sample CustomMemoryUnpopulated.plist provided, we have 12 slots listed. All twelve slots are set up to report an EMPTY Slot.
 
 ![](../images/post-install/memory-md/memory-devices-expanded.png)
 
@@ -339,6 +341,8 @@ path/to/dmidecode -t memory | grep "Bank Locator:"
 ---
 
 #### Manufacturer
+
+This is the manufacturer's name. Set this to `NO DIMM` if the DIMM slot should be EMPTY
 
 To determine Manufacturer, run the following:
 
@@ -422,7 +426,7 @@ path/to/dmidecode -t memory | grep "Size:"
 
 #### Speed
 
-Speed of memory in Mhz
+Speed of memory in Mhz. Set this to 0 if the DIMM slot should be EMPTY
 
 ex: `3000Mhz`
 
