@@ -60,12 +60,15 @@ Speed: 3600 MT/s
 ## Edit your OpenCore config.plist file
 
 You will edit your OpenCore EFI config.plist file to enter these values correctly.
-Using your favorite plist editor, open the `PlatformInfo` section.
+
+* Mount your EFI partition
+* Navigate to the EFI folder, OC folder, and edit your config.plist file using your favorite plist editor.
+* Open the `PlatformInfo` section.
 * Set the value of the `CustomMemory` field to `true` (or 1, or YES, depending on your editor).
 
 ![](../images/post-install/memory-md/memory-platforminfo-custommemory.png)
 
-> If the CustomMemory key is not present manually add it, or copy it from one of the example plist files to the config.plist.
+> If the CustomMemory key is not present, manually add it or copy it from one of the example plist files to the config.plist.
 
 ---
 
@@ -104,7 +107,7 @@ E.G. Using our example data seen above...
 
 Under the `Memory` section there will be a `Devices` section. Open the `Devices` section.
 
-> If the Devices section is not present manually add it, or copy it from one of the example plist files to the config.plist.
+> If the Devices section is not present, manually add it or copy it from one of the example plist files to the config.plist.
 
 We are going to "populate" the 12-slots with four DIMMS. Referring back to [Install and replace memory in your Mac Pro (2019)](https://support.apple.com/en-gb/HT210103?cid=macOS_UI_Memory_article_HT210103) we can see that our four DIMMS need to go into slots 3, 5, 8, and 10.
 
@@ -125,7 +128,7 @@ The important key is the `Manufacturer` key should be set to `NO DIMM` for an em
 
 Keys `Size` and `Speed` should both be set to `0` for an empty slot.
 
-![](../images/post-install/memory-md/memory-platforminfo-memory-devices-empty-1.png)
+![Populated Slots](../images/post-install/memory-md/memory-platforminfo-memory-devices-empty-1.png)
 ![Empty Slots](../images/post-install/memory-md/memory-platforminfo-memory-devices-empty-2.png)
 
 Save your config.plist file and reboot your system. If everything goes as planned, the first thing you will notice is the absence of the memory error notification. If that is not enough, check out About This Mac, and drill into the System Profiler memory section.
@@ -133,6 +136,41 @@ Save your config.plist file and reboot your system. If everything goes as planne
 | Fixed About This Mac | Fixed System Profiler |
 | :--- | :--- |
 | ![](../images/post-install/memory-md/memory-fixed-aboutthismac.png) | ![](../images/post-install/memory-md/memory-fixed-system-profiler.png) | 
+
+---
+
+# Troubleshooting
+
+If you reboot, and you still see the memory warning notification, then something has gone wrong!...
+
+From the Finder's Apple menu, select the About This Mac option.
+Click the `Memory` tab.
+
+Visually inspect the memory tab's picture.
+- Is it showing the correct number of slots (12)?
+- Is it showing the correct number of installed DIMMs?
+- Is it showing the DIMMs in the correct slots?
+
+* Mount your EFI partition
+* Navigate to the EFI folder, OC folder, and edit your config.plist file using your favorite plist editor.
+* Open the `PlatformInfo` section.
+
+1. Confirm that the key `CustomMemory` is set to a value of true (or 1, or YES depending on your editor)
+   - If this is not set then Mac OS will be presented with data directly from your mainboard, the OpenCore DIMM order will not be shown instead you will see your DIMMs in the wrong slots
+
+2. If the `CustomMemory` key is correct then the most likely issue is a typing error in the `Devices` section.
+   - Double-check that you have 12 items in the `Devices` section, labelled Item 0 - Item 11
+   - Double-check that you have populated your DIMM information into the correct Item location
+   - Double-check that the other Item locations are set up to be "empty"
+     - Ensure the "empty" slots set the `Manufacturer` string value to `NO DIMM`
+     - Ensure the "empty" slots set the `Size` integer value to `0`
+     - Ensure the "empty" slots set the `Speed` integer value to `0`
+
+3. Make any corrections
+4. Save the config.plist file
+5. Reboot
+6. Confirm
+
 
 ---
 
