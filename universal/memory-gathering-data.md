@@ -1,6 +1,6 @@
 # Gathering the values from your DIMMs using dmidecode
 
-> Ensure your OpenCore config is NOT using `CustomMemory` for this first part of the process. This will ensure that your low-level EFI/ACPI tables will be what Mac OS is presented with. You will be seeing the physical information directly...
+> Ensure your OpenCore boot configuration is **NOT** using `CustomMemory` for this first part of the process. This will ensure that your low-level EFI/ACPI tables will be what Mac OS is presented with. You will be seeing the physical information directly...
 > * Mount your EFI partition
 > * Navigate to the EFI folder, OC folder, and edit your config.plist file
 > * Find the `PlatformInfo` section, and set the `CustomMemory` key to `false` (or 0, or No, depending on your editor)
