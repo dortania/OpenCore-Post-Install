@@ -24,23 +24,6 @@ Therefore we recommend that your system should also have a minimum of 4 physical
 
 ---
 
-## Download example plist files
-
-- [CustomMemoryUnpopulated.plist.zip](../extra-files/CustomMemoryUnpopulated.plist.zip)
-- [CustomMemoryPopulatedWithFourDIMMs.zip](../extra-files/CustomMemoryPopulatedWithFourDIMMs.plist.zip)
-- [CustomMemoryPopulatedWithSixDIMMs.zip](../extra-files/CustomMemoryPopulatedWithSixDIMMs.plist.zip)
-- [CustomMemoryPopulatedWithEightDIMMs.zip](../extra-files/CustomMemoryPopulatedWithEightDIMMs.plist.zip)
-- [CustomMemoryPopulatedWithTenDIMMs.zip](../extra-files/CustomMemoryPopulatedWithTenDIMMs.plist.zip)
-- [CustomMemoryPopulatedWithTwelveDIMMs.zip](../extra-files/CustomMemoryPopulatedWithTwelveDIMMs.plist.zip)
-
-You can perform your edits to a copy of these example plist files, and then when you are sure that you have everything in place, copy the contents from the example plist file to your OpenCore config.plist file...
-
-OR
-
-You can edit your OpenCore config.plist file directly using the example plist files for reference...
-
----
-
 ## Mapping our memory
 
 A Mac Pro 7,1 has 12 slots, and can have 4, 6, 8, 10, or 12 DIMMs installed. We will demonstrate the 4-DIMM solution here, but simply follow the same procedure for the other multiples.
@@ -80,6 +63,23 @@ Using the example unpopulated plist file, opened in XCode, the OpenCore Devices 
 
 > If a memory slot is not populated on a real Mac Pro 7,1 the Manufacturer field is set to the text value `NO DIMM`.
 > This is the critcal field to fix the error message.
+
+---
+
+## Download example plist files
+
+- [CustomMemoryUnpopulated.plist.zip](../extra-files/CustomMemoryUnpopulated.plist.zip)
+- [CustomMemoryPopulatedWithFourDIMMs.zip](../extra-files/CustomMemoryPopulatedWithFourDIMMs.plist.zip)
+- [CustomMemoryPopulatedWithSixDIMMs.zip](../extra-files/CustomMemoryPopulatedWithSixDIMMs.plist.zip)
+- [CustomMemoryPopulatedWithEightDIMMs.zip](../extra-files/CustomMemoryPopulatedWithEightDIMMs.plist.zip)
+- [CustomMemoryPopulatedWithTenDIMMs.zip](../extra-files/CustomMemoryPopulatedWithTenDIMMs.plist.zip)
+- [CustomMemoryPopulatedWithTwelveDIMMs.zip](../extra-files/CustomMemoryPopulatedWithTwelveDIMMs.plist.zip)
+
+You can perform your edits to a copy of these example plist files, and then when you are sure that you have everything in place, copy the contents from the example plist file to your OpenCore config.plist file...
+
+OR
+
+You can edit your OpenCore config.plist file directly using the example plist files for reference...
 
 ---
 
