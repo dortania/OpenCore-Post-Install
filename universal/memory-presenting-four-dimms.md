@@ -144,7 +144,13 @@ Save your config.plist file and reboot your system. If everything goes as planne
 If you reboot, and you still see the memory warning notification, then something has gone wrong!...
 
 From the Finder's Apple menu, select the About This Mac option.
-Click the `Memory` tab.
+Click the `Memory` tab. Also, open the System Profiler and select Hardware and then Memory...
+
+| Incorrect About This Mac | Incorrect System Profiler |
+| :--- | :--- |
+| ![](../images/post-install/memory-md/memory-error-aboutthismac-4.png) | ![](../images/post-install/memory-md/memory-system-profiler-4.png) | 
+
+
 
 Visually inspect the memory tab's picture.
 - Is it showing the correct number of slots (12)?
@@ -157,6 +163,8 @@ Visually inspect the memory tab's picture.
 
 1. Confirm that the key `CustomMemory` is set to a value of true (or 1, or YES depending on your editor)
    - If this is not set then Mac OS will be presented with data directly from your mainboard, the OpenCore DIMM order will not be shown instead you will see your DIMMs in the wrong slots
+   - looking at the Incorrect images above, the About This Mac Memory window is only showing 4 slots. This matches the physical slots on the mainboard. Therefore, the most likely issue is that `CustomMemory` is still set to false.
+     - The System Profiler window shows the slot naming convention is not `Slot x ( Channel Y / DIMM N )`, which we expect if we are using the OpenCore `CustomMemory` and the Devices Items are correctly named.
 
 2. If the `CustomMemory` key is correct then the most likely issue is a typing error in the `Devices` section.
    - Double-check that you have 12 items in the `Devices` section, labelled Item 0 - Item 11
