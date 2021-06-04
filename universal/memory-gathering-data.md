@@ -284,12 +284,7 @@ TypeDetail = 7
 
 This is the array of Memory Devices, and it is where we do our magic to fix the error. 
 
-In the sample CustomMemoryUnpopulated.plist provided, we have 12 slots listed. All twelve slots are set up to report an EMPTY Slot.
-
-![](../images/post-install/memory-md/memory-devices-expanded.png)
-
-
-Next lets break down the properties:
+Next let's break down the properties:
 
 * [AssetTag](#assettag)
 * [BankLocator](#banklocator)
