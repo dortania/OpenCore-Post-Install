@@ -166,10 +166,14 @@ Visually inspect the memory tab's picture.
      - Ensure the "empty" slots set the `Size` integer value to `0`
      - Ensure the "empty" slots set the `Speed` integer value to `0`
 
-3. Make any corrections
-4. Save the config.plist file
-5. Reboot
-6. Confirm
+3. Check your integer values. When looking at screenshots of XCode, integer values are shown with comma seperators for large numbers
+   - e.g. 824633720832 is displayed as `824,633,720,832`
+   - When you are entering large numbers enter them **without** the commas (`824633720832`)
+
+4. Make any corrections
+5. Save the config.plist file
+6. Reboot
+7. Confirm
 
 
 ---
