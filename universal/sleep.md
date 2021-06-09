@@ -249,7 +249,7 @@ IRQ issues usually occur during bootups but some may notice that IRQ calls can b
   * First dump your DSDT in Linux/Windows
   * then select `FixHPET` option
 
-This will provide you with both SSDT-HPET.aml and `oc_patches.plist`, You will want to add the SSDT to EFI/OC/ACPI and add the ACPI patches into your config.plist from the oc_patches.plist
+This will provide you with both SSDT-HPET.aml and `patches_OC.plist`, You will want to add the SSDT to EFI/OC/ACPI and add the ACPI patches into your config.plist from the patches_OC.plist
 
 ### Audio
 
