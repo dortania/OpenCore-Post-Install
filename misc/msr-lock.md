@@ -125,7 +125,7 @@ If you get an error such as `error: offset is out of range` run the following co
    setup_var_3 0x5A4 0x00
    ```
 
-At this point, run either `reset` in the shell or simply reboot your machine. And with that, you should have `CFG Lock` unlocked! To verify, you can run over the methods listed at [Checking if your firmware supports CFG Lock unlocking](#checking-if-your-firmware-supports-cfg-lock-unlocking) to verify whether the variable was set correctly then finally disable `Kernel -> Quirks -> AppleCpuPmCfgLock` and `Kernel -> Quirks -> AppleXcpmCfgLock`.
+At this point, run either `reboot` in the shell or simply reboot your machine. And with that, you should have `CFG Lock` unlocked! To verify, you can run over the methods listed at [Checking if your firmware supports CFG Lock unlocking](#checking-if-your-firmware-supports-cfg-lock-unlocking) to verify whether the variable was set correctly then finally disable `Kernel -> Quirks -> AppleCpuPmCfgLock` and `Kernel -> Quirks -> AppleXcpmCfgLock`.
 
 * Do note that variable offsets are unique not just to each motherboard but even to its firmware version. **Never try to use an offset without checking.**
 
