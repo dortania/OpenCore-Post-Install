@@ -5,7 +5,7 @@
 > * Navigate to the EFI folder, OC folder, and edit your config.plist file
 > * Find the `PlatformInfo` section, and set the `CustomMemory` key to `false` (or 0, or No, depending on your editor)
 > * Save the config.plist file
-> * Reboot your hackintosh/ryzentosh
+> * Reboot your hackintosh/Ryzentosh
 
 **RESULT**
 
