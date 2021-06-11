@@ -793,6 +793,7 @@ Repo
 RestrictEvents
 RtcMemoryFixup
 Ryzen
+Ryzentosh
 S0
 S3
 S4
