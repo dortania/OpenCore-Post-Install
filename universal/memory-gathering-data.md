@@ -154,7 +154,7 @@ FormFactor = 9
 
 Specifies maximum supported memory for a Mac Pro 7,1.
 
-The `MaxCapacity` value is dependant upon the type of processor fitted to an Apple Mac Pro 7,1. See [Mac Pro (2019) memory specifications](https://support.apple.com/en-gb/HT210405). The value should be one of:
+The `MaxCapacity` value is dependent upon the type of processor fitted to an Apple Mac Pro 7,1. See [Mac Pro (2019) memory specifications](https://support.apple.com/en-gb/HT210405). The value should be one of:
 
 | Max RAM | Expressed as bytes |
 |---------|--------------------|
