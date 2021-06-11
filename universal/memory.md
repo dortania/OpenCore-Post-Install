@@ -12,7 +12,7 @@ If you just want to remove the annoying pop-up, then this guide is for you...
 
 ## A bit of background
 
-Mac OS expects the underlying hardware to be Apple hardware. Therefore, when building a hackintosh/ryzentosh we need to try and match the hardware as closely as possible. For those areas where our hardware differs, we must try to convince Mac OS that the hardware is a match.
+Mac OS expects the underlying hardware to be Apple hardware. Therefore, when building a hackintosh/Ryzentosh we need to try and match the hardware as closely as possible. For those areas where our hardware differs, we must try to convince Mac OS that the hardware is a match.
 
 Consider your mainboard. If you are emulating a Mac Pro 7,1 then the Apple mainboard has 12 physical RAM slots. Our mainboards will probably have fewer physical memory slots. We will use OpenCore's custom memory mapping feature to report 12 "virtual" slots to Mac OS. We can then assign our physical memory configuration into these 12 virtual slots.
 
