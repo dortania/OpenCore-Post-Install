@@ -26,7 +26,7 @@ Therefore we recommend that your system should also have a minimum of 4 physical
 
 ## Mapping our memory
 
-A Mac Pro 7,1 has 12 slots, and can have 4, 6, 8, 10, or 12 DIMMs installed. We will demonstrate the 4-DIMM solution here, but simply follow the same procedure for the other multiples.
+A Mac Pro 7,1 has 12 slots, and can have 4, 6, 8, 10, or 12 DIMMs installed. We will demonstrate the 4 DIMM solution here, but simply follow the same procedure for the other multiples.
 
 The PlatformInfo Memory section of the OpenCore config.plist allows us to present 12 slots to Mac OS. The trick is to populate these "virtual slots" with our real DIMM values. 
 
