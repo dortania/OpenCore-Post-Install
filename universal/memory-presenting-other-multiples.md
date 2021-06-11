@@ -40,7 +40,7 @@ Populate these items / slots
 | 1 | is slot 7 | referenced as Channel A / DIMM 2 |
 | 2 | is slot 10 | referenced as Channel B / DIMM 1 |
 | 3 | is slot 9 | referenced as Channel B / DIMM 2 |
-| 4 | is slot 12 | referencd as Channel C / DIMM 1 |
+| 4 | is slot 12 | referenced as Channel C / DIMM 1 |
 | 6 | is slot 5 | referenced as Channel D / DIMM 1 |
 | 7 | is slot 6 | referenced as Channel D / DIMM 2 |
 | 8 | is slot 3 | referenced as Channel E / DIMM 1 |
@@ -60,8 +60,8 @@ Populate these items / slots
 | 1 | is slot 7 | referenced as Channel A / DIMM 2 |
 | 2 | is slot 10 | referenced as Channel B / DIMM 1 |
 | 3 | is slot 9 | referenced as Channel B / DIMM 2 |
-| 4 | is slot 12 | referencd as Channel C / DIMM 1 |
-| 5 | is slot 11 | referencd as Channel C / DIMM 2 |
+| 4 | is slot 12 | referenced as Channel C / DIMM 1 |
+| 5 | is slot 11 | referenced as Channel C / DIMM 2 |
 | 6 | is slot 5 | referenced as Channel D / DIMM 1 |
 | 7 | is slot 6 | referenced as Channel D / DIMM 2 |
 | 8 | is slot 3 | referenced as Channel E / DIMM 1 |
