@@ -70,7 +70,7 @@ Populate these items / slots
 
 ---
 
-# What if my mainboard only has two physical slots?
+# My mainboard only has two physical slots
 
 If your mainboard has only two physical slots you will still need to present four DIMMs to Mac OS. The best way to do this is to halve the sizes of your actual DIMMs and present four smaller values in the OpenCore "virtual slots".
 
