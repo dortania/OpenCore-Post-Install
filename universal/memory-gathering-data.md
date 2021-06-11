@@ -1,11 +1,13 @@
 # Gathering the values from your DIMMs using dmidecode
 
 > Ensure your OpenCore boot configuration is **NOT** using `CustomMemory` for this first part of the process. This will ensure that your low-level EFI/ACPI tables will be what Mac OS is presented with. You will be seeing the physical information directly...
+> 
 > * Mount your EFI partition
 > * Navigate to the EFI folder, OC folder, and edit your config.plist file
 > * Find the `PlatformInfo` section, and set the `CustomMemory` key to `false` (or 0, or No, depending on your editor)
 > * Save the config.plist file
 > * Reboot your hackintosh/Ryzentosh
+
 
 **RESULT**
 
@@ -18,7 +20,6 @@
 To start, we'll want to grab the following file:
 
 * [dmidecode](https://github.com/acidanthera/dmidecode/releases)
-
 * Unzip the downloaded file.
   * You will have a command-line executable file in your Downloads folder. 
 * Open a Terminal (from Applications/Utilities/Terminal).
@@ -28,7 +29,7 @@ To start, we'll want to grab the following file:
   * `./dmidecode -t memory`
 
 > The first time you run the command Mac OS Gatekeeper will probably pop up a warning suggesting that you should delete the dmidecode tool.
->  ![](../images/post-install/memory-md/memory-dmidecode-gatekeeper-1.png)
+> ![](../images/post-install/memory-md/memory-dmidecode-gatekeeper-1.png)
 > * Keep the file by clicking the `Cancel` button.
 > * Next, open the `System Preferences` app.
 >   * Choose the `Security & Privacy` preference panel.
@@ -47,7 +48,7 @@ Finally! We get the detailed output from dmidecode...
 
 ---
 
-## Let us begin...
+## Let us begin
 
 The `Memory` section of the OpenCore config.plist file has many properties, lets try to break it down:
 
@@ -72,7 +73,7 @@ The `Memory` section of the OpenCore config.plist file has many properties, lets
 
 ### DataWidth
 
-Specifies the data width, in bits, of the memory. 
+Specifies the data width, in bits, of the memory.
 
 To determine the DataWidth, run the following:
 
@@ -282,7 +283,7 @@ TypeDetail = 7
 
 ### Devices
 
-This is the array of Memory Devices, and it is where we do our magic to fix the error. 
+This is the array of Memory Devices, and it is where we do our magic to fix the error.
 
 Next let's break down the properties:
 
@@ -439,7 +440,6 @@ To determine Speed, run the following:
  Speed: 2666 MT/s
  Speed: Unknown
 ```
-
 
 ---
 
