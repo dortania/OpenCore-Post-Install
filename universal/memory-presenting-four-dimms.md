@@ -94,7 +94,7 @@ E.G. Using our example data seen above...
 
 `TypeDetail` = 128
 
-> Remember, the `MaxCapacity` value is dependant upon the type of processor fitted to an Apple Mac Pro 7,1. See [Mac Pro (2019) memory specifications](https://support.apple.com/en-gb/HT210405). The value should be one of:
+> Remember, the `MaxCapacity` value is dependent upon the type of processor fitted to an Apple Mac Pro 7,1. See [Mac Pro (2019) memory specifications](https://support.apple.com/en-gb/HT210405). The value should be one of:
 
 | Max RAM | Expressed as bytes |
 |---------|--------------------|
@@ -109,7 +109,7 @@ Under the `Memory` section there will be a `Devices` section. Open the `Devices`
 
 > If the Devices section is not present, manually add it or copy it from one of the example plist files to the config.plist.
 
-We are going to "populate" the 12-slots with four DIMMS. Referring back to [Install and replace memory in your Mac Pro (2019)](https://support.apple.com/en-gb/HT210103?cid=macOS_UI_Memory_article_HT210103) we can see that our four DIMMS need to go into slots 3, 5, 8, and 10.
+We are going to "populate" the 12-slots with four DIMMs. Referring back to [Install and replace memory in your Mac Pro (2019)](https://support.apple.com/en-gb/HT210103?cid=macOS_UI_Memory_article_HT210103) we can see that our four DIMMs need to go into slots 3, 5, 8, and 10.
 
 In the config.plist file Devices section...
 
@@ -171,14 +171,14 @@ Visually inspect the memory tab's picture.
      - The System Profiler window shows the slot naming convention is not `Slot x ( Channel Y / DIMM N )`, which we expect if we are using the OpenCore `CustomMemory` and the Devices Items are correctly named.
 
 2. If the `CustomMemory` key is correct then the most likely issue is a typing error in the `Devices` section.
-   - Double-check that you have 12 items in the `Devices` section, labelled Item 0 - Item 11
+   - Double-check that you have 12 items in the `Devices` section, labeled Item 0 - Item 11
    - Double-check that you have populated your DIMM information into the correct Item location
    - Double-check that the other Item locations are set up to be "empty"
      - Ensure the "empty" slots set the `Manufacturer` string value to `NO DIMM`
      - Ensure the "empty" slots set the `Size` integer value to `0`
      - Ensure the "empty" slots set the `Speed` integer value to `0`
 
-3. Check your integer values. When looking at screenshots of XCode, integer values are shown with comma seperators for large numbers
+3. Check your integer values. When looking at screenshots of XCode, integer values are shown with comma separators for large numbers
    - e.g. 824633720832 is displayed as `824,633,720,832`
    - When you are entering large numbers enter them **without** the commas (`824633720832`)
 
