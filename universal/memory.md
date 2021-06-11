@@ -30,39 +30,39 @@ A Mac Pro 7,1 has 12 slots, and can have 4, 6, 8, 10, or 12 DIMMs installed. We 
 
 The PlatformInfo Memory section of the OpenCore config.plist allows us to present 12 slots to Mac OS. The trick is to populate these "virtual slots" with our real DIMM values. 
 
-Using the example unpopulated plist file, opened in XCode, the OpenCore Devices section looks like this:
+Using the example unpopulated plist file, opened in Xcode, the OpenCore Devices section looks like this:
 
 ![](../images/post-install/memory-md/memory-platforminfo-memory-devices-unpopulated.png)
 ![](../images/post-install/memory-md/memory-platforminfo-memory-devices-unpopulated2.png)
 
 * The order of the array items is important, and should be kept as it is. For example:
   * Item 0
-    * Represents Slot 8 on the real Mac Pro 7,1 mainboard, labelled as Channel A / DIMM 1
+    * Represents Slot 8 on the real Mac Pro 7,1 mainboard, labeled as Channel A / DIMM 1
   * Item 1
-    * Represents Slot 7 on the real Mac Pro 7,1 mainboard, labelled as Channel A / DIMM 2
+    * Represents Slot 7 on the real Mac Pro 7,1 mainboard, labeled as Channel A / DIMM 2
   * Item 2
-    * Represents Slot 10 on the real Mac Pro 7,1 mainboard, labelled as Channel B / DIMM 1
+    * Represents Slot 10 on the real Mac Pro 7,1 mainboard, labeled as Channel B / DIMM 1
   * Item 3
-    * Represents Slot 9 on the real Mac Pro 7,1 mainboard, labelled as Channel B / DIMM 2
+    * Represents Slot 9 on the real Mac Pro 7,1 mainboard, labeled as Channel B / DIMM 2
   * Item 4
-    * Represents Slot 12 on the real Mac Pro 7,1 mainboard, labelled as Channel C / DIMM 1
+    * Represents Slot 12 on the real Mac Pro 7,1 mainboard, labeled as Channel C / DIMM 1
   * Item 5
-    * Represents Slot 11 on the real Mac Pro 7,1 mainboard, labelled as Channel C / DIMM 2
+    * Represents Slot 11 on the real Mac Pro 7,1 mainboard, labeled as Channel C / DIMM 2
   * Item 6
-    * Represents Slot 5 on the real Mac Pro 7,1 mainboard, labelled as Channel D / DIMM 1
+    * Represents Slot 5 on the real Mac Pro 7,1 mainboard, labeled as Channel D / DIMM 1
   * Item 7
-    * Represents Slot 6 on the real Mac Pro 7,1 mainboard, labelled as Channel D / DIMM 2
+    * Represents Slot 6 on the real Mac Pro 7,1 mainboard, labeled as Channel D / DIMM 2
   * Item 8
-    * Represents Slot 3 on the real Mac Pro 7,1 mainboard, labelled as Channel E / DIMM 1
+    * Represents Slot 3 on the real Mac Pro 7,1 mainboard, labeled as Channel E / DIMM 1
   * Item 9
-    * Represents Slot 4 on the real Mac Pro 7,1 mainboard, labelled as Channel E / DIMM 2
+    * Represents Slot 4 on the real Mac Pro 7,1 mainboard, labeled as Channel E / DIMM 2
   * Item 10
-    * Represents Slot 1 on the real Mac Pro 7,1 mainboard, labelled as Channel F / DIMM 1
+    * Represents Slot 1 on the real Mac Pro 7,1 mainboard, labeled as Channel F / DIMM 1
   * Item 11
-    * Represents Slot 2 on the real Mac Pro 7,1 mainboard, labelled as Channel F / DIMM 2
+    * Represents Slot 2 on the real Mac Pro 7,1 mainboard, labeled as Channel F / DIMM 2
 
 > If a memory slot is not populated on a real Mac Pro 7,1 the Manufacturer field is set to the text value `NO DIMM`.
-> This is the critcal field to fix the error message.
+> This is the critical field to fix the error message.
 
 ---
 
