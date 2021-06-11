@@ -178,7 +178,7 @@ Visually inspect the memory tab's picture.
      - Ensure the "empty" slots set the `Size` integer value to `0`
      - Ensure the "empty" slots set the `Speed` integer value to `0`
 
-3. Check your integer values. When looking at screenshots of XCode, integer values are shown with comma separators for large numbers
+3. Check your integer values. When looking at screenshots of Xcode, integer values are shown with comma separators for large numbers
    - e.g. 824633720832 is displayed as `824,633,720,832`
    - When you are entering large numbers enter them **without** the commas (`824633720832`)
 
