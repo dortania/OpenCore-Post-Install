@@ -47,7 +47,6 @@ Populate these items / slots
 | 9 | is slot 4 | referenced as Channel E / DIMM 2 |
 | 10 | is slot 1 | referenced as Channel F / DIMM 1 |
 
-
 ---
 
 # Presenting twelve DIMMs to Mac OS correctly
@@ -76,7 +75,6 @@ Populate these items / slots
 If your mainboard has only two physical slots you will still need to present four DIMMs to Mac OS. The best way to do this is to halve the sizes of your actual DIMMs and present four smaller values in the OpenCore "virtual slots".
 
 For example, if you have two physical 8GB DIMMs, halve that value to 4GB and present four DIMMs
-
 
 ---
 
