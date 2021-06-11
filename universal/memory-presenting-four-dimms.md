@@ -1,6 +1,6 @@
 # Presenting four DIMMs to Mac OS correctly
 
-If you have four DIMMs installed on your mainboard, great! 
+If you have four DIMMs installed on your mainboard, great!
 
 Your values from using dmidecode (described previously) might be similar to this:
 
@@ -124,22 +124,22 @@ In the config.plist file Devices section...
 
 All other items should be "EMPTY" slots.
 
-The important key is the `Manufacturer` key should be set to `NO DIMM` for an empty slot. 
+The important key is the `Manufacturer` key should be set to `NO DIMM` for an empty slot.
 
 Keys `Size` and `Speed` should both be set to `0` for an empty slot.
 
 ![Populated Slots](../images/post-install/memory-md/memory-platforminfo-memory-devices-empty-1.png)
 ![Empty Slots](../images/post-install/memory-md/memory-platforminfo-memory-devices-empty-2.png)
 
-- Save your config.plist file.
-- Clear the notification if it is still showing on screen (otherwise, when you restart it will still show even if your memory is now presented correctly!)
-- Reboot your system.
- 
+* Save your config.plist file.
+* Clear the notification if it is still showing on screen (otherwise, when you restart it will still show even if your memory is now presented correctly!)
+* Reboot your system.
+
 If everything goes as planned, the first thing you will notice is the absence of the memory error notification. If that is not enough, check out About This Mac, and drill into the System Profiler memory section.
 
 | Fixed About This Mac | Fixed System Profiler |
 | :--- | :--- |
-| ![](../images/post-install/memory-md/memory-fixed-aboutthismac.png) | ![](../images/post-install/memory-md/memory-fixed-system-profiler.png) | 
+| ![](../images/post-install/memory-md/memory-fixed-aboutthismac.png) | ![](../images/post-install/memory-md/memory-fixed-system-profiler.png) |
 
 ---
 
@@ -152,41 +152,39 @@ Click the `Memory` tab. Also, open the System Profiler and select Hardware and t
 
 | Incorrect About This Mac | Incorrect System Profiler |
 | :--- | :--- |
-| ![](../images/post-install/memory-md/memory-error-aboutthismac-4.png) | ![](../images/post-install/memory-md/memory-system-profiler-4.png) | 
-
-
+| ![](../images/post-install/memory-md/memory-error-aboutthismac-4.png) | ![](../images/post-install/memory-md/memory-system-profiler-4.png) |
 
 Visually inspect the memory tab's picture.
-- Is it showing the correct number of slots (12)?
-- Is it showing the correct number of installed DIMMs?
-- Is it showing the DIMMs in the correct slots?
+
+* Is it showing the correct number of slots (12)?
+* Is it showing the correct number of installed DIMMs?
+* Is it showing the DIMMs in the correct slots?
 
 * Mount your EFI partition
 * Navigate to the EFI folder, OC folder, and edit your config.plist file using your favorite plist editor.
 * Open the `PlatformInfo` section.
 
 1. Confirm that the key `CustomMemory` is set to a value of true (or 1, or YES depending on your editor)
-   - If this is not set then Mac OS will be presented with data directly from your mainboard, the OpenCore DIMM order will not be shown instead you will see your DIMMs in the wrong slots
-   - looking at the Incorrect images above, the About This Mac Memory window is only showing 4 slots. This matches the physical slots on the mainboard. Therefore, the most likely issue is that `CustomMemory` is still set to false.
-     - The System Profiler window shows the slot naming convention is not `Slot x ( Channel Y / DIMM N )`, which we expect if we are using the OpenCore `CustomMemory` and the Devices Items are correctly named.
+   * If this is not set then Mac OS will be presented with data directly from your mainboard, the OpenCore DIMM order will not be shown instead you will see your DIMMs in the wrong slots
+   * looking at the Incorrect images above, the About This Mac Memory window is only showing 4 slots. This matches the physical slots on the mainboard. Therefore, the most likely issue is that `CustomMemory` is still set to false.
+     * The System Profiler window shows the slot naming convention is not `Slot x ( Channel Y / DIMM N )`, which we expect if we are using the OpenCore `CustomMemory` and the Devices Items are correctly named.
 
 2. If the `CustomMemory` key is correct then the most likely issue is a typing error in the `Devices` section.
-   - Double-check that you have 12 items in the `Devices` section, labeled Item 0 - Item 11
-   - Double-check that you have populated your DIMM information into the correct Item location
-   - Double-check that the other Item locations are set up to be "empty"
-     - Ensure the "empty" slots set the `Manufacturer` string value to `NO DIMM`
-     - Ensure the "empty" slots set the `Size` integer value to `0`
-     - Ensure the "empty" slots set the `Speed` integer value to `0`
+   * Double-check that you have 12 items in the `Devices` section, labeled Item 0 - Item 11
+   * Double-check that you have populated your DIMM information into the correct Item location
+   * Double-check that the other Item locations are set up to be "empty"
+     * Ensure the "empty" slots set the `Manufacturer` string value to `NO DIMM`
+     * Ensure the "empty" slots set the `Size` integer value to `0`
+     * Ensure the "empty" slots set the `Speed` integer value to `0`
 
 3. Check your integer values. When looking at screenshots of Xcode, integer values are shown with comma separators for large numbers
-   - e.g. 824633720832 is displayed as `824,633,720,832`
-   - When you are entering large numbers enter them **without** the commas (`824633720832`)
+   * e.g. 824633720832 is displayed as `824,633,720,832`
+   * When you are entering large numbers enter them **without** the commas (`824633720832`)
 
 4. Make any corrections
 5. Save the config.plist file
 6. Reboot
 7. Confirm
-
 
 ---
 
