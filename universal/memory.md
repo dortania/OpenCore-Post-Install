@@ -28,7 +28,7 @@ Therefore we recommend that your system should also have a minimum of 4 physical
 
 A Mac Pro 7,1 has 12 slots, and can have 4, 6, 8, 10, or 12 DIMMs installed. We will demonstrate the 4 DIMM solution here, but simply follow the same procedure for the other multiples.
 
-The PlatformInfo Memory section of the OpenCore config.plist allows us to present 12 slots to Mac OS. The trick is to populate these "virtual slots" with our real DIMM values. 
+The PlatformInfo Memory section of the OpenCore config.plist allows us to present 12 slots to Mac OS. The trick is to populate these "virtual slots" with our real DIMM values.
 
 Using the example unpopulated plist file, opened in Xcode, the OpenCore Devices section looks like this:
 
@@ -68,12 +68,12 @@ Using the example unpopulated plist file, opened in Xcode, the OpenCore Devices 
 
 ## Download example plist files
 
-- [CustomMemoryUnpopulated.plist.zip](../extra-files/CustomMemoryUnpopulated.plist.zip)
-- [CustomMemoryPopulatedWithFourDIMMs.zip](../extra-files/CustomMemoryPopulatedWithFourDIMMs.plist.zip)
-- [CustomMemoryPopulatedWithSixDIMMs.zip](../extra-files/CustomMemoryPopulatedWithSixDIMMs.plist.zip)
-- [CustomMemoryPopulatedWithEightDIMMs.zip](../extra-files/CustomMemoryPopulatedWithEightDIMMs.plist.zip)
-- [CustomMemoryPopulatedWithTenDIMMs.zip](../extra-files/CustomMemoryPopulatedWithTenDIMMs.plist.zip)
-- [CustomMemoryPopulatedWithTwelveDIMMs.zip](../extra-files/CustomMemoryPopulatedWithTwelveDIMMs.plist.zip)
+* [CustomMemoryUnpopulated.plist.zip](../extra-files/CustomMemoryUnpopulated.plist.zip)
+* [CustomMemoryPopulatedWithFourDIMMs.zip](../extra-files/CustomMemoryPopulatedWithFourDIMMs.plist.zip)
+* [CustomMemoryPopulatedWithSixDIMMs.zip](../extra-files/CustomMemoryPopulatedWithSixDIMMs.plist.zip)
+* [CustomMemoryPopulatedWithEightDIMMs.zip](../extra-files/CustomMemoryPopulatedWithEightDIMMs.plist.zip)
+* [CustomMemoryPopulatedWithTenDIMMs.zip](../extra-files/CustomMemoryPopulatedWithTenDIMMs.plist.zip)
+* [CustomMemoryPopulatedWithTwelveDIMMs.zip](../extra-files/CustomMemoryPopulatedWithTwelveDIMMs.plist.zip)
 
 You can perform your edits to a copy of these example plist files, and then when you are sure that you have everything in place, copy the contents from the example plist file to your OpenCore config.plist file...
 
