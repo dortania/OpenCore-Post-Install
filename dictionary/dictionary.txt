@@ -307,6 +307,8 @@ DACs
 DBG
 DC7900
 DCB
+DIMM
+DIMMs
 DMAR
 DMGs
 DRM
@@ -1225,6 +1227,7 @@ macOS86
 maciASL
 macrecovery
 macserial
+mainboard
 markdownlint-cli
 max_cpus_from_firmware
 midi1996
