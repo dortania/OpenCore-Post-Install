@@ -1229,6 +1229,7 @@ maciASL
 macrecovery
 macserial
 mainboard
+mainboards
 markdownlint-cli
 max_cpus_from_firmware
 midi1996
