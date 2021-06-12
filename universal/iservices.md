@@ -50,13 +50,14 @@ Find your **SystemProductName** in your config.plist file. That is your model nu
 Replace `"iMacPro1,1"` below with SystemProductName in your config.plist.
 
 ```bash
-./macserial --num 1 --model "iMacPro1,1" 
+./macserial --num 1 --model "iMacPro1,1"
 ```
+
 Example output:
 
 ```console
 $ ./macserial \
-        --model "iMacPro1,1" 
+        --model "iMacPro1,1"
 Warning: arc4random is not available!
 C02V7UYGHX87 | C02733401J9JG36A8
 ```
@@ -81,11 +82,12 @@ For example:
 Make up the last 3 octets.
 
 For example:
+
 ```
 00:16:CB:00:11:22
 ```
 
-## Derive the corresponding ROM Value 
+## Derive the corresponding ROM Value
 
 ROM is calculated from your MAC Address.
 
@@ -150,10 +152,10 @@ We’re sorry, but this serial number isn’t valid |  Valid Purchase date | Pur
 
 This last one is what we're after, as we want something genuine but currently not in use by anyone. Now we can translate the rest of the values into our config.plist -> PlatformInfo -> Generic:
 
-* Type = SystemProductName
-* Serial = SystemSerialNumber
-* Board Serial = MLB
-* SmUUID = SystemUUID
+- Type = SystemProductName
+- Serial = SystemSerialNumber
+- Board Serial = MLB
+- SmUUID = SystemUUID
 
 **Note**:  "We’re sorry, but this serial number isn’t valid. Please check your information and try again." works for many users as well, do note though if you've had a bad track record with Apple/iServices you many need one that's "Purchase Date not Validated". Otherwise there may be suspicion
 
@@ -167,7 +169,7 @@ To start, grab [Hackintool](https://www.tonymacx86.com/threads/release-hackintoo
 
 Here under Network Interfaces (network card icon), look for `en0` under `BSD` and check whether the device has a check mark under Builtin. If there is a check mark, skip to Fixing ROM section otherwise continue reading.
 
-* **Note**: en0 can be either Wifi, ethernet or even Thunderbolt.
+- **Note**: en0 can be either Wifi, ethernet or even Thunderbolt.
 
 > What if I don't have En0 at all?!?
 
@@ -202,11 +204,11 @@ This is a section many may have forgotten about but this is found in your config
 
 To find your actual MAC Address/ROM value, you can find in a couple places:
 
-* BIOS
-* macOS: System Preferences -> Network -> Ethernet -> Advanced -> Hardware -> MAC Address
-* Windows: Settings -> Network & Internet -> Ethernet -> Ethernet -> Physical MAC Address
+- BIOS
+- macOS: System Preferences -> Network -> Ethernet -> Advanced -> Hardware -> MAC Address
+- Windows: Settings -> Network & Internet -> Ethernet -> Ethernet -> Physical MAC Address
 
-* **Note**: en0 can be either Wifi, ethernet or even Thunderbolt, adapt the above example to your situation.
+- **Note**: en0 can be either Wifi, ethernet or even Thunderbolt, adapt the above example to your situation.
 
 Some users have even gone as far as using real Apple MAC Address dumps for their config, for this guide we'll be using our real MAC Address but note that this is another option.
 
@@ -259,9 +261,9 @@ This will provide us with a full rundown of our system, verify that what is pres
 
 ## Cleaning up your AppleID
 
-* Remove all devices from your AppleID: [Manage your devices](https://appleid.apple.com/account/manage)
-* Enable 2 Factor-Auth
-* Remove all iServices from Keychain, some examples:
+- Remove all devices from your AppleID: [Manage your devices](https://appleid.apple.com/account/manage)
+- Enable 2 Factor-Auth
+- Remove all iServices from Keychain, some examples:
 
 ```
 ids: identity-rsa-key-pair-signature-v1
@@ -286,6 +288,6 @@ Well mate, you've done it. You blacklisted your AppleID. The fix is simple but n
 
 ![](../images/post-install/iservices-md/blacklist.png)
 
-* For Apple contacting, there are 2 methods
-  * Apple calls you: [Apple Support](https://getsupport.apple.com/). You must click on Apple ID and then select the iCloud, Facetime & Messages. Now, you should click on Talk to Apple Support Now and type your phone number
-  * You can contact Apple for support and service as well, look for your country in the list and then make a phone call: [Apple Support Phone Numbers](https://support.apple.com/HT201232)
+- For Apple contacting, there are 2 methods
+  - Apple calls you: [Apple Support](https://getsupport.apple.com/). You must click on Apple ID and then select the iCloud, Facetime & Messages. Now, you should click on Talk to Apple Support Now and type your phone number
+  - You can contact Apple for support and service as well, look for your country in the list and then make a phone call: [Apple Support Phone Numbers](https://support.apple.com/HT201232)
