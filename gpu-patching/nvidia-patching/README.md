@@ -147,7 +147,7 @@ You should set the NVCAP values directly below the heads now as well.
 | :---------: | :------ | :-------------- |
 | Version | `04` for 7 series and older, `05` for 8 series and newer | `n1 04` |
 | Composite | `01` for S-Video, `00` otherwise | `n2` to toggle<br/>`n2 true` |
-| Script based Power/Backlight | `00` ony useful for genuine MacBook Pros | `n3 0` |
+| Script based Power/Backlight | `00` only useful for genuine MacBook Pros | `n3 0` |
 | Field F (Unknown) | `0F` for 300 series and newer, otherwise `07` | `n4 0x0f` |
 
 Once done, enter in `c` to calculate the NVCAP value

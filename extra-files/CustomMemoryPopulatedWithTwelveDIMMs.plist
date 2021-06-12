@@ -18,15 +18,15 @@
 					<key>DeviceLocator</key>
 					<string>Slot 8 (Channel A / DIMM 1)</string>
 					<key>Manufacturer</key>
-					<string>NO DIMM</string>
+					<string>CRUCIAL</string>
 					<key>PartNumber</key>
-					<string></string>
+					<string>BLE8G4D36BEEAK.M8FE1</string>
 					<key>SerialNumber</key>
-					<string></string>
+					<string>8899AABB</string>
 					<key>Size</key>
-					<integer>0</integer>
+					<integer>8192</integer>
 					<key>Speed</key>
-					<integer>0</integer>
+					<integer>3600</integer>
 				</dict>
 				<dict>
 					<key>AssetTag</key>
@@ -36,11 +36,11 @@
 					<key>DeviceLocator</key>
 					<string>Slot 7 (Channel A / DIMM 2)</string>
 					<key>Manufacturer</key>
-					<string>NO DIMM</string>
+					<string>CRUCIAL</string>
 					<key>PartNumber</key>
-					<string></string>
+					<string>BLE8G4D36BEEAK.M8FE1</string>
 					<key>SerialNumber</key>
-					<string></string>
+					<string>8899AACC</string>
 					<key>Size</key>
 					<integer>0</integer>
 					<key>Speed</key>
@@ -54,15 +54,15 @@
 					<key>DeviceLocator</key>
 					<string>Slot 10 (Channel B / DIMM 1)</string>
 					<key>Manufacturer</key>
-					<string>NO DIMM</string>
+					<string>CRUCIAL</string>
 					<key>PartNumber</key>
-					<string></string>
+					<string>BLE8G4D36BEEAK.M8FE1</string>
 					<key>SerialNumber</key>
-					<string></string>
+					<string>8899AABC</string>
 					<key>Size</key>
-					<integer>0</integer>
+					<integer>8192</integer>
 					<key>Speed</key>
-					<integer>0</integer>
+					<integer>3600</integer>
 				</dict>
 				<dict>
 					<key>AssetTag</key>
@@ -72,15 +72,15 @@
 					<key>DeviceLocator</key>
 					<string>Slot 9 (Channel B / DIMM 2)</string>
 					<key>Manufacturer</key>
-					<string>NO DIMM</string>
+					<string>CRUCIAL</string>
 					<key>PartNumber</key>
-					<string></string>
+					<string>BLE8G4D36BEEAK.M8FE1</string>
 					<key>SerialNumber</key>
-					<string></string>
+					<string>8899AACA</string>
 					<key>Size</key>
-					<integer>0</integer>
+					<integer>8192</integer>
 					<key>Speed</key>
-					<integer>0</integer>
+					<integer>3600</integer>
 				</dict>
 				<dict>
 					<key>AssetTag</key>
@@ -90,15 +90,15 @@
 					<key>DeviceLocator</key>
 					<string>Slot 12 (Channel C / DIMM 1)</string>
 					<key>Manufacturer</key>
-					<string>NO DIMM</string>
+					<string>CRUCIAL</string>
 					<key>PartNumber</key>
-					<string></string>
+					<string>BLE8G4D36BEEAK.M8FE1</string>
 					<key>SerialNumber</key>
-					<string></string>
+					<string>8899AACE</string>
 					<key>Size</key>
-					<integer>0</integer>
+					<integer>8192</integer>
 					<key>Speed</key>
-					<integer>0</integer>
+					<integer>3600</integer>
 				</dict>
 				<dict>
 					<key>AssetTag</key>
@@ -108,15 +108,15 @@
 					<key>DeviceLocator</key>
 					<string>Slot 11 (Channel C / DIMM 2)</string>
 					<key>Manufacturer</key>
-					<string>NO DIMM</string>
+					<string>CRUCIAL</string>
 					<key>PartNumber</key>
-					<string></string>
+					<string>BLE8G4D36BEEAK.M8FE1</string>
 					<key>SerialNumber</key>
-					<string></string>
+					<string>8899AADA</string>
 					<key>Size</key>
-					<integer>0</integer>
+					<integer>8192</integer>
 					<key>Speed</key>
-					<integer>0</integer>
+					<integer>3600</integer>
 				</dict>
 				<dict>
 					<key>AssetTag</key>
@@ -126,15 +126,15 @@
 					<key>DeviceLocator</key>
 					<string>Slot 5 (Channel D / DIMM 1)</string>
 					<key>Manufacturer</key>
-					<string></string>
+					<string>CRUCIAL</string>
 					<key>PartNumber</key>
-					<string></string>
+					<string>BLE8G4D36BEEAK.M8FE1</string>
 					<key>SerialNumber</key>
-					<string></string>
+					<string>8899AABD</string>
 					<key>Size</key>
-					<integer>0</integer>
+					<integer>8192</integer>
 					<key>Speed</key>
-					<integer>0</integer>
+					<integer>3600</integer>
 				</dict>
 				<dict>
 					<key>AssetTag</key>
@@ -144,15 +144,15 @@
 					<key>DeviceLocator</key>
 					<string>Slot 6 (Channel D / DIMM 2)</string>
 					<key>Manufacturer</key>
-					<string>NO DIMM</string>
+					<string>CRUCIAL</string>
 					<key>PartNumber</key>
-					<string></string>
+					<string>BLE8G4D36BEEAK.M8FE1</string>
 					<key>SerialNumber</key>
-					<string></string>
+					<string>8899AACD</string>
 					<key>Size</key>
-					<integer>0</integer>
+					<integer>8192</integer>
 					<key>Speed</key>
-					<integer>0</integer>
+					<integer>3600</integer>
 				</dict>
 				<dict>
 					<key>AssetTag</key>
@@ -162,15 +162,15 @@
 					<key>DeviceLocator</key>
 					<string>Slot 3 (Channel E / DIMM 1)</string>
 					<key>Manufacturer</key>
-					<string></string>
+					<string>CRUCIAL</string>
 					<key>PartNumber</key>
-					<string></string>
+					<string>BLE8G4D36BEEAK.M8FE1</string>
 					<key>SerialNumber</key>
-					<string></string>
+					<string>8899AABE</string>
 					<key>Size</key>
-					<integer>0</integer>
+					<integer>8192</integer>
 					<key>Speed</key>
-					<integer>0</integer>
+					<integer>3600</integer>
 				</dict>
 				<dict>
 					<key>AssetTag</key>
@@ -180,15 +180,15 @@
 					<key>DeviceLocator</key>
 					<string>Slot 4 (Channel E / DIMM 2)</string>
 					<key>Manufacturer</key>
-					<string>NO DIMM</string>
+					<string>CRUCIAL</string>
 					<key>PartNumber</key>
-					<string></string>
+					<string>BLE8G4D36BEEAK.M8FE1</string>
 					<key>SerialNumber</key>
-					<string></string>
+					<string>8899AACB</string>
 					<key>Size</key>
-					<integer>0</integer>
+					<integer>8192</integer>
 					<key>Speed</key>
-					<integer>0</integer>
+					<integer>3600</integer>
 				</dict>
 				<dict>
 					<key>AssetTag</key>
@@ -198,15 +198,15 @@
 					<key>DeviceLocator</key>
 					<string>Slot 1 (Channel F / DIMM 1)</string>
 					<key>Manufacturer</key>
-					<string>NO DIMM</string>
+					<string>CRUCIAL</string>
 					<key>PartNumber</key>
-					<string></string>
+					<string>BLE8G4D36BEEAK.M8FE1</string>
 					<key>SerialNumber</key>
-					<string></string>
+					<string>8899AACF</string>
 					<key>Size</key>
-					<integer>0</integer>
+					<integer>8192</integer>
 					<key>Speed</key>
-					<integer>0</integer>
+					<integer>3600</integer>
 				</dict>
 				<dict>
 					<key>AssetTag</key>
@@ -216,15 +216,15 @@
 					<key>DeviceLocator</key>
 					<string>Slot 2 (Channel F / DIMM 2)</string>
 					<key>Manufacturer</key>
-					<string>NO DIMM</string>
+					<string>CRUCIAL</string>
 					<key>PartNumber</key>
-					<string></string>
+					<string>BLE8G4D36BEEAK.M8FE1</string>
 					<key>SerialNumber</key>
-					<string></string>
+					<string>8899AADB</string>
 					<key>Size</key>
-					<integer>0</integer>
+					<integer>8192</integer>
 					<key>Speed</key>
-					<integer>0</integer>
+					<integer>3600</integer>
 				</dict>
 			</array>
 			<key>DataWidth</key>
@@ -234,7 +234,7 @@
 			<key>FormFactor</key>
 			<integer>9</integer>
 			<key>MaxCapacity</key>
-			<real>274877906944</real>
+			<integer>824633720832</integer>
 			<key>TotalWidth</key>
 			<integer>64</integer>
 			<key>Type</key>

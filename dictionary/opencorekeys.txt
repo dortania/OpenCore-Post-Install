@@ -46,6 +46,7 @@ BoardVersion
 Boot1f32
 BootProtect
 Booter
+BootstrapShort
 BundlePath
 ChassisAssetTag
 ChassisManufacturer
