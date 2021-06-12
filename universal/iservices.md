@@ -4,7 +4,7 @@ This page is for those having iMessage and other iServices issues, this is a ver
 
 **Your Apple ID is the single most influential factor in using iServices.**
 
-If you have existing Apple products in your account, such as an iPhone, you should have no issues whatsoever using a generated serial set. However, if you recently created an account, that does not have any existing Apple hardware or App Store purchases, you may be required to call Apple once you have attemped logging in.
+If you have existing Apple products in your account, such as an iPhone, you should have no issues whatsoever using a generated serial set. However, if you recently created an account, that does not have any existing Apple hardware or App Store purchases, you may be required to call Apple once you have attempted logging in.
 
 The following items will be created below and are required to use iServices:
 
