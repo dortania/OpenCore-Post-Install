@@ -12,8 +12,22 @@
 01xx0900
 02000A00
 02xx0A00
+0300220D
+0A
+0a
+0B
+0b
+0C
+0c
+0D
+0d
+0E
+0e
+0F
+0f
 0x0
 0x00-0x01
+0x00-0x3F
 0x00-0x7F
 0x00-0xFF
 0x0006E6
@@ -45,6 +59,7 @@
 0x2
 0x3E9B0007
 0x4
+0x40-0x7F
 0x58-0x59
 0x591B0000
 0x60000000
@@ -65,8 +80,10 @@
 0xFF000000
 100MBe
 100MHz
+1000Mhz
 1024x768
 120Hz
+1200Mhz
 1300Mhz
 144Hz
 14F1
@@ -87,6 +104,7 @@
 3990X
 3D
 43a0
+437075506d000000
 4G
 4k
 50F4
@@ -100,6 +118,7 @@
 7F-80
 7XX
 7zip
+800Mhz
 970EvoPlus
 A320
 A520
@@ -310,6 +329,7 @@ DCB
 DIMM
 DIMMs
 DMAR
+DMG
 DMGs
 DRM
 DSDT
@@ -385,6 +405,7 @@ ExtendBTFeatureFlags
 F10
 F12
 FAT32
+FBMEM
 FPU
 FSB
 FTE1001
@@ -431,6 +452,7 @@ GT1
 GT2
 GTX
 GUID
+GeForce
 GenSMBIOS
 GenSMBIOS's
 GibMacOS
@@ -474,6 +496,10 @@ Hackintoshing
 Handoff
 Haswell
 Haswell-E
+Head0DCBMask
+Head1DCBMask
+Head2DCBMask
+Head3DCBMask
 Hfs
 HfsPlus
 HfsPlus's
@@ -645,6 +671,7 @@ NUCs
 NVCAP
 NVCAP-Calculator
 NVCAP-settings
+NVDA
 NVMe
 NVMeFix
 NVRAM
@@ -653,6 +680,7 @@ Nehalem
 Niresh
 NoOne
 NodeJS
+Non-T2
 Notiflux
 Nouveau
 NullCPUPowerManagement
@@ -667,6 +695,7 @@ OCB
 OCConfigCompare
 OCSCAN_ALLOW_DEVICE
 OCSCAN_ALLOW_FS
+OC_SCAN_ALLOW_DEVICE
 OC_SCAN_ALLOW_DEVICE_NVME
 OC_SCAN_ALLOW_DEVICE_PCI
 OC_SCAN_ALLOW_DEVICE_SASE
@@ -675,6 +704,7 @@ OC_SCAN_ALLOW_DEVICE_SATA
 OC_SCAN_ALLOW_DEVICE_SCSI
 OC_SCAN_ALLOW_DEVICE_US
 OC_SCAN_ALLOW_DEVICE_USB
+OC_SCAN_ALLOW_FS
 OC_SCAN_ALLOW_FS_APFS
 OC_SCAN_DEVICE_LOCK
 OC_SCAN_FILE_SYSTEM_LOCK
@@ -833,6 +863,7 @@ SSxx
 STAS
 Safemode
 SandyBridge
+ScriptBasedPowerAndBacklight
 SecureBootModel
 SetVirtualAddresses
 Shannee
@@ -872,6 +903,7 @@ TRX40
 TRx40
 TSC
 TSCAdjustReset
+TVDCBMask
 Takedowns
 TechPowerUp
 Technopat
@@ -1000,6 +1032,7 @@ XLNCUSBFix
 XNU
 XNU's
 XOSI
+XPRW
 XPoint
 XXX-XXXXX
 Xcode
@@ -1125,6 +1158,9 @@ framebuffer-con2-alldata
 framebuffer-con2-busid
 framebuffer-con2-enable
 framebuffer-con2-index
+framebuffer-patch-enable
+framebuffer-fbmem
+framebuffer-stolenmem
 framebuffers
 fs
 gIOLockState
@@ -1201,6 +1237,22 @@ igfxcdc
 igfxfw
 img
 ix-3xxx
+j132
+j137
+j174
+j140a
+j140k
+j152f
+j160
+j185
+j185f
+j213
+j214k
+j215
+j223
+j230k
+j780
+j680
 jailbroken
 kDarkWakeFlagAudioNotSuppressed
 kDarkWakeFlagHIDTickleLate
@@ -1276,6 +1328,7 @@ prelinkedkernel
 prelinker
 premade
 probs
+pwr-button
 r10
 r4
 rEFInd
@@ -1342,9 +1395,11 @@ vmxf
 wakeup
 webserver
 wifi
+wranglerTickled
 x10
 x64
 x86
+x86legacy
 x86-based
 xcpm
 Как
