@@ -125,6 +125,15 @@ module.exports = {
                         children: [
                             ['/usb/intel-mapping/intel', 'Intel USB mapping'],
                             ['/usb/manual/manual', 'Manual Mapping'],
+			    {
++                                         	   title: '',
++                                                  collapsable: false,
++                                                  sidebarDepth: 2,
++                                                  children: [
++                                                      ['/universal/manual/ssdt', 'SSDT Method'],
++                                                      ['/universal/manual/kext', 'Kext Method'],
++                                 		   ]
++                           },
                         ]
                     },
                     {
