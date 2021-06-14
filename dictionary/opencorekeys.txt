@@ -112,6 +112,7 @@ KeySupport
 KeySupportMode
 KeySwap
 LapicKernelPanic
+LauncherOption
 LegacyEnable
 LegacyOverwrite
 LegacySchema
@@ -211,4 +212,5 @@ XhciPortLimit
 boot0
 bootia32
 bootx64
+ocvalidate
 snapshotted

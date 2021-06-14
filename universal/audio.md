@@ -115,6 +115,7 @@ So for troubleshooting, we'll need to go over a couple things:
 * [Checking AppleHDA is vanilla](#checking-applehda-is-vanilla)
 * [AppleALC working inconsistently](#applealc-working-inconsistently)
 * [AppleALC not working correctly with multiple sound cards](#applealc-not-working-correctly-with-multiple-sound-cards)
+* [AppleALC not working from Windows reboot](#applealc-not-working-from-windows-reboot)
 
 ### Checking if you have the right kexts
 
@@ -246,3 +247,14 @@ DeviceProperties
 ![](../images/post-install/audio-md/external-audio.png)
 
 And with this done, you can reboot and AppleALC should now ignore your external audio controller!
+
+### AppleALC not working from Windows reboot
+
+If you find that rebooting from Windows into macOS breaks audio, we recommend either adding `alctsel=1` to boot-args or add this property to your audio device in DeviceProperties:
+
+```
+DeviceProperties
+| --- > Add
+ | --- > PciRoot(0x32)/Pci(0x0,0x0)/Pci(0x0,0x0)(Adjust to your device)
+  | ----> alctsel | Data | 01000000
+```

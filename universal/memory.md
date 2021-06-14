@@ -6,11 +6,9 @@ On macOS Catalina and newer, users of the MacPro7,1 SMBIOS will experience this 
 | :--- | :--- |
 | <img width="1362" src=../images/post-install/memory-md/memory-error-notification.png>  | ![](../images/post-install/memory-md/memory-error-aboutthismac.png) |
 
-The exact reason for this error is a bit unknown, however ways to resolve this error have been made possible. The most common way to remove the error was to use [MacProMemoryNotificationDisabler.kext](https://github.com/IOIIIO/MacProMemoryNotificationDisabler) however it can cause a lot of userspace stability issues as well as no longer working in Big Sur(due to missing userspace patching capabilities from Lilu).
+The exact reason for this error is a bit unknown, however ways to resolve this error have been made possible. The most common way to remove the error is to use [RestrictEvents](https://github.com/acidanthera/RestrictEvents/releases) and we highly encourage all users to use this kext instead.
 
-In this guide, we'll be discussing another way to remove the error: Using OpenCore's CustomMemory
-
-The exact way we'll be doing this is adding fake memory until we reach 12 filled slots, as any less or any empty slots will still result in memory errors. Note this won't be a super in-depth guide, instead explaining the basics of how to setup Custom Memory.
+For those who wish to attempt the legacy mapping way, see the below guide. Note it will require you to map all your DIMMs manually so this will be a time consuming process.
 
 ## Mapping our memory
 

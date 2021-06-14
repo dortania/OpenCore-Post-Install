@@ -788,6 +788,7 @@ Rehabman's
 Reinstalls
 Rename-SSDT
 Repo
+RestrictEvents
 RtcMemoryFixup
 Ryzen
 S0
@@ -802,6 +803,7 @@ SATA-Unsupported
 SATA-unsupported
 SGX
 SHA-1
+SHA-512
 SHCI
 SL01
 SMBIOSes
@@ -858,6 +860,7 @@ SystemPreferences
 SystemProfilerMemoryFixup
 T2
 T2's
+TCP
 TDP
 TIMR
 TMR
@@ -1029,6 +1032,7 @@ architected
 args
 arse
 auth
+autodetect
 automagically
 autopoweroff
 ba10b5d
