@@ -1,16 +1,146 @@
 # Fixing iMessage and other services with OpenCore
 
-This page is for those having iMessage and other iServices issues, this is a very basic guide so will not go as in-depth into the issues as some other guides. This specific guide is a translation and reinterpretation of the AppleLife Guide on fixing iServices: [Как завести сервисы Apple - iMessage, FaceTime, iCloud](https://applelife.ru/posts/727913)
+This page is for those having iMessage and other iServices issues, this is a very basic guide so will not go as in-depth into the issues as some other guides. This specific guide is a translation and reinterpretation of the AppleLife Guide on fixing iServices: [Как завести сервисы Apple - iMessage, FaceTime, iCloud](https://applelife.ru/posts/727913).
+
+**Your Apple ID is the single most influential factor in using iServices.**
+
+If you have existing Apple products in your account, such as an iPhone, you should have no issues whatsoever using a generated serial set. However, if you recently created an account, that does not have any existing Apple hardware or App Store purchases, you may be required to call Apple once you have attemped logging in.
+
+The following items will be created below and are required to use iServices:
+
+- MLB
+- ROM*
+- SystemProductName
+- SystemSerialNumber
+- SystemUUID
+
+\**for ROM, we use the MAC Address of the network interface, lowercase, and without `:`.*
 
 **Note**: You and you alone are responsible for your AppleID, read the guide carefully and take full responsibility if you screw up. Dortania and other guides are not held accountable for what **you** do.
 
-## Generate a new Serial
+## Using GenSMBIOS
 
 Download [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS) and select option 1 to download MacSerial and next option 3 to generate some new serials. What we're looking for is a valid serial that currently has no registered purchase date.
 
 Tip: `iMacPro1,1 10` will print 10 serials, this will save you some time on generating
 
 ![](../images/post-install/iservices-md/serial-list.png)
+
+## Using macserial
+
+This is for Linux users and an alternative to using GenSMBIOS.
+
+Generate a new Serial and Board Serial (MLB) for your model.
+
+To generate this you will need macserial.
+
+You can download the [latest release of OpenCorePkg from here.](https://github.com/acidanthera/OpenCorePkg/releases)
+
+Or compile the development [macserial](https://github.com/acidanthera/OpenCorePkg/tree/master/Utilities/macserial) from source.
+
+```bash
+git clone --depth 1 https://github.com/acidanthera/OpenCorePkg.git
+cd ./OpenCorePkg/Utilities/macserial/
+make
+chmod +x ./macserial
+```
+
+Find your **SystemProductName** in your config.plist file. That is your model number.
+
+Replace `"iMacPro1,1"` below with SystemProductName in your config.plist.
+
+```bash
+./macserial --num 1 --model "iMacPro1,1" 
+```
+Example output:
+
+```console
+$ ./macserial \
+        --model "iMacPro1,1" 
+Warning: arc4random is not available!
+C02V7UYGHX87 | C02733401J9JG36A8
+```
+
+The value on the left is your **Serial number**.
+The value on the right is your **Board Serial (MLB)**.
+
+## Choose a MAC Address
+
+Select a MAC Address with an Organizationally Unique Identifier (OUI) that corresponds to a real Apple, Inc. interface.
+
+See the following list:
+
+[https://gitlab.com/wireshark/wireshark/-/raw/master/manuf](https://gitlab.com/wireshark/wireshark/-/raw/master/manuf)
+
+For example:
+
+```
+00:16:CB    Apple   Apple, Inc.
+```
+
+Make up the last 3 octets.
+
+For example:
+```
+00:16:CB:00:11:22
+```
+
+## Derive the corresponding ROM Value 
+
+ROM is calculated from your MAC Address.
+
+Lowercase your MAC Address, and remove each colon `:` between the octets.
+
+For example:
+
+**MAC:** `00:16:CB:00:11:22`
+
+**ROM:** `0016cb001122`
+
+## Generate an UUID
+
+Type `uuidgen` in Terminal
+
+```console
+$ uuidgen
+976AA603-75FC-456B-BC6D-9011BFB4968E
+```
+
+Then simply replace those values in your config.plist:
+
+|Key|Data|
+|---|---|
+|MLB|`C02733401J9JG36A8`|
+|Mac Address|`00:16:CB:00:11:22`|
+|ROM|`0016cb001122`|
+|SystemProductName|`iMacPro1,1`|
+|SystemSerialNumber|`C02V7UYGHX87`|
+|SystemUUID|`976AA603-75FC-456B-BC6D-9011BFB4968E`|
+
+It should look something like this:
+
+```xml
+    <key>MLB</key>
+    <string>C02733401J9JG36A8</string>
+    <key>ROM</key>
+    <data>0016cb001122</data>
+    <key>SpoofVendor</key>
+    <true/>
+    <key>SystemProductName</key>
+    <string>iMacPro1,1</string>
+    <key>SystemSerialNumber</key>
+    <string>C02V7UYGHX87</string>
+    <key>SystemUUID</key>
+    <string>976AA603-75FC-456B-BC6D-9011BFB4968E</string>
+```
+
+NOTE: If you have trouble using the App Store, you [may need to fix En0](#fixing-en0), depending on your hardware setup.
+
+Brand new Apple ID's will almost certainly not work. Having other real devices in your account almost always works.
+
+If you see a [support warning, see below](#customer-code-error).
+
+## Serial Number Validity
 
 Now enter the serial into the [Apple Check Coverage page](https://checkcoverage.apple.com/), you will get 1 of 3 responses:
 
