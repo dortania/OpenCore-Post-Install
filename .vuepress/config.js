@@ -223,7 +223,14 @@ module.exports = {
 		                children: [
 		                    ['/gpu-patching/nvidia-patching/', 'Nvidia Patching'],
 		                ]
-		            },
+                    },
+                    {
+                        title: 'Modern Nvidia',
+                        collapsable: false,
+                        children: [
+                            ['/gpu-patching/modern-nvidia/', 'Nvidia Web Drivers']
+                        ]
+                    }
                 ]
             },
 
