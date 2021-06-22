@@ -21,7 +21,7 @@ So with OpenCore, we've got a few options to choose:
 
 The former is actually already integrated into OpenCore with the `DisableRtcChecksum` quirk, but has the downfall of only blocking regions 0x58-0x59 and only working in the kernel level. Best way to know if this option is best, enable it and try. If this doesn't work, disable as it's an unnecessary patch.
 
-With the latter, we're able to block very specific regions of our choice that match our exact model. And we're able to do this both in the kernel level and firmware aiding with hibernation support. This however will requires much more time and [RTCMemoryFixup](https://github.com/acidanthera/RTCMemoryFixup/releases/tag/1.0.6).
+With the latter, we're able to block very specific regions of our choice that match our exact model. And we're able to do this both in the kernel level and firmware aiding with hibernation support. This however will requires much more time and [RTCMemoryFixup](https://github.com/acidanthera/RTCMemoryFixup/releases/tag/1.0.7).
 
 ## Finding our bad RTC region
 
@@ -32,7 +32,7 @@ For the rest of this guide, we're going to assume you've tested option 1(`Disabl
 * To omit bad regions, we use the boot-arg `rtcfx_exclude=00-FF`
   * Replace `00-FF` with your bad region (or regions)
   * Reminder that `boot-args` is located under `NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82` in your config.plist
-  * This will also require you to have [RTCMemoryFixup](https://github.com/acidanthera/RTCMemoryFixup/releases/tag/1.0.6) in your config.plist and EFI/OC/Kexts folder.
+  * This will also require you to have [RTCMemoryFixup](https://github.com/acidanthera/RTCMemoryFixup/releases/tag/1.0.7) in your config.plist and EFI/OC/Kexts folder.
 * There can be multiple bad regions
 * To find the bad region, we'll want to split out search into chunks
 
