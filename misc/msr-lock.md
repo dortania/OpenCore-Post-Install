@@ -6,7 +6,7 @@ This guide is only recommended for users who have already installed macOS, for u
 
 ## What is CFG-Lock
 
-CFG-Lock is a setting in your BIOS that allows for a specific register(in this case the MSR 0xE2) to be written to. By default, most motherboards lock this variable with many even hiding the option outright in the GUI. And why we care about it is that macOS actually wants to write to this variable, and not just one part of macOS. Instead both the Kernel(XNU) and AppleIntelPowerManagement want this register.
+CFG-Lock is a setting in your BIOS that allows for a specific register(in this case the MSR 0xE2) to be written to. By default, most motherboards lock this variable with many even hiding the option outright in the GUI. And why we care about it is that macOS actually wants to write to this variable, and not just one part of macOS. Instead, both the Kernel(XNU) and AppleIntelPowerManagement want this register.
 
 So to fix it we have 2 options:
 
@@ -26,7 +26,7 @@ Note: Penyrn based machines actually don't need to worry about unlocking this re
 ## Checking if your firmware supports CFG Lock unlocking
 
 Before proceeding with the rest of this guide, you'll first need to check if your firmware supports CFG Lock unlocking.
-To check it, you can proceed into two ways:
+To check it, you can proceed in two ways:
 
 1. [Use the DEBUG version of OpenCore and check what the log says about CFG Lock](#checking-via-opencore-logs)
 2. [Use a tool called `VerifyMsrE2` which will speed up the whole checking process](#checking-via-verifymsre2)
@@ -67,7 +67,7 @@ For the latter, you don't need to do any CFG-Lock patches and can simply disable
 
 ## Disabling CFG Lock
 
-So you've created the EFI folder but you can't still boot without unlocking before CFG Lock. In order to do this you'll need the following:
+So you've created the EFI folder but you can't still boot without unlocking before CFG Lock. To do this you'll need the following:
 
 Inside your `EFI/OC/Tools` folder and `config.plist`, add the following tool(this can be done with ProperTree's snapshot function(ie. Cmd+R)):
 
