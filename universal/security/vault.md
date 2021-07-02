@@ -41,7 +41,7 @@ Now we're ready to run `sign.command`:
 
 **Disabling Vault after setup**:
 
-If you're doing heavy troubleshooting or have the need to disable Vault, the main things to change:
+If you're doing heavy troubleshooting of need to disable Vault, the main things to change:
 
 * Grab a new copy of OpenCore.efi
 * `Misc -> Security -> Vault` set to Optional
