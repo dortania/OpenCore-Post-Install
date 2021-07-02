@@ -72,7 +72,7 @@ Here we have 2 sections:
 
 Mapping videos in macOS is fairly easy, as we can assume that one of our ports is mapped correctly in the framebuffer.
 
-For this example, we'll explain the common [HDMI-hotplug fix for Kaby lake users](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/kaby-lake.html#deviceproperties). To start, lets look at the 0x591B0000 framebuffer:
+For this example, we'll explain the common [HDMI-hotplug fix for Kaby lake users](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/kaby-lake.html#deviceproperties). To start, let's look at the 0x591B0000 framebuffer:
 
 ```
 ID: 591B0000, STOLEN: 38 MB, FBMEM: 21 MB, VRAM: 1536 MB, Flags: 0x0000130B
@@ -109,7 +109,7 @@ So since entry 2 is the second in the list, we'll want to use con1:
 
 * framebuffer-con2-enable
 
-Next lets make the patch, we know that port needs to be patched to 01 and BusID changed to 05:
+Next let's make the patch, we know that port needs to be patched to 01 and BusID changed to 05:
 
 * **0105**0A00 00080000 87010000
 
