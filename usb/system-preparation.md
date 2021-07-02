@@ -6,7 +6,7 @@ Table of Contents:
 * [Checking what renames you need](#checking-what-renames-you-need)
 * [Parting ways](#parting-ways)
 
-So before we can USB map, we need to set a couple things:
+So before we can USB map, we need to set a couple of things:
 
 * [USBInjectAll](https://github.com/Sniki/OS-X-USB-Inject-All/releases) under both EFI/OC/Kexts and config.plist -> Kernel -> Add
   * We need this kext to make sure any ports not defined in ACPI will still show up in macOS, note that this *shouldn't* be required on Skylake and newer as the USB ports are defined within ACPI.
@@ -16,7 +16,7 @@ So before we can USB map, we need to set a couple things:
   * So we can temporally get around the 15 port limit to map our ports
 * config.plist -> ACPI -> Patch -> EHCI and XHCI ACPI renames
 
-The reason we need these ACPI renames are due to conflicting with Apple's own USB map, fun fact even Apple has to USB map as well! You can actually find Apple's USB map within IOUSBHostFamily.kext -> PlugIns -> AppleUSBHostPlatformProperties.kext in Catalina, though newer Macs actually port map with their ACPI tables instead.
+The reason we need these ACPI renames is due to conflicting with Apple's own USB map, fun fact even Apple has to USB map as well! You can actually find Apple's USB map within IOUSBHostFamily.kext -> PlugIns -> AppleUSBHostPlatformProperties.kext in Catalina, though newer Macs actually port map with their ACPI tables instead.
 
 SMBIOSes that **do not** need the ACPI renames:
 
@@ -120,7 +120,7 @@ ioreg -l -p IOService -w0 | grep -i EHC2
 
 **If nothing returns(like with the right image)**, you don't need any renames.
 
-**If one of the 3 entries return(like with the left image)**, you'll need a rename for whatever returns.
+**If one of the 3 entries returns(like with the left image)**, you'll need a rename for whatever returns.
 
 If you're in the latter camp, you'll now want to add the needed ACPI renames to your config.plist -> ACPI -> Patch, you can find a pre-made file here(note that you'll need to enable the ones you need):
 
