@@ -72,7 +72,7 @@ GeForce GT 220
 
 Amount of VRAM present on your card, in hexadecimal.
 
-For this example, lets convert 1024MB to hexadecimal:
+For this example, let's convert 1024MB to hexadecimal:
 
 ```md
 # Convert 1024MB Megabytes to Bytes
@@ -129,7 +129,7 @@ Now press enter, and return to the main menu. Once there, enter `3` to take you 
 
 ![](../../images/gpu-patching/nvidia/nvcap-initial-nvcap.png)
 
-Here you can see the connectors that NVCAP-Calculator was able to find. Each Display may represent multiple DCB Entries, such as DVI (normally represented as two entries) or duplicate DCB entries. The goal here is to assign each display to a head. Each head can only output to one display at a time. For example, if your using 2 DVI ports, each should be on their own head to have proper dual monitor support.
+Here you can see the connectors that NVCAP-Calculator was able to find. Each Display may represent multiple DCB Entries, such as DVI (normally represented as two entries) or duplicate DCB entries. The goal here is to assign each display to a head. Each head can only output to one display at a time. For example, if you're using 2 DVI ports, each should be on their own head to have proper dual monitor support.
 
 Note that some displays may be assigned automatically. An LVDS display will be put on it's own head automatically, and TV displays will be put on the TV head automatically.
 

@@ -5,13 +5,13 @@
 
 ## What is Apple Secure Boot
 
-* Information based off of [vit9696's thread](https://applelife.ru/posts/905541), [Apple's T2 docs](https://www.apple.com/euro/macbook-pro-13/docs/a/Apple_T2_Security_Chip_Overview.pdf) and [Osy's Secure Boot page](https://osy.gitbook.io/hac-mini-guide/details/secure-boot)
+* Information based on [vit9696's thread](https://applelife.ru/posts/905541), [Apple's T2 docs](https://www.apple.com/euro/macbook-pro-13/docs/a/Apple_T2_Security_Chip_Overview.pdf) and [Osy's Secure Boot page](https://osy.gitbook.io/hac-mini-guide/details/secure-boot)
 
-To best understand Apple Secure Boot, lets take a look at how the boot process works in Macs vs OpenCore in regards to security:
+To best understand Apple Secure Boot, let's take a look at how the boot process works in Macs vs OpenCore in regards to security:
 
 ![](../../images/post-install/security-md/extension.png)
 
-As we can see, there's several layers of trust incorporated into Apple Secure Boot:
+As we can see, there are several layers of trust incorporated into Apple Secure Boot:
 
 * OpenCore will verify the boot.efi manifest (e.g. boot.efi.j137ap.im4m) to ensure that boot.efi was signed by Apple and can be used by this Secure Boot model.
   * For non-zero ApECID,  OpenCore will additionally verify the ECID value, written in the boot.efi manifest (e.g. boot.efi.j137ap.XXXXXXXX.im4m), to ensure that a compromised hard drive from a different machine with the same Secure Boot model cannot be used in your computer.
@@ -19,7 +19,7 @@ As we can see, there's several layers of trust incorporated into Apple Secure Bo
 * boot.efi will verify the kernelcache to ensure it has not been tampered with
 * apfs.kext and AppleImage4 ensure your System Volume's snapshot has not been tampered with(Only applicable with Big Sur+)
 
-Not all of these verifications are required to boot, but they're all possible for those who want maximum security. Currently information regarding firmware-based Secure Boot is not covered however all Apple Secure Boot options are detailed below.
+Not all of these verifications are required to boot, but they're all possible for those who want maximum security. Currently, information regarding firmware-based Secure Boot is not covered however all Apple Secure Boot options are detailed below.
 
 ## DmgLoading
 
@@ -63,7 +63,7 @@ Currently the following options for `Misc -> Security -> SecureBootModel` are su
 
 ### Special Notes with SecureBootModel
 
-* Generally `Default` is more than adequate to use however if you plan to have use this with ApECID for full security, we recommend setting a proper value(ie. closest to your SMBIOS or versions of macOS you plan to boot) since the `Default` value is likely to be updated in the future.
+* Generally, `Default` is more than adequate to use however if you plan to have use this with ApECID for full security, we recommend setting a proper value(ie. closest to your SMBIOS or versions of macOS you plan to boot) since the `Default` value is likely to be updated in the future.
   * `x86legacy` is not required for normal Mac models without T2's, any of the above values are supported.
 * The list of cached drivers may be different, resulting in the need to change the list of Added or Forced kernel drivers.
   * ie. IO80211Family cannot be injected in this case, as it is already present in the kernelcache

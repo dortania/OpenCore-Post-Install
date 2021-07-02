@@ -1,6 +1,6 @@
 # FileVault
 
-FileVault is macOS's builtin drive encryption, and with OpenCore support for it has been drastically improved compared to the legacy Clover drivers.
+FileVault is macOS's built-in drive encryption, and with OpenCore support for it has been drastically improved compared to the legacy Clover drivers.
 
 To start, you'll need the following .efi drivers:
 

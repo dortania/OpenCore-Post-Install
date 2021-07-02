@@ -19,7 +19,7 @@ Here we're greeted with all the possible USB ports in ACPI:
 
 ## USB Mapping: The manual way
 
-This section is for those who want to get down into the meats of their hackintosh, to really understand what it's doing and help if there's any issues with USBmap.py and other mapping tools. To start, we'll need a few things:
+This section is for those who want to get down into the meats of their hackintosh, to really understand what it's doing and help if there are any issues with USBmap.py and other mapping tools. To start, we'll need a few things:
 
 * Installed version of macOS
   * This is due to how macOS enumerates ports, trying to map from other OSes makes this difficult
@@ -27,7 +27,7 @@ This section is for those who want to get down into the meats of their hackintos
 * Non-conflicting USB names
   * See previous section: [Checking what renames you need](../system-preparation.md#checking-what-renames-you-need)
 * A USB 2.0 and USB 3.0 device to test with
-  * You must have 2 separate devices as to ensure no mix ups with personalities
+  * You must have 2 separate devices to ensure no mix ups with personalities
 * [IORegistryExplorer.app](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip)
   * To view the inner workings of macOS more easily
   * If you plan to use Discord for troubleshooting, [v2.1.0](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-210.zip) is a bit easier on file size.
@@ -38,15 +38,15 @@ This section is for those who want to get down into the meats of their hackintos
 * [ProperTree](https://github.com/corpnewt/ProperTree)
   * Or any other plist editor
   
-Now with all this out of the way, lets get to USB mapping!
+Now with all this out of the way, let's get to USB mapping!
 
 ## Finding your USB ports
 
-Lets open our previously downloaded [IORegistryExplorer.app](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) and search for our USB controller(s).
+Let's open our previously downloaded [IORegistryExplorer.app](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) and search for our USB controller(s).
 
 The 2 main search terms are `XHC` and `EHC`, but if you have a legacy board with UHCI or OHCI controllers you'll need to adjust. A blanket `USB` search may show too many entries and confuse you.
 
-For this example, lets try and map an Asus X299-E Strix board:
+For this example, let's try and map an Asus X299-E Strix board:
 
 ![](../../images/post-install/manual-md/initial-boot.png)
 
@@ -58,7 +58,7 @@ From the above image we can see 3 USB controllers:
 
 Pay attention that they're individual controllers, as this means **each USB controller has it's own port limit**. So you're not as starved for USB ports as you may think.
 
-Now I personally know which USB controllers match up with which physical ports, problem is it's not always as obvious which ports match with which controllers. So lets try to figure out which is what.
+Now I personally know which USB controllers match up with which physical ports, the problem is it's not always as obvious which ports match with which controllers. So let's try to figure out which is what.
 
 **Note**: The AppleUSBLegacyRoot entry is an entry that lists all active USB controllers and ports, these are not USB controllers themselves so you can outright ignore them.
 
@@ -93,7 +93,7 @@ To start, I'm going to plug a USB device into my front USB 3.1(Type-A) and 3.2(T
 
 ![](../../images/post-install/manual-md/front-io-plugged.png)
 
-Next lets look at IOReg, and we can see where our USB devices fell:
+Next let's look at IOReg, and we can see where our USB devices fell:
 
 | USB-C | USB-A |
 | :--- | :--- |
@@ -104,13 +104,13 @@ Here we see a few things:
 * Front 3.2 Type-C is on the PXSX(2, middle) Controller
 * Front 3.1 Type-A is on the XHCI(3, Bottom) Controller
 
-Now that we have an idea of which ports go to which controller, can can now look into how we USB map.
+Now that we have an idea of which ports go to which controller, can now look into how we USB map.
 
 ### USB-A mapping
 
-As mentioned before, USB 3.x ports are split into 2 personalities: USB 2.0 and USB 3.0. This is to ensure backwards compatibility but macOS itself has difficulties determining which personalities match up to which ports. That's where we come in to help.
+As mentioned before, USB 3.x ports are split into 2 personalities: USB 2.0 and USB 3.0. This is to ensure backward compatibility but macOS itself has difficulties determining which personalities match up to which ports. That's where we come in to help.
 
-So lets take our USB-A port, when we plug in a USB 3.0 device into it we see `XHCI -> SS03` light up. This is the USB 3.0 personality of the port. Now we'll want to plug a USB 2.0 device into that port:
+So let's take our USB-A port, when we plug in a USB 3.0 device into it we see `XHCI -> SS03` light up. This is the USB 3.0 personality of the port. Now we'll want to plug a USB 2.0 device into that port:
 
 | 3.0 Personality | 2.0 Personality |
 | :--- | :--- |
@@ -143,7 +143,7 @@ Note:
 
 ### USB-C mapping
 
-Next lets map our USB-C port, this is where it gets quite tricky as you may have noticed earlier:
+Next let's map our USB-C port, this is where it gets quite tricky as you may have noticed earlier:
 
 | Type | Info | Comments |
 | :--- | :--- | :--- |
@@ -180,7 +180,7 @@ Keep this in mind, as this plays into the Type 255 and getting certain services 
 
 #### USRx Ports
 
-When mapping, you may notice some extra ports left over, specifically USR1 and USR2. These ports are known as "USBR" ports, or more specifically [USB Redirection Ports](https://software.Intel.com/content/www/us/en/develop/documentation/amt-developer-guide/top/storage-redirection.html). Use of these is for remote management but real Macs don't ship with USBR devices and so has no support for them OS-wise. You can actually ignore these entries in your USB map:
+When mapping, you may notice some extra ports left over, specifically USR1 and USR2. These ports are known as "USBR" ports, or more specifically [USB Redirection Ports](https://software.Intel.com/content/www/us/en/develop/documentation/amt-developer-guide/top/storage-redirection.html). Use of these is for remote management but real Macs don't ship with USBR devices. So macOS has no support for them OS-wise. You can actually ignore these entries in your USB map:
 
 ![](../../images/post-install/manual-md/usr.png)
 
@@ -189,7 +189,7 @@ When mapping, you may notice some extra ports left over, specifically USR1 and U
 In some rare situations, certain USB ports may not show up in macOS at all. This is likely due to a missing definition in your ACPI tables, and so we have a few options:
 
 * Coffee Lake and older should use [USBInjectAll](https://github.com/Sniki/OS-X-USB-Inject-All/releases)
-  * Don't forget to add this to both EFI/OC/Kexts and you config.plist's kernel -> Add
+  * Don't forget to add this to both EFI/OC/Kexts and your config.plist's kernel -> Add
 * Comet Lake and newer should use SSDT-RHUB
 * AMD systems should also use SSDT-RHUB
 
@@ -204,7 +204,7 @@ Next, open our newly downloaded SSDT with maciASL, you should be presented with 
 
 ![](../../images/post-install/manual-md/ssdt-rhub-normal.png)
 
-Now, open IOReg and find the USB controller you want to reset(pay very close attention its the USB controller and not the child RHUB with the same name):
+Now, open IOReg and find the USB controller you want to reset(pay very close attention it's the USB controller and not the child RHUB with the same name):
 
 If you look to the right side, you should see the `acpi-apth` property. Here we're going to need to translate it to something our SSDT can use:
 
@@ -258,7 +258,7 @@ Finally, remember to add this SSDT to both EFI/OC/ACPI and your config.plist und
 
 ## Creating our kext
 
-Its the time you've all been waiting for, we finally get to create our USB map!
+It's the time you've all been waiting for, we finally get to create our USB map!
 
 First off, we'll want to grab a sample USB map kext:
 
@@ -270,7 +270,7 @@ Next right click the .kext, and select `Show Package Contents`. then drill down 
 | :--- | :--- |
 | ![](../../images/post-install/manual-md/show-contents.png) | ![](../../images/post-install/manual-md/info-plist.png) |
 
-Now lets open ProperTree and look at this info.plist:
+Now let's open ProperTree and look at this info.plist:
 
 ![](../../images/post-install/manual-md/info-plist-open.png)
 
@@ -280,9 +280,9 @@ Here we see a few sections, under `IOKitPersonalities`:
 * RP07 - PXSX(2)
 * XHCI - XHCI
 
-Each entry here represents a USB controller, specifically the map for each controller. The names of the entry don't matter much however, it's more for book keeping so you know which entry to has which USB map.
+Each entry here represents a USB controller, specifically the map for each controller. The names of the entry don't matter much however, it's more for bookkeeping so you know which entry has which USB map.
 
-Next lets head into the `RP05 - PXSX(1)` entry:
+Next let's head into the `RP05 - PXSX(1)` entry:
 
 ![](../../images/post-install/manual-md/rp05-entry.png)
 
@@ -297,7 +297,7 @@ Here we see a few more important properties:
 
 ### Determining the properties
 
-Determining the value for each property is actually quite straight forward:
+Determining the value for each property is actually quite straightforward:
 
 * [IOPathMatch](#iopathmatch)
 * [IOProviderClass](#ioproviderclass)
@@ -399,12 +399,12 @@ Now that we've gone over how to map your USB ports for a specific controller, yo
 
 ## Cleaning up
 
-Once your saved your USB map's info.plist, remember to add the kext to both your EFI/OC/Kexts and under you config.plist's Kernel -> Add(ProperTree's snapshot can do this for you)
+Once your saved your USB map's info.plist, remember to add the kext to both your EFI/OC/Kexts and under your config.plist's Kernel -> Add(ProperTree's snapshot can do this for you)
 
 Next, remove/disable:
 
 * USBInjectAll.kext(if you're using it)
-  * Reason for this is USBInjectAll actually breaks how Apple builds port maps. So while it's great for initial port mapping, it can break you final USB map
+  * Reason for this is USBInjectAll actually breaks how Apple builds port maps. So while it's great for initial port mapping, it can break your final USB map
 * Kernel -> Quirks -> XhciPortLimit -> False
   * Now that we're finally under the 15 port limit, we no longer need this hacky fix
 

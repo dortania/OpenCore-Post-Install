@@ -4,7 +4,7 @@ This page is for those having iMessage and other iServices issues, this is a ver
 
 **Your Apple ID is the single most influential factor in using iServices.**
 
-If you have existing Apple products in your account, such as an iPhone, you should have no issues whatsoever using a generated serial set. However, if you recently created an account, that does not have any existing Apple hardware or App Store purchases, you may be required to call Apple once you have attemped logging in.
+If you have existing Apple products in your account, such as an iPhone, you should have no issues whatsoever using a generated serial set. However, if you recently created an account, that does not have any existing Apple hardware or App Store purchases, you may be required to call Apple once you have attempted logging in.
 
 The following items will be created below and are required to use iServices:
 
@@ -22,7 +22,7 @@ The following items will be created below and are required to use iServices:
 
 Download [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS) and select option 1 to download MacSerial and next option 3 to generate some new serials. What we're looking for is a valid serial that currently has no registered purchase date.
 
-Tip: `iMacPro1,1 10` will print 10 serials, this will save you some time on generating
+Tip: `iMacPro1,1 10` will print 10 serials, this will save you some time in generating
 
 ![](../images/post-install/iservices-md/serial-list.png)
 
@@ -97,7 +97,7 @@ For example:
 
 **ROM:** `0016cb001122`
 
-## Generate an UUID
+## Generate a UUID
 
 Type `uuidgen` in Terminal
 
@@ -155,7 +155,7 @@ This last one is what we're after, as we want something genuine but currently no
 * Board Serial = MLB
 * SmUUID = SystemUUID
 
-**Note**:  "We’re sorry, but this serial number isn’t valid. Please check your information and try again." works for many users as well, do note though if you've had a bad track record with Apple/iServices you many need one that's "Purchase Date not Validated". Otherwise there may be suspicion
+**Note**:  "We’re sorry, but this serial number isn’t valid. Please check your information and try again." works for many users as well, do note though if you've had a bad track record with Apple/iServices you many need one that's "Purchase Date not Validated". Otherwise there may be suspicion.
 
 **Note 2**: Using a "Purchase Date not Validated:" can cause issues down the line if another machine of the same serial ever gets activated, for initial setup it can help alleviate issues with your account but in the long run an invalid serial can be a safer choice.
 
@@ -216,7 +216,7 @@ When adding this to your config, `c0:7e:bf:c3:af:ff` should be converted to `c07
 
 ## Verifying NVRAM
 
-Something that many forget about iServices is that NVRAM is crucial to getting it working correctly, the reason being is that iMessage keys and such are stored in NVRAM. Without NVRAM, iMessage can neither see nor store keys.
+Something that many forget about iServices is that NVRAM is crucial to get it working correctly, the reason being is that iMessage keys and such are stored in NVRAM. Without NVRAM, iMessage can neither see nor store keys.
 
 So we'll need to verify NVRAM works, regardless if "it should work" as some firmwares can be more of a pain than others.
 
@@ -287,5 +287,5 @@ Well mate, you've done it. You blacklisted your AppleID. The fix is simple but n
 ![](../images/post-install/iservices-md/blacklist.png)
 
 * For Apple contacting, there are 2 methods
-  * Apple calls you: [Apple Support](https://getsupport.apple.com/). You must click on Apple ID and then select the iCloud, Facetime & Messages. Now, you should click on Talk to Apple Support Now and type your phone number
+  * Apple calls you: [Apple Support](https://getsupport.apple.com/). You must click on Apple ID and then select  iCloud, Facetime & Messages. Now, you should click on Talk to Apple Support Now and type your phone number
   * You can contact Apple for support and service as well, look for your country in the list and then make a phone call: [Apple Support Phone Numbers](https://support.apple.com/HT201232)

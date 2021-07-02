@@ -46,7 +46,7 @@ Because the LauncherOption entry is a protected entry when resetting NVRAM, you'
 * `Misc -> Security -> AllowNvramReset -> True`
 * `Misc -> Boot -> LauncherOption -> Disabled`
 
-Once these are set, you can reboot into the OpenCore picker and select the `Reset NVRAM` entry to clear your NVRAM, which will remove the LauncherOption entry too..
+Once these are set, you can reboot into the OpenCore picker and select the `Reset NVRAM` entry to clear your NVRAM, which will remove the LauncherOption entry too.
 
 ## Updating Bootstrap in 0.6.6
 

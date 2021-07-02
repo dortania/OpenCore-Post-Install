@@ -25,16 +25,16 @@ Here we're greeted with all the possible USB ports in ACPI:
 
 ### Intel USB Mapping
 
-USB mapping on Intel is super easy mainly because both the ACPI is sane and more tools available for the platform. For this guide we'll be using the [USBmap tool](https://github.com/corpnewt/USBMap) from CorpNewt.
+USB mapping on Intel is super easy mainly because both the ACPI is sane and more tools available for the platform. For this guide, we'll be using the [USBmap tool](https://github.com/corpnewt/USBMap) from CorpNewt.
 
 Now open up USBmap.command and select `D.  Discover Ports`:
 
 ![](../../images/post-install/usb-md/usb-map-start.png)
 ![](../../images/post-install/usb-md/mapping.png)
 
-The interface for USBmap is quite simple and easy to grasp so won't go into detail here, the [README.md](https://github.com/corpnewt/USBMap) should do you well enough. The basic idea is insert a device, give it a name to remember the port by, remove and then try another port until you have a whole list of ports you want to keep.
+The interface for USBmap is quite simple and easy to grasp so won't go into detail here, the [README.md](https://github.com/corpnewt/USBMap) should do you well enough. The basic idea is to insert a device, give it a name to remember the port by, remove and then try another port until you have a whole list of ports you want to keep.
 
-* **Note**: USRx(ie. USR1, USR2) ports are not real USB ports, they're specifically [USBR ports](https://software.Intel.com/content/www/us/en/develop/documentation/amt-developer-guide/top/storage-redirection.html) which macOS has no support for(and why real Macs don't have this). These can be excluded from your USB map.
+* **Note**: USRx(ie. USR1, USR2) ports are not real USB ports, they're specifically [USBR ports](https://software.Intel.com/content/www/us/en/develop/documentation/amt-developer-guide/top/storage-redirection.html) that macOS has no support for(and why real Macs don't have this). These can be excluded from your USB map.
 
 Once you're done discovering your ports, select `Press Q then [enter] to stop` then head to `P.  Edit Plist & Create SSDT/Kext` from the main menu.
 
@@ -58,7 +58,7 @@ This will set my Bluetooth to internal, this is super important as macOS expects
 
 Now we can select `K. Build USBMap.kext` and let it build our kext for us.
 
-**Note**: Do not use either the SSDT-UIAC.aml **or** USBInjectAll with the USBmap.kext. This kext we just made should be used by itself with no other USB kexts besides XhciUnsupported if your system needs it. Reason for this is USBInjectAll is no longer being maintained and the USBmap.kext version is how real Macs USB map as well so as close to "Apple Like" as possible to fit the OpenCore mood.
+**Note**: Do not use either the SSDT-UIAC.aml **or** USBInjectAll with the USBmap.kext. This kext we just made should be used by itself with no other USB kexts besides XhciUnsupported if your system needs it. The reason for this is USBInjectAll is no longer being maintained and the USBmap.kext version is how real Macs USB map as well so as close to "Apple Like" as possible to fit the OpenCore mood.
 
 Now reboot and run USBmap again, you should see a lot less ports in your map:
 

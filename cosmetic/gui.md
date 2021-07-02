@@ -9,13 +9,13 @@ Main thing this guide will go over:
 
 So to get started, we're gonna need 0.5.7 or newer as these builds have the GUI included with the rest of the files. If you're on an older version, I recommend updating: [Updating OpenCore](../universal/update.md)
 
-Once that's done, we'll need a couple things:
+Once that's done, we'll need a couple of things:
 
 * [Binary Resources](https://github.com/acidanthera/OcBinaryData)
 * [OpenCanopy.efi](https://github.com/acidanthera/OpenCorePkg/releases)
   * Note: OpenCanopy.efi must be from the same build as your OpenCore files, as mismatched files can cause boot issues
 
-Once you have both of these, we'll next want to add it to our EFI partition:
+Once you have both of these, we'll next want to add them to our EFI partition:
 
 * Add the [Resources folder](https://github.com/acidanthera/OcBinaryData) to EFI/OC
 * Add OpenCanopy.efi to EFI/OC/Drivers
@@ -25,8 +25,8 @@ Once you have both of these, we'll next want to add it to our EFI partition:
 Now in our config.plist, we have 4 things we need to fix:
 
 * `Misc -> Boot -> PickerMode`: `External`
-* `Misc -> Boot -> PickerAttributes`: `17`
-  * This enables mouse/trackpad support as well as .VolumeIcon.icns reading from the drive, allows for macOS installer icons to appear in the picker
+* `Misc -> Boot -> PickerAttributes`: `17`.
+  * This enables mouse/trackpad support as well as .VolumeIcon.icns reading from the drive, allows for macOS installer icons to appear in the picker.
     * Other settings for PickerAttributes can be found in the [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf)
 * `Misc -> Boot -> PickerVariant`: `Acidanthera\GoldenGate`
   * Applicable variables:
@@ -44,7 +44,7 @@ Once all this is saved, you can reboot and be greeted with a true Mac-like GUI:
 
 ## Setting up Boot-chime with AudioDxe
 
-So to start, we'll need a couple things:
+So to start, we'll need a couple of things:
 
 * Onboard audio output
   * USB DACs will not work
@@ -87,7 +87,7 @@ So to start, we'll need a couple things:
     * ex: `PciRoot(0x0)/Pci(0x1f,0x3)`
 
 * **AudioOut:**
-  * The specific output of your Audio controller, easiest way to find the right one is to go through each one(from 0 to N - 1, where N is the number of outputs listed in your log)
+  * The specific output of your Audio controller, the easiest way to find the right one is to go through each one(from 0 to N - 1, where N is the number of outputs listed in your log)
   * ex: 5 outputs would translate to 0-4 as possible values
     * You can find all the ones for your codec in the OpenCore debug logs:
 

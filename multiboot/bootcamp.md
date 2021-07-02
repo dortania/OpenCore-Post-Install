@@ -1,6 +1,6 @@
 # Installing and using BootCamp utilities
 
-So a neat feature of OpenCore is the ability to avoid the BIOS entirely and use Startup disk solely for multiboot. Problem comes in when we try to boot windows and have no way of setting the boot option back to macOS. That's where the BootCamp utilities come in.
+So a neat feature of OpenCore is the ability to avoid the BIOS entirely and use Startup disk solely for multiboot. The problem comes in when we try to boot windows and have no way of setting the boot option back to macOS. That's where the BootCamp utilities come in.
 
 * Note: This guide will not cover the creation of the Windows installer, only the installation of BootCamp drivers.
   * Example of Windows installer creation: [Build a Bootable Windows ISO](https://www.freecodecamp.org/news/how-make-a-windows-10-usb-using-your-mac-build-a-bootable-iso-from-your-macs-terminal/)
@@ -32,7 +32,7 @@ path/to/Brigadier --model MacPro7,1
 
 ![](../images/bootcamp-md/extension.png)
 
-Next you will find our bootcamp drivers under either:
+Next, you will find our bootcamp drivers under either:
 
 * Windows:
 
@@ -50,11 +50,11 @@ macOS users will next need to expand WindowsSupport.dmg and place it somewhere W
 
 ![](../images/bootcamp-md/done.png)
 
-Next navigate to the `bootcamp-{filename}\BootCamp` folder and run the Setup.exe:
+Next, navigate to the `bootcamp-{filename}\BootCamp` folder and run the Setup.exe:
 
 ![](../images/bootcamp-md/location.png)
 
-Once all is finished, you now have BootCamp switching! There should be a little BootCamp icon in you tray now that you can select which drive to boot to.
+Once all is finished, you now have BootCamp switching! There should be a little BootCamp icon in your tray now that you can select which drive to boot to.
 
 * Note: For those no needing the extra drivers BootCamp provides, you can delete the following:
   * `$WinPEDriver$`: **DO NOT** delete the folder itself, just the drivers inside

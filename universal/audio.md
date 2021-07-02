@@ -19,7 +19,7 @@ So for this example, we'll assume your codec is ALC1220. To verify yours, you ha
 * Run `cat` in terminal on Linux
   * `cat /proc/asound/card0/codec#0 | less`
 
-Now with a codec, we'll want to cross reference it with AppleALC's supported codec list:
+Now with a codec, we'll want to cross-reference it with AppleALC's supported codec list:
 
 * [AppleALC Supported Codecs](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs)
 

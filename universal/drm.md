@@ -8,7 +8,7 @@ So with DRM, we have a couple things we need to mention:
 * DRM requires a supported dGPU
   * See the [GPU Buyers Guide](https://dortania.github.io/GPU-Buyers-Guide/) for supported cards
 * DRM is broken for iGPU-only systems
-  * This could be fixed with Shiki (now WhateverGreen) til 10.12.2, but broke with 10.12.3
+  * This could be fixed with Shiki (now WhateverGreen) until 10.12.2, but broke with 10.12.3
   * This is due to the issue that our iGPUs don't support Apple's firmware and that our [Management Engine](https://en.wikipedia.org/wiki/Intel_Management_Engine) doesn't have Apple's certificate
 * Working hardware acceleration and decoding
 
@@ -18,7 +18,7 @@ So before we can get started with fixing DRM, we need to make sure your hardware
 
 ![](../images/post-install/drm-md/vda.png)
 
-If you fail at this point, there's a couple things you can check for:
+If you fail at this point, there are a couple things you can check for:
 
 * Make sure your hardware is supported
   * See [GPU Buyers Guide](https://dortania.github.io/GPU-Buyers-Guide/)

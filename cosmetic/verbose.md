@@ -1,6 +1,6 @@
 # Fixing Resolution and Verbose
 
-Wanting a more clean booting experience with macOS without all that verbose text while booting? Well you need a couple things:
+Wanting a more clean booting experience with macOS without all that verbose text while booting? Well, you need a couple of things:
 
 ## macOS Decluttering
 

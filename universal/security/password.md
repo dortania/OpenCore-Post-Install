@@ -9,7 +9,7 @@ With OpenCore 0.6.1 and newer, users are able to set a SHA-512 password to ensur
 
 With OpenCore 0.6.7, a new tool called `ocpasswordgen` was added to aid users in generating passwords.
 
-To start, lets grab OpenCore 0.6.7 or newer and run the `ocpasswordgen` binary under `Utilities/ocpasswordgen/`. It'll prompt you to create a password:
+To start, let's grab OpenCore 0.6.7 or newer and run the `ocpasswordgen` binary under `Utilities/ocpasswordgen/`. It'll prompt you to create a password:
 
 ![](../../images/post-install/security-md/ocpasswordgen.png)
 

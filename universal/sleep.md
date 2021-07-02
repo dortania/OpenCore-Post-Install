@@ -4,7 +4,7 @@ So to understand how to fix sleep issues in macOS, we need to first look at what
 
 * Incorrectly managed devices(most commonly PCIe based devices)
 
-The reason for this is when devices get an S3 call(or S0 for wake), the driver needs to power down the devices and put into a low state mode(vice versa when waking). Problems arise when such devices don't cooperate with the drivers and the main offenders of these issues are:
+The reason for this is when devices get an S3 call(or S0 for wake), the driver needs to power down the devices and put them into a low state mode(vice versa when waking). Problems arise when such devices don't cooperate with the drivers and the main offenders of these issues are:
 
 * USB Controllers and Devices
 * GPUs
@@ -23,7 +23,7 @@ And there are others that can cause sleep issues that aren't directly(or obvious
 * SMBus
 * TSC
 
-And something many people forget are over and under-clocks:
+And something many people forget is over and under-clocks:
 
 * CPUs
   * AVX often breaks iGPUs and hurt overall stability
@@ -180,7 +180,7 @@ Sleep Wake failure in EFI
 
 **For AMD**:
 
-Fret not, for their is still hope for you as well! [AMDRyzenCPUPowerManagement.kext](https://github.com/trulyspinach/SMCAMDProcessor) can add power management to Ryzen based CPUs. Installation and usage is explained on the repo's README.md
+Fret not, for there is still hope for you as well! [AMDRyzenCPUPowerManagement.kext](https://github.com/trulyspinach/SMCAMDProcessor) can add power management to Ryzen based CPUs. Installation and usage is explained on the repo's README.md
 
 ## Other Culprits
 
@@ -210,7 +210,7 @@ sudo pmset lidwake 0
 
 And set `lidwake 1` to re-enable it.
 
-The latter requires a bit more work. What we'll be doing is trying to nullify semi random key spams that happen on Skylake and newer based HPs though pop up in other OEMs as well. This will also assume that your keyboard is PS2 based and are running [VoodooPS2](https://github.com/acidanthera/VoodooPS2/releases).
+The latter requires a bit more work. What we'll be doing is trying to nullify semi random key spams that happen on Skylake and newer based HPs though pop up in other OEMs as well. This will also assume that your keyboard is PS2 based and is running [VoodooPS2](https://github.com/acidanthera/VoodooPS2/releases).
 
 To fix this, grab [SSDT-HP-FixLidSleep.dsl](https://github.com/acidanthera/VoodooPS2/blob/master/Docs/ACPI/SSDT-HP-FixLidSleep.dsl) and adapt the ACPI pathing to your keyboard(`_CID` value being `PNP0303`). Once this is done, compile and drop into both EFI/OC/ACPI and under config.plist -> ACPI -> Add.
 
@@ -224,7 +224,7 @@ To verify you have working NVRAM, see the [Emulated NVRAM](../misc/nvram.md) pag
 
 ### RTC
 
-This is mainly relevant for Intel 300 series motherboards(Z3xx), specifically that there's 2 issues:
+This is mainly relevant for Intel 300 series motherboards(Z3xx), specifically that there are 2 issues:
 
 * Be default the RTC is disabled(instead using AWAC)
 * The RTC is usually not compatible with macOS
