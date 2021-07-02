@@ -4,7 +4,7 @@ While at the moment battery patching is not something covered in this guide, we'
 
 ## DSDT Patching
 
-While custom DSDT injection should be avoided as to prevent issues with Windows and firmware updates, it can be quite helpful as a starting point since it's a bit easier to grasp and do yourself:
+While custom DSDT injection should be avoided to prevent issues with Windows and firmware updates, it can be quite helpful as a starting point since it's a bit easier to grasp and do yourself:
 
 **[Rehabman's how to patch DSDT for working battery status](https://www.tonymacx86.com/threads/guide-how-to-patch-dsdt-for-working-battery-status.116102/)**
 
