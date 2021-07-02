@@ -13,7 +13,7 @@ Please note this page is more of an info dump, we won't be going to too great of
 
 ## Prerequisites
 
-Unfortunately GMA support is a bit more complicated with PCs, and because of this we need to force a 32-Bit kernelspace as the 64-Bit GMA drivers are known for weird GPU corruption and sleep issues. To do this:
+Unfortunately, GMA support is a bit more complicated with PCs, and because of this we need to force a 32-Bit kernelspace as the 64-Bit GMA drivers are known for weird GPU corruption and sleep issues. To do this:
 
 * Ensure all your kexts are either 32-Bit or FAT
   * Run `lipo -archs` on the kext's binary to verify
