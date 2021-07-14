@@ -284,7 +284,19 @@ And a final layer of precaution is to make a new AppleID to play with, this make
 
 Well mate, you've done it. You blacklisted your AppleID. The fix is simple but not pretty, **you MUST call [Apple](https://support.apple.com/en-us/HT201232)**. Otherwise, there is no proceeding besides using a new account. Adding a payment card before calling can help legitimize the account so it doesn't seem as much like a bot.
 
-![](../images/post-install/iservices-md/blacklist.png)
+![](/images/post-install/iservices-md/blacklist.png)
+
+## Are you on Big Sur or later?
+
+If you are on Big sur or later to solve the custom code error you will have to open the iMessage executable to verify your customer code and your email
+
+Finder -> Application -> Now right click on Messages and click show package contents -> Contents -> MacOS -> Click on `Messages`
+
+![Screenshot 2021-07-14 at 15 14 35](https://user-images.githubusercontent.com/78879120/125628385-c09d94ce-645d-468a-a589-a6b1c387c2b6.png)
+
+Now the customer code will be shown in the terminal and by calling apple support iService it will work again
+
+![png terminale](https://user-images.githubusercontent.com/78879120/125633315-bab95ba9-a537-4039-b338-84fba9271ac0.png)
 
 * For Apple contacting, there are 2 methods
   * Apple calls you: [Apple Support](https://getsupport.apple.com/). You must click on Apple ID and then select the iCloud, Facetime & Messages. Now, you should click on Talk to Apple Support Now and type your phone number
