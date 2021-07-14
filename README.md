@@ -1,84 +1,304 @@
-# OpenCore Post-Install
+# Fixing iMessage and other services with OpenCore
 
-Welcome to the OpenCore Post-Install guide! Please note that if you have not installed macOS yet, we recommend you follow our install guide:
+This page is for those having iMessage and other iServices issues, this is a very basic guide so will not go as in-depth into the issues as some other guides. This specific guide is a translation and reinterpretation of the AppleLife Guide on fixing iServices: [Как завести сервисы Apple - iMessage, FaceTime, iCloud](https://applelife.ru/posts/727913).
 
-* [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
+**Your Apple ID is the single most influential factor in using iServices.**
 
-And while the info here can be applied to both OpenCore and Clover, we primarily focus on OpenCore installations. So you will need to research a bit more if you run into any issues.
+If you have existing Apple products in your account, such as an iPhone, you should have no issues whatsoever using a generated serial set. However, if you recently created an account, that does not have any existing Apple hardware or App Store purchases, you may be required to call Apple once you have attemped logging in.
 
-## How to follow this guide
+The following items will be created below and are required to use iServices:
 
-To start, not every section in this guide must be complete. It's up to each user whether they feel they want to add the finishing touches or resolve certain issues
+- MLB
+- ROM*
+- SystemProductName
+- SystemSerialNumber
+- SystemUUID
 
-This guide is split into 6 parts:
+\**for ROM, we use the MAC Address of the network interface, lowercase, and without `:`.*
 
-* [Universal](#universal)
-  * All users are recommended to follow
-* [USB Fixes](#usb-fixes)
-  * All users are recommended to follow as well
-* [Laptop Specifics](#laptop-specifics)
-  * Laptop users are recommended to follow in addition to the above
-* [Cosmetics](#cosmetics)
-  * Cosmetics like OpenCore GUI and removing verbose screen output during boot
-* [Multiboot](#multiboot)
-  * Recommendations for users who are multi-booting
-* [Miscellaneous](#miscellaneous)
-  * Other misc fixes, not all users will require these fixes
+**Note**: You and you alone are responsible for your AppleID, read the guide carefully and take full responsibility if you screw up. Dortania and other guides are not held accountable for what **you** do.
 
-### Universal
+## Using GenSMBIOS
 
-* [Security and FileVault](./universal/security.md)
-  * For those who care about security and privacy.
-* [Fixing Audio](./universal/audio.md)
-  * For those needing help resolving audio issues.
-* [Booting without USB](./universal/oc2hdd.md)
-  * Allowing you to boot OpenCore without the USB installed.
-* [Updating OpenCore, kexts and macOS](./universal/update.md)
-  * How to update your kexts, OpenCore and even macOS safely.
-* [Fixing DRM](./universal/drm.md)
-  * For those with DRM issues like Netflix playback.
-* [Fixing iServices](./universal/iservices.md)
-  * Help to fix misc iServices issues like iMessage.
-* [Fixing Power Management](./universal/pm.md)
-  * Fixes and helps improve both hardware idle and boosting states.
-* [Fixing Sleep](./universal/sleep.md)
-  * Numerous places to check for when fixing sleep.
-* [Fixing USB](./usb/README.md)
-  * Fixes for USB issues like missing ports and helping with sleep.
+Download [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS) and select option 1 to download MacSerial and next option 3 to generate some new serials. What we're looking for is a valid serial that currently has no registered purchase date.
 
-### USB Fixes
+Tip: `iMacPro1,1 10` will print 10 serials, this will save you some time on generating
 
-* [USB Mapping: Introduction](./usb/README.md)
-  * Starting point for correcting your USB
+![](../images/post-install/iservices-md/serial-list.png)
 
-### Laptop Specifics
+## Using macserial
 
-* [Fixing Battery Read-outs](./laptop-specific/battery.md)
-  * If your battery isn't supported out of the box with SMCBatteryManager.
+This is for Linux users and an alternative to using GenSMBIOS.
 
-### Cosmetics
+Generate a new Serial and Board Serial (MLB) for your model.
 
-* [Add GUI and Boot-chime](./cosmetic/gui.md)
-  * Add a fancy GUI to OpenCore and even a boot chime!
-* [Fixing Resolution and Verbose](./cosmetic/verbose.md)
-  * Helps fix the resolution of OpenCore, and allows you to get that sweet Apple logo while booting!
-* [Fixing MacPro7,1 Memory Errors](./universal/memory.md)
-  * Fixes MacPro7,1 memory errors on boot
+To generate this you will need macserial.
 
-### Multiboot
+You can download the [latest release of OpenCorePkg from here.](https://github.com/acidanthera/OpenCorePkg/releases)
 
-* [OpenCore Multiboot](https://dortania.github.io/OpenCore-Multiboot/)
-  * Dedicated guide to multibooting with OpenCore
-* [Setting up LauncherOption](./multiboot/bootstrap.md)
-  * Ensures Windows doesn't remove OpenCore from our system.
-* [Installing BootCamp](./multiboot/bootcamp.md)
-  * Allows us to install Bootcamp for easy boot switching.
+Or compile the development [macserial](https://github.com/acidanthera/OpenCorePkg/tree/master/Utilities/macserial) from source.
 
-### Miscellaneous
+```bash
+git clone --depth 1 https://github.com/acidanthera/OpenCorePkg.git
+cd ./OpenCorePkg/Utilities/macserial/
+make
+chmod +x ./macserial
+```
 
-* [Fixing RTC](./misc/rtc.md)
-  * Helps resolve RTC/CMOS/safe-mode reboot issues.
-* [Fixing CFG Lock](./misc/msr-lock.md)
-  * Allows use to remove some kernel patches for better stability
-* [Emulated NVRAM](./misc/nvram.md)
-  * For users who have broken NVRAM, or need to test it.
+Find your **SystemProductName** in your config.plist file. That is your model number.
+
+Replace `"iMacPro1,1"` below with SystemProductName in your config.plist.
+
+```bash
+./macserial --num 1 --model "iMacPro1,1" 
+```
+Example output:
+
+```console
+$ ./macserial \
+        --model "iMacPro1,1" 
+Warning: arc4random is not available!
+C02V7UYGHX87 | C02733401J9JG36A8
+```
+
+The value on the left is your **Serial number**.
+The value on the right is your **Board Serial (MLB)**.
+
+## Choose a MAC Address
+
+Select a MAC Address with an Organizationally Unique Identifier (OUI) that corresponds to a real Apple, Inc. interface.
+
+See the following list:
+
+[https://gitlab.com/wireshark/wireshark/-/raw/master/manuf](https://gitlab.com/wireshark/wireshark/-/raw/master/manuf)
+
+For example:
+
+```
+00:16:CB    Apple   Apple, Inc.
+```
+
+Make up the last 3 octets.
+
+For example:
+```
+00:16:CB:00:11:22
+```
+
+## Derive the corresponding ROM Value 
+
+ROM is calculated from your MAC Address.
+
+Lowercase your MAC Address, and remove each colon `:` between the octets.
+
+For example:
+
+**MAC:** `00:16:CB:00:11:22`
+
+**ROM:** `0016cb001122`
+
+## Generate an UUID
+
+Type `uuidgen` in Terminal
+
+```console
+$ uuidgen
+976AA603-75FC-456B-BC6D-9011BFB4968E
+```
+
+Then simply replace those values in your config.plist:
+
+|Key|Data|
+|---|---|
+|MLB|`C02733401J9JG36A8`|
+|Mac Address|`00:16:CB:00:11:22`|
+|ROM|`0016cb001122`|
+|SystemProductName|`iMacPro1,1`|
+|SystemSerialNumber|`C02V7UYGHX87`|
+|SystemUUID|`976AA603-75FC-456B-BC6D-9011BFB4968E`|
+
+It should look something like this:
+
+```xml
+    <key>MLB</key>
+    <string>C02733401J9JG36A8</string>
+    <key>ROM</key>
+    <data>0016cb001122</data>
+    <key>SpoofVendor</key>
+    <true/>
+    <key>SystemProductName</key>
+    <string>iMacPro1,1</string>
+    <key>SystemSerialNumber</key>
+    <string>C02V7UYGHX87</string>
+    <key>SystemUUID</key>
+    <string>976AA603-75FC-456B-BC6D-9011BFB4968E</string>
+```
+
+NOTE: If you have trouble using the App Store, you [may need to fix En0](#fixing-en0), depending on your hardware setup.
+
+Brand new Apple ID's will almost certainly not work. Having other real devices in your account almost always works.
+
+If you see a [support warning, see below](#customer-code-error).
+
+## Serial Number Validity
+
+Now enter the serial into the [Apple Check Coverage page](https://checkcoverage.apple.com/), you will get 1 of 3 responses:
+
+We’re sorry, but this serial number isn’t valid |  Valid Purchase date | Purchase Date not Validated
+:-------------------------:|:-------------------------:|:-------------------------:
+![](../images/post-install/iservices-md/not-valid.png) | ![](../images/post-install/iservices-md/valid.png) |  ![](../images/post-install/iservices-md/no-purchase.png)
+
+This last one is what we're after, as we want something genuine but currently not in use by anyone. Now we can translate the rest of the values into our config.plist -> PlatformInfo -> Generic:
+
+* Type = SystemProductName
+* Serial = SystemSerialNumber
+* Board Serial = MLB
+* SmUUID = SystemUUID
+
+**Note**:  "We’re sorry, but this serial number isn’t valid. Please check your information and try again." works for many users as well, do note though if you've had a bad track record with Apple/iServices you many need one that's "Purchase Date not Validated". Otherwise there may be suspicion
+
+**Note 2**: Using a "Purchase Date not Validated:" can cause issues down the line if another machine of the same serial ever gets activated, for initial setup it can help alleviate issues with your account but in the long run an invalid serial can be a safer choice.
+
+**Note3**: Checking too many serials may result in your access being denied to Apple Check Coverage page, to bypass this limitation it's advised to use a VPN or [tor browser](https://www.torproject.org/download/) or any other service that allows you to change/mask your IP address.
+
+## Fixing En0
+
+To start, grab [Hackintool](https://www.tonymacx86.com/threads/release-hackintool-v3-x-x.254559/) ([Github link](https://github.com/headkaze/Hackintool)) and head to System -> Peripherals (Info -> Misc on older versions of Hackintool)
+
+Here under Network Interfaces (network card icon), look for `en0` under `BSD` and check whether the device has a check mark under Builtin. If there is a check mark, skip to Fixing ROM section otherwise continue reading.
+
+* **Note**: en0 can be either Wifi, ethernet or even Thunderbolt.
+
+> What if I don't have En0 at all?!?
+
+Well, we'll want to reset macOS so it can build the interfaces fresh, open terminal and run the following:
+
+```
+sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist
+sudo rm /Library/Preferences/SystemConfiguration/preferences.plist
+```
+
+Once done reboot and check again.
+
+If this doesn't work, add [NullEthernet.kext](https://bitbucket.org/RehabMan/os-x-null-ethernet/downloads/) and [ssdt-rmne.aml](https://github.com/RehabMan/OS-X-Null-Ethernet/blob/master/ssdt-rmne.aml) to your EFI and config.plist under Kernel -> Add and ACPI -> Add respectively. The SSDT is precompiled so no extra work needed, reminder compiled files have a .aml extension and .dsl can be seen as source code.
+
+![Find if set as Built-in](../images/post-install/iservices-md/en0-built-in-info.png)
+
+Now head under the PCI tab of Hackintool and export your PCI DeviceProperties, this will create a pcidevices.plist on your desktop
+
+![Export PCI address](../images/post-install/iservices-md/hackintool-export.png)
+
+Now search through the pcidevices.plist and find the PciRoot of your ethernet controller. For us, this would be `PciRoot(0x0)/Pci(0x1f,0x6)`
+
+![Copy PciRoot](../images/post-install/iservices-md/find-en0.png)
+
+Now with the PciRoot, go into your config.plist -> DeviceProperties -> Add and apply the property of `built-in` with type `Data` and value `01`
+
+![Add to config.plist](../images/post-install/iservices-md/config-built-in.png)
+
+## Fixing ROM
+
+This is a section many may have forgotten about but this is found in your config.plist under PlatformInfo -> generic -> ROM
+
+To find your actual MAC Address/ROM value, you can find in a couple places:
+
+* BIOS
+* macOS: System Preferences -> Network -> Ethernet -> Advanced -> Hardware -> MAC Address
+* Windows: Settings -> Network & Internet -> Ethernet -> Ethernet -> Physical MAC Address
+
+* **Note**: en0 can be either Wifi, ethernet or even Thunderbolt, adapt the above example to your situation.
+
+Some users have even gone as far as using real Apple MAC Address dumps for their config, for this guide we'll be using our real MAC Address but note that this is another option.
+
+When adding this to your config, `c0:7e:bf:c3:af:ff` should be converted to `c07ebfc3afff` as the `Data` type cannot accept colons(`:`).
+
+![](../images/post-install/iservices-md/config-rom.png)
+
+## Verifying NVRAM
+
+Something that many forget about iServices is that NVRAM is crucial to getting it working correctly, the reason being is that iMessage keys and such are stored in NVRAM. Without NVRAM, iMessage can neither see nor store keys.
+
+So we'll need to verify NVRAM works, regardless if "it should work" as some firmwares can be more of a pain than others.
+
+Please refer to the [Emulated NVRAM](../misc/nvram.md) section of the OpenCore Guide for both testing if you have working NVRAM and emulating it if you don't.
+
+## Clean out old attempts
+
+This is important for those who've tried setting up iMessage but failed, to start make sure your NVRAM has been cleared. You can enable the option in the boot picker in your config under config.plist -> Misc -> Security -> AllowNvramReset.
+
+Next open terminal and run the following:
+
+```
+bash
+sudo rm -rf ~/Library/Caches/com.apple.iCloudHelper*
+sudo rm -rf ~/Library/Caches/com.apple.Messages*
+sudo rm -rf ~/Library/Caches/com.apple.imfoundation.IMRemoteURLConnectionAgent*
+sudo rm -rf ~/Library/Preferences/com.apple.iChat*
+sudo rm -rf ~/Library/Preferences/com.apple.icloud*
+sudo rm -rf ~/Library/Preferences/com.apple.imagent*
+sudo rm -rf ~/Library/Preferences/com.apple.imessage*
+sudo rm -rf ~/Library/Preferences/com.apple.imservice*
+sudo rm -rf ~/Library/Preferences/com.apple.ids.service*
+sudo rm -rf ~/Library/Preferences/com.apple.madrid.plist*
+sudo rm -rf ~/Library/Preferences/com.apple.imessage.bag.plist*
+sudo rm -rf ~/Library/Preferences/com.apple.identityserviced*
+sudo rm -rf ~/Library/Preferences/com.apple.ids.service*
+sudo rm -rf ~/Library/Preferences/com.apple.security*
+sudo rm -rf ~/Library/Messages
+```
+
+## Verifying your work one last time
+
+Grab [macserial](https://github.com/acidanthera/MacInfoPkg/releases) and run the following:
+
+```
+path/to/macserial -s
+```
+
+This will provide us with a full rundown of our system, verify that what is presented matches up with your work.
+
+## Cleaning up your AppleID
+
+* Remove all devices from your AppleID: [Manage your devices](https://appleid.apple.com/account/manage)
+* Enable 2 Factor-Auth
+* Remove all iServices from Keychain, some examples:
+
+```
+ids: identity-rsa-key-pair-signature-v1
+ids: identity-rsa-private-key
+ids: identity-rsa-public-key
+ids: message-protection-key
+ids: message-protection-public-data-registered
+ids: personal-public-key-cache
+iMessage Encryption Key
+iMessage Signing Key
+com.apple.facetime: registrationV1
+etc ...
+```
+
+And a final layer of precaution is to make a new AppleID to play with, this makes sure that if you do end up blacklisting your account that it's not your main.
+
+**Tip**:  Adding a payment card to the account and having a decent amount of purchases can also help. While not concrete, you can think of an AppleID as a credit score where the better an Apple customer you are the more likely they won't have activation issues or get an easier pass with AppleSupport
+
+## Customer Code error
+
+Well mate, you've done it. You blacklisted your AppleID. The fix is simple but not pretty, **you MUST call [Apple](https://support.apple.com/en-us/HT201232)**. Otherwise, there is no proceeding besides using a new account. Adding a payment card before calling can help legitimize the account so it doesn't seem as much like a bot.
+
+![](../images/post-install/iservices-md/blacklist.png)
+
+## Are you on Big Sur or later?
+
+If you are on Big sur or later to solve the custom code error you will have to open the iMessage executable to verify your customer code and your email
+
+Finder -> Application -> Now right click on Messages and click show package contents -> Contents -> MacOS -> Click on `Messages`
+
+![Screenshot 2021-07-14 at 15 14 35](https://user-images.githubusercontent.com/78879120/125628385-c09d94ce-645d-468a-a589-a6b1c387c2b6.png)
+
+Now the customer code will be shown in the terminal and by calling apple support iService it will work again
+
+![png terminale](https://user-images.githubusercontent.com/78879120/125633315-bab95ba9-a537-4039-b338-84fba9271ac0.png)
+
+* For Apple contacting, there are 2 methods
+  * Apple calls you: [Apple Support](https://getsupport.apple.com/). You must click on Apple ID and then select the iCloud, Facetime & Messages. Now, you should click on Talk to Apple Support Now and type your phone number
+  * You can contact Apple for support and service as well, look for your country in the list and then make a phone call: [Apple Support Phone Numbers](https://support.apple.com/HT201232)
+
