@@ -301,4 +301,3 @@ Now the customer code will be shown in the terminal and by calling apple support
 * For Apple contacting, there are 2 methods
   * Apple calls you: [Apple Support](https://getsupport.apple.com/). You must click on Apple ID and then select the iCloud, Facetime & Messages. Now, you should click on Talk to Apple Support Now and type your phone number
   * You can contact Apple for support and service as well, look for your country in the list and then make a phone call: [Apple Support Phone Numbers](https://support.apple.com/HT201232)
-
