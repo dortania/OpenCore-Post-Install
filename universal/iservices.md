@@ -288,9 +288,9 @@ Well mate, you've done it. You blacklisted your AppleID. The fix is simple but n
 
 ## Are you on Big Sur or later?
 
-If you are on Big sur or later to solve the custom code error you will have to open the iMessage executable to verify your customer code and your email
+If so, please note that the Customer Service Code is available only via Terminal. To get it open the Messages.app executable to verify your customer code and your email
 
-Finder -> Application -> Now right click on Messages and click show package contents -> Contents -> MacOS -> Click on `Messages`
+Finder -> Application -> right click on Messages and click Show Package Contents -> Contents -> MacOS -> Click on `Messages`
 
 ![Screenshot 2021-07-14 at 15 14 35](https://user-images.githubusercontent.com/78879120/125628385-c09d94ce-645d-468a-a589-a6b1c387c2b6.png)
 
