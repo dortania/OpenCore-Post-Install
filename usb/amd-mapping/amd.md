@@ -49,7 +49,7 @@ So to start off, open [IORegistryExplorer](https://github.com/khronokernel/IOReg
 * AS43
 * PTXH (Commonly associated with AMD Chipset controllers)
 * PTCP (Found on AsRock X399, in ACPI these ports are actually called PXTX but macOS will enumerate them differently)
-* PXSX(This is a generic PCIe device, **double check it's a USB device**)
+* PXSX(This is a generic PCIe device, **double-check it's a USB device**)
 
 The best way to find controllers is by searching for `XHC` and then looking at the results that come up, the parent of all the ports is the USB controller. Do note that many boards have multiple controllers but the port limit is per controller.
 
@@ -76,7 +76,7 @@ Well to kick out these bad maps, we gotta make a plugin kext. For us, that's the
 Now right-click and press `Show Package Contents`, then navigate to `Contents/Info.plist`
 
 ![](../../images/amd-mapping/amd-md/usb-plist.png)
-If the port values don't show in Xcode, right click and select `Show Raw Keys/Values`
+If the port values don't show in Xcode, right-click and select `Show Raw Keys/Values`
 ![](../../images/amd-mapping/amd-md/usb-plist-info.png)
 
 So what kind of data do we shove into this plist? Well, there are a couple of sections to note:
@@ -132,7 +132,7 @@ In this DSDT, we're missing HS02, HS03, HS04, HS05, etc. When this happens, we a
 
 An odd issue with some OEM's ACPI is that they never actually define or properly name the USB ports. And so when macOS's IOService starts scanning and building the ports, they're given a generic name. This makes it difficult to really know where your ports are.
 
-To resolve this, we can simply add names with our USBmap.kext, this is thanks to us matching the USB map based off of the USB port's location instead of by name.
+To resolve this, we can simply add names with our USBmap.kext, this is thanks to us matching the USB map based on the USB port's location instead of by name.
 
 So before you USB map, you'll get something like this:
 
@@ -176,7 +176,7 @@ And once done your USBmap's IOPathMatch should look like this:
 
 ### SSDT Recreation
 
-With the SSDT Recreation method, what we'll be doing is "renaming" the device but in reality creating a brand new device just for macOS that is in the exact same spot as your old USB controller.
+With the SSDT Recreation method, what we'll be doing is "renaming" the device but in reality, creating a brand new device just for macOS that is in the exact same spot as your old USB controller.
 
 To do this, grab the following SSDT:
 
@@ -186,7 +186,7 @@ What you'll want to do is find a controller you want to rename, find its full AC
 
 ![AsRock B450 missing ports](../../images/amd-mapping/amd-md/rename-ssdt.png)
 
-**Note**: In rare cases, macOS isn't able to properly rebuild the USB ports with the new "fake" USB controller. In these situations we need to manually add ports to it that are present in the original controller(ie. HS01, HS02, POT1, etc)
+**Note**: In rare cases, macOS isn't able to properly rebuild the USB ports with the new "fake" USB controller. In these situations, we need to manually add ports to it that are present in the original controller(ie. HS01, HS02, POT1, etc)
 
 > But how do I map a non-standard controller that shows up as PXSX?
 

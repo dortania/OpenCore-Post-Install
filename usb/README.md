@@ -11,7 +11,7 @@ So the process of USB mapping is defining your ports to macOS and telling it wha
 * Broken Hot-Plug
 * Even data corruption from `XhciPortLimit`
 
-So now that you know why you should USB map, we can now talk about technical info of USB mapping. This is a section you cannot skip, otherwise all info below will seem like a very broken Russian translation written by a very drunk slav.
+So now that you know why you should USB map, we can now talk about the technical info of USB mapping. This is a section you cannot skip, otherwise all info below will seem like a very broken Russian translation written by a very drunk slav.
 
 So with USB, we need to understand not all ports are the same and that some ports are actually hiding other ports within them! What I mean by this is the following:
 
@@ -24,7 +24,7 @@ Now let's look at a diagram of a USB port to better understand this:
 
 As you can see, the bottom 4 pins are dedicated to USB 2.0 and when the extra 5 pins above are recognized the device will switch to a USB 3.0 mode.
 
-Now with the basic understanding out of the way, we now have to talk about the dreadful 15 port limit.
+Now with the basic understanding out of the way, we have to talk about the dreadful 15 port limit.
 
 ## macOS and the 15 Port Limit
 
@@ -42,7 +42,7 @@ Well this gets into a fun subset of computers, the hexadecimal counting system! 
 
 And now when we take into account the quirk `XhciPortLimit`, you can see *why* data corruption can happen. As we're pushing past the 0xF limit and going into someone else's space. So avoid this quirk when possible.
 
-* Note: While the name `XhciPortLimit` may seem that it's limiting the number of XHCI ports, it's in-fact patching the XHCI Port Limit to a higher value.
+* Note: While the name `XhciPortLimit` may seem that it's limiting the number of XHCI ports, it's in fact patching the XHCI Port Limit to a higher value.
 
 > What about USB hubs?
 

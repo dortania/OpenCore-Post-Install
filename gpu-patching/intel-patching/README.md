@@ -1,6 +1,6 @@
 # Intel iGPU Patching
 
-This guide will be a more in-depth look into patching macOS to support more hardware variations of Intel's iGPUs including proper display out, fixing color tint issues, HiDPI issues and etc. Note this guide is **not** a beginners tutorial, we recommend you follow the recommend iGPU properties listed in the config.plist section of the guide to start off.
+This guide will be a more in-depth look into patching macOS to support more hardware variations of Intel's iGPUs including proper display out, fixing color tint issues, HiDPI issues etc. Note this guide is **not** a beginner's tutorial, we recommend you follow the recommend iGPU properties listed in the config.plist section of the guide to start off.
 
 This guide supports:
 
@@ -89,13 +89,13 @@ From here, lets open up our config.plist and head to DeviceProperties -> Add. No
 
 To determine whether you need a new `device-id` injected, you'll want to compare [WhateverGreen's list of supported IDs](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) to what you have.
 
-For this example, lets take a look at the i3-4150 with an HD 4400 iGPU. Using [Intel's ARK page](https://ark.Intel.com/content/www/us/en/ark/products/77486/Intel-core-i3-4150-processor-3m-cache-3-50-ghz.html), we can see the following:
+For this example, let's take a look at the i3-4150 with an HD 4400 iGPU. Using [Intel's ARK page](https://ark.Intel.com/content/www/us/en/ark/products/77486/Intel-core-i3-4150-processor-3m-cache-3-50-ghz.html), we can see the following:
 
 ```
 Device ID = 0x41E
 ```
 
-Now that we have our actual Device ID, lets compare it to [WhateverGreen's list](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md):
+Now that we have our actual Device ID, let's compare it to [WhateverGreen's list](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md):
 
 ```
 Native supported DevIDs:
@@ -107,7 +107,7 @@ Native supported DevIDs:
  0x0412
 ```
 
-Unfortunately the ID is not present in macOS, so we'll need to find a similar iGPU to ours and use their Device ID. The HD 4600 found in the [i3-4330](https://ark.Intel.com/content/www/us/en/ark/products/77769/Intel-core-i3-4330-processor-4m-cache-3-50-ghz.html) is a very close match, so we'll use its Device ID:
+Unfortunately, the ID is not present in macOS, so we'll need to find a similar iGPU to ours and use their Device ID. The HD 4600 found in the [i3-4330](https://ark.Intel.com/content/www/us/en/ark/products/77769/Intel-core-i3-4330-processor-4m-cache-3-50-ghz.html) is a very close match, so we'll use its Device ID:
 
 ```
 Device ID = 0x412

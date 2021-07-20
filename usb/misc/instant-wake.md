@@ -1,6 +1,6 @@
 # GPRW/UPRW/LANC Instant Wake Patch
 
-Similar idea to the "Fixing Shutdown/Restart" section, macOS will instant wake if either USB or power states change while sleeping. To fix this we need to reroute the GPRW/UPRW/LANC calls to a new SSDT, verify you have instant wake issues before trying the below.
+Similar idea to the "Fixing Shutdown/Restart" section, macOS will instantly wake if either USB or power states change while sleeping. To fix this we need to reroute the GPRW/UPRW/LANC calls to a new SSDT, verify you have instant wake issues before trying the below.
 
 Best way to check:
 
