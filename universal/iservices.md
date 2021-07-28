@@ -251,7 +251,7 @@ sudo rm -rf ~/Library/Messages
 
 ## Verifying your work one last time
 
-Grab [macserial](https://github.com/acidanthera/MacInfoPkg/releases) and run the following:
+Grab macserial from the [latest OpenCore release](https://github.com/acidanthera/OpenCorePkg/releases) and run the following:
 
 ```
 path/to/macserial -s
