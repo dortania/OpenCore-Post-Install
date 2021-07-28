@@ -104,7 +104,7 @@ To fix the former, either disable or uninstall these tools.
 
 To fix the latter, we need to enable this quirk:
 
-* `PlatformInfo -> Generic -> AdviseWindows -> True`
+* `PlatformInfo -> Generic -> AdviseFeatures -> True`
 
 ![](../images/bootcamp-md/error.png)
 
