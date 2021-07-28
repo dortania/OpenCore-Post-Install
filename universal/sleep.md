@@ -208,7 +208,7 @@ For the middle, macOS's lid wake detection can bit a bit broken and you may need
 sudo pmset lidwake 0
 ```
 
-And set `lidewake 1` to re-enable it.
+And set `lidwake 1` to re-enable it.
 
 The latter requires a bit more work. What we'll be doing is trying to nullify semi random key spams that happen on Skylake and newer based HPs though pop up in other OEMs as well. This will also assume that your keyboard is PS2 based and are running [VoodooPS2](https://github.com/acidanthera/VoodooPS2/releases).
 
@@ -249,7 +249,7 @@ IRQ issues usually occur during bootups but some may notice that IRQ calls can b
   * First dump your DSDT in Linux/Windows
   * then select `FixHPET` option
 
-This will provide you with both SSDT-HPET.aml and `oc_patches.plist`, You will want to add the SSDT to EFI/OC/ACPI and add the ACPI patches into your config.plist from the oc_patches.plist
+This will provide you with both SSDT-HPET.aml and `patches_OC.plist`, You will want to add the SSDT to EFI/OC/ACPI and add the ACPI patches into your config.plist from the patches_OC.plist
 
 ### Audio
 
