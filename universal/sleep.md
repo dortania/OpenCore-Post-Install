@@ -208,7 +208,7 @@ For the middle, macOS's lid wake detection can bit a bit broken and you may need
 sudo pmset lidwake 0
 ```
 
-And set `lidewake 1` to re-enable it.
+And set `lidwake 1` to re-enable it.
 
 The latter requires a bit more work. What we'll be doing is trying to nullify semi random key spams that happen on Skylake and newer based HPs though pop up in other OEMs as well. This will also assume that your keyboard is PS2 based and are running [VoodooPS2](https://github.com/acidanthera/VoodooPS2/releases).
 
