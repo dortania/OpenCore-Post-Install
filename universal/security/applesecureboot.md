@@ -169,7 +169,7 @@ However before setting ApECID, there's a few things we need to note:
     --bootefi --personalize
 ```
 
-And something to note when reinstalling macOS 10.15 or older is that you may receive "Unable to verify macOS" error message. To work around his issue, you'll want to allocate a dedicated RAM disk of 2 MBs for macOS personalization by entering the following commands in the macOS recovery terminal before starting the installation:
+And something to note when reinstalling macOS 10.15 or older is that you may receive "Unable to verify macOS" error message. To work around this issue, you'll want to allocate a dedicated RAM disk of 2 MBs for macOS personalization by entering the following commands in the macOS recovery terminal before starting the installation:
 
 ```sh
 disk=$(hdiutil attach -nomount ram://4096)
