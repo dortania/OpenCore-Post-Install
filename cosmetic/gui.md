@@ -28,17 +28,17 @@ Now in our config.plist, we have 4 things we need to fix:
 * `Misc -> Boot -> PickerAttributes`: `17`
   * This enables mouse/trackpad support as well as .VolumeIcon.icns reading from the drive, allows for macOS installer icons to appear in the picker
     * Other settings for PickerAttributes can be found in the [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf)
-* `Misc -> Boot -> PickerVariant`: `Modern`
+* `Misc -> Boot -> PickerVariant`: `Acidanthera\GoldenGate`
   * Applicable variables:
     * `Auto` — Automatically select one set of icons based on DefaultBackground colour.
-    * `Default` — Normal icon set.
-    * `Modern` — Nouveau icon set.
-    * `Old` — Vintage icon set.
+    * `Acidanthera\Syrah` — Normal icon set.
+    * `Acidanthera\GoldenGate` — Nouveau icon set.
+    * `Acidanthera\Chardonnay` — Vintage icon set.
 * `UEFI -> Drivers` and add OpenCanopy.efi
 
 Once all this is saved, you can reboot and be greeted with a true Mac-like GUI:
 
-| Default | Modern | Old |
+| Default (Syrah) | Modern (GoldenGate) | Old (Chardonnay) |
 | :--- | :--- | :--- |
 | ![](../images/extras/gui-md/gui.png) | ![](../images/extras/gui-md/gui-nouveau.png) | ![](../images/extras/gui-md/gui-old.png) |
 
