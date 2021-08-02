@@ -166,8 +166,7 @@ However before setting ApECID, there's a few things we need to note:
 ```sh
 # Run this command after setting your ApECID value
 # You'll also need an active network connection in recovery to run this command
-bless --folder "/Volumes/Macintosh HD/System/Library/CoreServices" \
-    --bootefi --personalize
+bless --folder "/Volumes/Macintosh HD/System/Library/CoreServices" --bootefi --personalize
 ```
 
 And something to note when reinstalling macOS 10.15 or older is that you may receive "Unable to verify macOS" error message. To work around this issue, you'll want to allocate a dedicated RAM disk of 2 MBs for macOS personalization by entering the following commands in the macOS recovery terminal before starting the installation:
