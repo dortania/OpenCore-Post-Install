@@ -42,7 +42,7 @@ Currently the following options for `Misc -> Security -> SecureBootModel` are su
 | Value     | SMBIOS                                  | Minimum macOS Version |
 | :---      | :---                                    | :---                  |
 | Disabled  | No model, Secure Boot will be disabled. | N/A                   |
-| Default   | Currently set to j137, iMacPro1,1       | 10.13.2 (17C2111)     |
+| Default   | Currently set to x86legacy              | 11.0.1 (20B29)        |
 | j137      | iMacPro1,1 (December 2017)              | 10.13.2 (17C2111)     |
 | j680      | MacBookPro15,1 (July 2018)              | 10.13.6 (17G2112)     |
 | j132      | MacBookPro15,2 (July 2018)              | 10.13.6 (17G2112)     |
@@ -59,11 +59,12 @@ Currently the following options for `Misc -> Security -> SecureBootModel` are su
 | j215      | MacBookPro16,4 (June 2020)              | 10.15.5 (19F96)       |
 | j185      | iMac20,1 (August 2020)                  | 10.15.6 (19G2005)     |
 | j185f     | iMac20,2 (August 2020)                  | 10.15.6 (19G2005)     |
-| x86legacy | Non-T2 Macs in 11.0(Recommended for VMs)| 11.0.0                |
+| x86legacy | Non-T2 Macs in 11.0(Recommended for VMs)| 11.0.1 (20B29)        |
 
 ### Special Notes with SecureBootModel
 
-* Generally `Default` is more than adequate to use however if you plan to have use this with ApECID for full security, we recommend setting a proper value(ie. closest to your SMBIOS or versions of macOS you plan to boot) since the `Default` value is likely to be updated in the future.
+* The `Default` value is not recommended as if you plan to have use this with ApECID for full security, we recommend setting a proper value(ie. closest to your SMBIOS or versions of macOS you plan to boot) since the `Default` value is likely to be updated in the future.
+  * In addition, `Default` is set to `x86legacy` which will breaking booting High Sierra through Catalina.
   * `x86legacy` is not required for normal Mac models without T2's, any of the above values are supported.
 * The list of cached drivers may be different, resulting in the need to change the list of Added or Forced kernel drivers.
   * ie. IO80211Family cannot be injected in this case, as it is already present in the kernelcache
