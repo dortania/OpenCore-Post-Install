@@ -166,7 +166,7 @@ However before setting ApECID, there's a few things we need to note:
 ```sh
 # Run this command after setting your ApECID value
 # You'll also need an active network connection in recovery to run this command
- bless bless --folder "/Volumes/Macintosh HD/System/Library/CoreServices" \
+bless --folder "/Volumes/Macintosh HD/System/Library/CoreServices" \
     --bootefi --personalize
 ```
 
