@@ -28,7 +28,7 @@ Mobile: 0, PipeCount: 3, PortCount: 3, FBMemoryCount: 3
 03060800 00040000 C7030000
 ```
 
-Now let's parse it down to the BudID information, as this is what we will be patching:
+Now let's parse it down to the BusID information, as this is what we will be patching:
 
 ```
 [1] busId: 0x05, pipe: 9, type: 0x00000400, flags: 0x000003C7 - DP
