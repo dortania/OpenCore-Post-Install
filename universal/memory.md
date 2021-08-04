@@ -6,469 +6,81 @@ On macOS Catalina and newer, users of the MacPro7,1 SMBIOS will experience this 
 | :--- | :--- |
 | <img width="1362" src=../images/post-install/memory-md/memory-error-notification.png>  | ![](../images/post-install/memory-md/memory-error-aboutthismac.png) |
 
-The exact reason for this error is a bit unknown, however ways to resolve this error have been made possible. The most common way to remove the error is to use [RestrictEvents](https://github.com/acidanthera/RestrictEvents/releases) and we highly encourage all users to use this kext instead.
+The most common way to remove the error is to use [RestrictEvents](https://github.com/acidanthera/RestrictEvents/releases) Kernel extension (KEXT) from the OpenCore team. However, the RestrictEvents extension is a multi-function extension and you may not need nor want the extra functions that the extension will provide.
 
-For those who wish to attempt the legacy mapping way, see the below guide. Note it will require you to map all your DIMMs manually so this will be a time consuming process.
+If you just want to remove the annoying pop-up, then this guide is for you...
+
+## A bit of background
+
+Mac OS expects the underlying hardware to be Apple hardware. Therefore, when building a hackintosh/Ryzentosh we need to try and match the hardware as closely as possible. For those areas where our hardware differs, we must try to convince Mac OS that the hardware is a match.
+
+Consider your mainboard. If you are emulating a Mac Pro 7,1 then the Apple mainboard has 12 physical RAM slots. Our mainboards will probably have fewer physical memory slots. We will use OpenCore's custom memory mapping feature to report 12 "virtual" slots to Mac OS. We can then assign our physical memory configuration into these 12 virtual slots.
+
+Take a look at [Install and replace memory in your Mac Pro (2019)](https://support.apple.com/en-gb/HT210103?cid=macOS_UI_Memory_article_HT210103). The diagrams in the section "Check supported configurations" show you how a Mac Pro 7,1 expects the physical RAM to be installed.
+
+**Please note that a Mac Pro 7,1 has a minimum requirement of 4 DIMMs.**
+
+Therefore we recommend that your system should also have a minimum of 4 physical DIMMs. If your system only has two DIMMs (maybe your mainboard only has two slots) then you will want to use the custom mapping feature to present 4 DIMMs even though you only have two. We'll explain how later...
+
+---
 
 ## Mapping our memory
 
-To start, we'll want to grab the following files:
-
-* [CustomMemory.plist](https://github.com/dortania/OpenCore-Post-Install/blob/master/extra-files/CustomMemory.plist.zip)
-  * Example setup for using CustomMemory in OpenCore
-* [dmidecode](https://github.com/acidanthera/dmidecode/releases)
-  * Tool used for extracting SMBIOS info in macOS
-
-Here is a premade file which has properties already set out for you, one you open it you should see the following:
-
-![](../images/post-install/memory-md/CustomMemory-open.png)
-
-From here we see may properties, lets try to break it down:
-
-* [DataWidth](#datawidth)
-* [ErrorCorrection](#errorcorrection)
-* [FormFactor](#formfactor)
-* [MaxCapacity](#maxcapacity)
-* [TotalWidth](#totalwidth)
-* [Type](#type)
-* [TypeDetail](#typedetail)
-* [Devices](#devices)
-  * [AssetTag](#assettag)
-  * [BankLocator](#banklocator)
-  * [DeviceLocator](#devicelocator)
-  * [Manufacturer](#manufacturer)
-  * [PartNumber](#partnumber)
-  * [SerialNumber](#serialnumber)
-  * [Size](#size)
-  * [Speed](#speed)
-* [Cleaning up](#cleaning-up)
-
-### DataWidth
-
-Specifies the data width, in bits, of the memory. A DataWidth of 0 and a TotalWidth of 8 indicates that the device is being used solely to provide 8 error-correction bits.
-
-To determine the DataWidth, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Data Width:"
-# Example Output
- Data Width: 64 bits
- Data Width: Unknown
- Data Width: 64 bits
- Data Width: Unknown
- Data Width: 64 bits
- Data Width: Unknown
- Data Width: 64 bits
- Data Width: Unknown
-# Final Value
-DataWidth = 64
-```
-
-### ErrorCorrection
-
-Specifies ECC support:
-
-```
-1 — Other
-2 — Unknown
-3 — None
-4 — Parity
-5 — Single-bit ECC
-6 — Multi-bit ECC
-7 — CRC
-```
-
-To determine ErrorCorrection, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Error Correction Type:"
-# Example Output
- Error Correction Type: None
-# Final Value
-ErrorCorrection = 3
-```
-
-### FormFactor
-
-Specifies Memory Form Factor
-
-```
-1  — Other
-2  — Unknown
-9  — DIMM
-13 — SODIMM
-15 — FB-DIMM
-```
-
-To determine FormFactor, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Form Factor:"
-# Example Output
- Form Factor: DIMM
- Form Factor: DIMM
- Form Factor: DIMM
- Form Factor: DIMM
- Form Factor: DIMM
- Form Factor: DIMM
- Form Factor: DIMM
- Form Factor: DIMM
-# Final Value
-FormFactor = 9
-```
-
-### MaxCapacity
-
-Specifies maximum supported memory in your system
-
-Type: Bytes
-
-```
-8GB   - 8589934592
-16GB  - 17179869184
-32GB  - 34359738368
-64GB  - 68719476736
-128GB - 137438953472
-256GB - 274877906944
-```
-
-### TotalWidth
-
-Specifies the total width, in bits, of the memory, including any check or error-correction bits. If there are no error-correction bits, this value should be equal to DataWidth.
-
-To determine TotalWidth, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Total Width:"
-# Example Output
- Total Width: 72 bits
- Total Width: Unknown
- Total Width: 72 bits
- Total Width: Unknown
- Total Width: 72 bits
- Total Width: Unknown
- Total Width: 72 bits
- Total Width: Unknown
-# Final Value
-TotalWidth = 72
-```
-
-### Type
-
-Specifies memory type
-
-```
-1  — Other
-2  — Unknown
-15 — SDRAM
-18 — DDR
-19 — DDR2
-20 — DDR2 FB-DIMM
-24 — DDR3
-26 — DDR4
-27 — LPDDR
-28 — LPDDR2
-29 — LPDDR3
-30 — LPDDR4
-```
-
-To determine Type, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Type:"
-# Example Output
- Type: DDR4
- Type: Unknown
- Type: DDR4
- Type: Unknown
- Type: DDR4
- Type: Unknown
- Type: DDR4
- Type: Unknown
-# Final Value
-Type = 26
-```
-
-### TypeDetail
-
-Specifies other memory type information
-
-```
-Bit 0 — Reserved, set to 0
-Bit 1 — Other
-Bit 2 — Unknown
-Bit 7 — Synchronous
-Bit 13 — Registered (buffered)
-Bit 14 — Unbuffered (unregistered)
-````
-
-Combine all that are applicable, example:
-
-```
-Bit 13 — Registered (buffered)
-Bit 14 — Unbuffered (unregistered)
------------------------------------
-27 = TypeDetail
-```
-
-To determine TypeDetail, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Type Detail:"
-# Example Output
- Type Detail: Synchronous
- Type Detail: Synchronous
- Type Detail: Synchronous
- Type Detail: Synchronous
- Type Detail: Synchronous
- Type Detail: Synchronous
- Type Detail: Synchronous
- Type Detail: Synchronous
-# Final Value
-TypeDetail = 7
-```
-
-### Devices
-
-Array of Memory Devices, and where we do out magic to fix the error. In the sample CustomMemory.plist I provided, we have 12 slots listed here. From this, you'll want to open up System Profiler in macOS and look at the Memory tab:
-
-![](../images/post-install/memory-md/system-profiler.png)
-
-Here we see which slots are populated by memory, and which are empty. For filled slots, simply run through the below on how to pull information. For slots that are empty however, you'll want to add some blank information into thinking macOS has populated device. Ensure that by the end, you have 12 total slots filled with devices.
-
-Example of filled slots vs fake:
-
-![](../images/post-install/memory-md/memory-example.png)
-
-We recommend setting the Size and Speed to both 1, to ensure applications that do pull from memory are not confused that you have more than you should.
-
-Next lets break down the properties:
-
-* [AssetTag](#assettag)
-* [BankLocator](#banklocator)
-* [DeviceLocator](#devicelocator)
-* [Manufacturer](#manufacturer)
-* [PartNumber](#partnumber)
-* [SerialNumber](#serialnumber)
-* [Size](#size)
-* [Speed](#speed)
-
-#### AssetTag
-
-To determine AssetTag, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Asset Tag:"
-#Example Output
-
-# Final Value
-```
-
-* If dmidecode prints `Not Specified`, you can simply leave this entry blank
-
-#### BankLocator
-
-To determine BankLocator, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Bank Locator:"
-#Example Output
-
-# Final Value
-```
-
-* If dmidecode prints `Not Specified`, you can simply leave this entry blank
-
-#### DeviceLocator
-
-To determine DeviceLocator, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Locator:"
-#Example Output
- Locator: DIMM_A1
- Locator: DIMM_A2
- Locator: DIMM_B1
- Locator: DIMM_B2
- Locator: DIMM_C1
- Locator: DIMM_C2
- Locator: DIMM_D1
- Locator: DIMM_D2
-# Final Value
-Entry 1:  DIMM_A1
-Entry 2:  DIMM_A2
-Entry 3:  DIMM_B1
-Entry 4:  DIMM_B2
-Entry 5:  DIMM_C1
-Entry 6:  DIMM_C2
-Entry 7:  DIMM_D1
-Entry 8:  DIMM_D2
-Entry 9:  DIMM_EMPTY
-Entry 10: DIMM_EMPTY
-Entry 11: DIMM_EMPTY
-Entry 12: DIMM_EMPTY
-```
-
-#### Manufacturer
-
-To determine Manufacturer, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Manufacturer:"
-#Example Output
-
-# Final Value
-```
-
-#### PartNumber
-
-To determine PartNumber, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Part Number:"
-#Example Output
- Part Number: KHX2666C16/8G
- Part Number: NO DIMM
- Part Number: KHX2666C16/8G
- Part Number: NO DIMM
- Part Number: KHX2666C16/8G
- Part Number: NO DIMM
- Part Number: KHX2666C15D4/8G
- Part Number: NO DIMM
-# Final Value
-Entry 1:  KHX2666C16/8G
-Entry 2:  EmptyDIMM
-Entry 3:  KHX2666C16/8G
-Entry 4:  EmptyDIMM
-Entry 5:  KHX2666C16/8G
-Entry 6:  EmptyDIMM
-Entry 7:  KHX2666C15D4/8G
-Entry 8:  EmptyDIMM
-Entry 9:  EmptyDIMM
-Entry 10: EmptyDIMM
-Entry 11: EmptyDIMM
-Entry 12: EmptyDIMM
-```
-
-#### SerialNumber
-
-To determine SerialNumber, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Serial Number:"
-#Example Output
- Serial Number: 0F095257
- Serial Number: NO DIMM
- Serial Number: 0C099A57
- Serial Number: NO DIMM
- Serial Number: 752EDED8
- Serial Number: NO DIMM
- Serial Number: A2032E84
- Serial Number: NO DIMM
-# Final Value
-Entry 1:  0F095257
-Entry 2:  EmptyDIMM
-Entry 3:  0C099A57
-Entry 4:  EmptyDIMM
-Entry 5:  752EDED8
-Entry 6:  EmptyDIMM
-Entry 7:  A2032E84
-Entry 8:  EmptyDIMM
-Entry 9:  EmptyDIMM
-Entry 10: EmptyDIMM
-Entry 11: EmptyDIMM
-Entry 12: EmptyDIMM
-```
-
-#### Size
-
-Size of single memory stick in MB
-
-```
-1GB  - 1024
-2GB  - 2048
-4GB  - 4096
-8GB  - 8192
-16GB - 16384
-32GB - 32768
-64GB - 65536
-12GB - 131072
-```
-
-To determine Size, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Size:"
-#Example Output
- Size: 8 GB
- Size: No Module Installed
- Size: 8 GB
- Size: No Module Installed
- Size: 8 GB
- Size: No Module Installed
- Size: 8 GB
- Size: No Module Installed
-# Final Value
-Entry 1:  8192
-Entry 2:  1
-Entry 3:  8192
-Entry 4:  1
-Entry 5:  8192
-Entry 6:  1
-Entry 7:  8192
-Entry 8:  1
-Entry 9:  1
-Entry 10: 1
-Entry 11: 1
-Entry 12: 1
-```
-
-#### Speed
-
-Speed of memory in Mhz
-
-ex: `3000Mhz`
-
-To determine Speed, run the following:
-
-```sh
-path/to/dmidecode -t memory | grep "Speed:"
-#Example Output
- Speed: 2666 MT/s
- Speed: Unknown
- Speed: 2666 MT/s
- Speed: Unknown
- Speed: 2666 MT/s
- Speed: Unknown
- Speed: 2666 MT/s
- Speed: Unknown
-# Final Value
-Entry 1:  2666
-Entry 2:  1
-Entry 3:  2666
-Entry 4:  1
-Entry 5:  2666
-Entry 6:  1
-Entry 7:  2666
-Entry 8:  1
-Entry 9:  1
-Entry 10: 1
-Entry 11: 1
-Entry 12: 1
-```
-
-## Cleaning up
-
-Now that you've built the table, we can now merge it into our config.plist.
-
-Simply copy over your work from the CustomMemory.plist and paste it into PlatformInfo:
-
-![](../images/post-install/memory-md/memory-example-done.png)
-
-Once this is copied over, enable `PlatformInfo -> CustomMemory` and reboot. The error should be no more now!
-
-Reminder that you must **fill** all 12 slots with memory, otherwise the error will not disappear:
-
-| Fixed System Profiler | Fixed About This Mac |
-| :--- | :--- |
-| ![](../images/post-install/memory-md/memory-fixed-system-profiler.png) | ![](../images/post-install/memory-md/memory-fixed-aboutthismac.png) |
+A Mac Pro 7,1 has 12 slots, and can have 4, 6, 8, 10, or 12 DIMMs installed. We will demonstrate the 4 DIMM solution here, but simply follow the same procedure for the other multiples.
+
+The PlatformInfo Memory section of the OpenCore config.plist allows us to present 12 slots to Mac OS. The trick is to populate these "virtual slots" with our real DIMM values.
+
+Using the example unpopulated plist file, opened in Xcode, the OpenCore Devices section looks like this:
+
+![](../images/post-install/memory-md/memory-platforminfo-memory-devices-unpopulated.png)
+![](../images/post-install/memory-md/memory-platforminfo-memory-devices-unpopulated2.png)
+
+* The order of the array items is important, and should be kept as it is. For example:
+  * Item 0
+    * Represents Slot 8 on the real Mac Pro 7,1 mainboard, labeled as Channel A / DIMM 1
+  * Item 1
+    * Represents Slot 7 on the real Mac Pro 7,1 mainboard, labeled as Channel A / DIMM 2
+  * Item 2
+    * Represents Slot 10 on the real Mac Pro 7,1 mainboard, labeled as Channel B / DIMM 1
+  * Item 3
+    * Represents Slot 9 on the real Mac Pro 7,1 mainboard, labeled as Channel B / DIMM 2
+  * Item 4
+    * Represents Slot 12 on the real Mac Pro 7,1 mainboard, labeled as Channel C / DIMM 1
+  * Item 5
+    * Represents Slot 11 on the real Mac Pro 7,1 mainboard, labeled as Channel C / DIMM 2
+  * Item 6
+    * Represents Slot 5 on the real Mac Pro 7,1 mainboard, labeled as Channel D / DIMM 1
+  * Item 7
+    * Represents Slot 6 on the real Mac Pro 7,1 mainboard, labeled as Channel D / DIMM 2
+  * Item 8
+    * Represents Slot 3 on the real Mac Pro 7,1 mainboard, labeled as Channel E / DIMM 1
+  * Item 9
+    * Represents Slot 4 on the real Mac Pro 7,1 mainboard, labeled as Channel E / DIMM 2
+  * Item 10
+    * Represents Slot 1 on the real Mac Pro 7,1 mainboard, labeled as Channel F / DIMM 1
+  * Item 11
+    * Represents Slot 2 on the real Mac Pro 7,1 mainboard, labeled as Channel F / DIMM 2
+
+> If a memory slot is not populated on a real Mac Pro 7,1 the Manufacturer field is set to the text value `NO DIMM`.
+> This is the critical field to fix the error message.
+
+---
+
+## Download example plist files
+
+* [CustomMemoryUnpopulated.plist.zip](../extra-files/CustomMemoryUnpopulated.plist.zip)
+* [CustomMemoryPopulatedWithFourDIMMs.zip](../extra-files/CustomMemoryPopulatedWithFourDIMMs.plist.zip)
+* [CustomMemoryPopulatedWithSixDIMMs.zip](../extra-files/CustomMemoryPopulatedWithSixDIMMs.plist.zip)
+* [CustomMemoryPopulatedWithEightDIMMs.zip](../extra-files/CustomMemoryPopulatedWithEightDIMMs.plist.zip)
+* [CustomMemoryPopulatedWithTenDIMMs.zip](../extra-files/CustomMemoryPopulatedWithTenDIMMs.plist.zip)
+* [CustomMemoryPopulatedWithTwelveDIMMs.zip](../extra-files/CustomMemoryPopulatedWithTwelveDIMMs.plist.zip)
+
+You can perform your edits to a copy of these example plist files, and then when you are sure that you have everything in place, copy the contents from the example plist file to your OpenCore config.plist file...
+
+OR
+
+You can edit your OpenCore config.plist file directly using the example plist files for reference...
+
+---
+
+On the [next page](memory-gathering-data.md) we will discover how to use dmidecode to find the values to use in the config.plist file...

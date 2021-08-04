@@ -4,7 +4,7 @@ This page is for those having iMessage and other iServices issues, this is a ver
 
 **Your Apple ID is the single most influential factor in using iServices.**
 
-If you have existing Apple products in your account, such as an iPhone, you should have no issues whatsoever using a generated serial set. However, if you recently created an account, that does not have any existing Apple hardware or App Store purchases, you may be required to call Apple once you have attemped logging in.
+If you have existing Apple products in your account, such as an iPhone, you should have no issues whatsoever using a generated serial set. However, if you recently created an account, that does not have any existing Apple hardware or App Store purchases, you may be required to call Apple once you have attempted logging in.
 
 The following items will be created below and are required to use iServices:
 
@@ -50,14 +50,14 @@ Find your **SystemProductName** in your config.plist file. That is your model nu
 Replace `"iMacPro1,1"` below with SystemProductName in your config.plist.
 
 ```bash
-./macserial --num 1 --model "iMacPro1,1" 
+./macserial --num 1 --model "iMacPro1,1"
 ```
 
 Example output:
 
 ```console
 $ ./macserial \
-        --model "iMacPro1,1" 
+        --model "iMacPro1,1"
 Warning: arc4random is not available!
 C02V7UYGHX87 | C02733401J9JG36A8
 ```

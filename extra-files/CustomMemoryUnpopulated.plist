@@ -126,7 +126,7 @@
 					<key>DeviceLocator</key>
 					<string>Slot 5 (Channel D / DIMM 1)</string>
 					<key>Manufacturer</key>
-					<string></string>
+					<string>NO DIMM</string>
 					<key>PartNumber</key>
 					<string></string>
 					<key>SerialNumber</key>
@@ -162,7 +162,7 @@
 					<key>DeviceLocator</key>
 					<string>Slot 3 (Channel E / DIMM 1)</string>
 					<key>Manufacturer</key>
-					<string></string>
+					<string>NO DIMM</string>
 					<key>PartNumber</key>
 					<string></string>
 					<key>SerialNumber</key>
@@ -234,7 +234,7 @@
 			<key>FormFactor</key>
 			<integer>9</integer>
 			<key>MaxCapacity</key>
-			<real>274877906944</real>
+			<integer>824633720832</integer>
 			<key>TotalWidth</key>
 			<integer>64</integer>
 			<key>Type</key>
