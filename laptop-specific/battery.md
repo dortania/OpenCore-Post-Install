@@ -7,7 +7,9 @@ While previously you may have had to create DSDT patches/SSDT hot-patches in ord
 * Please note that certain devices, such as the Surface 3, Surface Pro 5, Surface Book 2, and Surface Laptop (and all subsequent Surface devices), use proprietary Embedded Controllers (or other similar hardware) instead of standard ACPI battery devices and OperationRegion fields, and thus without device-specific kexts, battery status cannot be patched to work.
 
 ::: details Battery Patching Resources
+
 # Battery Patching
+
 ## DSDT Patching
 
 While custom DSDT injection should be avoided as to prevent issues with Windows and firmware updates, it can be quite helpful as a starting point since it's a bit easier to grasp and do yourself:
