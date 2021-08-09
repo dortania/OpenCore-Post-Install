@@ -2,7 +2,9 @@
 
 While previously you may have had to create DSDT patches/SSDT hot-patches in order to get working battery status in macOS, you longer have to thanks to the [ECEnabler](https://github.com/1Revenger1/ECEnabler/releases/latest) kext. In the extraordinary case that you still have to create DSDT patches/SSDT hot-patches (e.g. for dual batteries), we have left the previous resources linked below.
 
-Please note that certain devices, such as the Surface 3, Surface Pro 5, Surface Book 2, and Surface Laptop (and all subsequent Surface devices), use proprietary Embedded Controllers (or other similar hardware) instead of standard ACPI battery devices and OperationRegion fields, and thus without device-specific kexts, battery status cannot be patched to work.
+* If battery status is not working even with ECEnabler, make sure you have the [SMCBatteryManager](https://github.com/Acidanthera/VirtualSMC/releases/latest) VirtualSMC plugin enabled in your OpenCore configuration.
+
+* Please note that certain devices, such as the Surface 3, Surface Pro 5, Surface Book 2, and Surface Laptop (and all subsequent Surface devices), use proprietary Embedded Controllers (or other similar hardware) instead of standard ACPI battery devices and OperationRegion fields, and thus without device-specific kexts, battery status cannot be patched to work.
 
 ::: details Battery Patching Resources
 # Battery Patching
