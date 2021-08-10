@@ -7,7 +7,7 @@ Table of Contents:
 * [Port mapping on screwed up DSDTs](#port-mapping-on-screwed-up-dsdts)
 * [Port mapping when you have multiple of the same controller](#port-mapping-when-you-have-multiple-of-the-same-controller)
 
-So with the prerequisites out of the way, we can finally get to the meat of this guide. And now we get to finally read one of my favorite books before I go to bed each night: [The Advanced Configuration and Power Interface (ACPI) Specification!](https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf)
+So with the prerequisites out of the way, we can finally get to the meat of this guide. And now we get to finally read one of my favorite books before I go to bed each night: [The Advanced Configuration and Power Interface (ACPI) Specification!](https://uefi.org/specs/ACPI/6.4/)
 
 Now if you haven't read through this before(which I highly recommend you do, it's a thrilling tale), I'll point you to the meat of the USB situation:
 

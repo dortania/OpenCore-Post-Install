@@ -48,11 +48,11 @@ Here we see that this framebuffer personality has 3 Bus IDs listed, let's try to
 
 | Bit | Name | Value |
 | :--- | :--- | :--- |
-| Bit 1 | Port | 01 |
-| Bit 2 | Bus ID | 05 |
-| Bit 3-4 | Pipe Number | 0900 |
-| Bit 5-8 | Connector Type | 00040000 |
-| Bit 9-12 | Flags | C7030000 |
+| Bit 1 | Port | `01` |
+| Bit 2 | Bus ID | `05` |
+| Bit 3-4 | Pipe Number | `0900` |
+| Bit 5-8 | Connector Type | `00040000` |
+| Bit 9-12 | Flags | `C7030000` |
 
 Things to keep in mind:
 
@@ -72,7 +72,7 @@ Here we have 2 sections:
 
 Mapping videos in macOS is fairly easy, as we can assume that one of our ports is mapped correctly in the framebuffer.
 
-For this example, we'll explain the common [HDMI-hotplug fix for Kaby lake users](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/kaby-lake.html#deviceproperties). To start, lets look at the 0x591B0000 framebuffer:
+For this example, we'll explain the common [HDMI-hotplug fix for Kaby lake users](https://dortania.github.io/OpenCore-Install-Guide/config-laptop.plist/kaby-lake.html#deviceproperties). To start, lets look at the `0x591B0000` framebuffer:
 
 ```
 ID: 591B0000, STOLEN: 38 MB, FBMEM: 21 MB, VRAM: 1536 MB, Flags: 0x0000130B
@@ -90,7 +90,7 @@ Mobile: 1, PipeCount: 3, PortCount: 3, FBMemoryCount: 3
 
 Here we see that entry 2 is the HDMI port however on a real Kaby lake laptop it's very common for hot plug to kernel panic the machine. This is due to the bus ID and port not aligning perfectly with the hardware.
 
-To resolve, we'll want to patch it to something more appropriate(ie. 0204 to 0105, these have been tested to work properly)
+To resolve, we'll want to patch it to something more appropriate(ie. `0204` to `0105`, these have been tested to work properly)
 
 There are 2 ways to patch:
 
@@ -109,42 +109,42 @@ So since entry 2 is the second in the list, we'll want to use con1:
 
 * framebuffer-con2-enable
 
-Next lets make the patch, we know that port needs to be patched to 01 and BusID changed to 05:
+Next lets make the patch, we know that port needs to be patched to `01` and BusID changed to `05`:
 
-* **0105**0A00 00080000 87010000
+* <code>**0105**0A00 00080000 87010000</code>
 
 And finally, we're given the following patches:
 
 ```
-framebuffer-patch-enable | Data | 01000000
-framebuffer-con2-enable  | Data | 01000000
-framebuffer-con2-alldata | Data | 01050A00 00080000 87010000
+framebuffer-patch-enable | Data | `01000000`
+framebuffer-con2-enable  | Data | `01000000`
+framebuffer-con2-alldata | Data | `01050A00 00080000 87010000`
 ```
 
 #### Replace sections of the entry
 
 To replace sections of the entry, we'll first want to locate our entry and ensure it's enumerated correctly. This is because Apple's has entries starting at 0 and progresses through that:
 
-* con0
-* con1
-* con2
+* `con0`
+* `con1`
+* `con2`
 
 So since entry 2 is the second in the list, we'll want to use con1:
 
-* framebuffer-con2-enable
+* `framebuffer-con1-enable`
 
 Next lets make the patch, we know that port needs to be patched to 01 and BusID changed to 05:
 
-* framebuffer-con2-index = 01
-* framebuffer-con2-busid = 05
+* framebuffer-con2-index = `01`
+* framebuffer-con2-busid = `05`
 
 And finally, we get these patches:
 
 ```
-framebuffer-patch-enable | Data | 01000000
-framebuffer-con2-enable  | Data | 01000000
-framebuffer-con2-index   | Data | 01
-framebuffer-con2-busid   | Data | 05
+framebuffer-patch-enable | Data | `01000000`
+framebuffer-con2-enable  | Data | `01000000`
+framebuffer-con2-index   | Data | `01`
+framebuffer-con2-busid   | Data | `05`
 ```
 
 ### Mapping without macOS
@@ -168,7 +168,7 @@ To start, we'll be trying to go through entry 1's BusIDs in hope we find working
 
 ##### 2. Set Port 1 to the HDMI connector type
 
-* 01xx0900 **00080000** C7030000
+* <code>01xx0900 **00080000** C7030000</code>
 
 ::: details Supported Connector Types
 
@@ -191,41 +191,41 @@ Reminder that VGA on Skylake and newer are actually DisplayPort internally, so u
 
 ##### 3. Disable ports 2 and 3 with busid=00
 
-* 02**00**0A00 00040000 C7030000
-* 03**00**0800 00040000 C7030000
+* <code>02**00**0A00 00040000 C7030000</code>
+* <code>03**00**0800 00040000 C7030000</code>
 
 ##### 4. Walk through busids for Port 1 if the previous didn't work. The maximum busid on most platforms generally 0x06
 
-* 01**01**0900 00080000 C7030000
-* 01**02**0900 00080000 C7030000
-* 01**03**0900 00080000 C7030000
+* <code>01**01**0900 00080000 C7030000</code>
+* <code>01**02**0900 00080000 C7030000</code>
+* <code>01**03**0900 00080000 C7030000</code>
 * etc
 
 If you still get no output, set port 1's busid to 00 and start going through busids for port 2 and so on
 
-* port 1 = 01000900 00040000 C7030000
-* port 2 = 02**xx**0A00 00080000 C7030000
-* port 3 = 03000800 00040000 C7030000
+* port 1 = <code>01000900 00040000 C7030000</code>
+* port 2 = <code>02**xx**0A00 00080000 C7030000</code>
+* port 3 = <code>03000800 00040000 C7030000</code>
 
 #### Adding to your config.plist
 
 You'll now want to add the following patches to `DeviceProperteies -> Add -> PciRoot(0x0)/Pci(0x2,0x0)`:
 
 ```
-framebuffer-patch-enable | Data | 01000000
-framebuffer-con0-enable  | Data | 01000000
-framebuffer-con1-enable  | Data | 01000000
-framebuffer-con2-enable  | Data | 01000000
-framebuffer-con0-alldata | Data | port 1 (ie. 01010900 00080000 C7030000)
-framebuffer-con1-alldata | Data | port 2 (ie. 02000A00 00040000 C7030000)
-framebuffer-con2-alldata | Data | port 3 (ie. 03000800 00040000 C7030000)
+framebuffer-patch-enable | Data | `01000000`
+framebuffer-con0-enable  | Data | `01000000`
+framebuffer-con1-enable  | Data | `01000000`
+framebuffer-con2-enable  | Data | `01000000`
+framebuffer-con0-alldata | Data | port 1 (ie. `01010900 00080000 C7030000`)
+framebuffer-con1-alldata | Data | port 2 (ie. `02000A00 00040000 C7030000`)
+framebuffer-con2-alldata | Data | port 3 (ie. `03000800 00040000 C7030000`)
 ```
 
 Note that:
 
-* port 1 would be labeled as con0
-* port 1's BusID is set to 01
-* port 2 and 3's BusID are set to 00, disabling them
+* port 1 would be labeled as `con0`
+* port 1's BusID is set to `01`
+* port 2 and 3's BusID are set to `00`, disabling them
 
 When done, you should get something similar:
 
