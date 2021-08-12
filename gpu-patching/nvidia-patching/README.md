@@ -104,60 +104,48 @@ rom-revision = Dortania
 
 ### NVCAP
 
-This is where the fun comes it, as we'll now need to calculate the NVCAP value. Thankfully for us, one of our Developers has created a tool to automate the process: [NVCAP-Caluclator](https://github.com/1Revenger1/NVCAP-Calculator)
+This is where the fun comes it, as we'll now need to calculate the NVCAP value. Thankfully for us, one of our Developers has created a tool to automate the process: [NVCAP-Caluclator](https://github.com/1Revenger1/NVCAP-Calculator/releases)
 
-To use this program, simply grab your VBIOS([TechPowerUp hosts most VBIOS](https://www.techpowerup.com/vgabios/)) and run NVCAP-Calculator:
-
-```bash
-git clone https://github.com/1Revenger1/NVCAP-Calculator
-cd NVCAP-Calculator
-npm install
-npm run run
-```
-
-* Note this will require NodeJS, either grab this via brew or [Node JS's site](https://nodejs.org/en/)
+To use this program, simply grab your VBIOS([TechPowerUp hosts most VBIOS](https://www.techpowerup.com/vgabios/)) and run NVCAP-Calculator within your terminal.
 
 Once its running, you should see the following:
 
-![](../../images/gpu-patching/nvidia/nvcap-start.png)
+![](../../images/gpu-patching/nvidia/nvcap-start.jpg)
 
-Next, enter `1` and give it your VBIOS
+Give it your VBIOS and then press enter. Once it takes you to the main menu, enter `2` to take you to the NVCAP calculation page.
 
-![](../../images/gpu-patching/nvidia/nvcap-vbios.png)
-
-Now press enter, and return to the main menu. Once there, enter `3` to take you to the NVCAP calculation page.
-
-![](../../images/gpu-patching/nvidia/nvcap-initial-nvcap.png)
+![](../../images/gpu-patching/nvidia/nvcap-initial-nvcap.jpg)
 
 Here you can see the connectors that NVCAP-Calculator was able to find. Each Display may represent multiple DCB Entries, such as DVI (normally represented as two entries) or duplicate DCB entries. The goal here is to assign each display to a head. Each head can only output to one display at a time. For example, if your using 2 DVI ports, each should be on their own head to have proper dual monitor support.
 
 Note that some displays may be assigned automatically. An LVDS display will be put on it's own head automatically, and TV displays will be put on the TV head automatically.
 
-To assign a display to a head, you type the number of the display then the number of the head. For example, typing in `1 1` results in:
+To start assigning displays, press `1`. To assign a display to a head, you type the number of the display then the number of the head. For example, typing in `1 1` results in:
 
-![](../../images/gpu-patching/nvidia/nvcap-assign-entry.png)
+![](../../images/gpu-patching/nvidia/nvcap-assign-entry.jpg)
 
-You can type in `1 1` again to remove the display from the head. Once done, it should look something like this:
+You can type in `1 1` again to remove the display from the head. Once you are done assigning displays, it should look something like this:
 
-![](../../images/gpu-patching/nvidia/nvcap-complete-displays.png)
+![](../../images/gpu-patching/nvidia/nvcap-complete-displays.jpg)
 
-You should set the NVCAP values directly below the heads now as well.
+Once your done setting up the displays, press `q` to return to the other NVCAP settings. You should set the rest of the NVCAP settings as follows:
 
 | NVCAP Value | Details | Example Command |
 | :---------: | :------ | :-------------- |
-| Version | `04` for 7 series and older, `05` for 8 series and newer | `n1 04` |
-| Composite | `01` for S-Video, `00` otherwise | `n2` to toggle<br/>`n2 true` |
-| Script based Power/Backlight | `00` ony useful for genuine MacBook Pros | `n3 0` |
-| Field F (Unknown) | `0F` for 300 series and newer, otherwise `07` | `n4 0x0f` |
+| Version | `04` for 7 series and older, `05` for 8 series and newer | `3` then `4` |
+| Composite | `01` for S-Video, `00` otherwise | `4` to toggle |
+| Script based Power/Backlight | `00` ony useful for genuine MacBook Pros | `3` to toggle |
+| Field F (Unknown) | `0F` for 300 series and newer, otherwise `07` | `6` then `0x0f` |
 
 Once done, enter in `c` to calculate the NVCAP value
 
-![](../../images/gpu-patching/nvidia/nvcap-calculated.png)
+![](../../images/gpu-patching/nvidia/nvcap-calculated.jpg)
 
 You now have your NVCAP value!
 
 ```
-NVCAP: 05000000 00000300 0c000000 0000000f 00000000
+NVCAP: 
+05000000 00000300 0c000000 0000000f 00000000
 ```
 
 For those who are wanting a break down on how to calculate the NVCAP value:
