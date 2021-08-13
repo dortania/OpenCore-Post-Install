@@ -8,6 +8,8 @@ While previously you may have had to create DSDT patches/SSDT hot-patches in ord
 
 ::: details Battery Patching Resources
 
+* Note: If you are using the ECEnabler kext, you do not need to split EC fields as shown in the guides below. This means that you can use the field names in your DSDT directly instead of through utility methods (e.g. `B1B2`, `B1B4`, `RE1B`, and `RECB`).
+
 ## Dual Battery
 
 Because macOS does not properly support systems with dual-batteries, you have to merge the two batteries in ACPI.
@@ -31,8 +33,6 @@ Refer to the VirtualSMC documentation for information on how to implement these 
 :::
 
 ::: details Legacy Patching Resources
-
-* Please note that, if you are using the ECEnabler kext, you do not need to split EC fields as shown in the guides below.
 
 ## DSDT Patching
 
