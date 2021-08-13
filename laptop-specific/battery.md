@@ -1,10 +1,10 @@
 # Battery Status
 
-While previously you may have had to create DSDT patches/SSDT hot-patches in order to get working battery status in macOS, you longer have to thanks to the [ECEnabler](https://github.com/1Revenger1/ECEnabler/releases/latest) kext. In the extraordinary case that you still have to create DSDT patches/SSDT hot-patches (e.g. for dual batteries), we have left some resources linked below.
+While previously you may have had to create DSDT patches/SSDT hot-patches in order to get working battery status in macOS, you longer have to thanks to a new kext, [ECEnabler](https://github.com/1Revenger1/ECEnabler/releases/latest). In the extraordinary case that you may still need to create DSDT patches/SSDT hot-patches (e.g. for dual batteries), we have left some resources linked below.
 
 * If battery status is not working even with ECEnabler, make sure you have the [SMCBatteryManager](https://github.com/Acidanthera/VirtualSMC/releases/latest) VirtualSMC plugin enabled in your OpenCore configuration.
 
-* Please note that certain devices, such as the Surface 3, Surface Pro 5, Surface Book 2, and Surface Laptop (and all subsequent Surface devices), use proprietary Embedded Controllers (or other similar hardware) instead of standard ACPI battery devices and OperationRegion fields, and thus without device-specific kexts, battery status cannot work.
+* Certain devices, such as the Surface 3, Surface Pro 5, Surface Book 2, and Surface Laptop (and all subsequent Surface devices), use proprietary Embedded Controllers (or other similar hardware) instead of standard ACPI battery devices and OperationRegion fields, and thus without device-specific kexts, battery status cannot work.
 
 ::: details Battery Patching Resources
 
@@ -12,7 +12,7 @@ While previously you may have had to create DSDT patches/SSDT hot-patches in ord
 
 ## Dual Battery
 
-Because macOS does not properly support systems with dual-batteries, you have to merge the two batteries in ACPI.
+Because macOS does not properly support systems with dual batteries, you have to merge the two batteries in ACPI.
 
 Refer to the VirtualSMC documentation for information on how to handle dual-battery laptops: [Link](https://github.com/acidanthera/VirtualSMC/blob/master/Docs/Dual%20Battery%20Support.md)
 
