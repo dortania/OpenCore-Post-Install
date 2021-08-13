@@ -1,6 +1,6 @@
 # Battery Status
 
-While previously you may have had to create DSDT patches/SSDT hot-patches in order to get working battery status in macOS, with [ECEnabler](https://github.com/1Revenger1/ECEnabler/releases/latest) (a kext to allow reading fields over a byte in size) you no longer have to. In the extraordinary case that you may still need to create DSDT patches/SSDT hot-patches (e.g. for dual batteries), we have left some resources linked below.
+While previously you may have had to create ACPI patches in order to get working battery status in macOS, with [ECEnabler](https://github.com/1Revenger1/ECEnabler/releases/latest) (a kext that allows interaction with EC fields over a byte in size) you no longer have to. In the extraordinary case that you still need to create ACPI patches (e.g. for dual batteries), we have left some resources linked below.
 
 * If battery status is not working even with ECEnabler, make sure you have the [SMCBatteryManager](https://github.com/Acidanthera/VirtualSMC/releases/latest) VirtualSMC plugin enabled in your OpenCore configuration.
 
