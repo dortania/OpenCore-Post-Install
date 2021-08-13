@@ -1,6 +1,6 @@
 # Battery Status
 
-While previously you may have had to create ACPI patches in order to get working battery status in macOS, with [ECEnabler](https://github.com/1Revenger1/ECEnabler/releases/latest) (a kext that allows interaction with EC fields over a byte in size) you no longer have to. In the extraordinary case that you still need to create ACPI patches (e.g. for dual batteries), we have left some resources linked below.
+With [ECEnabler.kext](https://github.com/1Revenger1/ECEnabler/releases/latest), ACPI patching is no longer required for working battery percentage. If you would like battery functionality beyond charge percentage (e.g. cycle count, or temperature/other supplemental data) or have dual batteries, you still will need to create ACPI patches. For this, we have linked resources below.
 
 * If battery status is not working even with ECEnabler, make sure you have the [SMCBatteryManager](https://github.com/Acidanthera/VirtualSMC/releases/latest) VirtualSMC plugin enabled in your OpenCore configuration.
 
