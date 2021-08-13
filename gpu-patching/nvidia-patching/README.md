@@ -104,7 +104,7 @@ rom-revision = Dortania
 
 ### NVCAP
 
-This is where the fun comes it, as we'll now need to calculate the NVCAP value. Thankfully for us, one of our Developers has created a tool to automate the process: [NVCAP-Caluclator](https://github.com/1Revenger1/NVCAP-Calculator/releases)
+This is where the fun comes it, as we'll now need to calculate the NVCAP value. Thankfully for us, 1Revenger1 has created a tool to automate the process: [NVCAP Calculator](https://github.com/1Revenger1/NVCAP-Calculator/releases)
 
 To use this program, simply grab your VBIOS([TechPowerUp hosts most VBIOS](https://www.techpowerup.com/vgabios/)) and run NVCAP-Calculator within your terminal.
 
@@ -112,7 +112,7 @@ Once its running, you should see the following:
 
 ![](../../images/gpu-patching/nvidia/nvcap-start.jpg)
 
-Give it your VBIOS and then press enter. Once it takes you to the main menu, enter `2` to take you to the NVCAP calculation page.
+Give it your VBIOS and then press enter. Once it takes you to the main menu, select option 2 to take you to the NVCAP calculation page.
 
 ![](../../images/gpu-patching/nvidia/nvcap-initial-nvcap.jpg)
 
@@ -128,7 +128,7 @@ You can type in `1 1` again to remove the display from the head. Once you are do
 
 ![](../../images/gpu-patching/nvidia/nvcap-complete-displays.jpg)
 
-Once your done setting up the displays, press `q` to return to the other NVCAP settings. You should set the rest of the NVCAP settings as follows:
+Once you are done setting up the displays, press `q` to return to the other NVCAP settings. You should set the rest of the NVCAP settings as follows:
 
 | NVCAP Value | Details | Example Command |
 | :---------: | :------ | :-------------- |
