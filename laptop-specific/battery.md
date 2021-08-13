@@ -6,6 +6,8 @@ While previously you may have had to create DSDT patches/SSDT hot-patches in ord
 
 * Please note that certain devices, such as the Surface 3, Surface Pro 5, Surface Book 2, and Surface Laptop (and all subsequent Surface devices), use proprietary Embedded Controllers (or other similar hardware) instead of standard ACPI battery devices and OperationRegion fields, and thus without device-specific kexts, battery status cannot be patched to work.
 
+* Please note that, while many of the guides linked below still state that you have to split and buffer EC regions, if using the SMCBatteryManager kext, you no longer have to do this.
+
 ::: details Battery Patching Resources
 
 # Battery Patching
@@ -30,6 +32,22 @@ Once you've finally gotten your DSDT patched and battery working in macOS, it's 
 
 ## Dual Battery
 
-Acidanthera has a guide on how to handle laptops with dual-batteries: [Link](https://github.com/acidanthera/VirtualSMC/blob/master/Docs/Dual%20Battery%20Support.md)
+Because macOS does not properly support systems with dual-batteries, you have to merge the two batteries in ACPI.
+
+Refer to this Acidanthera documentation for information on how to handle dual-battery laptops: [Link](https://github.com/acidanthera/VirtualSMC/blob/master/Docs/Dual%20Battery%20Support.md)
+
+## Cycle Count
+
+Some manufacturers, such as HP, supply cycle count information within their EC registers, however do not support the ACPI 4.0 specification's `_BIX` method within their firmware to allow for this information to be queried. In the past, Rehabman's ACPIBatteryManager employed a hack to support cycle counts on firmwares which do not have a `_BIX` method, however with SMCBatteryManager this is no longer supported and a `_BIX` method must be manually implemented. 
+
+Refer to this Acidanthera documentation for information on how to transition from the ACPIBatteryManager cycle count hack to a proper `_BIX` method implementation: [Link](https://github.com/acidanthera/VirtualSMC/blob/master/Docs/Transition%20from%20zprood%27s%20cycle%20count%20hack.md)
+
+The guide may also be useful for those implementing cycle count for the first time rather than transitioning from the ACPIBatteryManager cycle count hack.
+
+## Battery Information Supplement
+
+Although many laptops supply supplemental battery information, such as manufacture date and battery temperature, in their EC fields, the traditional ACPI `_BIF`, `_BIX`, and `_BST` methods do not support providing this information. Thus, SMCBatteryManager supports two ACPI methods, `CBIS` and `CBSS` to provide this information to macOS.
+
+Refer to this Acidanthera documentation for information on how to implement these methods: [Link](https://github.com/acidanthera/VirtualSMC/blob/master/Docs/Battery%20Information%20Supplement.md)
 
 :::
