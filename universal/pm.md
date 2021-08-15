@@ -150,7 +150,7 @@ To start, grab your config.plist then head to ACPI -> Delete and ensure both of 
 | TableLength | Number | 0 |
 | TableSignature | Data | 53534454 |
 
-Once this is done, we can now grab ssdtPRGen and run it:
+Once this is done, reboot, we can now grab ssdtPRGen and run it:
 
 ![](../images/post-install/pm-md/prgen-run.png)
 
