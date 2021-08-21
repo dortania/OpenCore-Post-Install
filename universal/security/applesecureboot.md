@@ -63,7 +63,7 @@ Currently the following options for `Misc -> Security -> SecureBootModel` are su
 
 ### Special Notes with SecureBootModel
 
-* The `Default` value is not recommended as if you plan to have use this with ApECID for full security, we recommend setting a proper value(ie. closest to your SMBIOS or versions of macOS you plan to boot) since the `Default` value is likely to be updated in the future.
+* The `Default` value is not recommended as if you plan to use this with ApECID for full security, we recommend setting a proper value (i.e. closest to your SMBIOS or versions of macOS you plan to boot) since the `Default` value is likely to be updated in the future.
   * In addition, `Default` is set to `x86legacy` which will breaking booting High Sierra through Catalina.
   * `x86legacy` is not required for normal Mac models without T2's, any of the above values are supported.
 * The list of cached drivers may be different, resulting in the need to change the list of Added or Forced kernel drivers.
