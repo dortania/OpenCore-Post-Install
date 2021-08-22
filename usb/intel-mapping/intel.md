@@ -1,5 +1,14 @@
 # USB Mapping
 
+### Big Sur 11.3 and after
+XhciPortLimit is known to be broken after 11.3, it need to be set to False. USB mapping is a must-have now.
+You need to use [USBMap](https://github.com/corpnewt/USBMap) to map them correctly.
+You also need correctly mapped usb to use mouse/keyboard to log into macOS for [USBMap](https://github.com/corpnewt/USBMap).
+Deadlock!
+
+An alternative is to map usb ports in Windows: [USBToolBox](https://github.com/USBToolBox/tool).
+It's very similar to USBMap but also works in Windows.
+
 ### This guide is  outdated, see [USBMap's README](https://github.com/corpnewt/USBMap) for updated information until this guide is rewritten
 
 Table of Contents:
