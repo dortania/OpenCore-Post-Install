@@ -1,6 +1,6 @@
 # Battery Status
 
-With [ECEnabler.kext](https://github.com/1Revenger1/ECEnabler/releases/latest), ACPI patching is no longer required for working battery percentage. If you would like battery functionality beyond charge percentage (e.g. cycle count, or temperature/other supplemental data) or have dual batteries, you still will need to create ACPI patches. For this, we have linked resources below.
+With [ECEnabler.kext](https://github.com/1Revenger1/ECEnabler/releases/latest), ACPI patching is no longer required for working battery percentage. If you would like battery functionality beyond charge percentage (e.g. cycle count, or temperature/other supplemental data) or have dual batteries, you still will need to create ACPI patches - see the resources below.
 
 * If battery status is not working even with ECEnabler, make sure you have the [SMCBatteryManager](https://github.com/Acidanthera/VirtualSMC/releases/latest) VirtualSMC plugin enabled in your OpenCore configuration.
 
