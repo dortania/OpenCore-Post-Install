@@ -34,6 +34,8 @@ Refer to the VirtualSMC documentation for information on how to implement these 
 
 ::: details Legacy Patching Resources
 
+* Note: Rehabman's guides say to use ACPIBatteryManager, you must use SMCBatteryManager instead.
+
 ## DSDT Patching
 
 While custom DSDT injection should be avoided as to prevent issues with Windows and firmware updates, it can be quite helpful as a starting point since it's a bit easier to grasp and do yourself:
