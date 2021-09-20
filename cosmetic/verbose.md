@@ -10,7 +10,7 @@ Wanting a more clean booting experience with macOS without all that verbose text
 
 **`NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82`**:
 
-* Remove `-v` from boot-args in your config.plist
+* Remove `-v` from boot-args in your config.plist (Also if you have `keepsyms=1 debug=0x100` please remove these too. 
 
 **`NVRAM -> Add -> 4D1EDE05-38C7-4A6A-9CC6-4BCCA8B38C14`**:
 
