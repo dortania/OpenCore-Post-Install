@@ -161,7 +161,7 @@ This last one is what we're after, as we want something genuine but currently no
 
 **Note 2**: Using a "Purchase Date not Validated:" can cause issues down the line if another machine of the same serial ever gets activated, for initial setup it can help alleviate issues with your account but in the long run an invalid serial can be a safer choice.
 
-**Note3**: Checking too many serials may result in your access being denied to Apple Check Coverage page, to bypass this limitation it's advised to use a VPN or [tor browser](https://www.torproject.org/download/) or any other service that allows you to change/mask your IP address.
+**Note 3**: Checking too many serials may result in you being ratelimited. To bypass this limitation you can try clearing your cookies or changing your IP.
 
 ## Fixing En0
 
@@ -251,7 +251,7 @@ sudo rm -rf ~/Library/Messages
 
 ## Verifying your work one last time
 
-Grab [macserial](https://github.com/acidanthera/MacInfoPkg/releases) and run the following:
+Grab macserial from the [latest OpenCore release](https://github.com/acidanthera/OpenCorePkg/releases) and run the following:
 
 ```
 path/to/macserial -s

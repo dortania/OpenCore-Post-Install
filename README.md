@@ -10,12 +10,14 @@ And while the info here can be applied to both OpenCore and Clover, we primarily
 
 To start, not every section in this guide must be complete. It's up to each user whether they feel they want to add the finishing touches or resolve certain issues
 
-This guide is split into 6 parts:
+This guide is split into 8 sections:
 
 * [Universal](#universal)
   * All users are recommended to follow
 * [USB Fixes](#usb-fixes)
   * All users are recommended to follow as well
+* [Security](#security)
+  * For those who care about security and privacy.
 * [Laptop Specifics](#laptop-specifics)
   * Laptop users are recommended to follow in addition to the above
 * [Cosmetics](#cosmetics)
@@ -24,11 +26,11 @@ This guide is split into 6 parts:
   * Recommendations for users who are multi-booting
 * [Miscellaneous](#miscellaneous)
   * Other misc fixes, not all users will require these fixes
+* [GPU Patching](#gpu-patching)
+  * A more in-depth look into patching macOS to support various GPU hardware variations
 
 ### Universal
 
-* [Security and FileVault](./universal/security.md)
-  * For those who care about security and privacy.
 * [Fixing Audio](./universal/audio.md)
   * For those needing help resolving audio issues.
 * [Booting without USB](./universal/oc2hdd.md)
@@ -43,13 +45,16 @@ This guide is split into 6 parts:
   * Fixes and helps improve both hardware idle and boosting states.
 * [Fixing Sleep](./universal/sleep.md)
   * Numerous places to check for when fixing sleep.
-* [Fixing USB](./usb/README.md)
-  * Fixes for USB issues like missing ports and helping with sleep.
 
 ### USB Fixes
 
 * [USB Mapping: Introduction](./usb/README.md)
-  * Starting point for correcting your USB
+  * Starting point for USB issues like missing ports and helping with sleep.
+
+### Security
+
+* [Security and FileVault](./universal/security.md)
+  * Here we go through setting up some of OpenCore's great Security features
 
 ### Laptop Specifics
 
@@ -82,3 +87,7 @@ This guide is split into 6 parts:
   * Allows use to remove some kernel patches for better stability
 * [Emulated NVRAM](./misc/nvram.md)
   * For users who have broken NVRAM, or need to test it.
+
+### GPU Patching
+
+* [In-depth GPU patching](./gpu-patching/README.md)
