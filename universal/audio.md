@@ -83,7 +83,7 @@ So in this example, `alcid=11` would become  either:
 * `layout-id | Data | <0B000000>`
 * `layout-id | Number | <11>`
 
-Note that the final HEX/Data value should be 4 bytes in total(ie. `0B 00 00 00` ), for layout IDs surpassing 255(`FF 00 00 00`) will need to remember that the bytes are swapped. So 256 will become `FF 01 00 00`
+Note that the final HEX/Data value should be 4 bytes in total(ie. `0B 00 00 00` ), for layout IDs surpassing 255(`FF 00 00 00`) will need to remember that the bytes are swapped. So 256 will become `00 01 00 00`
 
 * HEX Swapping and data size can be completely ignored using the Decimal/Number method
 
