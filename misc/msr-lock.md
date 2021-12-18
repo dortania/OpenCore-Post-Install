@@ -6,7 +6,7 @@ This guide is only recommended for users who have already installed macOS, for u
 
 ## What is CFG-Lock
 
-CFG-Lock is a setting in your BIOS that allows for a specific register(in this case the MSR 0xE2) to be written to. By default, most motherboards lock this variable with many even hiding the option outright in the GUI. And why we care about it is that macOS actually wants to write to this variable, and not just one part of macOS. Instead both the Kernel(XNU) and AppleIntelPowerManagement want this register.
+CFG-Lock is a setting in your BIOS that allows for a specific register(in this case the MSR 0xE2) to be written to. By default, most motherboards lock this variable with many even hiding the option outright in the GUI. And why we care about it is that macOS actually wants to write to this variable, and not just one part of macOS. Instead both the Kernel (XNU) and AppleIntelPowerManagement want this register.
 
 So to fix it we have 2 options:
 
@@ -29,7 +29,7 @@ Before proceeding with the rest of this guide, you'll first need to check if you
 To check it, you can proceed into two ways:
 
 1. [Use the DEBUG version of OpenCore and check what the log says about CFG Lock](#checking-via-opencore-logs)
-2. [Use a tool called `VerifyMsrE2` which will speed up the whole checking process](#checking-via-verifymsre2)
+2. [Use a tool called `ControlMsrE2` which will speed up the whole checking process](#checking-via-ControlMsrE2)
 
 ### Checking via OpenCore logs
 
@@ -45,9 +45,9 @@ If it returns `1`, then you proceed with this guide here: [Disabling CFG Lock](#
 
 Otherwise(ie. `0`), no reason to continue and you can simply disable `Kernel -> Quirks -> AppleCpuPmCfgLock` and `Kernel -> Quirks -> AppleXcpmCfgLock`.
 
-### Checking via VerifyMsrE2
+### Checking via ControlMsrE2
 
-To start, download [VerifyMsrE2](https://github.com/acidanthera/OpenCorePkg/releases) and add this tool inside `EFI/OC/Tools` and `config.plist`(this can be done with ProperTree's snapshot function(ie. Cmd+R)). Next, boot OpenCore and select the `VerifyMsrE2.efi` entry. This should provide you one of the following:
+To start, download [ControlMsrE2](https://github.com/acidanthera/OpenCorePkg/releases) and add this tool inside `EFI/OC/Tools` and `config.plist`(this can be done with ProperTree's snapshot function(ie. Cmd+R)). Next, boot OpenCore and select the `ControlMsrE2.efi` entry. This should provide you one of the following:
 
 * CFG-Lock is enabled:
 
