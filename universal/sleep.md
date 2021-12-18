@@ -119,6 +119,10 @@ Other iGPU notes:
 * Some systems with iGPUs (e.g. Kaby Lake and Coffee Lake) may cause system instability in lower power states, and can sometimes manifest as NVMe kernel panics. To resolve, you can add `forceRenderStandby=0` to your boot-args to disable RC6 Render Standby. See here for more info: [IGP causes NVMe Kernel Panic CSTS=0xffffffff #1193](https://github.com/acidanthera/bugtracker/issues/1193)
 * Certain Ice Lake laptops may also kernel panic on `Cannot allow DC9 without disallowing DC6` due to issues with transitioning states. A work around for this is using either `-noDC9` or `-nodisplaysleepDC6` in your boot-args
 
+Special note for RX 5000 series users:
+
+* Having Resizeable BAR Support might cause wake up isses. Please ensure this is set on "**Disabled**" instead of set to "Auto".
+
 Special note for 4k Displays with AMD dGPUs:
 
 * Some displays may fail to wake randomly, mainly caused by AGDC preferences. To fix, apply this to your dGPU in DeviceProperties:
