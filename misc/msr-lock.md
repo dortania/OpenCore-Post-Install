@@ -105,7 +105,7 @@ Now the fun part!
 
 ![](../images/extras/msr-lock-md/VarStoreID-Find.png)
 
-1. Run the Modified GRUB Shell and write the following command where `CpuSetup` is replaced with the VarStore Name you've previously extracted and `0x43` is replaced with the offset you've previously extracted and `1` is replaced with the size you previously extracted:
+1. Run the Modified GRUB Shell and write the following command where `CpuSetup` is replaced with the VarStore Name you've previously extracted and `0x43` is replaced with the offset you've previously extracted and `1` is replaced with the size you previously extracted (note that it is case sensitive):
 
    ```
    setup_var_cv CpuSetup 0x43 1 0x00
