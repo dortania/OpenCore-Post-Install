@@ -110,6 +110,10 @@ Now the fun part!
    ```
    setup_var_cv CpuSetup 0x43 1 0x00
    ```
+If that doesn't work, run the following command:
+   ```
+   setup_var_3 0x43 0x00
+   ```
 
 At this point, run either `reboot` in the shell or simply reboot your machine. And with that, you should have `CFG Lock` unlocked! To verify, you can run over the methods listed at [Checking if your firmware supports CFG Lock unlocking](#checking-if-your-firmware-supports-cfg-lock-unlocking) to verify whether the variable was set correctly then finally disable `Kernel -> Quirks -> AppleCpuPmCfgLock` and `Kernel -> Quirks -> AppleXcpmCfgLock`.
 
