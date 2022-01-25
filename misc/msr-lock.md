@@ -91,14 +91,14 @@ Now the fun part!
 ![](../images/extras/msr-lock-md/uefi-tool.png)
 
 1. You'll find that this string is found within a Setup folder, right-click and export as `Setup.bin` (or even `Setup.sct`)
-2. 
+2.
 3. Open your setup file with `ifrextract` and export as a .txt file with terminal:
 
    ```
    path/to/ifrextract path/to/Setup.bin path/to/Setup.txt
    ```
 
-3. Open the text file and search for `CFG Lock, VarStoreInfo (VarOffset/VarName):` and note the offset right after it (ie: `0x43`) and the VarStore ID right after the offset (ie: `0x3`) and the size after the VarStoreId (ie: `1`)
+4. Open the text file and search for `CFG Lock, VarStoreInfo (VarOffset/VarName):` and note the offset right after it (ie: `0x43`) and the VarStore ID right after the offset (ie: `0x3`) and the size after the VarStoreId (ie: `1`)
 
 ![](../images/extras/msr-lock-md/MSR-Find.png)
 
@@ -111,7 +111,9 @@ Now the fun part!
    ```
    setup_var_cv CpuSetup 0x43 1 0x00
    ```
+
 If that doesn't work, run the following command:
+
    ```
    setup_var_3 0x43 0x00
    ```
