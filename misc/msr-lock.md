@@ -91,7 +91,8 @@ Now the fun part!
 ![](../images/extras/msr-lock-md/uefi-tool.png)
 
 1. You'll find that this string is found within a Setup folder, right-click and export as `Setup.bin` (or even `Setup.sct`)
-2. Open your setup file with `ifrextract` and export as a .txt file with terminal:
+2. 
+3. Open your setup file with `ifrextract` and export as a .txt file with terminal:
 
    ```
    path/to/ifrextract path/to/Setup.bin path/to/Setup.txt
@@ -101,7 +102,7 @@ Now the fun part!
 
 ![](../images/extras/msr-lock-md/MSR-Find.png)
 
-4. Search for `VarStoreId: 0x3` where `0x3` is replaced with the value of the VarStoreId you found and note the `Name` after it (ie: `CpuSetup`)
+1. Search for `VarStoreId: 0x3` where `0x3` is replaced with the value of the VarStoreId you found and note the `Name` after it (ie: `CpuSetup`)
 
 ![](../images/extras/msr-lock-md/VarStoreID-Find.png)
 
