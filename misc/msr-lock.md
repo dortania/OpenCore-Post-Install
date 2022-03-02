@@ -97,14 +97,14 @@ Now the fun part!
    path/to/ifrextract path/to/Setup.bin path/to/Setup.txt
    ```
 
-3. Open the text file and search for `CFG Lock, VarStoreInfo (VarOffset/VarName):` and note the offset right after it (ie: `0x43`) and the VarStore ID right after the offset (ie: `0x3`) and the size after the VarStoreId (ie: `1`)
+3. Open the text file and search for `CFG Lock, VarStoreInfo (VarOffset/VarName):` and note the offset right after it (ie: `0x43`) and the VarStore ID right after the offset (ie: `0x3`)
 ![](../images/extras/msr-lock-md/MSR-Find.png)
 
 4. Search for `VarStoreId: 0x3` where `0x3` is replaced with the value of the VarStoreId you found and note the `Name` after it (ie: `CpuSetup`)
 
 ![](../images/extras/msr-lock-md/VarStoreID-Find.png)
 
-1. Run the Modified GRUB Shell and write the following command where `CpuSetup` is replaced with the VarStore Name you've previously extracted and `0x43` is replaced with the offset you've previously extracted and `1` is replaced with the size you previously extracted (note that it is case sensitive):
+1. Run the Modified GRUB Shell and write the following command where `CpuSetup` is replaced with the VarStore Name you've previously extracted and `0x43` is replaced with the offset you've previously extracted:
 
    ```
    setup_var_cv CpuSetup 0x43 0x01 0x00
