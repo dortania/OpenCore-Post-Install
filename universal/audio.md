@@ -250,11 +250,11 @@ And with this done, you can reboot and AppleALC should now ignore your external 
 
 ### AppleALC not working from Windows reboot
 
-If you find that rebooting from Windows into macOS breaks audio, we recommend either adding `alctsel=1` to boot-args or add this property to your audio device in DeviceProperties:
+If you find that rebooting from Windows into macOS breaks audio, we recommend either adding `alctcsel=1` to boot-args or add this property to your audio device in DeviceProperties:
 
 ```
 DeviceProperties
 | --- > Add
  | --- > PciRoot(0x32)/Pci(0x0,0x0)/Pci(0x0,0x0)(Adjust to your device)
-  | ----> alctsel | Data | 01000000
+  | ----> alctcsel | Data | 01000000
 ```
