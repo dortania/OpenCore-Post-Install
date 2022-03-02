@@ -52,6 +52,8 @@ config.plist
           ├── boot-args | String | alcid=11
 ```
 
+If no layout ID works, try creating [SSDT-HPET fixes](https://dortania.github.io/Getting-Started-With-ACPI/Universal/irq.html) for your system - these are required on laptops and some desktops for AppleHDA to work.
+
 ## Making Layout ID more permanent
 
 Once you've found a Layout ID that works with your hack, we can create a more permanent solution for closer to how real macs set their Layout ID.
