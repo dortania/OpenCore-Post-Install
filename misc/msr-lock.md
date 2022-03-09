@@ -97,32 +97,17 @@ Now the fun part!
    path/to/ifrextract path/to/Setup.bin path/to/Setup.txt
    ```
 
-3. Open the text file and search for `CFG Lock, VarStoreInfo (VarOffset/VarName):` and note the offset right after it (ie: `0x5A4`)
+3. Open the text file and search for `CFG Lock, VarStoreInfo (VarOffset/VarName):` and note the offset right after it (ie: `0x43`) and the VarStore ID right after the offset (ie: `0x3`)
+![](../images/extras/msr-lock-md/MSR-Find.png)
 
-![](../images/extras/msr-lock-md/cfg-find.png)
+4. Search for `VarStoreId: 0x3` where `0x3` is replaced with the value of the VarStoreId you found and note the `Name` after it (ie: `CpuSetup`)
 
-1. Run the Modified GRUB Shell and write the following command where `0x5A4` is replaced with the value you've previously extracted:
+![](../images/extras/msr-lock-md/VarStoreID-Find.png)
 
-   ```
-   setup_var 0x5A4
-   ```
-
-If you get an error such as `error: offset is out of range` run the following command:
+1. Run the Modified GRUB Shell and write the following command where `CpuSetup` is replaced with the VarStore Name you've previously extracted and `0x43` is replaced with the offset you've previously extracted:
 
    ```
-   setup_var2 0x5A4
-   ```
-
-   Just as before, if you still get `error: offset is out of range` you'd need to use this command:
-
-   ```
-   setup_var_3 0x5A4
-   ```
-
-   If you don't get any type of error, write the command which doesn't lead to `error: offset is out of range` (e.g. `setup_var_3 0x5A4`) and write `0x00` after it:
-
-   ```
-   setup_var_3 0x5A4 0x00
+   setup_var_cv CpuSetup 0x43 0x01 0x00
    ```
 
 At this point, run either `reboot` in the shell or simply reboot your machine. And with that, you should have `CFG Lock` unlocked! To verify, you can run over the methods listed at [Checking if your firmware supports CFG Lock unlocking](#checking-if-your-firmware-supports-cfg-lock-unlocking) to verify whether the variable was set correctly then finally disable `Kernel -> Quirks -> AppleCpuPmCfgLock` and `Kernel -> Quirks -> AppleXcpmCfgLock`.
