@@ -16,6 +16,7 @@ So for this example, we'll assume your codec is ALC1220. To verify yours, you ha
 
 * Checking motherboard's spec page and manual
 * Check Device Manager in Windows
+* Check AIDA64 Extreme in Windows
 * Run `cat` in terminal on Linux
   * `cat /proc/asound/card0/codec#0 | less`
 
