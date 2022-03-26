@@ -15,8 +15,6 @@ To start we'll need the following:
   * MUST be UEFI/GPT based
 * [Brigadier](https://github.com/corpnewt/brigadier)
   * To download the BootCamp drivers
-* SMBIOS injection enabled
-  * As the drivers have a SMBIOS check
 * Setup [LauncherOption](../multiboot/bootstrap.md)
   * Not required but can help alleviate headaches when Windows erases the BOOTx64.efi OpenCore uses
 
@@ -50,9 +48,15 @@ macOS users will next need to expand WindowsSupport.dmg and place it somewhere W
 
 ![](../images/bootcamp-md/done.png)
 
-Next navigate to the `bootcamp-{filename}\BootCamp` folder and run the Setup.exe:
+Next, within Windows, you have two choices.
+
+Either navigate to the `bootcamp-{filename}\BootCamp` folder and run `Setup.exe`, this requires correct spoofing of SMBIOS SystemProductName - shown as System Model in Windows - to launch:
 
 ![](../images/bootcamp-md/location.png)
+
+Alternatively, launch `bootcamp-{filename}\BootCamp\Drivers\Apple\BootCamp.msi` as Administrator - for instance by starting it directly from an Administrator command shell - this skips the BootCamp model check entirely:
+
+![](../images/bootcamp-md/location_msi.png)
 
 Once all is finished, you now have BootCamp switching! There should be a little BootCamp icon in you tray now that you can select which drive to boot to.
 

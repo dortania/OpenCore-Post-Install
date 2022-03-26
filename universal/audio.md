@@ -16,6 +16,9 @@ So for this example, we'll assume your codec is ALC1220. To verify yours, you ha
 
 * Checking motherboard's spec page and manual
 * Check Device Manager in Windows
+* Check HWInfo64 in Windows
+  * Make sure both Summary-only and Sensors-only are deselected when opening
+* Check AIDA64 Extreme in Windows
 * Run `cat` in terminal on Linux
   * `cat /proc/asound/card0/codec#0 | less`
 
@@ -52,6 +55,8 @@ config.plist
           ├── boot-args | String | alcid=11
 ```
 
+If no layout ID works, try creating [SSDT-HPET fixes](https://dortania.github.io/Getting-Started-With-ACPI/Universal/irq.html) for your system - these are required on laptops and some desktops for AppleHDA to work.
+
 ## Making Layout ID more permanent
 
 Once you've found a Layout ID that works with your hack, we can create a more permanent solution for closer to how real macs set their Layout ID.
@@ -83,7 +88,7 @@ So in this example, `alcid=11` would become  either:
 * `layout-id | Data | <0B000000>`
 * `layout-id | Number | <11>`
 
-Note that the final HEX/Data value should be 4 bytes in total(ie. `0B 00 00 00` ), for layout IDs surpassing 255(`FF 00 00 00`) will need to remember that the bytes are swapped. So 256 will become `FF 01 00 00`
+Note that the final HEX/Data value should be 4 bytes in total(ie. `0B 00 00 00` ), for layout IDs surpassing 255(`FF 00 00 00`) will need to remember that the bytes are swapped. So 256 will become `00 01 00 00`
 
 * HEX Swapping and data size can be completely ignored using the Decimal/Number method
 
@@ -204,7 +209,7 @@ Or Specify via DeviceProperties(in your HDEF device):
 alc-delay | Number | 1000
 ```
 
-The above boot-arg/property will delay AppleHDAController by 1000 ms(1 second), note the ALC delay cannot exceed [3000 ms](https://github.com/acidanthera/AppleALC/blob/master/AppleALC/kern_alc.cpp#L308L311)
+The above boot-arg/property will delay AppleHDAController by 1000 ms(1 second), note the ALC delay cannot exceed [3000 ms](https://github.com/acidanthera/AppleALC/blob/2ed6af4505a81c8c8f5a6b18c249eb478266739c/AppleALC/kern_alc.cpp#L373)
 
 ### AppleALC not working correctly with multiple sound cards
 
@@ -250,11 +255,11 @@ And with this done, you can reboot and AppleALC should now ignore your external 
 
 ### AppleALC not working from Windows reboot
 
-If you find that rebooting from Windows into macOS breaks audio, we recommend either adding `alctsel=1` to boot-args or add this property to your audio device in DeviceProperties:
+If you find that rebooting from Windows into macOS breaks audio, we recommend either adding `alctcsel=1` to boot-args or add this property to your audio device in DeviceProperties:
 
 ```
 DeviceProperties
 | --- > Add
  | --- > PciRoot(0x32)/Pci(0x0,0x0)/Pci(0x0,0x0)(Adjust to your device)
-  | ----> alctsel | Data | 01000000
+  | ----> alctcsel | Data | 01000000
 ```
