@@ -34,7 +34,7 @@ So the process goes as follows:
 
   * `EFI/BOOT/BOOTx64.efi`
   * `EFI/OC/OpenCore.efi`
-  * `EFI/OC/Drivers/OpenRuntime`(**Don't forget this one, OpenCore will not boot with mismatched versions**)
+  * `EFI/OC/Drivers/OpenRuntime.efi`(**Don't forget this one, OpenCore will not boot with mismatched versions**)
 
 * You can also update other drivers you have if present, these are just the ones that **must** be updated in order to boot correctly
 
@@ -113,3 +113,8 @@ So the process goes as follows:
 
 * 11.0.1
   * See here: [OpenCore and macOS 11: Big Sur](https://dortania.github.io/OpenCore-Install-Guide/extras/big-sur/)
+
+**macOS Monterey**:
+
+* 12.0.1
+  * See here: [OpenCore and macOS 12: Monterey](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html)
