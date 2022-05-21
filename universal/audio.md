@@ -195,7 +195,7 @@ This will check if the signature is valid for AppleHDA, if it's not then you're 
 
 ### AppleALC working inconsistently
 
-Sometimes race conditions can occur where your hardware isn't initialized in time for AppleHDAController resulting in no sound output. To get around this, you can either:
+Sometimes rare conditions can occur where your hardware isn't initialized in time for AppleHDAController resulting in no sound output. To get around this, you can either:
 
 Specify in boot-args the delay:
 
