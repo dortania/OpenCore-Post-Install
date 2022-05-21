@@ -113,3 +113,8 @@ So the process goes as follows:
 
 * 11.0.1
   * See here: [OpenCore and macOS 11: Big Sur](https://dortania.github.io/OpenCore-Install-Guide/extras/big-sur/)
+
+**macOS Monterey**:
+
+* 12.0.1
+  * See here: [OpenCore and macOS 12: Monterey](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html)
