@@ -171,7 +171,9 @@ Here under Network Interfaces (network card icon), look for `en0` under `BSD` an
 
 - **Note**: en0 can be either Wifi, ethernet or even Thunderbolt.
 
-> What if I don't have En0 at all?!?
+### What if I don't have En0 at all?!?
+
+If you do have an `en0`, skip to the next section.
 
 Well, we'll want to reset macOS so it can build the interfaces fresh, open terminal and run the following:
 
@@ -183,6 +185,8 @@ sudo rm /Library/Preferences/SystemConfiguration/preferences.plist
 Once done reboot and check again.
 
 If this doesn't work, add [NullEthernet.kext](https://bitbucket.org/RehabMan/os-x-null-ethernet/downloads/) and [ssdt-rmne.aml](https://github.com/RehabMan/OS-X-Null-Ethernet/blob/master/ssdt-rmne.aml) to your EFI and config.plist under Kernel -> Add and ACPI -> Add respectively. The SSDT is precompiled so no extra work needed, reminder compiled files have a .aml extension and .dsl can be seen as source code.
+
+### Making en0 show as built-in
 
 ![Find if set as Built-in](../images/post-install/iservices-md/en0-built-in-info.png)
 
