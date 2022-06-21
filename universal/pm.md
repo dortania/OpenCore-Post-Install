@@ -43,7 +43,13 @@ XCPM does not natively support Haswell-E and Broadwell-E, this means we need to 
     * Cpuid1Data: `D4060300 00000000 00000000 00000000`
     * Cpuid1Mask: `FFFFFFFF 00000000 00000000 00000000`
 
-## Using CPU Friend
+## Manually Modifying Frequency vectors
+
+In most cases, the native CPU power management data shipped with macOS works out of the box. If you're experiencing issues, changing SMBIOS to something more appropriate to your system will provide different frequency vectors and may be better for your usecase. In the cases where manual tuning is required (unsupported CPU or a CPU not used in any Macs), you can use CPUFriend to inject modified frequency vectors, but if you don't know what you're doing, you can severely break power management.
+
+**In most cases, you do not have to do this. Change your SMBIOS instead.**
+
+### Using CPUFriend
 
 To start, we're gonna need a couple things:
 
@@ -116,7 +122,7 @@ This final entry is to help macOS out what kind of overall performance you'd lik
 Once you're finished, you'll be provided with a CPUFriendDataProvider.kext and ssdt_data.aml. Which you choose is your preference but I recommend the kext variant to avoid any headaches with data injection into Windows and Linux.
 
 * **Note**: Load order does not matter with the CPUFriendDataProvider as it's just a plist-only kext
-* **Note 2**: Wake issues resulting from CPUFriend is likely due to incorrect frequency vectors, every system is unique so you'll need to play around until you get a stable config. Kernel panics will have `Sleep Wake failure in efi`.
+* **Note 2**: Wake issues resulting from CPUFriend is likely due to incorrect frequency vectors, every system is unique so you'll need to play around until you get a stable config. Kernel panics will have `Sleep Wake failure in efi`. Reusing frequency vectors from old macOS versions can also cause issues, so recreate your frequency vectors if you update macOS.
 * **Note 3**: If you do choose to use ssdt_data.aml, note that SSDT-PLUG is no longer needed. However the setup for this SSDT is broken on HEDT platforms like X99 and X299, so we highly recommend SSDT-PLUG with CPUFriendDataProvider.kext instead.
 
 ## Sandy and Ivy Bridge Power Management
