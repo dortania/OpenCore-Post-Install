@@ -2,32 +2,40 @@
 
 ## Enabling X86PlatformPlugin
 
-So before we can fine tune power management to our liking, we need to first make sure Apple's XCPM core is loaded. Note that this is supported **only on Haswell and newer**, consumer Sandy, Ivy Bridge and AMD CPUs should refer to the bottom of the guides:
+So before we can fine tune power management to our liking, we need to first make sure Apple's XCPM core is loaded. Note that this is supported **only on Haswell and newer**, consumer Sandy, Ivy Bridge and AMD CPUs should refer to the following:
 
 * [Sandy and Ivy Bridge Power Management](../universal/pm.md#sandy-and-ivy-bridge-power-management)
 * [AMD CPU Power Management](../universal/pm.md#amd-cpu-power-management)
 
-Ivy Bridge and Ivy Bridge-E note: Apple dropped support for XCPM back in macOS Sierra, so XCPM is only supported between 10.8.5 and 10.11.6. Newer OSes will require the [ssdtPRgen method](../universal/pm.md#sandy-and-ivy-bridge-power-management)
+::: details Ivy Bridge and Ivy Bridge-E note
 
-* To enabled XCPM in older OSes(ie. 10.11 and older), simply add `-xcpm` to your boot-args
+Apple dropped support for XCPM back in macOS Sierra, so XCPM is only supported between 10.8.5 and 10.11.6. Newer OSes will require the [ssdtPRgen method](../universal/pm.md#sandy-and-ivy-bridge-power-management)
 
-To start, grab [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) and look for `AppleACPICPU`(note if you use search, it won't show the children so clear your search once you've found the entry):
+:::
+
+::: tip
+
+To enable XCPM in 10.11 and older, simply add `-xcpm` to your boot-args.
+
+:::
+
+To start, grab [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) and look for `AppleACPICPU` (note that if you use search, it won't show the children so clear the search box once you've found the entry):
 
 XCPM Present           |  Missing XCPM
 :-------------------------:|:-------------------------:
 ![](../images/post-install/pm-md/pm-working.png)  |  ![](../images/post-install/pm-md/pm-not-working.png)
 
-As you can see from the left image, we have the X86PlatformPlugin attached meaning Apple's CPU Power Management Drivers are doing their thing(Note the CPU's name does not matter, CPU names come in many variations such as CP00, CPU0, PR00, etc. What matters is that AppleACPICPU attaches to it). If you get something like to the right image, then there's likely an issue. Make sure to check the following:
+As you can see from the image on the left, we have X86PlatformPlugin attached meaning Apple's CPU power management drivers are doing their thing (note that the name of the CPU does not matter). If you see something similar to the image on the right, then there's likely an issue. Make sure to check the following:
 
 * SSDT-PLUG.**aml** is both present and enabled in your config.plist and EFI/OC/ACPI
   * If you're missing this, head to [Getting Started With ACPI](https://dortania.github.io/Getting-Started-With-ACPI) on how to make this
-* SSDT-PLUG is set to the first thread of your CPU, you can check by selecting the first CPU listed(`CP00` for our example) and make sure you have this in the properties:
+* SSDT-PLUG is set to the first thread of your CPU, you can check by selecting the first CPU listed (`CP00` for our example) and make sure you see this in the properties:
 
 ```
 plugin-type | Number | 0x1
 ```
 
-**X99 Note**:
+::: details X99 Note
 
 XCPM does not natively support Haswell-E and Broadwell-E, this means we need to spoof the CPU ID into a model that does supports XCPM:
 
@@ -43,11 +51,23 @@ XCPM does not natively support Haswell-E and Broadwell-E, this means we need to 
     * Cpuid1Data: `D4060300 00000000 00000000 00000000`
     * Cpuid1Mask: `FFFFFFFF 00000000 00000000 00000000`
 
+:::
+
 ## Manually Modifying Frequency vectors
 
-In most cases, the native CPU power management data shipped with macOS works out of the box. If you're experiencing issues, changing SMBIOS to something more appropriate to your system will provide different frequency vectors and may be better for your usecase. In the cases where manual tuning is required (unsupported CPU or a CPU not used in any Macs), you can use CPUFriend to inject modified frequency vectors, but if you don't know what you're doing, you can severely break power management.
+In most cases, the native CPU power management data shipped with macOS work out of the box. If you're experiencing issues, changing your SMBIOS to something more appropriate to your system will provide different data and may be better for your usecase. In the cases where manual tuning is required, you can use CPUFriend to inject modified power management data, but if you don't know what you're doing, you can severely break power management.
 
-**In most cases, you do not have to do this. Change your SMBIOS instead.**
+::: warning
+
+In most cases, you do not have to do this. Change your SMBIOS instead.
+
+:::
+
+::: tip
+
+This is a example on how to change some parts of power management data. For more information, you should check out [CPUFriend's documentation](https://github.com/acidanthera/CPUFriend/blob/master/Instructions.md).
+
+:::
 
 ### Using CPUFriend
 
@@ -60,13 +80,13 @@ To start, we're gonna need a couple things:
 
 ### LFM: Low Frequency Mode
 
-Now lets run CPUFriendFriend.command:
+Now let's run CPUFriendFriend.command:
 
 ![](../images/post-install/pm-md/lpm.png)
 
 When you first open up CPUFriendFriend, you'll be greeted with a prompt for choosing your LFM value. This can be seen as the floor of your CPU, or the lowest value it'll idle at. This value can greatly help with sleep functioning correctly as macOS needs to be able to transition from S3(sleep) to S0(wake) easily.
 
-To determine your LPM value, you can either:
+To determine your LFM value, you can either:
 
 * Look for the `TDP-down Frequency` on Intel's [ARK site](https://ark.Intel.com/)
   * Note most CPUs do not have a listed value, so you'll need to determine yourself
@@ -122,7 +142,7 @@ This final entry is to help macOS out what kind of overall performance you'd lik
 Once you're finished, you'll be provided with a CPUFriendDataProvider.kext and ssdt_data.aml. Which you choose is your preference but I recommend the kext variant to avoid any headaches with data injection into Windows and Linux.
 
 * **Note**: Load order does not matter with the CPUFriendDataProvider as it's just a plist-only kext
-* **Note 2**: Wake issues resulting from CPUFriend is likely due to incorrect frequency vectors, every system is unique so you'll need to play around until you get a stable config. Kernel panics will have `Sleep Wake failure in efi`. Reusing frequency vectors from old macOS versions can also cause issues, so recreate your frequency vectors if you update macOS.
+* **Note 2**: Wake issues resulting from CPUFriend is likely due to incorrect power management data, every system is unique so you'll need to play around until you get a stable config. Kernel panics will have `Sleep Wake failure in efi`. Reusing power management data from old macOS versions can also cause issues, so recreate your data provider if you update macOS.
 * **Note 3**: If you do choose to use ssdt_data.aml, note that SSDT-PLUG is no longer needed. However the setup for this SSDT is broken on HEDT platforms like X99 and X299, so we highly recommend SSDT-PLUG with CPUFriendDataProvider.kext instead.
 
 ## Sandy and Ivy Bridge Power Management
@@ -134,7 +154,7 @@ What we'll need:
 * Ensure CpuPm and Cpu0Ist tables are **NOT** dropped
 * [ssdtPRGen](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 
-Initialing with OpenCore's setup in the Ivy Bridge section, we recommended users drop their CpuPm and Cpu0Ist to avoid any issues with AppleIntelCPUPowerManagement.kext. But dropping these tables have the adverse affect of breaking turbo boost in Windows. So to resolve this, we'll want to keep our OEM's table but we'll want to add a new table to supplement data only for macOS. So once we're done creating our CPU-PM table, we'll re-add our OEM's CPU SSDTs.
+Initially with the setup in the Ivy Bridge section, we recommended users drop their CpuPm and Cpu0Ist to avoid any issues with AppleIntelCPUPowerManagement.kext. But dropping these tables has the adverse affect of breaking turbo boost in Windows. So to resolve this, we'll want to keep our OEM's table but we'll want to add a new table to supplement data only for macOS. So once we're done creating our CPU-PM table, we'll re-add our OEM's CPU SSDTs.
 
 To start, grab your config.plist then head to ACPI -> Delete and ensure both of these sections have `Enabled` set to YES:
 
@@ -166,7 +186,7 @@ Once you're done, you'll be provided with an SSDT.aml under `/Users/your-name>/L
 
 Remember to now add this to both EFI/OC/ACPI and your config.plist, I recommend renaming it to SSDT-PM to find it more easily.
 
-Finally, we can disable our previous ACPI -> Delete entries(`Enabled` set to NO):
+Finally, we can disable our previous ACPI -> Delete entries (`Enabled` set to NO):
 
 | Key | Type | Value |
 | :--- | :--- | :--- |
