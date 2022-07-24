@@ -53,7 +53,7 @@ XCPM does not natively support Haswell-E and Broadwell-E, this means we need to 
 
 :::
 
-## Manually Modifying Frequency vectors
+## Manually Modifying Power Management Data
 
 In most cases, the native CPU power management data shipped with macOS work out of the box. If you're experiencing issues, changing your SMBIOS to something more appropriate to your system will provide different data and may be better for your usecase. In the cases where manual tuning is required, you can use CPUFriend to inject modified power management data, but if you don't know what you're doing, you can severely break power management.
 
