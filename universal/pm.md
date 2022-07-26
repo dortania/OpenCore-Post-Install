@@ -9,7 +9,7 @@ So before we can fine tune power management to our liking, we need to first make
 
 ::: details Ivy Bridge and Ivy Bridge-E note
 
-Apple dropped support for XCPM back in macOS Sierra, so XCPM is only supported between 10.8.5 and 10.11.6. Newer OSes will require the [ssdtPRgen method](../universal/pm.md#sandy-and-ivy-bridge-power-management)
+Apple dropped support for XCPM on these models back in macOS Sierra, so XCPM is only supported between 10.8.5 and 10.11.6. You will still need [ssdtPRgen](../universal/pm.md#sandy-and-ivy-bridge-power-management).
 
 :::
 
@@ -25,7 +25,7 @@ XCPM Present           |  Missing XCPM
 :-------------------------:|:-------------------------:
 ![](../images/post-install/pm-md/pm-working.png)  |  ![](../images/post-install/pm-md/pm-not-working.png)
 
-As you can see from the image on the left, we have X86PlatformPlugin attached meaning Apple's CPU power management drivers are doing their thing (note that the name of the CPU does not matter). If you see something similar to the image on the right, then there's likely an issue. Make sure to check the following:
+As you can see from the image on the left, we have X86PlatformPlugin attached meaning Apple's CPU power management drivers are working (note that the name of the CPU does not matter). If you see something similar to the image on the right, then there's likely an issue. Make sure to check the following:
 
 * SSDT-PLUG.**aml** is both present and enabled in your config.plist and EFI/OC/ACPI
   * If you're missing this, head to [Getting Started With ACPI](https://dortania.github.io/Getting-Started-With-ACPI) on how to make this
@@ -65,7 +65,7 @@ In most cases, you do not have to do this. Change your SMBIOS instead.
 
 ::: tip
 
-This is a example on how to change some parts of power management data. For more information, you should check out [CPUFriend's documentation](https://github.com/acidanthera/CPUFriend/blob/master/Instructions.md).
+This is an example on how to change some parts of power management data. For more information, you should check out [CPUFriend's documentation](https://github.com/acidanthera/CPUFriend/blob/master/Instructions.md).
 
 :::
 
@@ -258,6 +258,6 @@ For some boards, you may need to ensure the following BIOS options are set for C
 
 ## AMD CPU Power Management
 
-While macOS might not officially support AMD CPU Power management, there are community efforts to add it. Specifically being [SMCAMDProcessor](https://github.com/trulyspinach/SMCAMDProcessor). Note that when adding this kext, it should be after VirtualSMC in your config.plist as it's a plugin.
+While macOS might not officially support AMD CPU power management, there are community efforts to add it, specifically being [AMDRyzenCPUPowerManagement](https://github.com/trulyspinach/SMCAMDProcessor).
 
-**Warning**: This kext is known to create stability issues as well, if you're receiving random kernel panics or issues booting do keep in mind this kext may be the culprit.
+**Warning**: This kext is known to be unstable, if you're receiving random kernel panics or issues booting do keep in mind this kext may be the culprit.
