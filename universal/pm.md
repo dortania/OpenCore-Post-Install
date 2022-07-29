@@ -19,13 +19,13 @@ To enable XCPM in 10.11 and older, simply add `-xcpm` to your boot-args.
 
 :::
 
-To start, grab [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) and look for `AppleACPICPU` (note that if you use search, it won't show the children so clear the search box once you've found the entry):
+To start, grab [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) and look for `AppleACPICPU` (Note that if you use search, IORegistryExplorer won't show the children of any services found. Be sure to clear the search box once you've found the entry):
 
 XCPM Present           |  Missing XCPM
 :-------------------------:|:-------------------------:
 ![](../images/post-install/pm-md/pm-working.png)  |  ![](../images/post-install/pm-md/pm-not-working.png)
 
-As you can see from the image on the left, we have X86PlatformPlugin attached meaning Apple's CPU power management drivers are working (note that the name of the CPU does not matter). If you see something similar to the image on the right, then there's likely an issue. Make sure to check the following:
+As you can see from the image on the left, we have X86PlatformPlugin attached. This means that Apple's CPU power management drivers are working (the name of the CPU does not matter). If you see something similar to the image on the right, then there's likely an issue. Make sure to check the following:
 
 * SSDT-PLUG.**aml** is both present and enabled in your config.plist and EFI/OC/ACPI
   * If you're missing this, head to [Getting Started With ACPI](https://dortania.github.io/Getting-Started-With-ACPI) on how to make this
