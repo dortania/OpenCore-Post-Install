@@ -29,7 +29,7 @@ As you can see from the image on the left, we have X86PlatformPlugin attached me
 
 * SSDT-PLUG.**aml** is both present and enabled in your config.plist and EFI/OC/ACPI
   * If you're missing this, head to [Getting Started With ACPI](https://dortania.github.io/Getting-Started-With-ACPI) on how to make this
-* SSDT-PLUG is set to the first thread of your CPU, you can check by selecting the first CPU listed (`CP00` for our example) and make sure you see this in the properties:
+* SSDT-PLUG is set to the first thread of your CPU. You can check by selecting the first CPU listed (`CP00` for our example) and make sure you see this in the properties:
 
 ```
 plugin-type | Number | 0x1
