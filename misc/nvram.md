@@ -68,16 +68,16 @@ Within your config.plist:
 * **Misc -> Security**:
   * `ExposeSensitiveData`: set to `0x3`
 * **NVRAM**:
-  * `LegacyEnable`: set to `YES`
   * `LegacyOverwrite` set to `YES`
   * `LegacySchema`: NVRAM variables set(OpenCore compares these to the variables present in nvram.plist)
   * `WriteFlash`: set to `YES`
 
 And within your EFI:
 
-* `OpenRuntime.efi` driver(this is needed for proper sleep, shutdown and other services to work correctly
+* `OpenVariableRuntimeDxe.efi` driver (with LoadEarly set to YES, and placed _before_ OpenRuntime)
+* `OpenRuntime.efi` driver (with LoadEarly set to YES) (this is needed for proper sleep, shutdown and other services to work correctly
 
-Now grab the ['LogoutHook.command'](https://github.com/acidanthera/OpenCorePkg/releases)(Inside `/Utilities/LogoutHook/`) and place it somewhere safe (e.g. within your user directory, as shown below):
+Now grab the [LogoutHook folder](https://github.com/acidanthera/OpenCorePkg/releases) (inside `Utilities`) and place it somewhere safe (e.g. within your user directory, as shown below):
 
 `/Users/$(whoami)/LogoutHook/LogoutHook.command`
 
