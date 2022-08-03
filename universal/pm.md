@@ -11,11 +11,7 @@ So before we can fine tune power management to our liking, we need to first make
 
 Apple dropped support for XCPM on these models back in macOS Sierra, so XCPM is only supported between 10.8.5 and 10.11.6. You will still need [ssdtPRgen](../universal/pm.md#sandy-and-ivy-bridge-power-management).
 
-:::
-
-::: tip
-
-To enable XCPM in 10.11 and older, simply add `-xcpm` to your boot-args.
+To enable XCPM in 10.11 and older on these models, simply add `-xcpm` to your boot-args.
 
 :::
 
@@ -30,6 +26,12 @@ As you can see from the image on the left, we have X86PlatformPlugin attached. T
 * SSDT-PLUG.**aml** is both present and enabled in your config.plist and EFI/OC/ACPI
   * If you're missing this, head to [Getting Started With ACPI](https://dortania.github.io/Getting-Started-With-ACPI) on how to make this
 * SSDT-PLUG is set to the first thread of your CPU. You can check by selecting the first CPU listed (`CP00` for our example) and make sure you see this in the properties:
+
+::: tip
+
+SSDT-PLUG is not required on 12.4 and up.
+
+:::
 
 ```
 plugin-type | Number | 0x1
@@ -74,7 +76,7 @@ This is an example on how to change some parts of power management data. For mor
 To start, we're gonna need a couple things:
 
 * X86PlatformPlugin loaded
-  * This means Sandy, Ivy Bridge and AMD CPUs are not supported
+  * This means Sandy Bridge and AMD CPUs are not supported
 * [CPUFriend](https://github.com/acidanthera/CPUFriend/releases)
 * [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend)
 
