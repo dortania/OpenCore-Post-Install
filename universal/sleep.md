@@ -168,9 +168,9 @@ This guide is primarily for dGPU but works the exact same way with NVMe drives(a
 
 **For Intel**:
 
-To verify you have working CPU Power Management, see the [Fixing Power Management](../universal/pm.md) page. And if not, then patch accordingly.
+To verify you have working CPU Power Management, see the [Fixing Power Management](../universal/pm.md) page.
 
-Also note that incorrect frequency vectors can result in wake issues, so either verify you're using the correct SMBIOS or adjust the frequency vectors of your current SMBIOS with CPUFriend. Tools like [one-key-cpufriend](https://github.com/stevezhengshiqi/one-key-cpufriend) are known for creating bad frequency vectors so be careful with tools not used by Dortania.
+Also note that incorrect power management data can result in wake issues, so verify that you're using the correct SMBIOS.
 
 A common kernel panic from wake would be:
 
