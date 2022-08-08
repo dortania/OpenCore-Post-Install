@@ -19,7 +19,7 @@ To start, we'll want to grab the following files:
 * [dmidecode](https://github.com/acidanthera/dmidecode/releases)
   * Tool used for extracting SMBIOS info in macOS
 
-Here is a premade file which has properties already set out for you, one you open it you should see the following:
+Here is a premade file which has properties already set out for you, once you open it you should see the following:
 
 ![](../images/post-install/memory-md/CustomMemory-open.png)
 

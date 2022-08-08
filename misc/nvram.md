@@ -1,5 +1,11 @@
 # Emulated NVRAM
 
+::: danger
+
+This is not up to date for OpenCore 0.8.3!
+
+:::
+
 So this section is for those who don't have native NVRAM, the most common hardware to have incompatible native NVRAM with macOS are X99 and some X299 series chipsets:
 
 * X99
