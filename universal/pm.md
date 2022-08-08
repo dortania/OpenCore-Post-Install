@@ -144,7 +144,7 @@ This final entry is to help macOS out what kind of overall performance you'd lik
 Once you're finished, you'll be provided with a CPUFriendDataProvider.kext and ssdt_data.aml. Which you choose is your preference but I recommend the kext variant to avoid any headaches with data injection into Windows and Linux.
 
 * **Note**: Load order does not matter with the CPUFriendDataProvider as it's just a plist-only kext
-* **Note 2**: Wake issues resulting from CPUFriend are likely due to incorrect power management data. Every system is unique so you'll need to play around until you get a stable config. Kernel panics will have `Sleep Wake failure in efi`. Reusing power management data from old macOS versions can also cause issues, so recreate your data provider if you update macOS.
+* **Note 2**: Wake issues resulting from CPUFriend are likely due to incorrect power management data. Every system is unique so you'll need to play around until you get a stable config. Kernel panics will have `Sleep Wake failure in efi`. Reusing power management data from old macOS versions can also cause issues, so recreate your data provider if you update macOS. You can create multiple data providers and use OpenCore's MinKernel/MaxKernel feature in order to load different power management data for each macOS version.
 * **Note 3**: If you do choose to use ssdt_data.aml, note that SSDT-PLUG is no longer needed. However the setup for this SSDT is broken on HEDT platforms like X99 and X299, so we highly recommend SSDT-PLUG with CPUFriendDataProvider.kext instead.
 
 ## Sandy and Ivy Bridge Power Management
