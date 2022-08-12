@@ -11,9 +11,7 @@ So this section is for those who don't have native NVRAM, the most common hardwa
 * X99
 * X299
 
-For B360, B365, H310, H370, Z390 users, make sure you have [SSDT-PMC](https://dortania.github.io/Getting-Started-With-ACPI/) both under EFI/OC/ACPI and config.plist -> ACPI -> Add. For more info on making and compiling SSDTs, please see [**Getting started with ACPI**](https://dortania.github.io/Getting-Started-With-ACPI/)
-
-**Note**: 10th gen CPUs do not need this SSDT
+For B360, B365, H310, H370, and Z390 users, make sure you have [SSDT-PMC](https://dortania.github.io/Getting-Started-With-ACPI/) both under EFI/OC/ACPI and config.plist -> ACPI -> Add. For more info on making and compiling SSDTs, please see [**Getting started with ACPI**](https://dortania.github.io/Getting-Started-With-ACPI/)
 
 ## Cleaning out the Clover gunk
 
@@ -36,57 +34,59 @@ If folders are empty then delete them as well:
 
 ## Verifying if you have working NVRAM
 
-To start, open the terminal and run the following one line at a time:
+To start, open the terminal and run the following command, which sets a variable named `test` in your NVRAM to the current date and time:
 
 ```sh
-sudo -s
-nvram -c
-nvram myvar=test
-exit
+sudo nvram myvar="$(date)"
 ```
 
 Now reboot and run this:
 
 ```sh
-nvram -p | grep -i myvar
+nvram myvar
 ```
 
-If nothing returns then your NVRAM is not working. If a line containing `myvar test` returns, your NVRAM is working.
+If nothing returns then your NVRAM is not working. If a line containing `myvar` and then the current date, your NVRAM is working.
 
-Note: `nvram -c` requires SIP to be off, an alternative is to wipe NVRAM at the boot menu. Reminder you'll need `Misc -> Security -> AllowNvramReset -> YES`
+## Emulating NVRAM (with a `nvram.plist`)
 
-## Enabling emulated NVRAM (with a nvram.plist)
+If you don't have native NVRAM, don't fret. We can set up emulated NVRAM by using a script to save the NVRAM contents to a plist during the shutdown process, which will then be loaded by OpenCore at the next startup.
 
-To enable emulated NVRAM, you'll need 3 things set:
-
-![](../images/post-install/nvram-md/nvram.png)
+To enable emulated NVRAM, you'll need the following set:
 
 Within your config.plist:
 
-* **Booter**:
+* **Booter -> Quirks**:
   * `DisableVariableWrite`: set to `NO`
 * **Misc -> Security**:
-  * `ExposeSensitiveData`: set to `0x3`
+  * `ExposeSensitiveData`: set to at least `0x1`
 * **NVRAM**:
   * `LegacyOverwrite` set to `YES`
-  * `LegacySchema`: NVRAM variables set(OpenCore compares these to the variables present in nvram.plist)
+  * `LegacySchema`: NVRAM variables set (OpenCore compares these to the variables present in `nvram.plist`)
   * `WriteFlash`: set to `YES`
 
 And within your EFI:
 
-* `OpenVariableRuntimeDxe.efi` driver (with LoadEarly set to YES, and placed _before_ OpenRuntime)
-* `OpenRuntime.efi` driver (with LoadEarly set to YES) (this is needed for proper sleep, shutdown and other services to work correctly
+* `OpenVariableRuntimeDxe.efi` driver (with `LoadEarly` set to `YES`, and placed _before_ OpenRuntime)
+* `OpenRuntime.efi` driver (with `LoadEarly` set to `YES`) (this is needed for proper sleep, shutdown and other services to work correctly)
+
+Make sure to snapshot after to make sure the drivers are listed in your config.plist.
 
 Now grab the [LogoutHook folder](https://github.com/acidanthera/OpenCorePkg/releases) (inside `Utilities`) and place it somewhere safe (e.g. within your user directory, as shown below):
 
-`/Users/$(whoami)/LogoutHook/LogoutHook.command`
+`/Users/$(whoami)/LogoutHook/`
 
-Open up terminal and run the following:
+Open up terminal and run the following (one at a time):
 
-`sudo defaults write com.apple.loginwindow LogoutHook /Users/$(whoami)/LogoutHook/LogoutHook.command`
+```bash
+cd /Users/$(whoami)/LogoutHook/
+./Launchd.command install 
+```
+
+<!-- is this needed?
+./Launchd.command install logout
+-->
 
 And voila! You have emulated NVRAM!
-
-Do keep in mind this requires the `nvram` command to support the `-x` flag for this to work correctly which is unavailable on macOS 10.12 and below. If you are installing macOS 10.12 or earlier, you need to copy `nvram.mojave` into the same folder as `LogoutHook.command`, which fixes this by invoking it instead of the system `nvram` command.
 
 Something else to note is that macOS is only able to read nvram.plist but it won't be able to write to nvram.plist unless running the shutdown process. This means running the test above won't work
