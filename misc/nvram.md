@@ -88,5 +88,3 @@ cd /Users/$(whoami)/LogoutHook/
 -->
 
 And voila! You have emulated NVRAM!
-
-Something else to note is that macOS is only able to read nvram.plist but it won't be able to write to nvram.plist unless running the shutdown process. This means running the test above won't work
