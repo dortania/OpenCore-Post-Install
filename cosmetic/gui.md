@@ -109,7 +109,7 @@ So to start, we'll need a couple things:
 
 * **SetupDelay:**
   * By default, leave this at `0`
-  * Some codecs many need extra time for setup, we recommend setting to `500000`(0.5 Seconds) if you have issues
+  * Some codecs many need extra time for setup, we recommend setting to `500` milliseconds (0.5 seconds) if you have issues
 
 * **VolumeAmplifier:**
   * The Volume amplification, value will differ depending on your codec
