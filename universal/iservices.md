@@ -14,7 +14,11 @@ The following items will be created below and are required to use iServices:
 * SystemSerialNumber
 * SystemUUID
 
-\**for ROM, we use the MAC Address of the network interface, lowercase, and without `:`.*
+::: tip NOTE
+
+For ROM, we use the MAC Address of the network interface, lowercase, and without `:`.
+
+:::
 
 **Note**: You and you alone are responsible for your AppleID, read the guide carefully and take full responsibility if you screw up. Dortania and other guides are not held accountable for what **you** do.
 
@@ -146,36 +150,52 @@ If you see a [support warning, see below](#customer-code-error).
 
 Now enter the serial into the [Apple Check Coverage page](https://checkcoverage.apple.com/), you will get 1 of 3 responses:
 
-We’re sorry, but this serial number isn’t valid |  Valid Purchase date | Purchase Date not Validated
+We're sorry, we're unable to check coverage for this serial number. |  Valid Purchase Date | Purchase Date not Validated
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](../images/post-install/iservices-md/not-valid.png) | ![](../images/post-install/iservices-md/valid.png) |  ![](../images/post-install/iservices-md/no-purchase.png)
 
-This last one is what we're after, as we want something genuine but currently not in use by anyone. Now we can translate the rest of the values into our config.plist -> PlatformInfo -> Generic:
+::: tip
+
+Copy and paste the serial number, as invalidly formatted serials will also return the "We're sorry, we're unable to check coverage for this serial number."
+
+:::
+
+This first one is what we're after (you can also use the third one, but it is not recommended as there may be a chance of a conflict with an actual Mac). Now we can translate the rest of the values into our config.plist -> PlatformInfo -> Generic:
 
 * Type = SystemProductName
 * Serial = SystemSerialNumber
 * Board Serial = MLB
 * SmUUID = SystemUUID
 
-**Note**:  "We’re sorry, but this serial number isn’t valid. Please check your information and try again." works for many users as well, do note though if you've had a bad track record with Apple/iServices you many need one that's "Purchase Date not Validated". Otherwise there may be suspicion
+::: tip NOTE
 
-**Note 2**: Using a "Purchase Date not Validated:" can cause issues down the line if another machine of the same serial ever gets activated, for initial setup it can help alleviate issues with your account but in the long run an invalid serial can be a safer choice.
+Although the first option works for most, do note though if you've had a bad track record with Apple/iServices you many need one that's "Purchase Date not Validated". Otherwise there may be suspicion
 
-**Note 3**: Checking too many serials may result in you being ratelimited. To bypass this limitation you can try clearing your cookies or changing your IP.
+:::
 
-## Fixing En0
+::: warning
 
-To start, grab [Hackintool](https://www.tonymacx86.com/threads/release-hackintool-v3-x-x.254559/) ([Github link](https://github.com/headkaze/Hackintool)) and head to System -> Peripherals (Info -> Misc on older versions of Hackintool)
+Using a "Purchase Date not Validated:" serial can cause issues down the line if another machine of the same serial ever gets activated. For initial setup it can help alleviate issues with your account but in the long run an invalid serial can be a safer choice.
 
-Here under Network Interfaces (network card icon), look for `en0` under `BSD` and check whether the device has a check mark under Builtin. If there is a check mark, skip to Fixing ROM section otherwise continue reading.
+:::
 
-* **Note**: en0 can be either Wifi, ethernet or even Thunderbolt.
+::: tip
+
+Checking too many serials may result in you becoming ratelimited. To bypass this limitation you can try clearing your cookies or changing your IP.
+
+:::
+
+## Fixing en0
+
+To start, grab [Hackintool](https://github.com/headkaze/Hackintool) and head to System -> Peripherals (Info -> Misc on older versions of Hackintool)
+
+Here under Network Interfaces (network card icon), look for `en0` under `BSD` and check whether the device has a check mark under built-in. If there is a check mark, skip to the Fixing ROM section otherwise continue reading.
+
+* **Note**: `en0` can be either Wifi, ethernet or even Thunderbolt. The type doesn't matter, just that it's present and marked as built-in.
 
 ### What if I don't have En0 at all?!?
 
-If you do have an `en0`, skip to the next section.
-
-Well, we'll want to reset macOS so it can build the interfaces fresh, open terminal and run the following:
+Well, we'll want to reset the macOS networking settings so it can build the interfaces fresh; open Terminal and run the following:
 
 ```
 sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist
@@ -204,7 +224,7 @@ Now with the PciRoot, go into your config.plist -> DeviceProperties -> Add and a
 
 ## Fixing ROM
 
-This is a section many may have forgotten about but this is found in your config.plist under PlatformInfo -> generic -> ROM
+This is a section many may have forgotten about but this is found in your config.plist under PlatformInfo -> Generic -> ROM
 
 To find your actual MAC Address/ROM value, you can find in a couple places:
 
@@ -216,7 +236,7 @@ To find your actual MAC Address/ROM value, you can find in a couple places:
 
 Some users have even gone as far as using real Apple MAC Address dumps for their config, for this guide we'll be using our real MAC Address but note that this is another option.
 
-When adding this to your config, `c0:7e:bf:c3:af:ff` should be converted to `c07ebfc3afff` as the `Data` type cannot accept colons(`:`).
+When adding this to your config, `c0:7e:bf:c3:af:ff` should be converted to `c07ebfc3afff` as the `Data` type cannot accept colons (`:`).
 
 ![](../images/post-install/iservices-md/config-rom.png)
 
@@ -284,7 +304,11 @@ etc ...
 
 And a final layer of precaution is to make a new AppleID to play with, this makes sure that if you do end up blacklisting your account that it's not your main.
 
-**Tip**:  Adding a payment card to the account and having a decent amount of purchases can also help. While not concrete, you can think of an AppleID as a credit score where the better an Apple customer you are the more likely they won't have activation issues or get an easier pass with AppleSupport
+::: tip
+
+Adding a payment card to the account and having a decent amount of purchases can also help. While not concrete, you can think of an AppleID as a credit score where the better an Apple customer you are the more likely they won't have activation issues or get an easier pass with Apple Support
+
+::
 
 ## Customer Code error
 
