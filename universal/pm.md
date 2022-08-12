@@ -29,7 +29,7 @@ As you can see from the image on the left, we have X86PlatformPlugin attached. T
 
 ::: tip
 
-SSDT-PLUG is not required on 12.4 and up.
+SSDT-PLUG is not required on macOS 12.3 and up.
 
 :::
 
