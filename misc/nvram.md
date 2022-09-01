@@ -70,7 +70,7 @@ And within your EFI:
 * `OpenVariableRuntimeDxe.efi` driver (with `LoadEarly` set to `YES`, and placed _before_ OpenRuntime)
 * `OpenRuntime.efi` driver (with `LoadEarly` set to `YES`) (this is needed for proper sleep, shutdown and other services to work correctly)
 
-Make sure to snapshot after to make sure the drivers are listed in your config.plist.
+Make sure to snapshot after to make sure the drivers are listed in your config.plist. Afterwards, make sure that both `OpenVariableRuntimeDxe.efi` and `OpenRuntime.efi` have `LoadEarly` set to `YES`, and that `OpenVariableRuntimeDxe.efi` is placed _before_ `OpenRuntime.efi` in your config .
 
 Now grab the [LogoutHook folder](https://github.com/acidanthera/OpenCorePkg/releases) (inside `Utilities`) and place it somewhere safe (e.g. within your user directory, as shown below):
 
@@ -82,9 +82,5 @@ Open up terminal and run the following (one at a time):
 cd /Users/$(whoami)/LogoutHook/
 ./Launchd.command install 
 ```
-
-<!-- is this needed?
-./Launchd.command install logout
--->
 
 And voila! You have emulated NVRAM!
