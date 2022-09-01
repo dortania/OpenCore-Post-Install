@@ -67,8 +67,8 @@ Within your config.plist:
 
 And within your EFI:
 
-* `OpenVariableRuntimeDxe.efi` driver (with `LoadEarly` set to `YES`, and placed _before_ OpenRuntime)
-* `OpenRuntime.efi` driver (with `LoadEarly` set to `YES`) (this is needed for proper sleep, shutdown and other services to work correctly)
+* `OpenVariableRuntimeDxe.efi` driver
+* `OpenRuntime.efi` driver (this is needed for proper sleep, shutdown and other services to work correctly)
 
 Make sure to snapshot after to make sure the drivers are listed in your config.plist. Afterwards, make sure that both `OpenVariableRuntimeDxe.efi` and `OpenRuntime.efi` have `LoadEarly` set to `YES`, and that `OpenVariableRuntimeDxe.efi` is placed _before_ `OpenRuntime.efi` in your config .
 
