@@ -75,8 +75,7 @@ Optional
 * **AudioCodec:** (Number)
   * Codec address of Audio controller. This typically contains the first audio codec address on the builtin analog audio controller (HDEF). Failsafe value is 0.
   * To find yours:
-    * Check [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) -> HDEF -> AppleHDAController -> IOHDACodecDevice and see the `IOHDACodecAddress` property
-    * ex: `0x0`
+    * Check [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) -> HDEF -> AppleHDAController -> IOHDACodecDevice and see the `IOHDACodecAddress` property (ex: `0x0`)
       * Can also check via terminal (Note if multiple show up, use the vendor ID to find the right device):
 
  ```sh
