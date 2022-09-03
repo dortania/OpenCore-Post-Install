@@ -78,14 +78,10 @@ Optional
     * Check [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) -> HDEF -> AppleHDAController -> IOHDACodecDevice and see the `IOHDACodecAddress` property (ex: `0x0`)
       * Can also check via terminal (Note if multiple show up, use the vendor ID to find the right device):
 
- ```sh
- ioreg -rxn IOHDACodecDevice | grep VendorID   // List all possible devices
- ```
-
- ```sh
- ioreg -rxn IOHDACodecDevice | grep IOHDACodecAddress // Grab the codec address
- ```
-
+ `sh ioreg -rxn IOHDACodecDevice | grep VendorID   // List all possible devices`
+ 
+ `sh ioreg -rxn IOHDACodecDevice | grep IOHDACodecAddress // Grab the codec address`
+ 
 * **Audio Device:** (String)
   * Device path (PciRoot) of audio controller
   * Run [gfxutil](https://github.com/acidanthera/gfxutil/releases) to find the path:
@@ -108,23 +104,34 @@ Optional
   * Set this to `True`
   * Enabling this setting routes audio playback from builtin protocols to specified dedicated audio ports (AudioOutMask) of the specified codec (AudioCodec), located on the specified audio controller (AudioDevice)
 
-* **MinimumVolume:**
-  * Volume level from `0` to `100`
-  * To not blow the speakers, set it to `70`
-  * Note boot-chime will not play if MinimumVolume is higher than `SystemAudioVolume` that we set back in the `NVRAM` section
+* **DisconnectHDA:** (Boolean)
+  * Set this to `False`
 
-* **PlayChime:**
+* **MaximumGain:** (Number)
+  * Maximum gain to use for UEFI audio, specified in decibels (dB) with respect to amplifier reference level of 0 dB
+  * Set this to `-15`
+
+* **MinimumAssistGain:** (Number)
+  * Minimum gain in decibels (dB) to use for picker audio assist. The screen reader will use this amplifier gain if the system amplifier gain read from the SystemAudioVolumeDB NVRAM variable is lower than this
+  * Set this to `-30`
+
+* **MinimumAudibleGain:** (Number)
+  * Minimum gain in decibels (dB) at which to attempt to play any sound
+  * Set this to `-55`
+
+* **PlayChime:** (String)
   * Set this to `Enabled`
+  * Supported values are:
+    * Auto — Enables chime when StartupMute NVRAM variable is not present or set to 00
+    * Enabled — Enables chime unconditionally
+    * Disabled — Disables chime unconditionally
 
-* **SetupDelay:**
+* **ResetTrafficClass:** (Boolean)
+  * Set this to `False`
+
+* **SetupDelay:** (Number)
   * By default, leave this at `0`
   * Some codecs many need extra time for setup, we recommend setting to `500` milliseconds (0.5 seconds) if you have issues
-
-* **VolumeAmplifier:**
-  * The Volume amplification, value will differ depending on your codec
-  * Formula is as follows:
-    * (SystemAudioVolume * VolumeAmplifier)/100 = Raw Volume(but cannot exceed 100)
-    * ex: (`70` x `VolumeAmplifier`)/`100` = `100`  -> (`100` x `100`) / `70` = VolumeAmplifier = `142.9`(we'll round it to `143` for simplicity)
 
 Once done, you should get something like this:
 
