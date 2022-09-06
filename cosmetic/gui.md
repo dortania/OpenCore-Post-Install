@@ -76,11 +76,11 @@ Optional
   * Codec address of Audio controller. This typically contains the first audio codec address on the builtin analog audio controller (HDEF). Failsafe value is 0.
   * To find yours:
     * Check [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) -> HDEF -> AppleHDAController -> IOHDACodecDevice and see the `IOHDACodecAddress` property (ex: `0x0`)
-      * Can also check via terminal (Note if multiple show up, use the vendor ID to find the right device):
+    * Can also check via terminal (Note if multiple show up, use the vendor ID to find the right device):
 
- `sh ioreg -rxn IOHDACodecDevice | grep VendorID   // List all possible devices`
+      `sh ioreg -rxn IOHDACodecDevice | grep VendorID   // List all possible devices`
  
- `sh ioreg -rxn IOHDACodecDevice | grep IOHDACodecAddress // Grab the codec address`
+      `sh ioreg -rxn IOHDACodecDevice | grep IOHDACodecAddress // Grab the codec address`
  
 * **Audio Device:** (String)
   * Device path (PciRoot) of audio controller
@@ -93,13 +93,12 @@ Optional
   * Output channels are internally numbered as bit `0` (value `1`), bit `1` (value `2`) and so on. A value of `1` refers to the first audio output (not necessarily main speaker). A value of `-1` is used to play to all channels simultaneously.
   * When AudioSupport is enabled, AudioDevice must be either empty or a valid path and AudioOutMask must be non-zero
   * Easiest way to find the right one is to go through each one (from 0 to N - 1, where N is the number of outputs listed in your log); ex: 5 outputs would translate to 0-4 as possible values
-    * You can find all the ones for your codec in the OpenCore debug logs:
+  * You can find all the ones for your codec in the OpenCore debug logs:
 
-```
-06:065 00:004 OCAU: Matching PciRoot(0x0)/Pci(0x1F,0x3)/VenMsg(A9003FEB-D806-41DB-A491-5405FEEF46C3,00000000)...
-06:070 00:005 OCAU: 1/2 PciRoot(0x0)/Pci(0x1F,0x3)/VenMsg(A9003FEB-D806-41DB-A491-5405FEEF46C3,00000000) (5 outputs) - Success
-```
-
+    ```
+    06:065 00:004 OCAU: Matching PciRoot(0x0)/Pci(0x1F,0x3)/VenMsg(A9003FEB-D806-41DB-A491-5405FEEF46C3,00000000)...
+    06:070 00:005 OCAU: 1/2 PciRoot(0x0)/Pci(0x1F,0x3)/VenMsg(A9003FEB-D806-41DB-A491-5405FEEF46C3,00000000) (5 outputs) - Success
+    ```
 * **AudioSupport:** (Boolean)
   * Set this to `True`
   * Enabling this setting routes audio playback from builtin protocols to specified dedicated audio ports (AudioOutMask) of the specified codec (AudioCodec), located on the specified audio controller (AudioDevice)
