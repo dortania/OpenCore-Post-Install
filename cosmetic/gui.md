@@ -61,14 +61,14 @@ So to start, we'll need a couple things:
 
 * NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82:
   * `SystemAudioVolume | Data | 0x46`
-  * This is the boot-chime and screen reader volume, note it's in hexadecimal so would become `70` in decimal; `0x80` means muted
+    * This is the boot-chime and screen reader volume, note it's in hexadecimal so would become `70` in decimal; `0x80` means muted
 
 Optional
 * NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82:
   * `StartupMute | Data | 0x00`
-  * Mute startup chime sound in firmware audio support; 00 is unmuted, missing variable or any other value means muted
+    * Mute startup chime sound in firmware audio support; 00 is unmuted, missing variable or any other value means muted
   * `SystemAudioVolumeDB | Data | 0xE2`
-  * Current system audio volume level in decibels (dB), the value represents the audio offset (gain if positive, attenuation if negative) in dB relative to the amplifier reference value of 0 dB
+    * Current system audio volume level in decibels (dB), the value represents the audio offset (gain if positive, attenuation if negative) in dB relative to the amplifier reference value of 0 dB
 
 **Setting up UEFI -> Audio:**
 
@@ -142,4 +142,4 @@ Once done, you should get something like this:
 * OpenCore hasn't forgotten about you! With the AudioDxe setup, you can enable both picker audio and FileVault VoiceOver with these 2 settings:
   * `Misc -> Boot -> PickerAudioAssist -> True` to enable picker audio
   * `UEFI -> ProtocolOverrides -> AppleAudio -> True` to enable FileVault voice over
-    * See [Security and FileVault](../universal/security.md) on how to setup the rest for proper FileVault support
+* See [Security and FileVault](../universal/security.md) on how to setup the rest for proper FileVault support.
