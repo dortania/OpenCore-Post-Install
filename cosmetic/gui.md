@@ -44,7 +44,7 @@ Once all this is saved, you can reboot and be greeted with a true Mac-like GUI:
 
 ## Setting up Boot-chime with AudioDxe
 
-So to start, we'll need a couple things:
+So to start, we'll need a couple of things:
 
 * Onboard audio output
   * USB DACs will not work
@@ -67,8 +67,6 @@ Optional
 * NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82:
   * `StartupMute | Data | 0x00`
     * Mute startup chime sound in firmware audio support; 00 is unmuted, missing variable or any other value means muted
-  * `SystemAudioVolumeDB | Data | 0xE2`
-    * Current system audio volume level in decibels (dB), the value represents the audio offset (gain if positive, attenuation if negative) in dB relative to the amplifier reference value of 0 dB
 
 **Setting up UEFI -> Audio:**
 
