@@ -134,9 +134,9 @@ Once done, you should get something like this:
 
 ![](../images/extras/gui-md/audio-config.png)
 
-**Note about audio codec default sampling rate**
+**Note about audio codec default sampling rate**:
 
-There are codecs like Realtek ALC295 (HP models and others) whose default audio sampling rate is 48 kHz. In this case, even if 44.1 kHz is supported by the codec, audio chime fails and does not sound. The only way at the moment to fix this is to modify the `OCEFIAudio_VoiceOver_Boot.mp3` sample rate with an audio editor to raise it from 44.1 kHz to 48 kHz. This has to be done by the end user as OpenCore does not have an automated mechanism for it.
+There are codecs like Realtek ALC295 (HP and others) whose default audio sampling rate is 48 kHz. In this case, even if 44.1 kHz is supported by the codec, audio chime fails and does not sound. The only way at the moment to fix this is to modify the `OCEFIAudio_VoiceOver_Boot.mp3` sample rate with an audio editor to raise it from 44.1 kHz to 48 kHz. This has to be done by the end user as OpenCore does not have an automated mechanism for it.
 
 **Note for visually impaired**:
 
