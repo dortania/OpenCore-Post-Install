@@ -59,14 +59,16 @@ So to start, we'll need a couple of things:
 
 **Settings up NVRAM**:
 
+
 * NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82:
   * `SystemAudioVolume | Data | 0x46`
-    * This is the boot-chime and screen reader volume, note it's in hexadecimal so would become `70` in decimal; `0x80` means muted
+  * This is the boot-chime and screen reader volume, note it's in hexadecimal so would become `70` in decimal; `0x80` means muted
+
 
 Optional
 * NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82:
   * `StartupMute | Data | 0x00`
-    * Mute startup chime sound in firmware audio support; 00 is unmuted, missing variable or any other value means muted
+  * Mute startup chime sound in firmware audio support; 00 is unmuted, missing variable or any other value means muted
 
 **Setting up UEFI -> Audio:**
 
@@ -77,14 +79,16 @@ Optional
     * Can also check via terminal (Note if multiple show up, use the vendor ID to find the right device):
 
       `sh ioreg -rxn IOHDACodecDevice | grep VendorID   // List all possible devices`
- 
+
       `sh ioreg -rxn IOHDACodecDevice | grep IOHDACodecAddress // Grab the codec address`
- 
+
+
 * **Audio Device:** (String)
   * Device path (PciRoot) of audio controller
   * Run [gfxutil](https://github.com/acidanthera/gfxutil/releases) to find the path:
     * `/path/to/gfxutil -f HDEF`
     * ex: `PciRoot(0x0)/Pci(0x1f,0x3)`
+
 
 * **AudioOutMask:** (Number)
   * Play sound in UEFI to more than one channel (e.g. main speaker plus bass speaker). Failsafe value is `-1` (output to all).
@@ -93,28 +97,35 @@ Optional
   * Easiest way to find the right one is to go through each one (from 0 to N - 1, where N is the number of outputs listed in your log); ex: 5 outputs would translate to 0-4 as possible values
   * You can find all the ones for your codec in the OpenCore debug logs:
 
+
     ```
     06:065 00:004 OCAU: Matching PciRoot(0x0)/Pci(0x1F,0x3)/VenMsg(A9003FEB-D806-41DB-A491-5405FEEF46C3,00000000)...
     06:070 00:005 OCAU: 1/2 PciRoot(0x0)/Pci(0x1F,0x3)/VenMsg(A9003FEB-D806-41DB-A491-5405FEEF46C3,00000000) (5 outputs) - Success
     ```
+
 * **AudioSupport:** (Boolean)
   * Set this to `True`
   * Enabling this setting routes audio playback from builtin protocols to specified dedicated audio ports (AudioOutMask) of the specified codec (AudioCodec), located on the specified audio controller (AudioDevice)
 
+
 * **DisconnectHDA:** (Boolean)
   * Set this to `False`
+
 
 * **MaximumGain:** (Number)
   * Maximum gain to use for UEFI audio, specified in decibels (dB) with respect to amplifier reference level of 0 dB
   * Set this to `-15`
 
+
 * **MinimumAssistGain:** (Number)
   * Minimum gain in decibels (dB) to use for picker audio assist. The screen reader will use this amplifier gain if the system amplifier gain read from the SystemAudioVolumeDB NVRAM variable is lower than this
   * Set this to `-30`
 
+
 * **MinimumAudibleGain:** (Number)
   * Minimum gain in decibels (dB) at which to attempt to play any sound
   * Set this to `-55`
+
 
 * **PlayChime:** (String)
   * Set this to `Enabled`
@@ -123,8 +134,10 @@ Optional
     * Enabled — Enables chime unconditionally
     * Disabled — Disables chime unconditionally
 
+
 * **ResetTrafficClass:** (Boolean)
   * Set this to `False`
+
 
 * **SetupDelay:** (Number)
   * By default, leave this at `0`
@@ -134,9 +147,11 @@ Once done, you should get something like this:
 
 ![](../images/extras/gui-md/audio-config.png)
 
+
 **Note about audio codec default sampling rate**:
 
 There are codecs like Realtek ALC295 (HP and others) whose default audio sampling rate is 48 kHz. In this case, even if 44.1 kHz is supported by the codec, audio chime fails and does not sound. The only way at the moment to fix this is to modify the `OCEFIAudio_VoiceOver_Boot.mp3` sample rate with an audio editor to raise it from 44.1 kHz to 48 kHz. This has to be done by the end user as OpenCore does not have an automated mechanism for it.
+
 
 **Note for visually impaired**:
 
