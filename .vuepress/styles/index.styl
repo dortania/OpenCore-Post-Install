@@ -45,3 +45,8 @@ tr
   background-color var(--sideBgColor)!important
   box-shadow 0px 0px 2px var(--bodyBgColor)
   right -12%!important
+
+[data-theme="light"]
+  div[class*="language-"]
+    pre *::selection
+      background-color $textCodeSelectionColor
