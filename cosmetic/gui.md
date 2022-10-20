@@ -57,17 +57,17 @@ So to start, we'll need a couple of things:
   * See [OpenCore Debugging](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html) for more info
   * Note: after you're done setting up, you can revert to the RELEASE builds
 
-**Settings up NVRAM**:
+**Setting up NVRAM**:
 
 * NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82:
   * `SystemAudioVolume | Data | 0x46`
-  * This is the boot-chime and screen reader volume, note it's in hexadecimal so would become `70` in decimal; `0x80` means muted
+  * This is the boot-chime and screen reader volume, note it's in hexadecimal so would become `70` in decimal; `0x80` is mute
 
-::: details Optional
+::: details Optional NVRAM entries
 
 * NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82:
   * `StartupMute | Data | 0x00`
-  * Mute startup chime sound in firmware audio support; 00 is unmuted, missing variable or any other value means muted
+  * Mute startup chime sound in firmware audio support; `0x00` is unmuted, missing variable or any other value means muted
 :::
 
 **Setting up UEFI -> Audio:**
