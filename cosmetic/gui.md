@@ -44,7 +44,7 @@ Once all this is saved, you can reboot and be greeted with a true Mac-like GUI:
 
 ## Setting up Boot-chime with AudioDxe
 
-So to start, we'll need a couple things:
+So to start, we'll need a couple of things:
 
 * Onboard audio output
   * USB DACs will not work
@@ -52,78 +52,105 @@ So to start, we'll need a couple things:
 * [AudioDxe](https://github.com/acidanthera/OpenCorePkg/releases) in both EFI/OC/Drivers and UEFI -> Drivers
 * [Binary Resources](https://github.com/acidanthera/OcBinaryData)
   * Add the Resources folder to EFI/OC, just like we did with the OpenCore GUI section
-  * For those running out of space, `OCEFIAudio_VoiceOver_Boot.wav` is all that's required for the Boot-Chime
+  * For those running out of space, `OCEFIAudio_VoiceOver_Boot.mp3` is all that's required for the Boot-Chime
 * Debug version of OpenCore with logging enabled
   * See [OpenCore Debugging](https://dortania.github.io/OpenCore-Install-Guide/troubleshooting/debug.html) for more info
   * Note: after you're done setting up, you can revert to the RELEASE builds
 
-**Settings up NVRAM**:
+**Setting up NVRAM**:
 
 * NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82:
   * `SystemAudioVolume | Data | 0x46`
-  * This is the boot-chime and screen reader volume, note it's in hexadecimal so would become `70` in decimal
+  * This is the boot-chime and screen reader volume, note it's in hexadecimal so would become `70` in decimal; `0x80` is mute
+
+::: details Optional NVRAM entries
+
+* NVRAM -> Add -> 7C436110-AB2A-4BBB-A880-FE41995C9F82:
+  * `StartupMute | Data | 0x00`
+  * Mute startup chime sound in firmware audio support; `0x00` is unmuted, missing variable or any other value means muted
+:::
 
 **Setting up UEFI -> Audio:**
 
-* **AudioCodec:**
-  * Codec address of Audio controller
+* **AudioCodec:** (Number)
+  * Codec address of Audio controller. This typically contains the first audio codec address on the builtin analog audio controller (HDEF). Failsafe value is 0.
   * To find yours:
-    * Check [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) -> HDEF -> AppleHDAController -> IOHDACodecDevice and see the `IOHDACodecAddress` property
-    * ex: `0x0`
-      * Can also check via terminal(Note if multiple show up, use the vendor ID to find the right device)l:
+    * Check [IORegistryExplorer](https://github.com/khronokernel/IORegistryClone/blob/master/ioreg-302.zip) -> HDEF -> AppleHDAController -> IOHDACodecDevice and see the `IOHDACodecAddress` property (ex: `0x0`)
+    * Can also check via terminal (Note if multiple show up, use the vendor ID to find the right device):
 
- ```sh
- ioreg -rxn IOHDACodecDevice | grep VendorID   // List all possible devices
- ```
+      ```sh
+      ioreg -rxn IOHDACodecDevice | grep VendorID   # List all possible devices
+      sh ioreg -rxn IOHDACodecDevice | grep IOHDACodecAddress # Grab the codec address
+      ```
 
- ```sh
- ioreg -rxn IOHDACodecDevice | grep IOHDACodecAddress // Grab the codec address
- ```
-
-* **Audio Device:**
-  * PciRoot of audio controller
+* **AudioDevice:** (String)
+  * Device path (PciRoot) of audio controller
   * Run [gfxutil](https://github.com/acidanthera/gfxutil/releases) to find the path:
     * `/path/to/gfxutil -f HDEF`
     * ex: `PciRoot(0x0)/Pci(0x1f,0x3)`
 
-* **AudioOut:**
-  * The specific output of your Audio controller, easiest way to find the right one is to go through each one(from 0 to N - 1, where N is the number of outputs listed in your log)
-  * ex: 5 outputs would translate to 0-4 as possible values
-    * You can find all the ones for your codec in the OpenCore debug logs:
+* **AudioOutMask:** (Number)
+  * Play sound in UEFI to more than one channel (e.g. main speaker plus bass speaker). Failsafe value is `-1` (output to all).
+  * Output channels are internally numbered as bit `0` (value `1`), bit `1` (value `2`) and so on. A value of `1` refers to the first audio output (not necessarily main speaker). A value of `-1` is used to play to all channels simultaneously.
+  * When AudioSupport is enabled, AudioDevice must be either empty or a valid path and AudioOutMask must be non-zero
+  * Easiest way to find the right one is to go through each one (from 2^0 to 2^(N - 1), where N is the number of outputs listed in your log); ex: 5 outputs would translate to 1/2/4/8/16 (or a combination of these) as possible values
+  * You can find all the ones for your codec in the OpenCore debug logs:
 
-```
-06:065 00:004 OCAU: Matching PciRoot(0x0)/Pci(0x1F,0x3)/VenMsg(A9003FEB-D806-41DB-A491-5405FEEF46C3,00000000)...
-06:070 00:005 OCAU: 1/2 PciRoot(0x0)/Pci(0x1F,0x3)/VenMsg(A9003FEB-D806-41DB-A491-5405FEEF46C3,00000000) (5 outputs) - Success
-```
+    ```
+    06:065 00:004 OCAU: Matching PciRoot(0x0)/Pci(0x1F,0x3)/VenMsg(A9003FEB-D806-41DB-A491-5405FEEF46C3,00000000)...
+    06:070 00:005 OCAU: 1/2 PciRoot(0x0)/Pci(0x1F,0x3)/VenMsg(A9003FEB-D806-41DB-A491-5405FEEF46C3,00000000) (5 outputs) - Success
+    ```
 
-* **AudioSupport:**
+* **AudioSupport:** (Boolean)
   * Set this to `True`
+  * Enabling this setting routes audio playback from builtin protocols to specified dedicated audio ports (AudioOutMask) of the specified codec (AudioCodec), located on the specified audio controller (AudioDevice)
 
-* **MinimumVolume:**
-  * Volume level from `0` to `100`
-  * To not blow the speakers, set it to `70`
-  * Note boot-chime will not play if MinimumVolume is higher than `SystemAudioVolume` that we set back in the `NVRAM` section
+* **DisconnectHDA:** (Boolean)
+  * Set this to `False`
 
-* **PlayChime:**
+* **MaximumGain:** (Number)
+  * Maximum gain to use for UEFI audio, specified in decibels (dB) with respect to amplifier reference level of 0 dB
+  * Set this to `-15`
+
+* **MinimumAssistGain:** (Number)
+  * Minimum gain in decibels (dB) to use for picker audio assist. The screen reader will use this amplifier gain if the system amplifier gain read from the SystemAudioVolumeDB NVRAM variable is lower than this
+  * Set this to `-30`
+
+* **MinimumAudibleGain:** (Number)
+  * Minimum gain in decibels (dB) at which to attempt to play any sound
+  * Set this to `-55`
+
+* **PlayChime:** (String)
   * Set this to `Enabled`
+  * Supported values are:
+    * `Auto` — Enables chime when StartupMute NVRAM variable is not present or set to 00
+    * `Enabled` — Enables chime unconditionally
+    * `Disabled` — Disables chime unconditionally
 
-* **SetupDelay:**
+* **ResetTrafficClass:** (Boolean)
+  * Set this to `False`
+
+* **SetupDelay:** (Number)
   * By default, leave this at `0`
   * Some codecs many need extra time for setup, we recommend setting to `500` milliseconds (0.5 seconds) if you have issues
-
-* **VolumeAmplifier:**
-  * The Volume amplification, value will differ depending on your codec
-  * Formula is as follows:
-    * (SystemAudioVolume * VolumeAmplifier)/100 = Raw Volume(but cannot exceed 100)
-    * ex: (`70` x `VolumeAmplifier`)/`100` = `100`  -> (`100` x `100`) / `70` = VolumeAmplifier = `142.9`(we'll round it to `143` for simplicity)
 
 Once done, you should get something like this:
 
 ![](../images/extras/gui-md/audio-config.png)
+
+::: tip
+
+There are codecs like Realtek ALC295 (HP and others) whose default audio sampling rate is 48 kHz. In this case, even if 44.1 kHz is supported by the codec, sound output fails. The only way at the moment to fix this is to change the sample rate of the `OCEFIAudio_VoiceOver_Boot.mp3` file with an audio editor to raise it from 44.1 kHz to 48 kHz. This has to be done manually as OpenCore does not have an automated mechanism for it.
+
+:::
+
+::: tip
 
 **Note for visually impaired**:
 
 * OpenCore hasn't forgotten about you! With the AudioDxe setup, you can enable both picker audio and FileVault VoiceOver with these 2 settings:
   * `Misc -> Boot -> PickerAudioAssist -> True` to enable picker audio
   * `UEFI -> ProtocolOverrides -> AppleAudio -> True` to enable FileVault voice over
-    * See [Security and FileVault](../universal/security.md) on how to setup the rest for proper FileVault support
+* See [Security and FileVault](../universal/security.md) on how to setup the rest for proper FileVault support.
+
+:::
