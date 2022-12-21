@@ -54,7 +54,7 @@ Notes:
 * These instructions can be read in the OpenCore configuration PDF (section 12.2 UEFFI Secure Boot), here they are explained in more detail.
 * For UEFI Secure Boot and macOS read this [post](https://github.com/dortania/OpenCore-Post-Install/blob/c0e7f282975f7d6224878b71648c27ce0ed304e6/universal/security/uefisecureboot.md).
 
-To have OpenCore vault and UEFI Secure Boot at the same time, it is required to follow an order when digitally signing drivers, tools and OpenCore.efi. If the user signs the files with the firmware keys and applies vault afterwards (or applies vault first and signs afterwards) OpenCore does not boot with a warning of OpenCore.efi corruption. It doesn't matter which of the 2 systems is applied first. 
+To have OpenCore vault and UEFI Secure Boot at the same time, it is required to follow an order when digitally signing drivers, tools and OpenCore.efi. If the user signs the files with the firmware keys and applies vault afterwards (or applies vault first and signs afterwards) OpenCore does not boot with a warning of OpenCore.efi corruption. It doesn't matter which of the 2 systems is applied first.
 
 The trick is in the order the files are signed with UEFI firmware personal keys and hashes created from vault.
 
