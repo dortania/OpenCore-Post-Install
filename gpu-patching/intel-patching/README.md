@@ -152,3 +152,7 @@ Now head forth into your framebuffer patching journey!:
   * Relevant for systems where you may get distorted colors on certain monitors
 * [Patching the display connections](./busid.md)
   * Relevant for systems where certain display outputs do not work
+
+
+## Potential fix for DP audio output
+If you are using iGPU only with DP cable, display is working but no audio output to the monitor, try inject the edid ID using hackintool or other methods. Might be a fix for you.
