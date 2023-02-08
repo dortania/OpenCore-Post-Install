@@ -37,23 +37,25 @@ And something many people forget are over and under-clocks:
 
 **In macOS**:
 
-Before we get in too deep, we'll want to first ready our system:
+Before we get in too deep, we want first get our system ready:
 
 ```
 sudo pmset autopoweroff 0
 sudo pmset powernap 0
-sudo pmset standby 0
 sudo pmset proximitywake 0
+sudo pmset sleep 0
+sudo pmset standby 0
 sudo pmset tcpkeepalive 0
 ```
 
-This will do 5 things for us:
+This will do 6 things for us:
 
-1. Disables autopoweroff: This is a form of hibernation
-2. Disables powernap: Used to periodically wake the machine for network, and updates(but not the display)
-3. Disables standby: Used as a time period between sleep and going into hibernation
-4. Disables wake from iPhone/Watch: Specifically when your iPhone or Apple Watch come near, the machine will wake
-5. Disables TCP Keep Alive mechanism to prevent wake ups every 2 hours
+1. Disables autopoweroff: This is a form of hibernation.
+2. Disables powernap: Used to periodically wake the machine for network, and updates(but not the display).
+3. Disables wake from iPhone/Watch: Specifically when your iPhone or Apple Watch come near, the machine will wake.
+4. Disables macOS from sleeping automatically when the display is off. **This might fix sleep in some devices**.
+5. Disables standby: Used as a time period between sleep and going into hibernation
+6. Disables TCP Keep Alive mechanism to prevent wake ups every 2 hours
 
 **In your config.plist**:
 
