@@ -6,7 +6,7 @@ This section is dedicated to GPU patching, currently we support the following:
 
 * [Modern iGPU patching](./intel-patching/README.md)
   * Sandy and newer is supported
-* [Legacy iGPU patching](./legacy-Intel/README.md)
+* [Legacy iGPU patching](./legacy-intel/README.md)
   * GMA series is supported
 
 ## Nvidia Patching
