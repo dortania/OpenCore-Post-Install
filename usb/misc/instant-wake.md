@@ -23,7 +23,7 @@ And generally you'll get results like these:
 * `Wake reason: RTC (Alarm)`
   * Generally caused by an app waking the system, quitting said app before you sleep should fix it
 
-**Do not use all these patches at once**, look through your DSDT and see what you have:
+**Do not use all these patches at once**, look through your DSDT and see what you have then add the corresponding SSDT and ACPI Patch:
 
 | SSDT | ACPI Patch | Comments |
 | :--- | :--- | :--- |
