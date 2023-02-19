@@ -12,9 +12,9 @@ It's an excellent read and highly recommend to truly understand *what* is exactl
 
 ## Method 1 - Add Wake Type Property (Recommended)
 
-So the ideal method is to declare the XHCI Controller(This is our USB Controller) to be an ACPI wake device, as we don't have compatible ECs for macOS to handle proper wake calls.
+So the ideal method is to declare the XHCI Controller (this is our USB Controller) to be an ACPI wake device, as we don't have compatible ECs for macOS to handle proper wake calls.
 
-To start,  we'll need to grab the PciRoot of our USB Controller(we'll use [gfxutil](https://github.com/acidanthera/gfxutil/releases), Generally the names would be XHC, XHC1 and XHCI)
+To start, we'll need to grab the PciRoot of our USB Controller (we'll use [gfxutil](https://github.com/acidanthera/gfxutil/releases), Generally the names would be XHC, XHC1 and XHCI)
 
 ![](../../images/post-install/usb-md/xhci-path.png)
 
@@ -48,7 +48,7 @@ Now with that done, you can compile and add it to your EFI and config.plist. See
 
 Before we get deep into configuring darkwake, it would be best to explain what darkwake is. A great in-depth thread by holyfield can be found here: [DarkWake on macOS Catalina](https://www.insanelymac.com/forum/topic/342002-darkwake-on-macos-catalina-boot-args-darkwake8-darkwake10-are-obsolete/)
 
-In its simplest form, you can think of darkwake as "partial wake", where only certain parts of your hardware are lit up for maintenance tasks while others remain asleep(ie. Display). Reason we may care about this is that darkwake can add extra steps to the wake process like keyboard press, but outright disabling it can make our hack wake randomly. So ideally we'd go through the below table to find an ideal value.
+In its simplest form, you can think of darkwake as "partial wake", where only certain parts of your hardware are lit up for maintenance tasks while others remain asleep (ie. Display). Reason we may care about this is that darkwake can add extra steps to the wake process like keyboard press, but outright disabling it can make our hack wake randomly. So ideally we'd go through the below table to find an ideal value.
 
 Now lets take a look at [IOPMrootDomain's source code](https://opensource.apple.com/source/xnu/xnu-6153.81.5/iokit/Kernel/IOPMrootDomain.cpp.auto.html):
 
@@ -69,7 +69,7 @@ Now lets go through each bit:
 
 | Bit | Name | Comment |
 | :--- | :--- | :--- |
-| 0 | N/A |  Supposedly disables darkwake |
+| 0 | N/A | Supposedly disables darkwake |
 | 1 | HID Tickle Early | Helps with wake from lid, may require pwr-button press to wake in addition |
 | 2 | HID Tickle Late | Helps single keypress wake but disables auto-sleep |
 | 3 | HID Tickle None | Default darkwake value if none is set|
@@ -78,14 +78,14 @@ Now lets go through each bit:
 | 512 | Graphics Power State 1 | Enables wranglerTickled to wake fully from hibernation and RTC |
 | 1024 | Audio Not Suppressed | Supposedly helps with audio disappearing after wake |
 
-* Note that HID = Human-interface devices(Keyboards, mice, pointing devices, etc)
+* Note that HID = Human-interface devices (Keyboards, mice, pointing devices, etc)
 
-To apply the above table to your system, it's as simple as grabbing calculator, adding up your desired darkwake values and then applying the final value to your boot-args. However we recommend trying 1 at a time rather than merging all at once, unless you know what you're doing(though you likely wouldn't be reading this guide).
+To apply the above table to your system, it's as simple as grabbing calculator, adding up your desired darkwake values and then applying the final value to your boot-args. However we recommend trying 1 at a time rather than merging all at once, unless you know what you're doing (though you likely wouldn't be reading this guide).
 
 For this example, lets try and combine `kDarkWakeFlagHIDTickleLate` and `kDarkWakeFlagGraphicsPowerState1`:
 
 * `2`= kDarkWakeFlagHIDTickleLate
-* `512`= kDarkWakeFlagAudioNotSuppressed
+* `512`= kDarkWakeFlagGraphicsPowerState1
 
 So our final value would be `darkwake=514`, which we can next place into boot-args:
 
@@ -93,7 +93,7 @@ So our final value would be `darkwake=514`, which we can next place into boot-ar
 NVRAM
 |---Add
   |---7C436110-AB2A-4BBB-A880-FE41995C9F82
-    |---boot-args | Sting | darkwake=514
+    |---boot-args | String | darkwake=514
 ```
 
 The below is more for clarification for users who are already using darkwake or are looking into it, specifically clarifying what values no longer work:
