@@ -103,7 +103,7 @@ For example:
 
 **ROM:** `0016cb001122`
 
-## Generate an UUID
+## Generate a UUID
 
 Type `uuidgen` in Terminal
 
