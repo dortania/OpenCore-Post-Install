@@ -182,7 +182,7 @@ Once this is done, reboot, then grab ssdtPRGen and run it:
 
 ![](../images/post-install/pm-md/prgen-run.png)
 
-Once you're done, you'll be provided with an SSDT.aml under `/Users/your-name>/Library/ssdtPRGen/ssdt.dsl`, you can easily find it with the Cmd+Shift+G shortcut and pasting `~/Library/ssdtPRGen/`
+Once you're done, you'll be provided with an SSDT.aml under `/Users/your-name>/Library/ssdtPRGen/`, you can easily find it with the Cmd+Shift+G shortcut and pasting `~/Library/ssdtPRGen/`
 
 ![](../images/post-install/pm-md/prgen-done.png)
 
