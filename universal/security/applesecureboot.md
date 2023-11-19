@@ -152,7 +152,7 @@ ApECID is used as an Apple Enclave Identifier, what this means is it allows us t
 To generate your own ApECID value, you'll want some form of cryptographically secure random number generator that will output a 64-bit integer. Below we provide an example that can be run if [Python 3](https://www.python.org/downloads/) is installed on your machine:
 
 ```py
-python3 -c 'import secrets; print(secrets.randbits(64))'
+python3 -c 'import secrets; print(secrets.randbits(63))'
 ```
 
 With this unique 64-bit int, you can now enter it under Misc -> ApECID in your config.plist
