@@ -126,6 +126,7 @@ If you're in the latter camp, you'll now want to add the needed ACPI renames to 
 
 * **[usb-rename.plist](https://github.com/dortania/OpenCore-Post-Install/blob/master/extra-files/usb-rename.plist)**
   * Simply copy over the required patches to your config.plist
+  * Now we need to restart
 
 # Parting ways
 
