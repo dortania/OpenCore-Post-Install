@@ -146,6 +146,14 @@ There are codecs like Realtek ALC295 (HP and others) whose default audio samplin
 
 ::: tip
 
+* If you do not hear a boot chime after verifying that all of entries have been properly configured, the audio controller could be being incorrectly identified. If this is the case, try using `--force-device=<Path>` in the `Arguments` property for `UEFI -> Drivers -> AudioDxe.efi`, where `<Path>` is the device path for your controller's device path. This is used to force AudioDxe to connect to our audio controller, disregarding whether it is identified as an HDA controller or not
+
+* See the [configuration](https://dortania.github.io/docs/latest/Configuration.html#audiodxe) for a broader explanation on how it works
+
+:::
+
+::: tip
+
 **Note for visually impaired**:
 
 * OpenCore hasn't forgotten about you! With the AudioDxe setup, you can enable both picker audio and FileVault VoiceOver with these 2 settings:
