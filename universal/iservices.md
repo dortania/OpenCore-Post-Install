@@ -175,7 +175,7 @@ Although the first option works for most, do note though if you've had a bad tra
 
 ::: warning
 
-Using a "Purchase Date not Validated:" serial can cause issues down the line if another machine of the same serial ever gets activated. For initial setup it can help alleviate issues with your account but in the long run an invalid serial can be a safer choice.
+Using a "Purchase Date not Validated:" serial can cause issues down the line if another machine of the same serial ever gets activated. For initial setup it can help alleviate issues with your account but in the long run a valid serial can be a safer choice.
 
 :::
 
