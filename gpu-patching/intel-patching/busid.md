@@ -107,7 +107,7 @@ To replace the entire entry, we'll first want to locate our entry and ensure it'
 
 So since entry 2 is the second in the list, we'll want to use con1:
 
-* framebuffer-con2-enable
+* framebuffer-con1-enable
 
 Next lets make the patch, we know that port needs to be patched to `01` and BusID changed to `05`:
 
@@ -117,8 +117,8 @@ And finally, we're given the following patches:
 
 ```
 framebuffer-patch-enable | Data | `01000000`
-framebuffer-con2-enable  | Data | `01000000`
-framebuffer-con2-alldata | Data | `01050A00 00080000 87010000`
+framebuffer-con1-enable  | Data | `01000000`
+framebuffer-con1-alldata | Data | `01050A00 00080000 87010000`
 ```
 
 #### Replace sections of the entry
@@ -135,16 +135,16 @@ So since entry 2 is the second in the list, we'll want to use con1:
 
 Next lets make the patch, we know that port needs to be patched to 01 and BusID changed to 05:
 
-* framebuffer-con2-index = `01`
-* framebuffer-con2-busid = `05`
+* framebuffer-con1-index = `01`
+* framebuffer-con1-busid = `05`
 
 And finally, we get these patches:
 
 ```
 framebuffer-patch-enable | Data | `01000000`
-framebuffer-con2-enable  | Data | `01000000`
-framebuffer-con2-index   | Data | `01`
-framebuffer-con2-busid   | Data | `05`
+framebuffer-con1-enable  | Data | `01000000`
+framebuffer-con1-index   | Data | `01`
+framebuffer-con1-busid   | Data | `05`
 ```
 
 ### Mapping without macOS
