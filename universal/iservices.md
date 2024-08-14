@@ -59,7 +59,7 @@ Replace `"iMacPro1,1"` below with SystemProductName in your config.plist.
 
 Example output:
 
-```console
+```bash
 $ ./macserial \
         --model "iMacPro1,1" 
 Warning: arc4random is not available!
@@ -107,7 +107,7 @@ For example:
 
 Type `uuidgen` in Terminal
 
-```console
+```bash
 $ uuidgen
 976AA603-75FC-456B-BC6D-9011BFB4968E
 ```
