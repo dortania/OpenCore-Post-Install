@@ -140,7 +140,15 @@ Once done, you should get something like this:
 
 ::: tip
 
-There are codecs like Realtek ALC295 (HP and others) whose default audio sampling rate is 48 kHz. In this case, even if 44.1 kHz is supported by the codec, sound output fails. The only way at the moment to fix this is to change the sample rate of the `OCEFIAudio_VoiceOver_Boot.mp3` file with an audio editor to raise it from 44.1 kHz to 48 kHz. This has to be done manually as OpenCore does not have an automated mechanism for it.
+There are codecs like Realtek ALC295 (HP and others) whose default audio sampling rate is 48 kHz. In this case, even if 44.1 kHz is supported by the codec, sound output fails. The only way at the moment to fix this is to change the sample rate of the `OCEFIAudio_VoiceOver_Boot.mp3` file with an audio editor to raise it from 44.1 kHz to 48 kHz. This has to be done manually as OpenCore does not have an automated mechanism for it. You can verify this, by heading to the System Information app, and under `Hardware -> Audio` find the audio output, usually named `Built-in Output`. From here, look for the `Current SampleRate` attribute - If the number beside it reads 48000, this indicates that your codec has its default sampling rate set as 48 kHZ
+
+:::
+
+::: tip
+
+* If you do not hear a boot chime after verifying that all of entries have been properly configured, the audio controller could be being incorrectly identified. If this is the case, try using `--force-device=<Path>` in the `Arguments` property for `UEFI -> Drivers -> AudioDxe.efi`, where `<Path>` is the device path for your controller's device path. This is used to force AudioDxe to connect to our audio controller, disregarding whether it is identified as an HDA controller or not
+
+* See the [configuration](https://dortania.github.io/docs/latest/Configuration.html#audiodxe) for a broader explanation on how it works
 
 :::
 
