@@ -61,6 +61,7 @@ Regarding splitting out chunks, what we'll be doing is omitting chunks of RTC re
 
 * Also note that the final bad spot will usually be a range and not a singular spot.
 * ie. `rtcfx_exclude=85-86` instead of one singular value
+* Cyberlooper has provided an easy to use sheet for the memory map. You can colour out the regions that are safe, you can drill down with each collums until you have found the region(s) that are at fault. You can find it here, https://docs.google.com/spreadsheets/d/1vSvhE2P0roNJFnCkfsRN0a_ZLhdLFIuEkkjPIa6IBHE/edit?usp=sharing
 
 **Pro tip**: To find a value in between 2 regions, I recommend first converting from hexadecimal to decimal, then run the below equation:
 
