@@ -72,26 +72,26 @@ GeForce GT 220
 
 Amount of VRAM present on your card, in hexadecimal.
 
-For this example, lets convert 1024MB to hexadecimal:
+For this example, lets convert 2048MB/2GB to hexadecimal:
 
 ```md
-# Convert 1024MB Megabytes to Bytes
-echo '1024 * 1024 * 1024' | bc
- 1073741824
+# Convert 2048MB Megabytes to Bytes
+echo '2048 * 1024 * 1024' | bc
+2147483648
 
 # Convert from decimal to hexadecimal
-echo 'obase=16; ibase=10; 1073741824' | bc
- 40000000
+echo 'obase=16; ibase=10; 2147483648' | bc
+80000000
 
 # Hexswap so it can be injected correctly
 # ie. swap in pairs
-40000000 -> 40 00 00 00 -> 00 00 00 40
+80000000 -> 80 00 00 00 -> 00 00 00 80
 
 # Pad the value to 8 bytes with 00 at the end
-00 00 00 40 00 00 00 00
+00 00 00 80 00 00 00 00
 
 # And you're done
-VRAM,totalsize = 0000004000000000
+VRAM,totalsize = 0000008000000000
 ```
 
 ### rom-revision
