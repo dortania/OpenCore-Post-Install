@@ -117,6 +117,7 @@ ALC
 ALC1220
 ALC3601
 ALZA
+AMI
 ANS1
 ANS2
 APIC
@@ -279,6 +280,7 @@ Clarkdale
 Clarksfield
 CloverV2
 Cmd
+CodeRush's
 Codec
 Codecs
 CoffeeLake
@@ -440,6 +442,7 @@ GraphicsEnabler=Yes
 Greenwhich
 GuC
 Gui
+H2O
 H310
 H370
 H61
@@ -517,6 +520,7 @@ IPIC
 IQSV
 IRQ
 IRQs
+ISK
 IceLake
 Icelake
 Icelake's
@@ -543,6 +547,7 @@ Journaled
 KASLR
 KBL-R
 KDK
+KEK
 KVM
 KVMs
 Kaby
@@ -556,6 +561,7 @@ Kext
 Kext's
 KextBeast
 Kexts
+KeyTool
 Keychain
 Khronokernel
 L305
@@ -587,6 +593,8 @@ MEI
 MEID
 MKext
 MMIO
+MOK
+MOKs
 MSI
 MSR
 MSR_FLEX_RATIO
@@ -627,6 +635,7 @@ Merom
 Mhz
 MinMultiplier
 Misconfigured
+MokManager
 MonitorControl
 MountEFI
 MultiBeast
@@ -711,6 +720,7 @@ PCIRootUID=Value
 PCIe
 PEG0
 PEGP
+PEM
 PGEC
 PLIST
 PListPath
@@ -800,6 +810,8 @@ SAT1
 SATA
 SATA-Unsupported
 SATA-unsupported
+SBAT
+SCT
 SGX
 SHA-1
 SHA-512
@@ -829,11 +841,13 @@ SSxx
 STAS
 Safemode
 SandyBridge
+SecureBoot
 SecureBootModel
 SetVirtualAddresses
 Shannee
 SharedSupport
 Shiki
+ShimUtils
 ShowPackageContents
 SidecarEnabler
 Siri
@@ -922,6 +936,7 @@ V1
 VBIOS
 VDADecoderChecker
 VDI
+VENDOR_DBX_FILE
 VESA
 VIAO
 VIRTIO
@@ -1059,6 +1074,7 @@ busids
 cacheless
 cd
 cdfon
+chainload
 checksums
 chipset
 chipset's
@@ -1084,6 +1100,7 @@ customizations
 dGPU
 dGPUs
 darkwake
+dbx
 debug=0x100
 decompile
 decrypt
@@ -1286,6 +1303,7 @@ rom-revision
 savvamitrofanov
 shiki
 shikigva
+shimx64
 slav
 slavs
 slowgeek

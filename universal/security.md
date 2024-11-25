@@ -12,3 +12,5 @@ So something that makes OpenCore truly special is how it's been built with secur
   * Enable password in OpenCore boot menu
 * [**Apple Secure Boot**](./security/applesecureboot.md)
   * Apple's variant of secure boot in the macOS kernel
+* [**UEFI Secure Boot**](./security/uefisecureboot.md)
+  * Firmware's variant of secure boot

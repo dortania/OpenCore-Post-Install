@@ -160,6 +160,7 @@ module.exports = {
                         ['/universal/security/scanpolicy', 'ScanPolicy'],
                         ['/universal/security/password', 'OpenCore Menu Password'],
                         ['/universal/security/applesecureboot', 'Apple Secure Boot'],
+                        ['/universal/security/uefisecureboot', 'UEFI Secure Boot'],
                     ]
                 },
             ]
