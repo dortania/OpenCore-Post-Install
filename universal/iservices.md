@@ -306,7 +306,11 @@ And a final layer of precaution is to make a new AppleID to play with, this make
 
 ::: tip
 
-Adding a payment card to the account and having a decent amount of purchases can also help. While not concrete, you can think of an AppleID as a credit score where the better an Apple customer you are the more likely they won't have activation issues or get an easier pass with Apple Support
+Adding a payment card to the account and having a decent amount of purchases can also help. While not concrete, you can think of an AppleID as a credit score where the better an Apple customer you are the more likely they won't have activation issues or get an easier pass with Apple Support.
+
+::: another tip
+
+Adding a local user and trying to sign in on that can also help. If it works, sign out, sign into your main, and try. Using an Ethernet cable and turning off your wifi can also help.
 
 ::
 
