@@ -23,3 +23,15 @@ When you mount your main drive's EFI, you may be greeted with a folder called `A
 ## Special notes for legacy users
 
 When transferring over your EFI, there are still boot sectors that need to be written to so your non-UEFI BIOS would be able to find it. So don't forget to rerun the [`BootInstallARCH.tool`](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/mac-install.html#legacy-setup) on your macOS drive.
+
+
+## Suggestions for improvement
+This seems to be the only way I have to point out deficiencies on the documentation.  Please note, I am proficient on a large variety of platforms but not Apple. The directions on this page might be 
+intuitively obvious for those familiar with the Apple OS platforms but not for other folks.  What I'm listing here are the pain points I encountered due to ambiguity and lack of instructions. The following reference line numbers refer to the line numbers in this file.
+
+**Line 11** Once the EFI's mounted... There is a lack of clarity on exactly what needs to be copied and from what directory.  Just indicating "EFI Folder" leaves the user wondering exactly what needs to be saved.
+
+**Line 11** Eject the USB drive's..., for somebody who does not normally operate in an Apple environment, a picture would be helpful to indicate where the eject should be initiated.
+
+**Line 21** You can wipe... is this a seperate and unique step or should this only be executed if the "APPLE" folder exists?
+**Line 21** replace it with the one found on your USB.  Wait a moment, I ejected my USB so where do I obtain this folder? Is this the folder I previous saved in a safe spot?
