@@ -5,6 +5,8 @@ With [ECEnabler.kext](https://github.com/1Revenger1/ECEnabler/releases/latest), 
 * If battery status is not working even with ECEnabler, make sure you have the [SMCBatteryManager](https://github.com/Acidanthera/VirtualSMC/releases/latest) VirtualSMC plugin enabled in your OpenCore configuration.
 
 * Certain devices, such as the Surface 3, Surface Pro 5, Surface Book 2, and Surface Laptop (and all subsequent Surface devices), use proprietary Embedded Controllers (or other similar hardware) instead of standard ACPI battery devices and OperationRegion fields, and thus without device-specific kexts, battery status cannot work.
+  
+* For non-standard SystemMemory based Embedded Controllers, Battery Status can still work. In some cases, patching may still required: [Link](https://github.com/Najip/hackintosh-systemmemory-battery-ec-guides)
 
 ::: details Battery Patching Resources
 
