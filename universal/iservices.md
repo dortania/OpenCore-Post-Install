@@ -74,8 +74,8 @@ The value on the right is your **Board Serial (MLB)**.
 Select a MAC Address with an Organizationally Unique Identifier (OUI) that corresponds to a real Apple, Inc. interface.
 
 See the following list:
-
-[https://gitlab.com/wireshark/wireshark/-/raw/master/manuf](https://gitlab.com/wireshark/wireshark/-/raw/master/manuf)
+Original Source - [https://gitlab.com/wireshark/wireshark/-/raw/master/manuf](https://gitlab.com/wireshark/wireshark/-/raw/master/manuf)
+Mirror - [https://www.wireshark.org/download/automated/data/manuf](https://www.wireshark.org/download/automated/data/manuf)
 
 For example:
 
