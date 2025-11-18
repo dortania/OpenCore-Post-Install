@@ -22,6 +22,9 @@ For ROM, we use the MAC Address of the network interface, lowercase, and without
 
 **Note**: You and you alone are responsible for your AppleID, read the guide carefully and take full responsibility if you screw up. Dortania and other guides are not held accountable for what **you** do.
 
+
+**Note**: If you are trying to make an AppleID with a Russian phone number(+7) and it throws an error, you should use Apple Music to avoid phone verification.
+
 ## Using GenSMBIOS
 
 Download [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS) and select option 1 to download MacSerial and next option 3 to generate some new serials. What we're looking for is a valid serial that currently has no registered purchase date.
