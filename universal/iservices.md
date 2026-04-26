@@ -75,7 +75,7 @@ Select a MAC Address with an Organizationally Unique Identifier (OUI) that corre
 
 See the following list:
 
-[https://gitlab.com/wireshark/wireshark/-/raw/master/manuf](https://gitlab.com/wireshark/wireshark/-/raw/master/manuf)
+[https://gitlab.com/wireshark/wireshark/-/raw/release-4.0/manuf](https://gitlab.com/wireshark/wireshark/-/raw/release-4.0/manuf)
 
 For example:
 
